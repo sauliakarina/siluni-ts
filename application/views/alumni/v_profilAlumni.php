@@ -90,6 +90,13 @@
                         </div>
                         <div class="line"></div>
                         <div class="form-group row">
+                          <label class="col-sm-3 form-control-label">IPK</label>
+                          <div class="col-sm-3">
+                            <input type="text" class="form-control" value="<?php echo $profil->ipk ?>">
+                          </div>
+                        </div>
+                        <div class="line"></div>
+                        <div class="form-group row">
                           <label class="col-sm-3 form-control-label">Email</label>
                           <div class="col-sm-4">
                             <input type="text" class="form-control" value="<?php echo $profil->email ?>">

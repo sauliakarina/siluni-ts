@@ -35,7 +35,6 @@
                             <tr>
                               <th>No</th>
                               <th>Nama</th>
-                              <th>Posisi</th>
                               <th>Divisi</th>
                               <th>Pilih</th>
                             </tr>
@@ -44,7 +43,6 @@
                             <tr>
                               <th scope="row">1</th>
                               <td>Rahman, S.Kom</td>
-                              <td>Manajer</td>
                               <td>Teknologi Informasi</td>
                               
                               <td>
@@ -54,7 +52,6 @@
                             <tr>
                               <th scope="row">2</th>
                               <td>Budiyono, S.Kom</td>
-                              <td>Asisten Manajer</td>
                               <td>Jaringan</td>
                               <td>
                                 <input id="radioCustom1" type="radio" value="option1" name="a" class="radio-template">
@@ -74,10 +71,6 @@
                           <div class="form-group">       
                             <label class="form-control-label">Divisi</label>
                             <input type="password" placeholder="" class="form-control">
-                          </div>
-                          <div class="form-group">       
-                            <label class="form-control-label">Posisi</label>
-                            <input type="text" placeholder="" class="form-control">
                           </div>
                           <div class="form-group">       
                             <label class="form-control-label">Email</label>

@@ -10,7 +10,7 @@ class Kuesioner extends CI_Controller {
  
 	}
 
-	public function index()
+	/*public function index()
 	{
 		$data = array(
 			'role' => $this->session->userdata('role'),
@@ -21,6 +21,20 @@ class Kuesioner extends CI_Controller {
 		$this->load->view('element/header');
 		$this->load->view('element/navbar', $data);
 		$this->load->view('alumni/v_kuesionerAlumni', $data);
+		$this->load->view('element/footer');
+	}*/
+
+	public function index()
+	{
+		$data = array(
+			'role' => $this->session->userdata('role'),
+			'userID' => $this->session->userdata('userID'),
+			'prodiID' => $this->session->userdata('prodiID')
+		);
+		$this->load->view('element/head');
+		$this->load->view('element/header');
+		$this->load->view('element/navbar', $data);
+		$this->load->view('alumni/v_isiKuesioner', $data);
 		$this->load->view('element/footer');
 	}
 

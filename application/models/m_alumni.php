@@ -17,6 +17,15 @@ class M_alumni extends CI_Model{
 
 	}
 
+	function getAlumniByID($id)
+	{
+		$this->db->select('*');
+		$this->db->where('id',$id);
+		$query = $this->db->get('alumni');
+		return $query->row();
+
+	}
+
 	function getAlumni()
 	{
 		$this->db->select('*');
@@ -47,6 +56,11 @@ class M_alumni extends CI_Model{
 			return $query->result();
 		}
 
+	}
+
+	public function cekAlumni($nim){
+		$this->db->where('nim', $nim);
+		return $this->db->get('alumni');
 	}
 
 	

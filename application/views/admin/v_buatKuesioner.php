@@ -23,12 +23,12 @@
                 <div class="col-lg-6">
                   <div class="card">
                     <div class="card-header d-flex align-items-center">
-                      <h3 class="h4">Nama Kuesioner</h3>
+                      <h3 class="h4">Jenis Kuesioner</h3>
                     </div>
                     <div class="card-body">
                       <form class="form-horizontal">
                         <div class="form-group">
-                          <input type="email" placeholder="Masukkan nama kuesioner" class="form-control">
+                          <input type="email" placeholder="Masukkan jenis kuesioner" class="form-control">
                         </div>
                       </form>
                     </div>

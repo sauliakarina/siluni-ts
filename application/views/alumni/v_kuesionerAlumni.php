@@ -53,7 +53,7 @@
                               <th scope="row">3</th>
                               <td>Kompetensi</td>
                               <td>
-                               <button type="button" class="btn btn-primary btn-sm">Lengkapi Data</button>
+                               <button type="button" class="btn btn-warning btn-sm">Lengkapi Data</button>
                               </td>
                             </tr>
                           </tbody>

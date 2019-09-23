@@ -5,6 +5,7 @@ class Profil extends CI_Controller {
 	function __construct(){
 		parent::__construct();		
 		$this->load->model('m_alumni');
+		$this->load->model('m_master');
  
 	}
 
@@ -13,6 +14,7 @@ class Profil extends CI_Controller {
 		$userID = $this->session->userdata('userID');   
 		$data = array(
 			'role' => $this->session->userdata('role'),
+			'prodiID' => $this->session->userdata('prodiID'),
 			'userID' => $userID,
 			'profil' => $this->m_alumni->getAlumniByUserID($userID)
 		);
@@ -27,7 +29,8 @@ class Profil extends CI_Controller {
 	{
 		$data = array(
 			'role' => $this->session->userdata('role'),
-			'userID' => $this->session->userdata('userID')
+			'userID' => $this->session->userdata('userID'),
+			'prodiID' => $this->session->userdata('prodiID'),
 		);
 		$this->load->view('element/head');
 		$this->load->view('element/header');
@@ -40,7 +43,8 @@ class Profil extends CI_Controller {
 	{
 		$data = array(
 			'role' => $this->session->userdata('role'),
-			'userID' => $this->session->userdata('userID')
+			'userID' => $this->session->userdata('userID'),
+			'prodiID' => $this->session->userdata('prodiID'),
 		);
 		$this->load->view('element/head');
 		$this->load->view('element/header');
@@ -66,7 +70,8 @@ class Profil extends CI_Controller {
 	{
 		$data = array(
 			'role' => $this->session->userdata('role'),
-			'userID' => $this->session->userdata('userID')
+			'userID' => $this->session->userdata('userID'),
+			'prodiID' => $this->session->userdata('prodiID'),
 		);
 		$this->load->view('element/head');
 		$this->load->view('element/header');

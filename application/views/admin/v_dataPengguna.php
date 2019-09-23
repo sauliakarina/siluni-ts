@@ -19,7 +19,7 @@
                   <div class="card">
                     <div class="card-header d-flex align-items-center">
                       <h3 class="h4">Pengguna Alumni Ilmu Komputer</h3>
-                      <button type="button" class="btn btn-primary ml-auto btn-sm"><i class="fas fa-user-plus"></i> Tambah Data</button>
+                      <!-- <button type="button" class="btn btn-primary ml-auto btn-sm"><i class="fas fa-user-plus"></i> Tambah Data</button> -->
                     </div>
                     <div class="card-body">
                       <div class="table-responsive">                       
@@ -28,22 +28,23 @@
                             <tr>
                               <th>No</th>
                               <th>Nama</th>
-                              <th>Posisi</th>
+                              <th>Divisi</th>
                               <th>Instansi</th>
+                              <th>Email</th>
+                              <th>No Telepon</th>
                               <th></th>
                             </tr>
                           </thead>
                           <tbody>
                             <tr>
                               <th scope="row">1</th>
-                              <td>Saulia</td>
-                              <td>Manajer Teknologi Informasi</td>
+                              <td>Rahmat, S.Kom</td>
+                              <td>Teknologi Informasi</td>
                               <td>PT PLN Disjaya</td>
+                              <td>rahmat@pln.co.id</td>
+                              <td>081234567</td>
                               <td>
                                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn btn-info btn-sm">
-                                    <input type="radio" name="options"><i class="fas fa-info-circle"></i>
-                                  </label>
                                   <label class="btn btn-warning btn-sm">
                                     <input type="radio" name="options"><i class="fas fa-user-edit"></i>
                                   </label>
@@ -55,14 +56,13 @@
                             </tr>
                             <tr>
                               <th scope="row">2</th>
-                              <td>Karina</td>
-                              <td>Manajer Teknologi dan Komunikasi</td>
-                              <td>PT Angkasa Pura</td>
+                              <td>Budiyono, S.Kom</td>
+                              <td>Jaringan</td>
+                              <td>PT Sinarmas</td>
+                              <td>budiyono@sinarmas.co.id</td>
+                              <td>081234567</td>
                               <td>
                                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn btn-info btn-sm">
-                                    <input type="radio" name="options"><i class="fas fa-info-circle"></i>
-                                  </label>
                                   <label class="btn btn-warning btn-sm">
                                     <input type="radio" name="options"><i class="fas fa-user-edit"></i>
                                   </label>

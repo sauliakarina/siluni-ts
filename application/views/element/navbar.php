@@ -34,9 +34,9 @@
             <!-- menu admin -->
             <?php if ($role == 'admin') { ?>
               <li class="<?php if($this->uri->segment(2)=="Beranda" && ($this->uri->segment(3)!="kelolaBerandaAlumni" && $this->uri->segment(3)!="kelolaBerandaPengguna")){echo "active";} ?>"><a href="<?php echo site_url('admin/Beranda') ?>"> <i class="icon-home"></i>Beranda </a></li>              
-              <li class="<?php if($this->uri->segment(2)=="Alumni" || $this->uri->segment(2)=="Dosen"){echo "active";} ?>"><a href="#dropdownKelolaData" aria-expanded="false" data-toggle="collapse"><i class="icon-grid"></i>Kelola Data</a>
+              <li class="<?php if($this->uri->segment(2)=="Dosen"){echo "active";} ?>"><a href="#dropdownKelolaData" aria-expanded="false" data-toggle="collapse"><i class="icon-grid"></i>Kelola Data</a>
               <ul id="dropdownKelolaData" class="collapse list-unstyled ">
-                <li><a href="<?php echo site_url('admin/Alumni') ?>">Alumni</a></li>
+                <!-- <li><a href="<?php //echo site_url('admin/Alumni') ?>">Alumni</a></li> -->
                 <li><a href="<?php echo site_url('admin/Dosen') ?>">Dosen</a></li>
                 <li><a href="<?php echo site_url('admin/Dosen/kelolaKoorprodi') ?>">Koorprodi</a></li>
               </ul>
@@ -44,12 +44,13 @@
             <li class="<?php if($this->uri->segment(2)=="Berita" ){echo "active";} ?>"><a href="<?php echo site_url('admin/Berita') ?>"><i class="fa fa-tasks"></i>Kelola Berita</a></li>
           </ul><span class="heading">Tracer Study</span>
            <ul class="list-unstyled">
-            <li class="<?php if($this->uri->segment(2)=="Kuesioner"){echo "active";} ?>"><a href="#dropdownKuesioner" aria-expanded="false" data-toggle="collapse"> <i class="icon-padnote"></i>Data Kuesioner </a>
+            <li class="<?php if($this->uri->segment(2)=="Kuesioner"){echo "active";} ?>"><a href="#dropdownKuesioner" aria-expanded="false" data-toggle="collapse"> <i class="icon-padnote"></i>Kuesioner </a>
               <ul id="dropdownKuesioner" class="collapse list-unstyled ">
                 <li><a href="<?php echo site_url('admin/Kuesioner/kuesionerAlumni') ?>">Kuesioner Alumni</a></li>
                 <li><a href="<?php echo site_url('admin/Kuesioner/kuesionerPengguna') ?>">Kuesioner Pengguna</a></li>
               </ul>
             </li>
+             <li class="<?php if($this->uri->segment(2)=="Alumni" ){echo "active";} ?>"><a href="<?php echo site_url('admin/Alumni') ?>"><i class="fas fa-user-graduate"></i>Alumni</a></li>
             <li class="<?php if($this->uri->segment(2)=="Pengguna" ){echo "active";} ?>"><a href="<?php echo site_url('admin/Pengguna') ?>"><i class="icon-user"></i>Pengguna Alumni</a></li>
             <li class="<?php if($this->uri->segment(2)=="Beranda" && ($this->uri->segment(3)=="kelolaBerandaAlumni" || $this->uri->segment(3)=="kelolaBerandaPengguna")){echo "active";} ?>"><a href="#dropdownKelolaBeranda" aria-expanded="false" data-toggle="collapse"> <i class="icon-bars"></i>Kelola Beranda</a>
               <ul id="dropdownKelolaBeranda" class="collapse list-unstyled ">
@@ -73,8 +74,12 @@
               <li class="<?php if($this->uri->segment(2)=="Profil" && $this->uri->segment(3)=="gantiPassword"){echo "active";} ?>"><a href="<?php echo site_url('alumni/Profil/gantiPassword') ?>"> <i class="fas fa-unlock-alt"></i>Ganti Password </a></li>
               <span class="heading">Tracer Study</span>
                <ul class="list-unstyled">
-                <li class="<?php if($this->uri->segment(2)=="Profil" && $this->uri->segment(3) =="riwayatPekerjaan"){echo "active";} ?>"><a href="<?php echo site_url('alumni/Profil/riwayatPekerjaan') ?>"> <i class="fa fa-tasks"></i>Riwayat Pekerjaan</a></li>
-              <li class="<?php if($this->uri->segment(2)=="Kuesioner"){echo "active";} ?>"><a href="<?php echo site_url('alumni/Kuesioner') ?>"> <i class="icon-padnote"></i>Kuesioner </a></li>
+              <li class="<?php if($this->uri->segment(2)=="Kuesioner" || ($this->uri->segment(2)=="Profil" && $this->uri->segment(3) =="riwayatPekerjaan")){echo "active";} ?>"><a href="#dropdownKelolaData" aria-expanded="false" data-toggle="collapse"><i class="icon-padnote"></i>Kuesioner</a>
+              <ul id="dropdownKelolaData" class="collapse list-unstyled ">
+                <li><a href="<?php echo site_url('alumni/Kuesioner') ?>">Form Kuesioner</a></li>
+                <li><a href="<?php echo site_url('alumni/Profil/riwayatPekerjaan') ?>">Riwayat Pekerjaan</a></li>
+              </ul>
+            </li>
               <li class="<?php if($this->uri->segment(2)=="Pengguna"){echo "active";} ?>"><a href="<?php echo site_url('alumni/Pengguna') ?>"> <i class="fas fa-briefcase"></i>Pengguna Alumni</a></li>
               </ul>
 

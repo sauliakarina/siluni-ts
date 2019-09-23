@@ -6,48 +6,59 @@
                <h4>Hasil Tracer Study Ilmu Komputer</h4>
       </div><!-- col-12 -->
     </div> <!-- row -->
+<!--       <div class="row" style="margin-top: 40px">
+  <div class="col-md-12">
+    <div class="card">
+      <center><h4 style="margin-top: 20px">Statistik Alumni</h4></center>
+    <div class="card-body">
+      <div class="row">
+        
+      jenis instansi
+      <div class="col-md-6"> <div  class="bar-chart has-shadow bg-white">
+              <canvas id="myChart"></canvas>
+            </div></div>
+
+        <div class="col-md-6">
+             Bar Chart Gaji
+        <div  class="bar-chart has-shadow bg-white">
+              <canvas id="chartPie"></canvas>
+                  </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>col-12
+
+</div> row -->
       <div class="row" style="margin-top: 40px">
         <div class="col-md-12">
           <div class="card">
             <center><h4 style="margin-top: 20px">Statistik Alumni</h4></center>
           <div class="card-body">
             <div class="row">
-              
-            <div class="col-md-6"> <div  class="bar-chart has-shadow bg-white">
-                    <canvas id="myChart"></canvas>
-                  </div></div>
-
-              <div class="col-md-6">
-                   <!-- Bar Chart   -->
-              <div  class="bar-chart has-shadow bg-white">
-                    <canvas id="chartPie"></canvas>
-                        </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        </div><!-- col-12 -->
-
-      </div> <!-- row -->
-      <div class="row" style="margin-top: 40px">
-        <div class="col-md-12">
-          <div class="card">
-            <center><h4 style="margin-top: 20px">Statistik Pengguna Alumni</h4></center>
-          <div class="card-body">
-            <div class="row">
               <div class="col-md-2"></div>
             <div class="col-md-8"> <div  class="bar-chart has-shadow bg-white">
-                    <canvas id="penggunaPuasPie"></canvas>
+                    <canvas id="myChart"></canvas>
                   </div></div>
             </div>
             <div class="col-md-2"></div>
-            <div class="row"  style="margin-top: 40px">
+            <div class="row"  style="margin-top: 60px">
                <div class="col-md-2"></div>
               <div class="col-md-8">
                    <!-- Bar Chart   -->
-              <div  class="bar-chart has-shadow bg-white">
-                    <canvas id="penggunaKompetensiBar"></canvas>
+             <div  class="bar-chart has-shadow bg-white">
+                    <canvas id="chartPie"></canvas>
                         </div>
+              </div>
+               <div class="col-md-2"></div>
+            </div>
+
+            <div class="row"  style="margin-top: 60px">
+               <div class="col-md-2"></div>
+              <div class="col-md-8">
+                <div  class="bar-chart has-shadow bg-white">
+                    <canvas id="profilChart"></canvas>
+                  </div>
               </div>
                <div class="col-md-2"></div>
             </div>
@@ -66,15 +77,17 @@
     var myChart = new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: ["Lokal", "Internasional"],
+        labels: ["Lokal", "Nasional", "Internasional"],
         datasets: [{
           label: 'Jenis Instansi',
-          data: [8, 15],
+          data: [8, 15, 12],
           backgroundColor: [
+          'rgba(55, 181, 94, 1)',
           'rgba(55, 181, 94, 1)',
           'rgba(55, 181, 94, 1)',
           ],
           borderColor: [
+          'rgba(55, 181, 94, 1)',
           'rgba(55, 181, 94, 1)',
           'rgba(55, 181, 94, 1)',
           ],

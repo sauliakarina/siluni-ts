@@ -8,6 +8,43 @@
               <h2 class="no-margin-bottom">Beranda</h2>
             </div>
           </header>
+           <!-- Dashboard Counts Section-->
+          <section class="dashboard-counts no-padding-bottom">
+            <div class="container-fluid">
+              <div class="row bg-white has-shadow">
+                <!-- Item -->
+                <div class="col-xl-4 col-sm-6">
+                  <div class="item d-flex align-items-center">
+                    <div class="icon bg-violet"><i class="icon-user"></i></div>
+                    <a href="#">
+                    <div class="title"><span>Pengguna<br> Alumni</span>
+                    </div> </a>
+                    <div class="number" style="color: green;"><strong>4</strong></div>
+                  </div>
+                </div>
+                <!-- Item -->
+                <div class="col-xl-4 col-sm-6">
+                  <div class="item d-flex align-items-center">
+                    <div class="icon bg-red"><i class="icon-padnote"></i></div>
+                    <a href="#">
+                    <div class="title"><span>Kuesioner<br>Alumni</span>
+                    </div></a>
+                    <div class="number" style="color: green;"><strong>7</strong></div>
+                  </div>
+                </div>
+                <!-- Item -->
+                <div class="col-xl-4 col-sm-6">
+                  <div class="item d-flex align-items-center">
+                    <div class="icon bg-green"><i class="icon-bill"></i></div>
+                    <a href="#">
+                    <div class="title"><span>Kuesioner<br>Pengguna Alumni</span>
+                    </div></a>
+                    <div class="number" style="color: green;"><strong>5</strong></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
           <!-- Dashboard Header Section    -->
           <section class="dashboard-header">
             <div class="container-fluid">

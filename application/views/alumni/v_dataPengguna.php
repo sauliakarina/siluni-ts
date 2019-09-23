@@ -29,24 +29,27 @@
                               <th>Nama</th>
                               <th>Instansi</th>
                               <th>Divisi</th>
-                              <th></th>
+                              <th>Email</th>
+                              <th>Daftar Alumni</th>
                             </tr>
                           </thead>
                           <tbody>
                             <tr>
                               <th scope="row">1</th>
-                              <td>Saulia</td>
+                              <td>Rahman, S.Kom</td>
                               <td>PT PLN Disjaya</td>
                               <td>Teknologi Informasi</td>
+                              <td>rahman@pln.co.id</td>
                               <td>
                                 <button type="button" data-toggle="modal" data-target="#modalDetail" class="btn btn-info btn-sm"><i class="fas fa-info-circle"></i></button>
                               </td>
                             </tr>
                             <tr>
                               <th scope="row">2</th>
-                              <td>Karina</td>
+                              <td>Budiyono, S.Kom</td>
                               <td>PT Angkasa Pura</td>
                               <td>Jaringan</td>
+                              <td>budiyono@gmail.com</td>
                               <td>
                                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                   <label class="btn btn-info btn-sm">
@@ -70,42 +73,15 @@
                         <div role="document" class="modal-dialog">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h4 id="exampleModalLabel" class="modal-title">Pengguna Alumni</h4>
+                              <h4 id="exampleModalLabel" class="modal-title">Alumni yang Bekerja pada Instansi</h4>
                               <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
                             </div>
                             <div class="modal-body">
                               <p></p>
                               <form class="form-horizontal">
-                                <div class="form-group row">
-                                  <label class="col-sm-3 form-control-label">Nama</label>
-                                  <div class="col-sm-9">
-                                    <p>Saulia</p>
-                                  </div>
-                                </div>
-                                <div class="line"></div>
-                                <div class="form-group row">
-                                  <label class="col-sm-3 form-control-label">Posisi</label>
-                                  <div class="col-sm-9">
-                                    <p>Manager Teknologi Informasi</p>
-                                  </div>
-                                </div>
-                                <div class="line"></div>
-                                <div class="form-group row">
-                                  <label class="col-sm-3 form-control-label">Email</label>
-                                  <div class="col-sm-9">
-                                    <p>sauliakarina@gmail.com</p>
-                                  </div>
-                                </div>
-                                <div class="form-group row">
-                                  <label class="col-sm-3 form-control-label">No Telepon</label>
-                                  <div class="col-sm-9">
-                                    <p>0838123452</p>
-                                  </div>
-                                </div>
-                                <div class="line"></div>
                                 <div class="form-group">
                                   <!-- <label class="form-control-label">Daftar Alumni</label> -->
-                                     <p><b>Daftar Alumni</b></p>
+                                     <p><b></b></p>
                                      <div class="table-responsive">                       
                                       <table class="table table-striped table-hover">
                                         <thead>

@@ -21,39 +21,126 @@
               <div class="row">
                 <!-- Basic Form-->
                 <div class="col-lg-12">
-                  <div class="card">
+                  <div class="card"><!-- 
                     <div class="card-header d-flex align-items-center">
-                      <h3 class="h4">Kuesioner Pekerjaan</h3>
-                    </div>
+                      <h3 class="h4"></h3>
+                    </div> -->
                     <div class="card-body">
                       <p></p>
-                      <table class="table table-striped">
+                      <table class="table table-striped mb-4">
+                        <h6>Pekerjaan</h6>
                         <tr>
                           <td>Masa tunggu dari kelulusan hingga mendapat pekerjaan pertama</td>
                           <td>:</td>
-                          <td width="400px"><input type="radio" name=""><label>1-2</label><br>
-                              <input type="radio" name=""><label>1-2</label><br>
-                              <input type="radio" name=""><label>1-2</label><br>
+                          <td width="500px">
+                               <div class="i-checks">
+                                <input id="radioCustom1" type="radio" value="option1" name="a" class="radio-template">
+                                <label for="radioCustom1">1-3 bln</label>
+                              </div> 
+                              <div class="i-checks">
+                                <input id="radioCustom1" type="radio" value="option1" name="a" class="radio-template">
+                                <label for="radioCustom1">4-6 bln</label>
+                              </div>
+                              <div class="i-checks">
+                                <input id="radioCustom1" type="radio" value="option1" name="a" class="radio-template">
+                                <label for="radioCustom1">7-9 bln</label>
+                              </div> 
+                              <div class="i-checks">
+                                <input id="radioCustom1" type="radio" value="option1" name="a" class="radio-template">
+                                <label for="radioCustom1">10-12 bln</label>
+                              </div> 
+                              <div class="i-checks">
+                                <input id="radioCustom1" type="radio" value="option1" name="a" class="radio-template">
+                                <label for="radioCustom1"> > 12 bln</label>
+                              </div> 
                           </td>
                         </tr>
                         <tr>
                           <td>Bagaimana anda mencari pekerjaan tersebut? </td>
                           <td>:</td>
-                          <td width="400px"><input type="checkbox" name="">Melalui iklan di koran/majalah, brosur<br>
-                              <input type="checkbox" name="">Melamar ke perusahaan tanpa mengetahui lowongan yang ada<br>
-                              <input type="checkbox" name="">Pergi ke bursa/pameran kerja<br>
+                          <td width="500px">
+                            <div class="i-checks">
+                              <input id="checkboxCustom1" type="checkbox" value="" class="checkbox-template">
+                              <label for="checkboxCustom1">Melalui iklan di koran/majalah, brosur</label>
+                            </div>
+                            <div class="i-checks">
+                              <input id="checkboxCustom1" type="checkbox" value="" class="checkbox-template">
+                              <label for="checkboxCustom1">Melamar ke perusahaan tanpa tahu lowongan yang ada</label>
+                            </div>
+                            <div class="i-checks">
+                              <input id="checkboxCustom1" type="checkbox" value="" class="checkbox-template">
+                              <label for="checkboxCustom1">Pergi ke bursa/pameran kerja</label>
+                            </div>
                           </td>
                         </tr>
                          <tr>
                           <td>Apakah pekerjaan Saudara ini berhubungan dengan bidang ilmu yang Saudara pelajari di Perguruan Tinggi?</td>
                           <td>:</td>
-                          <td width="400px"><input type="radio" name=""><label>Ya</label><br>
-                              <input type="radio" name=""><label>Tidak</label><br>
-                              <textarea class="form-control" rows="3" placeholder="Tuliskan alasan"></textarea>
+                          <td width="500px">
+                              <div class="i-checks">
+                                <input id="radioCustom1" type="radio" value="option1" name="a" class="radio-template">
+                                <label for="radioCustom1">Ya</label>
+                              </div> 
+                              <div class="i-checks">
+                                <input id="radioCustom1" type="radio" value="option1" name="a" class="radio-template">
+                                <label for="radioCustom1">Tidak</label>
+                              </div> 
+                              <div class="form-group">
+                              <textarea placeholder="Tuliskan Alasan" class="form-control" rows="3"></textarea>
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
+                      <table class="table table-striped">
+                        <h6>Melanjutkan Pendidikan</h6>
+                        <tr>
+                          <td>Dimana anda melanjutkan pendidikan</td>
+                          <td>:</td>
+                          <td width="500px">
+                            <div class="form-group">
+                              <input type="text" placeholder="" class="form-control">
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Alamat Universitas</td>
+                          <td>:</td>
+                          <td width="500px">
+                            <div class="form-group">
+                              <input type="text" placeholder="" class="form-control">
+                            </div>
+                          </td>
+                        </tr>
+                         <tr>
+                          <td>Program Studi</td>
+                          <td>:</td>
+                          <td width="500px">
+                            <div class="form-group">
+                              <input type="text" placeholder="" class="form-control">
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                           <td>Apakah program studi S1 anda linear dengan S2?</td>
+                          <td>:</td>
+                          <td width="500px">
+                              <div class="i-checks">
+                                <input id="radioCustom1" type="radio" value="option1" name="a" class="radio-template">
+                                <label for="radioCustom1">Ya</label>
+                              </div> 
+                              <div class="i-checks">
+                                <input id="radioCustom1" type="radio" value="option1" name="a" class="radio-template">
+                                <label for="radioCustom1">Tidak</label>
+                              </div>
                           </td>
                         </tr>
                       </table>
                     </div>
+                      <div class="form-group row">
+                          <div class="col-sm-4 offset-sm-5 mb-3">
+                            <button type="submit" class="btn btn-primary">Simpan Jawaban</button>
+                          </div>
+                        </div>
                   </div>
                 </div>
               </div>

@@ -35,6 +35,7 @@
                               <th>Divisi</th>
                               <th>Gaji tiap Bulan</th>
                               <th>Periode Kerja</th>
+                              <th>Data Pengguna</th>
                               <th></th>
                             </tr>
                           </thead>
@@ -46,7 +47,9 @@
                               <td>Teknologi Informasi</td>
                               <td>Rp4.000.000 - 6.000.000</td>
                               <td>2017-2018</td>
-                              
+                              <td>
+                                <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#ModalPengguna"><i class="fas fa-info-circle"></i></button>
+                              </td>
                               <td>
                                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                   <label class="btn btn-warning btn-sm">
@@ -65,7 +68,7 @@
                               <td>Teknologi dan Komunikasi</td>
                               <td>Rp6.000.000 - 10.000.000</td>
                               <td>2019-sekarang</td>
-                              
+                              <td> <button class="btn btn-info btn-sm"><i class="fas fa-info-circle"></i></button></td>
                               <td>
                                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                   <label class="btn btn-warning btn-sm">
@@ -87,50 +90,39 @@
             </div>
           </section>
 
-           <!-- Modal Tambah-->
-                      <div id="ModalTambah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+
+ <!-- Modal Data Pengguna-->
+                      <div id="ModalPengguna" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
                         <div role="document" class="modal-dialog">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h4 id="exampleModalLabel" class="modal-title">Tambah Riwayat Pekerjaan</h4>
+                              <h4 id="exampleModalLabel" class="modal-title">Data Pengguna Alumni</h4>
                               <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
                             </div>
                             <div class="modal-body">
                               <p></p>
                               <form>
                                 <div class="form-group">
-                                  <label>Instansi</label>
-                                  <input type="text" placeholder="" class="form-control" name="instansi">
+                                  <label>Nama</label>
+                                  <input type="text" value="Budiyono, S.Kom" class="form-control" name="">
                                 </div>
-                                <div class="form-group">       
-                                  <label>Posisi</label>
-                                  <input type="text" placeholder="" class="form-control" name="posisi">
-                                </div>
-                                <div class="form-group">       
+                                <div class="form-group">
                                   <label>Divisi</label>
-                                  <input type="text" placeholder="" class="form-control" name="divisi">
-                                </div>
-                                <div class="form-group">       
-                                  <label>Gaji per Bulan</label>
-                                  <input type="text" placeholder="" class="form-control" name="posisi">
-                                </div>
-                                <div class="form-group">       
-                                  <label>Periode</label>
-                                  <div class="row">
-                                    <div class="col-md-5">
-                                      <input type="text" class="form-control" value="">
-                                    </div>
-                                    <div class="col-md-2"><p style="text-align: center;font-size: 15px">sampai</p></div>
-                                    <div class="col-md-5">
-                                      <input type="text" value="" class="form-control">
-                                    </div>
-                                  </div>
-                                </div>
+                                    <input type="text" value="Teknologi Informasi" class="form-control" name="">
+                              </div>
+                              <div class="form-group">
+                                  <label>Email</label>
+                                    <input type="text" value="budiyono@pln.co.id" class="form-control" name="">
+                              </div>
+                              <div class="form-group">
+                                  <label>No HP/Telepon</label>
+                                    <input type="text" value="08123456789" class="form-control" name="">
+                              </div>
                               </form>
                             </div>
                             <div class="modal-footer">
                               <button type="button" data-dismiss="modal" class="btn btn-secondary">Tutup</button>
-                              <button type="button" class="btn btn-primary">Simpan</button>
+                              <button type="button" class="btn btn-primary">Tambah</button>
                             </div>
                           </div>
                         </div>
