@@ -6,6 +6,7 @@ class Alumni extends CI_Controller {
 		parent::__construct();		
 		$this->load->model('m_alumni');
 		$this->load->model('m_master');
+		$this->load->library(array('PHPExcel','PHPExcel/IOFactory'));
  
 	}
 
@@ -76,6 +77,7 @@ class Alumni extends CI_Controller {
 		$data_user = array(
 			'username' => $this->input->post('nim')
 		);
+		$id = $this->input->post('id');
 		$where = array('id' => $this->input->post('userID'));
 		$this->m_master->updateData($where,$data_user,'user');
 
@@ -138,18 +140,19 @@ class Alumni extends CI_Controller {
 				$cek = $this->m_alumni->cekAlumni($nim);
 				if($cek->num_rows() < 1){
 					//Sesuaikan sama nama kolom tabel di database
+					$insert = $this->db->insert("alumni",$data);
+					$d=strtotime($rowData[0][4]); 
+					$tanggal_lulus = date("d M", $d);
 					$data = array(
 						"nim"=> $rowData[0][1],
 						"nama"=> $rowData[0][0],
 						"userID"=> "ALU".$rowData[0][1],
 						"jenis_kelamin"=> $rowData[0][2],
 						"tahun_masuk"=> $rowData[0][3],
-						"tanggal_lulus"=> $rowData[0][4]
+						"tanggal_lulus"=> $tanggal_lulus
 					);
 
 					//sesuaikan nama dengan nama tabel
-					$insert = $this->db->insert("alumni",$data);
-
 					$data = array(
 						"id"=> "ALU".$rowData[0][1],
 						"username"=> $rowData[0][1],
@@ -172,5 +175,5 @@ class Alumni extends CI_Controller {
 		}
 	}
 
-	}
+	
 }

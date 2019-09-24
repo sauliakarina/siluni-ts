@@ -34,24 +34,24 @@
                           <td>:</td>
                           <td width="500px">
                                <div class="i-checks">
-                                <input id="radioCustom1" type="radio" value="option1" name="a" class="radio-template">
-                                <label for="radioCustom1">1-3 bln</label>
+                                <input id="" type="radio" value="option2" name="a" class="radio-template">
+                                <label for="">1-3 bln</label>
                               </div> 
                               <div class="i-checks">
-                                <input id="radioCustom1" type="radio" value="option1" name="a" class="radio-template">
-                                <label for="radioCustom1">4-6 bln</label>
+                                <input id="" type="radio" value="option2" name="a" class="radio-template">
+                                <label for="">4-6 bln</label>
                               </div>
                               <div class="i-checks">
-                                <input id="radioCustom1" type="radio" value="option1" name="a" class="radio-template">
-                                <label for="radioCustom1">7-9 bln</label>
+                                <input id="" type="radio" value="option2" name="a" class="radio-template">
+                                <label for="">7-9 bln</label>
                               </div> 
                               <div class="i-checks">
-                                <input id="radioCustom1" type="radio" value="option1" name="a" class="radio-template">
-                                <label for="radioCustom1">10-12 bln</label>
+                                <input id="" type="radio" value="option2" name="a" class="radio-template">
+                                <label for="">10-12 bln</label>
                               </div> 
                               <div class="i-checks">
-                                <input id="radioCustom1" type="radio" value="option1" name="a" class="radio-template">
-                                <label for="radioCustom1"> > 12 bln</label>
+                                <input id="" type="radio" value="option2" name="a" class="radio-template">
+                                <label for=""> > 12 bln</label>
                               </div> 
                           </td>
                         </tr>
@@ -78,11 +78,11 @@
                           <td>:</td>
                           <td width="500px">
                               <div class="i-checks">
-                                <input id="radioCustom1" type="radio" value="option1" name="a" class="radio-template">
+                                <input id="radioCustom1" type="radio" value="" name="a" class="radio-template">
                                 <label for="radioCustom1">Ya</label>
                               </div> 
                               <div class="i-checks">
-                                <input id="radioCustom1" type="radio" value="option1" name="a" class="radio-template">
+                                <input id="radioCustom1" type="radio" value="" name="a" class="radio-template">
                                 <label for="radioCustom1">Tidak</label>
                               </div> 
                               <div class="form-group">
@@ -125,12 +125,12 @@
                           <td>:</td>
                           <td width="500px">
                               <div class="i-checks">
-                                <input id="radioCustom1" type="radio" value="option1" name="a" class="radio-template">
-                                <label for="radioCustom1">Ya</label>
+                                <input id="" type="radio" value="option1" name="a" class="radio-template">
+                                <label for="">Ya</label>
                               </div> 
                               <div class="i-checks">
-                                <input id="radioCustom1" type="radio" value="option1" name="a" class="radio-template">
-                                <label for="radioCustom1">Tidak</label>
+                                <input id="" type="radio" value="option1" name="a" class="radio-template">
+                                <label for="">Tidak</label>
                               </div>
                           </td>
                         </tr>
