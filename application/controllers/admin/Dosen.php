@@ -27,15 +27,15 @@ class Dosen extends CI_Controller {
 
 	public function exeAdd(){
 
-		$username = $this->input->post('username');
+		$userID = 'DOS'.$this->input->post('nidn');
 		$dataUser = array(
-			'username' => $username,
-			'password' => $this->input->post('password'),
-			'prodiID' => $this->input->post('prodi'),
+			'username' => $this->input->post('nidn'),
+			'password' => $this->input->post('nidn'),
+			'prodiID' => $this->session->userdata('prodiID'),
 			'role' => 'dosen',
+			'id' => $userID
 		);
 		$this->m_master->inputData($dataUser,'user');
-		$userID = $this->m_master->getUserByUsername($username)->id;
 		$dataDosen = array(
 			'nama' => $this->input->post('nama'),
 			'jenis_kelamin' => $this->input->post('jenis_kelamin'),

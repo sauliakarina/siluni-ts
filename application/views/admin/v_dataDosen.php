@@ -95,26 +95,6 @@
                                     <option value="Perempuan">Perempuan</option>
                                   </select>
                               </div>
-                                <div class="form-group">
-                                <label>Program Studi</label>
-                                  <select name="prodi" class="form-control mb-3" id="prodi">
-                                    <option value="<?php echo $prodiID ?>"><?php echo $this->m_master->getProdiByID($prodiID)->nama_prodi ?></option>
-                                     <?php 
-                                     foreach($prodi as $p){ 
-                                     echo "<option  value='$p->id'>$p->nama_prodi</option>";
-                                     }
-                                  ?>
-                                  </select>
-                              </div>
-                                <div class="form-group">       
-                                  <label>Username</label>
-                                  <input type="text" placeholder="" class="form-control" name="username" id="username">
-                                  <small class="form-text" style="color: red`">Isi dengan NIDN.</small>
-                                </div>
-                                <div class="form-group">       
-                                  <label>Password</label>
-                                  <input type="password" placeholder="" class="form-control" name="password" id="password">
-                                </div>
                             </div>
                             <div class="modal-footer">
                               <button type="button" data-dismiss="modal" class="btn btn-secondary">Tutup</button>

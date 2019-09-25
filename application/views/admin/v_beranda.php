@@ -61,7 +61,7 @@
                 <div class="statistics col-lg-3 col-12">
                   <div class="statistic d-flex align-items-center bg-white has-shadow">
                     <div class="icon bg-red"><div class="icon bg-green"><i class="icon-user"></i></div></div>
-                    <div class="text"><strong>234</strong><br><small>Jumlah Alumni</small></div>
+                    <div class="text"><strong>100</strong><br><small>Jumlah Alumni</small></div>
                   </div>
                 </div>
               </div>
