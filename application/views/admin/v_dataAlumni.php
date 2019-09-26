@@ -50,7 +50,7 @@
                                 <div class="btn-group btn-group-toggle">
                                     <!-- <button type="submit" class="btn btn-info btn-sm"  data-toggle="tooltip" data-placement="top" title="Data Tracer"><i class="fas fa-database"></i></button> -->
                                     <form method='' action="<?php echo base_url('admin/Alumni/editProfil/'.$d->id) ?>"><button type="submit" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="Profil"><i class="fas fa-user-edit"></i></button></form>
-                                    <button type="submit" name="options" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Hapus"><i class="fas fa-trash-alt"></i></button>
+                                    <button onclick="set_id(<?php echo $d->id ?>)" name="options" class="btn btn-danger btn-sm" data-toggle="modal" data-placement="top" title="Hapus" data-target="#ModalHapus"><i class="fas fa-trash-alt"></i></button>
                                 </div>
                               </td>
                             </tr>
@@ -134,4 +134,36 @@
                         </div>
                       </div>
 
+ <!-- Modal Hapus-->
+                      <div id="ModalHapus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+                        <div role="document" class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h4 id="exampleModalLabel" class="modal-title">Hapus Data</h4>
+                              <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                            </div>
+                            <div class="modal-body">
+                              <p>Apakah anda yakin ingin menghapus data ini?</p>
+                              <div class="text-center">
+                              <i class="far fa-times-circle fa-4x mb-3 animated bounce" style="color: #D60C0C"></i>
+                            </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" data-dismiss="modal" class="btn btn-secondary">Tutup</button>
+                              <button type="submit" class="btn btn-danger" onclick='deletep()'>Hapus</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
 
+<script type="text/javascript">
+   var p_id;
+    function set_id(id) {
+        p_id = id;
+
+    }
+
+    function deletep(){
+        window.location.href =  "<?php echo base_url();?>admin/Alumni/deleteAlumni/"+p_id;
+    }
+</script>

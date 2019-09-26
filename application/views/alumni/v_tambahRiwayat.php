@@ -32,9 +32,17 @@
                           <label class="col-sm-3 form-control-label">Pilih Instansi</label>
                           <div class="col-sm-9">
                             <select name="account" class="form-control mb-3">
-                              <option></option>
-                              <option>PT Sinarmas</option>
-                              <option>PT PLN Disjaya</option>
+                            <?php if ($nama_instansi != "") { ?>
+                              <option><?php echo $nama_instansi ?></option>
+                              <?php foreach($instansi as $i){ ?> 
+                                <option><?php echo $i->nama_instansi ?></option>
+                            <?php } //end foreach
+                              } else { ?>
+                                <option></option>
+                                <?php foreach($instansi as $i){ ?>
+                                  <option><?php echo $i->nama_instansi ?></option>
+                            <?php } //end foreach
+                                 }  ?>
                             </select>
                           <small class="form-text">Jika pilihan instansi tidak ada <a href="" data-toggle="modal" data-target="#ModalTambah">klik disini</a></small>
                           </div>
@@ -106,10 +114,10 @@
                             </div>
                             <div class="modal-body">
                               <p></p>
-                              <form>
+                              <?php echo form_open_multipart('alumni/Profil/exeAddInstansi'); ?>
                                 <div class="form-group">
                                   <label>Nama Instansi</label>
-                                  <input type="text" placeholder="" class="form-control" name="instansi">
+                                  <input type="text" placeholder="" class="form-control" name="nama_instansi">
                                 </div>
                                 <div class="form-group">
                                   <label>Alamat</label>
@@ -117,17 +125,18 @@
                               </div>
                                 <div class="form-group">
                                   <label>Jenis Instansi</label>
-                                    <select name="account" class="form-control mb-3">
+                                    <select name="jenis_instansi" class="form-control mb-3">
                                       <option></option>
                                       <option value="Lokal">Lokal</option>
+                                      <option value="Nasional">Nasional</option>
                                       <option value="Internasional">Internasional</option>
                                     </select>
                                 </div>
-                              </form>
                             </div>
                             <div class="modal-footer">
                               <button type="button" data-dismiss="modal" class="btn btn-secondary">Tutup</button>
-                              <button type="button" class="btn btn-primary">Tambah</button>
+                              <button type="submit" class="btn btn-primary">Tambah</button>
+                              </form>
                             </div>
                           </div>
                         </div>

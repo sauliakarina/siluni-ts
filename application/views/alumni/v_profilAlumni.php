@@ -95,6 +95,13 @@
                             <input type="text" class="form-control" value="<?php echo $profil->ipk ?>">
                           </div>
                         </div>
+                         <div class="line"></div>
+                        <div class="form-group row">
+                          <label class="col-sm-3 form-control-label">TOEFL</label>
+                          <div class="col-sm-3">
+                            <input type="text" class="form-control" value="<?php echo $profil->toefl ?>">
+                          </div>
+                        </div>
                         <div class="line"></div>
                         <div class="form-group row">
                           <label class="col-sm-3 form-control-label">Email</label>

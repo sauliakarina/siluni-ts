@@ -43,15 +43,15 @@
             </li>
             <li class="<?php if($this->uri->segment(2)=="Berita" ){echo "active";} ?>"><a href="<?php echo site_url('admin/Berita') ?>"><i class="fa fa-tasks"></i>Kelola Berita</a></li>
           </ul><span class="heading">Tracer Study</span>
-           <ul class="list-unstyled">
+           <ul class="list-unstyled"> 
+             <li class="<?php if($this->uri->segment(2)=="Alumni" ){echo "active";} ?>"><a href="<?php echo site_url('admin/Alumni') ?>"><i class="fas fa-user-graduate"></i>Alumni</a></li>
+            <li class="<?php if($this->uri->segment(2)=="Pengguna" ){echo "active";} ?>"><a href="<?php echo site_url('admin/Pengguna') ?>"><i class="icon-user"></i>Pengguna Alumni</a></li>
             <li class="<?php if($this->uri->segment(2)=="Kuesioner"){echo "active";} ?>"><a href="#dropdownKuesioner" aria-expanded="false" data-toggle="collapse"> <i class="icon-padnote"></i>Kuesioner </a>
               <ul id="dropdownKuesioner" class="collapse list-unstyled ">
                 <li><a href="<?php echo site_url('admin/Kuesioner/kuesionerAlumni') ?>">Kuesioner Alumni</a></li>
                 <li><a href="<?php echo site_url('admin/Kuesioner/kuesionerPengguna') ?>">Kuesioner Pengguna</a></li>
               </ul>
             </li>
-             <li class="<?php if($this->uri->segment(2)=="Alumni" ){echo "active";} ?>"><a href="<?php echo site_url('admin/Alumni') ?>"><i class="fas fa-user-graduate"></i>Alumni</a></li>
-            <li class="<?php if($this->uri->segment(2)=="Pengguna" ){echo "active";} ?>"><a href="<?php echo site_url('admin/Pengguna') ?>"><i class="icon-user"></i>Pengguna Alumni</a></li>
             <li class="<?php if($this->uri->segment(2)=="Beranda" && ($this->uri->segment(3)=="kelolaBerandaAlumni" || $this->uri->segment(3)=="kelolaBerandaPengguna")){echo "active";} ?>"><a href="#dropdownKelolaBeranda" aria-expanded="false" data-toggle="collapse"> <i class="icon-bars"></i>Kelola Beranda</a>
               <ul id="dropdownKelolaBeranda" class="collapse list-unstyled ">
                 <li><a href="<?php echo site_url('admin/Beranda/kelolaBerandaAlumni') ?>">Beranda Alumni</a></li>

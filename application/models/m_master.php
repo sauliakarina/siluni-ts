@@ -21,6 +21,18 @@ class M_master extends CI_Model{
 
 	}
 
+	function getInstansi() {
+		$this->db->select('*');
+		$query = $this->db->get('instansi');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
+
+	}
+
 	function getProdiByID($id)
 	{
 		$this->db->select('*');

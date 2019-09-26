@@ -107,7 +107,7 @@ class Alumni extends CI_Controller {
 		if ($_FILES['file']['name']) {
 			$fileName = time().$_FILES['file']['name'];
 
-			$config['upload_path'] = './assets/upload/';
+			$config['upload_path'] = FCPATH .'/assets/upload/';
 			$config['file_name'] = $fileName;
 			$config['allowed_types'] = 'xls|xlsx|csv';
 			$config['max_size'] = 10000;
@@ -139,18 +139,6 @@ class Alumni extends CI_Controller {
 				$nim = $rowData[0][1];
 				$cek = $this->m_alumni->cekAlumni($nim);
 				if($cek->num_rows() < 1){
-					//Sesuaikan sama nama kolom tabel di database
-					$insert = $this->db->insert("alumni",$data);
-					$d=strtotime($rowData[0][4]); 
-					$tanggal_lulus = date("d M", $d);
-					$data = array(
-						"nim"=> $rowData[0][1],
-						"nama"=> $rowData[0][0],
-						"userID"=> "ALU".$rowData[0][1],
-						"jenis_kelamin"=> $rowData[0][2],
-						"tahun_masuk"=> $rowData[0][3],
-						"tanggal_lulus"=> $tanggal_lulus
-					);
 
 					//sesuaikan nama dengan nama tabel
 					$data = array(
@@ -162,9 +150,23 @@ class Alumni extends CI_Controller {
 					);
 
 					$insert = $this->db->insert("user",$data);
+					//Sesuaikan sama nama kolom tabel di database
+					/*$d=strtotime($rowData[0][4]); 
+					$tanggal_lulus = date("d M", $d);
+					$tahun_lulus = date("Y", $d);*/
+					$data = array(
+						"nim"=> $rowData[0][1],
+						"nama"=> $rowData[0][0],
+						"userID"=> "ALU".$rowData[0][1],
+						"jenis_kelamin"=> $rowData[0][2],
+						"tahun_masuk"=> $rowData[0][3],
+						"tanggal_lulus"=> $rowData[0][4],
+						"tahun_lulus"=> $rowData[0][5]
+					);
+					$insert = $this->db->insert("alumni",$data);
+
 				}
-				
-				//delete_files($media['file_path']);
+			
 				unlink($inputFileName);
 			}
 			$this->session->set_flashdata("pesan", '<div><div class="alert alert-info" id="alert" align="center">Date telah diimpor</div></div>');
@@ -173,6 +175,17 @@ class Alumni extends CI_Controller {
 			$this->session->set_flashdata("pesan", '<div><div class="alert alert-danger" id="alert" align="center">File belum dimasukkan</div></div>');
 			redirect('admin/Alumni');
 		}
+	}
+
+	function deleteAlumni($id){
+		$data = array(
+		'status' => 'tidak aktif'
+		);
+		$where = array(
+		'id' => $id
+		);
+		$this->m_master->updateData($where,$data,'alumni');
+		redirect('admin/Alumni');
 	}
 
 	

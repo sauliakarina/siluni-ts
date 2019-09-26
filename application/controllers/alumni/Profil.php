@@ -45,6 +45,8 @@ class Profil extends CI_Controller {
 			'role' => $this->session->userdata('role'),
 			'userID' => $this->session->userdata('userID'),
 			'prodiID' => $this->session->userdata('prodiID'),
+			'instansi' => $this->m_master->getInstansi(),
+			'nama_instansi' => ''
 		);
 		$this->load->view('element/head');
 		$this->load->view('element/header');
@@ -79,4 +81,30 @@ class Profil extends CI_Controller {
 		$this->load->view('v_gantiPassword', $data);
 		$this->load->view('element/footer');
 	}
+
+	function exeAddInstansi()
+	{
+		$data = array(
+			'nama_instansi' => $this->input->post('nama_instansi'),
+			'jenis_instansi' => $this->input->post('jenis_instansi'),
+			'alamat' => $this->input->post('alamat'),
+		);	
+		$this->m_master->inputData($data,'instansi');
+
+		$data = array(
+			'role' => $this->session->userdata('role'),
+			'userID' => $this->session->userdata('userID'),
+			'prodiID' => $this->session->userdata('prodiID'),
+			'instansi' => $this->m_master->getInstansi(),
+			'nama_instansi' => $this->input->post('nama_instansi'),
+		);
+
+		$this->load->view('element/head');
+		$this->load->view('element/header');
+		$this->load->view('element/navbar', $data);
+		$this->load->view('alumni/v_tambahRiwayat', $data);
+		$this->load->view('element/footer');
+		/*redirect('alumni/Profil/tambahRiwayat');*/
+	}
+
 }
