@@ -27,20 +27,20 @@
                     </div>
                     <div class="card-body">
                       <p></p>
-                      <form class="form-horizontal">
+                      <form class="form-horizontal" method="post" action="<?php echo base_url();?>alumni/Profil/exeAddRiwayat">
                          <div class="form-group row">
                           <label class="col-sm-3 form-control-label">Pilih Instansi</label>
                           <div class="col-sm-9">
-                            <select name="account" class="form-control mb-3">
+                            <select name="id_instansi" class="form-control mb-3">
                             <?php if ($nama_instansi != "") { ?>
-                              <option><?php echo $nama_instansi ?></option>
+                              <option value="<?php echo $this->m_master->getInstansiByName($nama_instansi)->id ?>"><?php echo $nama_instansi ?></option>
                               <?php foreach($instansi as $i){ ?> 
-                                <option><?php echo $i->nama_instansi ?></option>
+                                <option value="<?php echo $i->id ?>"><?php echo $i->nama_instansi ?></option>
                             <?php } //end foreach
                               } else { ?>
                                 <option></option>
                                 <?php foreach($instansi as $i){ ?>
-                                  <option><?php echo $i->nama_instansi ?></option>
+                                  <option value="<?php echo $i->id ?>"><?php echo $i->nama_instansi ?></option>
                             <?php } //end foreach
                                  }  ?>
                             </select>
@@ -51,26 +51,26 @@
                         <div class="form-group row">
                           <label class="col-sm-3 form-control-label">Posisi</label>
                           <div class="col-sm-9">
-                            <input type="text" class="form-control" value="">
+                            <input type="text" class="form-control" name="posisi">
                           </div>
                         </div>
                         <div class="line"></div>
                         <div class="form-group row">
                           <label class="col-sm-3 form-control-label">Divisi</label>
                           <div class="col-sm-9">
-                            <input type="text" class="form-control" value="">
+                            <input type="text" class="form-control" value="" name="divisi">
                           </div>
                         </div>
                          <div class="line"></div>
                         <div class="form-group row">
                           <label class="col-sm-3 form-control-label">Pendapatan Tiap Bulan</label>
                           <div class="col-sm-9">
-                            <select name="account" class="form-control mb-3">
+                            <select name="gaji" class="form-control mb-3">
                               <option></option>
-                              <option> < Rp 1jt </option>
-                              <option> Rp 1jt - 2 jt </option>
-                              <option> Rp 3jt - 4 jt </option>
-                              <option> > Rp 4jt </option>
+                              <option value="< 1jt"> < Rp 1jt </option>
+                              <option value="1jt - 2jt"> Rp 1jt - 2 jt </option>
+                              <option value="3jt - 4jt"> Rp 3jt - 4 jt </option>
+                              <option value="> 4jt"> > Rp 4jt </option>
                             </select>
                           </div>
                         </div>
@@ -80,18 +80,18 @@
                              <div class="col-sm-9">
                               <div class="row">
                                     <div class="col-md-5">
-                                      <input type="text" class="form-control" value="">
+                                      <input type="text" class="form-control" name="p1">
                                     </div>
                                     <div class="col-md-2"><p style="text-align: center;font-size: 15px">Sampai</p></div>
                                     <div class="col-md-5">
-                                      <input type="text" value="" class="form-control">
+                                      <input type="text" name="p2" class="form-control">
                                     </div>
                                 </div>
                               </div>
                             </div>
                          <div class="line"></div>
                         <div class="form-group" style="float:right;">
-                            <a href="<?php echo site_url('alumni/Profil/tambahPenggunaAlumni') ?>" type="submit" class="btn btn-primary ml-auto">Selanjutnya</a>
+                            <button type="submit" class="btn btn-primary ml-auto">Selanjutnya</button>
                         </div>
                       </form>
                     </div>

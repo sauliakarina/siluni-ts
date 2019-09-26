@@ -60,5 +60,14 @@ class M_master extends CI_Model{
 		$this->db->update($table,$data);
 	}	
 
+	function getInstansiByName($nama)
+	{
+		$this->db->select('*');
+		$this->db->where('nama',$nama);
+		$query = $this->db->get('instansi');
+		return $query->row();
+
+	}
+
 	
 }

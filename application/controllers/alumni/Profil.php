@@ -107,4 +107,20 @@ class Profil extends CI_Controller {
 		/*redirect('alumni/Profil/tambahRiwayat');*/
 	}
 
+	function exeAddRiwayat()
+	{
+		$periode = $this->input->post('p1')."-".$this->input->post('p2');
+		$id_alumni = $this->m_alumni->getAlumniByUserID($this->session->userdata('userID'))->id;
+		$data = array(
+			'id_instansi' => $this->input->post('id_instansi'),
+			'posisi' => $this->input->post('posisi'),
+			'divisi' => $this->input->post('divisi'),
+			'gaji' => $this->input->post('gaji'),
+			'periode_kerja' => $periode,
+			'id_alumni' => $id_alumni
+		);	
+		$this->m_master->inputData($data,'pekerjaan');
+		redirect('alumni/Profil/tambahPenggunaAlumni');
+	}
+
 }
