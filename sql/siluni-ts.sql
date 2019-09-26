@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 25, 2019 at 01:57 AM
+-- Generation Time: Sep 26, 2019 at 03:37 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.1.32
 
@@ -98,7 +98,7 @@ INSERT INTO `berita_alumni` (`id`, `userID`, `judul`, `kategori`, `isi`, `tangga
 
 CREATE TABLE `dosen` (
   `id` int(11) NOT NULL,
-  `userID` int(11) NOT NULL,
+  `userID` varchar(100) NOT NULL,
   `nama` varchar(225) NOT NULL,
   `nidn` varchar(50) NOT NULL,
   `jenis_kelamin` varchar(50) NOT NULL,
@@ -113,8 +113,53 @@ CREATE TABLE `dosen` (
 --
 
 INSERT INTO `dosen` (`id`, `userID`, `nama`, `nidn`, `jenis_kelamin`, `email`, `no_telepon`, `avatar`, `status`) VALUES
-(2, 7, 'Aris Hadiyan Wijaksana', '0021018204', 'Laki-laki', '', '', 'default.png', 'aktif'),
-(3, 8, 'Fariani Hermin Indiyah', '0011026006', 'Perempuan', 'fariani@gmail.com', '', 'default.png', 'aktif');
+(2, 'DOS0021018204', 'Aris Hadiyan Wijaksana', '0021018204', 'Laki-laki', '', '', 'default.png', 'aktif'),
+(3, 'DOS0011026006', 'Fariani Hermin Indiyah', '0011026006', 'Perempuan', 'fariani@gmail.com', '', 'default.png', 'aktif');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `instansi`
+--
+
+CREATE TABLE `instansi` (
+  `id` int(11) NOT NULL,
+  `nama_instansi` varchar(225) NOT NULL,
+  `jenis_instansi` enum('Lokal','Nasional','Internasional','') NOT NULL,
+  `alamat` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `instansi`
+--
+
+INSERT INTO `instansi` (`id`, `nama_instansi`, `jenis_instansi`, `alamat`) VALUES
+(1, 'PLN Disjaya', 'Nasional', 'Jalan M. I Ridwan No. 1 Gambir Jakarta Pusat'),
+(2, 'PT. Harmoni Solusi Bisnis', 'Nasional', 'Jalan'),
+(3, 'PT Kompas Media Nusantara', 'Nasional', 'Jl. Palmerah Sel. No.26-28, RT.4/RW.2, Gelora, Tanahabang, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10270');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pekerjaan`
+--
+
+CREATE TABLE `pekerjaan` (
+  `id` int(11) NOT NULL,
+  `posisi` varchar(225) DEFAULT NULL,
+  `gaji` varchar(225) DEFAULT NULL,
+  `divisi` varchar(225) DEFAULT NULL,
+  `periode_kerja` varchar(100) DEFAULT NULL,
+  `id_alumni` int(11) NOT NULL,
+  `id_instansi` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pekerjaan`
+--
+
+INSERT INTO `pekerjaan` (`id`, `posisi`, `gaji`, `divisi`, `periode_kerja`, `id_alumni`, `id_instansi`) VALUES
+(1, 'Web Designer – Front End', '> 4jt', '', '-', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -162,13 +207,14 @@ INSERT INTO `user` (`id`, `username`, `password`, `role`, `prodiID`, `status`) V
 ('10', '1234567', 'fcea920f7412b5da7be0cf42b8c93759', 'pengguna', 1, 'aktif'),
 ('17', 'koorprodi', 'fcea920f7412b5da7be0cf42b8c93759', 'koorprodi', 1, 'aktif'),
 ('18', 'superadmin', '21232f297a57a5a743894a0e4a801fc3', 'superadmin', 1, 'aktif'),
-('7', '0021018204', 'cb35066d0a18667c7e3e919a3cb8221d', 'dosen', 1, 'aktif'),
-('8', '0011026006', '1630f5a8dd4d852f516f8132f0dab31a', 'dosen', 1, 'aktif'),
 ('ALU3145136196', '3145136196', 'b9d12d59b5e1656696f8f42dd9fc5e25', 'alumni', 1, 'aktif'),
 ('ALU3145136208', '3145136208', 'b4302799821d6bfd9c7097f9a6ad8f6a', 'alumni', 1, 'aktif'),
 ('ALU3145136217', '3145136217', '4ec904584dca56889485d63a84919b1a', 'alumni', 1, 'aktif'),
 ('ALU3145136218', '3145136218', '66b3a4cf0b3fd0c56d11f9cf8c8325fa', 'alumni', 1, 'aktif'),
-('ALU3145136223', '3145136223', '3542c021c7d9a07ba812e7c688fedd0d', 'alumni', 1, 'aktif');
+('ALU3145136223', '3145136223', '3542c021c7d9a07ba812e7c688fedd0d', 'alumni', 1, 'aktif'),
+('ALU3145153851', '3145153851', 'c363d9a3d675cfe50cfccfd3d8d089a6', 'alumni', 1, 'aktif'),
+('DOS0011026006', '0011026006', '1630f5a8dd4d852f516f8132f0dab31a', 'dosen', 1, 'aktif'),
+('DOS0021018204', '0021018204', 'cb35066d0a18667c7e3e919a3cb8221d', 'dosen', 1, 'aktif');
 
 --
 -- Indexes for dumped tables
@@ -196,6 +242,20 @@ ALTER TABLE `dosen`
   ADD KEY `dosen_fk1` (`userID`);
 
 --
+-- Indexes for table `instansi`
+--
+ALTER TABLE `instansi`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `pekerjaan`
+--
+ALTER TABLE `pekerjaan`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `pekerjaan_fk1` (`id_alumni`),
+  ADD KEY `pekerjaan_fk2` (`id_instansi`);
+
+--
 -- Indexes for table `prodi`
 --
 ALTER TABLE `prodi`
@@ -216,7 +276,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `alumni`
 --
 ALTER TABLE `alumni`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `berita_alumni`
@@ -228,7 +288,19 @@ ALTER TABLE `berita_alumni`
 -- AUTO_INCREMENT for table `dosen`
 --
 ALTER TABLE `dosen`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `instansi`
+--
+ALTER TABLE `instansi`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `pekerjaan`
+--
+ALTER TABLE `pekerjaan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `prodi`
@@ -245,6 +317,13 @@ ALTER TABLE `prodi`
 --
 ALTER TABLE `alumni`
   ADD CONSTRAINT `alumni_fk1` FOREIGN KEY (`userID`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+--
+-- Constraints for table `pekerjaan`
+--
+ALTER TABLE `pekerjaan`
+  ADD CONSTRAINT `pekerjaan_fk1` FOREIGN KEY (`id_alumni`) REFERENCES `alumni` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `pekerjaan_fk2` FOREIGN KEY (`id_instansi`) REFERENCES `instansi` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Constraints for table `user`
