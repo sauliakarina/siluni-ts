@@ -23,7 +23,7 @@
                 <div class="col-lg-12">
                   <div class="card">
                     <div class="card-header d-flex align-items-center">
-                      <h3 class="h4">Pengguna Alumni PT Sinarmas</h3>
+                      <h3 class="h4">Pengguna Alumni <?php echo $this->m_master->getInstansiByID($id_instansi)->nama_instansi; ?></h3>
                     </div>
                     <div class="card-body">
                       <p>Pilih Pengguna Alumni Sesuai Divisi Anda</p>
@@ -40,52 +40,51 @@
                             </tr>
                           </thead>
                           <tbody>
+                             <?php 
+                              $no = 1;
+                             foreach($pengguna as $p){ ?> 
                             <tr>
-                              <th scope="row">1</th>
-                              <td>Rahman, S.Kom</td>
-                              <td>Teknologi Informasi</td>
+                              <th scope="row"><?php echo $no++ ?></th>
+                              <td><?php echo $p->nama ?></td>
+                              <td><?php echo $p->divisi ?></td>
                               
                               <td>
-                               <input id="radioCustom1" type="radio" value="option1" name="a" class="radio-template">
+                               <input id="radioCustom1" type="radio" value="<?php echo $p->id_pengguna ?>" name="id_pengguna" class="radio-template">
                               </td>
                             </tr>
-                            <tr>
-                              <th scope="row">2</th>
-                              <td>Budiyono, S.Kom</td>
-                              <td>Jaringan</td>
-                              <td>
-                                <input id="radioCustom1" type="radio" value="option1" name="a" class="radio-template">
-                              </td>
-                            </tr>
+                          <?php } ?>
                           </tbody>
                         </table>
                       </div>
+                    </form>
                         <div class="line"></div>
                          <p>*Jika Pengguna Alumni Tidak Terdapat Pada Daftar Diatas Silahkan Isi Form <a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> Disini</a></p>
                          <div class="collapse" id="collapseExample">
                           <div class="card card-body">
+                            <form method="post" action="<?php echo base_url();?>alumni/Profil/exeAddPengguna">
                             <div class="form-group">
                             <label class="form-control-label">Nama Pengguna</label>
-                            <input type="email" placeholder="" class="form-control">
+                            <input type="text" placeholder="" class="form-control" name="nama">
+                            <input type="hidden" value="<?php echo $id_instansi ?>" class="form-control" name="id_instansi">
                           </div>
                           <div class="form-group">       
                             <label class="form-control-label">Divisi</label>
-                            <input type="password" placeholder="" class="form-control">
+                            <input type="text" placeholder="" class="form-control" name="divisi">
                           </div>
                           <div class="form-group">       
                             <label class="form-control-label">Email</label>
-                            <input type="text" placeholder="" class="form-control">
+                            <input type="text" placeholder="" class="form-control" name="email">
                           </div>
                           <div class="form-group">       
                             <label class="form-control-label">No HP/Telepon</label>
-                            <input type="text" placeholder="" class="form-control">
+                            <input type="text" placeholder="" class="form-control" name="telepon">
                           </div>
                           </div>
                         </div>
                         
                          <div class="line"></div>
                         <div class="form-group" style="float:right;">
-                            <button type="submit" class="btn btn-light">Sebelumnya</button>
+                           <!--  <button type="submit" class="btn btn-light">Sebelumnya</button> -->
                             <button type="submit" class="btn btn-primary">Simpan</button>
                         </div>
                       </form>

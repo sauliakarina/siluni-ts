@@ -69,5 +69,14 @@ class M_master extends CI_Model{
 
 	}
 
+	function getInstansiByID($id)
+	{
+		$this->db->select('*');
+		$this->db->where('id',$id);
+		$query = $this->db->get('instansi');
+		return $query->row();
+
+	}
+
 	
 }

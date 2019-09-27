@@ -6,6 +6,7 @@ class Profil extends CI_Controller {
 		parent::__construct();		
 		$this->load->model('m_alumni');
 		$this->load->model('m_master');
+		$this->load->model('m_pengguna');
  
 	}
 
@@ -55,17 +56,39 @@ class Profil extends CI_Controller {
 		$this->load->view('element/footer');
 	}
 
-	public function tambahPenggunaAlumni()
+	public function tambahPenggunaAlumni($id_instansi)
 	{
 		$data = array(
 			'role' => $this->session->userdata('role'),
-			'userID' => $this->session->userdata('userID')
+			'userID' => $this->session->userdata('userID'),
+			'id_instansi' => $id_instansi,
+			'pengguna' => $this->m_pengguna->getPenggunaByInstansiID($id_instansi)
 		);
 		$this->load->view('element/head');
 		$this->load->view('element/header');
 		$this->load->view('element/navbar', $data);
 		$this->load->view('alumni/v_tambahPengguna', $data);
 		$this->load->view('element/footer');
+	}
+
+	public function exeAddPengguna()
+	{
+		$id_alumni = $this->m_alumni->getAlumniByUserID($this->session->userdata('userID'))->id;
+		$data = array(
+			'id_instansi' => $this->input->post('id_instansi'),
+			'divisi' => $this->input->post('divisi'),
+			'email' => $this->input->post('email'),
+			'telepon' => $this->input->post('telepon'),
+			'nama' => $this->input->post('nama')
+		);	
+		$this->m_master->inputData($data,'pengguna');
+		$id_pengguna = $this->m_pengguna->getPenggunaByEmail($this->input->post('email'))->id;
+		$data = array(
+			'id_alumni' => $id_alumni,
+			'id_pengguna' => $id_pengguna
+		);
+		$this->m_master->inputData($data,'alumni_pengguna');
+		redirect('alumni/Profil/riwayatPekerjaan');
 	}
 
 	public function gantiPassword()
@@ -111,8 +134,9 @@ class Profil extends CI_Controller {
 	{
 		$periode = $this->input->post('p1')."-".$this->input->post('p2');
 		$id_alumni = $this->m_alumni->getAlumniByUserID($this->session->userdata('userID'))->id;
+		$id_instansi = $this->input->post('id_instansi');
 		$data = array(
-			'id_instansi' => $this->input->post('id_instansi'),
+			'id_instansi' => $id_instansi,
 			'posisi' => $this->input->post('posisi'),
 			'divisi' => $this->input->post('divisi'),
 			'gaji' => $this->input->post('gaji'),
@@ -120,7 +144,7 @@ class Profil extends CI_Controller {
 			'id_alumni' => $id_alumni
 		);	
 		$this->m_master->inputData($data,'pekerjaan');
-		redirect('alumni/Profil/tambahPenggunaAlumni');
+		redirect('alumni/Profil/tambahPenggunaAlumni/'.$id_instansi);
 	}
 
 }
