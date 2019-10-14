@@ -60,7 +60,7 @@ class Profil extends CI_Controller {
 		$this->load->view('element/footer');
 	}
 
-	/*public function tambahPenggunaAlumni($id_instansi)
+	public function tambahPenggunaAlumni($id_instansi)
 	{
 		$data = array(
 			'role' => $this->session->userdata('role'),
@@ -74,9 +74,39 @@ class Profil extends CI_Controller {
 		$this->load->view('element/navbar', $data);
 		$this->load->view('alumni/v_tambahPengguna', $data);
 		$this->load->view('element/footer');
-	}*/
+	}
 
-	
+	public function addNewPengguna()
+	{
+		$id_alumni = $this->m_alumni->getAlumniByUserID($this->session->userdata('userID'))->id;
+		$data = array(
+			'email' => $this->input->post('email'),
+			'telepon' => $this->input->post('telepon'),
+			'nama' => $this->input->post('nama')
+		);	
+		$this->m_master->inputData($data,'pengguna');
+		$id_pengguna = $this->m_pengguna->getPenggunaByEmail($this->input->post('email'))->id;
+		$data = array(
+			'id_alumni' => $id_alumni,
+			'id_pengguna' => $id_pengguna,
+			'id_divisi' => $this->input->post('id_divisi')
+		);
+		$this->m_master->inputData($data,'alumni_pengguna');
+		redirect('alumni/Profil/riwayatPekerjaan');
+	}
+
+	public function addPengguna()
+	{
+		$id_alumni = $this->m_alumni->getAlumniByUserID($this->session->userdata('userID'))->id;
+		$id_pengguna = $this->input->post('id_pengguna');
+		$data = array(
+			'id_alumni' => $id_alumni,
+			'id_pengguna' => $id_pengguna,
+			'id_divisi' => $this->input->post('id_divisi')
+		);
+		$this->m_master->inputData($data,'alumni_pengguna');
+		redirect('alumni/Profil/riwayatPekerjaan');
+	}
 
 	public function gantiPassword()
 	{
@@ -118,7 +148,7 @@ class Profil extends CI_Controller {
 		/*redirect('alumni/Profil/tambahRiwayat');*/
 	}
 
-	/*function exeAddRiwayat()
+	function exeAddRiwayat()
 	{
 		$periode = $this->input->post('p1')."-".$this->input->post('p2');
 		$id_alumni = $this->m_alumni->getAlumniByUserID($this->session->userdata('userID'))->id;
@@ -142,109 +172,7 @@ class Profil extends CI_Controller {
 		);	
 		$this->m_master->inputData($data,'pekerjaan');
 		redirect('alumni/Profil/tambahPenggunaAlumni/'.$id_instansi);
-	}*/
-
-
-	public function tambahPenggunaAlumni()
-	{
-		
-		//input tabel riwayat pekerjaan
-		$periode = $this->input->post('p1')."-".$this->input->post('p2');
-		$id_alumni = $this->m_alumni->getAlumniByUserID($this->session->userdata('userID'))->id;
-		$id_instansi = $this->input->post('id_instansi');
-		//get id divisi
-		if ($this->input->post('divisi_select') == "") {
-			$data = array(
-				'nama_divisi' => $this->input->post('divisi_input')
-			);
-			$this->m_master->inputData($data,'divisi');
-			$id_divisi = $this->m_master->getDivisiByName($this->input->post('divisi_input'))->id;
-		}else{
-			$id_divisi =  $this->m_master->getDivisiByName($this->input->post('divisi_select'))->id;
-		}
-
-		//generate id pekerjaan
-		$id_length = 8;
-		$id_found = false;
-		$possible_chars = "23456789BCDFGHJKMNPQRSTVWXYZ"; 
-		while (!$id_found) {  
-		    $id_pekerjaan = "";  
-		    $i = 0;  
-		    while ($i < $id_length) {  
-		        $char = substr($possible_chars, mt_rand(0, strlen($possible_chars)-1), 1);  
-		        $id_pekerjaan .= $char;   
-		        $i++;   
-		    }  
-		    $where = array( 'id' => $id_pekerjaan);
-		    $cek = $this->m_master->cekData("pekerjaan",$where)->num_rows();
-		    if ($cek == 0) {
-		    	$id_found = true;
-		    }
-		}  //tutup while
-
-		$data = array(
-			'role' => $this->session->userdata('role'),
-			'userID' => $this->session->userdata('userID'),
-			'id_instansi' => $id_instansi,
-			'pengguna' => $this->m_pengguna->getIDPenggunaFromPekerjaan($id_instansi),
-			'divisi' => $this->m_master->getDivisi(),
-			'id_pekerjaan' => $id_pekerjaan,
-			//data riwayat pekerjaan
-			'posisi' => $this->input->post('posisi'),
-			'id_divisi' =>$id_divisi,
-			'gaji' => $this->input->post('gaji'),
-			'periode_kerja' => $periode,
-			'id_alumni' => $id_alumni,
-			'id_pekerjaan' => $id_pekerjaan
-		);
-		$this->load->view('element/head');
-		$this->load->view('element/header');
-		$this->load->view('element/navbar', $data);
-		$this->load->view('alumni/v_tambahPengguna', $data);
-		$this->load->view('element/footer');
 	}
-
-	public function addPengguna()
-	{
-		$data_pekerjaan = array(
-			'posisi' => $this->input->post('posisi'),
-			'gaji' => $this->input->post('gaji'),
-			'periode_kerja' => $this->input->post('periode'),
-			'id_alumni' => $this->m_alumni->getAlumniByUserID($this->session->userdata('userID'))->id,
-			'id_pengguna' => $this->input->post('id_pengguna'),
-			'id' => $this->input->post('id_pekerjaan'),
-			'id_divisi' => $this->input->post('id_divisi'),
-			'id_instansi' => $this->input->post('id_instansi')
-		);
-
-		$this->m_master->inputData($data_pekerjaan,'pekerjaan');
-		redirect('alumni/Profil/riwayatPekerjaan');
-	}
-
-	public function addNewPengguna()
-	{
-		$id_alumni = $this->m_alumni->getAlumniByUserID($this->session->userdata('userID'))->id;
-		$data = array(
-			'pengguna_email' => $this->input->post('email'),
-			'pengguna_telepon' => $this->input->post('telepon'),
-			'pengguna_nama' => $this->input->post('nama')
-		);	
-		$this->m_master->inputData($data,'pengguna');
-		//data tabel pekerjaan
-		$data_pekerjaan = array(
-			'posisi' => $this->input->post('posisi'),
-			'gaji' => $this->input->post('gaji'),
-			'periode_kerja' => $this->input->post('periode'),
-			'id_alumni' => $this->m_alumni->getAlumniByUserID($this->session->userdata('userID'))->id,
-			'id_pengguna' => $this->m_pengguna->getPenggunaByEmail($this->input->post('email'))->id,
-			'id' => $this->input->post('id_pekerjaan'),
-			'id_divisi' => $this->input->post('id_divisi'),
-			'id_instansi' => $this->input->post('id_instansi')
-		);
-		$this->m_master->inputData($data_pekerjaan,'pekerjaan');
-		redirect('alumni/Profil/riwayatPekerjaan');
-	}
-
 
 	public function getPengguna($id)
 	{
@@ -254,7 +182,10 @@ class Profil extends CI_Controller {
 
 	function hapusRiwayat($id){
 		$where = array('id' => $id,);
-		$this->m_alumni->hapusPekerjaan($where,'pekerjaan');
+		$this->m_master->hapusData($where,'pekerjaan');
+/*		$id_pengguna = $id;
+		$id_alumni = $this->m_alumni->getAlumniByUserID($this->session->userdata('userID'))->id;
+		$this->m_alumni->hapusAlumniPengguna($id_alumni, $id_pengguna);*/
 		redirect('alumni/Profil/riwayatPekerjaan');
 	}
 

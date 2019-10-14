@@ -7,11 +7,26 @@ class M_pengguna extends CI_Model{
 	  parent::__construct();
 	 }
 
-	function getPenggunaByInstansiID($id_instansi)
+/*	function getPenggunaByInstansiID($id_instansi)
 	{
 		$this->db->select('*');
 		$this->db->where('id_instansi', $id_instansi);
 		$query = $this->db->get('pengguna');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
+
+	}*/
+
+	function getIDPenggunaFromPekerjaan($id_instansi)
+	{
+		$this->db->distinct();
+		$this->db->select('id_pengguna');
+		$this->db->where('id_instansi', $id_instansi);
+		$query = $this->db->get('pekerjaan');
 		if($query->num_rows()>0)
 		{
 			return $query->result();
@@ -24,12 +39,50 @@ class M_pengguna extends CI_Model{
 	function getPenggunaByEmail($email)
 	{
 		$this->db->select('*');
-		$this->db->where('email',$email);
+		$this->db->where('pengguna_email',$email);
 		$query = $this->db->get('pengguna');
 		return $query->row();
 
 	}
 
+	function getPenggunaByAlumniDivisi($id_alumni, $id_divisi)
+	{
+		$this->db->select('*');
+		$this->db->where('id_alumni',$id_alumni);
+		$this->db->where('id_divisi',$id_divisi);
+		$query = $this->db->get('alumni_pengguna');
+		return $query->row();
+	}
+
+
+	function getPenggunaByID($id)
+	{
+		return $this->db->get_where('pengguna', array('id' => $id))->row();
+	}
+
+	function getAlumniPengguna() {
+
+	    $this->db->select ( '*' ); 
+	    $this->db->from ( 'alumni_pengguna' );
+	    $this->db->join ( 'alumni', 'alumni.id = alumni_pengguna.id_alumni');
+	    $this->db->join ( 'pengguna', 'pengguna.id = alumni_pengguna.id_pengguna');
+	    $this->db->group_by('alumni_pengguna.id_pengguna');
+	    $query = $this->db->get();
+	    return $query->result ();
+	 }
+
+	 function getAlumniByPengguna($id) {
+
+	    $this->db->select ( '*' ); 
+	    $this->db->from ( 'alumni_pengguna' );
+	    $this->db->join ( 'alumni', 'alumni.id = alumni_pengguna.id_alumni');
+	    $this->db->group_by('alumni_pengguna.id_pengguna');
+	    $this->db->where('id_pengguna',$id);
+	    $query = $this->db->get();
+	    return $query->result ();
+	 }
+
+	
 	
 
 

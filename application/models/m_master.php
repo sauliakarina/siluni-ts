@@ -21,8 +21,13 @@ class M_master extends CI_Model{
 
 	}
 
+	function cekData($table,$where){		
+		return $this->db->get_where($table,$where);
+	}	
+
 	function getInstansi() {
 		$this->db->select('*');
+		$this->db->distinct();
 		$query = $this->db->get('instansi');
 		if($query->num_rows()>0)
 		{
@@ -33,11 +38,52 @@ class M_master extends CI_Model{
 
 	}
 
+	function getDivisi() {
+		$this->db->distinct();
+		$this->db->select('nama_divisi');
+		$this->db->order_by('nama_divisi', 'ASC');
+		$query = $this->db->get('divisi');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
+
+	}
+
+		function getDivisiByID($id)
+	{
+		$this->db->select('*');
+		$this->db->where('id',$id);
+		$query = $this->db->get('divisi');
+		return $query->row();
+
+	}
+
 	function getProdiByID($id)
 	{
 		$this->db->select('*');
 		$this->db->where('id',$id);
 		$query = $this->db->get('prodi');
+		return $query->row();
+
+	}
+
+	function getDivisiByPenggunaID($id)
+	{
+		$this->db->select('*');
+		$this->db->where('id_pengguna',$id);
+		$query = $this->db->get('pekerjaan');
+		return $query->row();
+
+	}
+
+	function getDivisiByName($nama)
+	{
+		$this->db->select('*');
+		$this->db->where('nama_divisi',$nama);
+		$query = $this->db->get('divisi');
 		return $query->row();
 
 	}
@@ -63,7 +109,7 @@ class M_master extends CI_Model{
 	function getInstansiByName($nama)
 	{
 		$this->db->select('*');
-		$this->db->where('nama',$nama);
+		$this->db->where('nama_instansi',$nama);
 		$query = $this->db->get('instansi');
 		return $query->row();
 
@@ -77,6 +123,12 @@ class M_master extends CI_Model{
 		return $query->row();
 
 	}
+
+	function hapusData($where,$table){
+		$this->db->where($where);
+		$this->db->delete($table);
+	}
+
 
 	
 }

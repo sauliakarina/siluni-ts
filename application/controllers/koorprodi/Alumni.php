@@ -17,7 +17,7 @@ class Alumni extends CI_Controller {
 			'role' => $this->session->userdata('role'),
 			'userID' => $this->session->userdata('userID'),
 			'prodiID' => $prodiID,
-			'alumni' => $this->m_alumni->getAlumniByProdi($prodiID),
+			'alumni' => $this->m_alumni->getAlumni(),
 		);
 		$this->load->view('element/head');
 		$this->load->view('element/header');

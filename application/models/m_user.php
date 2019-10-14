@@ -7,7 +7,7 @@ class M_user extends CI_Model{
 	  //$this->db2 = $this->load->database('db_dua', TRUE);
 	 }
 
-	function cek_login($table,$where){		
+	function cekData($table,$where){		
 		return $this->db->get_where($table,$where);
 	}	
 

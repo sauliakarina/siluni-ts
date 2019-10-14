@@ -18,7 +18,7 @@ class Kuesioner extends CI_Controller {
 		);
 		$this->load->view('element/head');
 		$this->load->view('element/header');
-		$this->load->view('element/navbar', $data);
+		$this->load->view('element/navbar_pengguna', $data);
 		$this->load->view('pengguna/v_kuesionerPengguna', $data);
 		$this->load->view('element/footer');
 	}

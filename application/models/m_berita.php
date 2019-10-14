@@ -21,5 +21,29 @@ class M_berita extends CI_Model{
 
 	}
 
+	function getBeritaSaya($userID)
+	{
+		$this->db->select('*');
+		$this->db->order_by('id', 'ASC');
+		$this->db->where('userID', $userID);
+		$query = $this->db->get('berita_alumni');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
+
+	}
+
+	function getBeritaByID($id)
+	{
+		$this->db->select('*');
+		$this->db->where('id',$id);
+		$query = $this->db->get('berita_alumni');
+		return $query->row();
+
+	}
+
 	
 }

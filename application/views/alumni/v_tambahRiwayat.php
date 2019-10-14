@@ -27,7 +27,7 @@
                     </div>
                     <div class="card-body">
                       <p></p>
-                      <form class="form-horizontal" method="post" action="<?php echo base_url();?>alumni/Profil/exeAddRiwayat">
+                      <form class="form-horizontal" method="post" action="<?php echo base_url();?>alumni/Profil/tambahPenggunaAlumni">
                          <div class="form-group row">
                           <label class="col-sm-3 form-control-label">Pilih Instansi</label>
                           <div class="col-sm-9">
@@ -58,7 +58,13 @@
                         <div class="form-group row">
                           <label class="col-sm-3 form-control-label">Divisi</label>
                           <div class="col-sm-9">
-                            <input type="text" class="form-control" value="" name="divisi">
+                            <select name="divisi_select" class="form-control mb-3">
+                              <option value="">Pilih Divisi</option>
+                              <?php foreach($divisi as $d){ ?>
+                                  <option value="<?php echo $d->nama_divisi ?>"><?php echo $d->nama_divisi ?></option>
+                              <?php } ?>
+                              <input type="text" name="divisi_input" placeholder="Tulis disini jika tidak ada pada pilihan di atas" class="form-control">
+                            </select>
                           </div>
                         </div>
                          <div class="line"></div>
@@ -114,7 +120,7 @@
                             </div>
                             <div class="modal-body">
                               <p></p>
-                              <?php echo form_open_multipart('alumni/Profil/exeAddInstansi'); ?>
+                               <form action="<?php echo base_url();?>alumni/Profil/exeAddInstansi" method="post">
                                 <div class="form-group">
                                   <label>Nama Instansi</label>
                                   <input type="text" placeholder="" class="form-control" name="nama_instansi">

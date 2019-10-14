@@ -38,10 +38,10 @@
                           <tbody>
                             <tr>
                               <th scope="row">1</th>
-                              <td>Rahmat, S.Kom</td>
+                              <td>Fulan, S.Kom</td>
                               <td>Teknologi Informasi</td>
-                              <td>PT PLN Disjaya</td>
-                              <td>rahmat@pln.co.id</td>
+                              <td>PT Tokopedia</td>
+                              <td>fulan@tokopedia.com</td>
                               <td>081234567</td>
                               <td>
                                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
@@ -56,10 +56,10 @@
                             </tr>
                             <tr>
                               <th scope="row">2</th>
-                              <td>Budiyono, S.Kom</td>
-                              <td>Jaringan</td>
-                              <td>PT Sinarmas</td>
-                              <td>budiyono@sinarmas.co.id</td>
+                              <td>Fulan, S.Kom</td>
+                              <td>Teknologi Informasi</td>
+                              <td>PT Kompas Media Nusantara</td>
+                              <td>fulan@kompas.com</td>
                               <td>081234567</td>
                               <td>
                                 <div class="btn-group btn-group-toggle" data-toggle="buttons">

@@ -23,8 +23,8 @@ class Login extends CI_Controller {
 			'username' => $username,
 			'password' => md5($password)
 			);
-		$cek = $this->m_user->cek_login("user",$where)->num_rows();
-		$cek2 = $this->m_user->cek_login("user",$where);
+		$cek = $this->m_user->cekData("user",$where)->num_rows();
+		$cek2 = $this->m_user->cekData("user",$where);
 		if($cek > 0){
 			foreach ($cek2->result() as $sess ) {
                     $sess_data['userID'] = $sess->id;

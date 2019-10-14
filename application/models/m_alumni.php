@@ -63,5 +63,44 @@ class M_alumni extends CI_Model{
 		return $this->db->get('alumni');
 	}
 
+	function getRiwayatByAlumniID($id)
+	{
+		$this->db->select('*');
+		$this->db->where('id_alumni', $id);
+		$this->db->order_by('id', 'ASC');
+		$query = $this->db->get('pekerjaan');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
+
+	}
+
+	function getAlumniPengguna($id)
+	{
+		$this->db->select('*');
+		$this->db->where('id_alumni', $id);
+		$this->db->order_by('id', 'ASC');
+		$query = $this->db->get('pekerjaan');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
+
+	}
+
+	function hapusAlumniPengguna($id_alumni,$id_pengguna){
+		$this->db->where($id_alumni);
+		$this->db->where($id_pengguna);
+		$this->db->delete('alumni_pengguna');
+	}
+
+	function hapusPekerjaan($id) {
+		"DELETE FROM pekerjaan WHERE id like '%$id%'";
+	}
 	
 }

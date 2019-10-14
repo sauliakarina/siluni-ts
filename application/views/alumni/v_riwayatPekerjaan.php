@@ -35,51 +35,38 @@
                               <th>Divisi</th>
                               <th>Gaji tiap Bulan</th>
                               <th>Periode Kerja</th>
-                              <th>Data Pengguna</th>
                               <th></th>
+                             <!--  <th>Data Pengguna</th> -->
                             </tr>
                           </thead>
                           <tbody>
+                            <?php 
+                              $no = 1;
+                              foreach($riwayat as $r){ 
+                              ?>
                             <tr>
-                              <th scope="row">1</th>
-                              <td>PT PLN Disjaya</td>
-                              <td>Web Developer</td>
-                              <td>Teknologi Informasi</td>
-                              <td>Rp4.000.000 - 6.000.000</td>
-                              <td>2017-2018</td>
-                              <td>
-                                <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#ModalPengguna"><i class="fas fa-info-circle"></i></button>
-                              </td>
+                              <th scope="row"><?php echo $no++ ?></th>
+                              <td><?php echo $this->m_master->getInstansiByID($r->id_instansi)->nama_instansi ?></td>
+                              <td><?php echo $r->posisi ?></td>
+                              <td><?php echo $this->m_master->getDivisiByID($r->id_divisi)->nama_divisi ?></td>
+                              <td><?php echo $r->gaji ?></td>
+                              <td><?php echo $r->periode_kerja ?></td>
+                              <!-- <td>
+                                <?php $id_pengguna// = $this->m_pengguna->getPenggunaByAlumniDivisi($r->id_alumni, $r->id_divisi)->id_pengguna; ?>
+                                <button onclick="pengguna(<?php// echo $id_pengguna ?>)" class="btn btn-sm btn-info" data-toggle="modal" data-target="#ModalPengguna"><i class="fas fa-info-circle"></i></button>
+                              </td> -->
                               <td>
                                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                   <label class="btn btn-warning btn-sm">
                                     <input type="radio" name="options"><i class="far fa-edit"></i>
                                   </label>
-                                  <label class="btn btn-danger btn-sm" data-toggle="modal" data-target="#ModalHapus">
+                                  <label class="btn btn-danger btn-sm" data-toggle="modal" data-target="#ModalHapus" onclick="set_id(<?php echo $r->id ?>)">
                                     <input type="radio" name="options"><i class="fas fa-trash-alt"></i>
                                   </label>
                                 </div>
                               </td>
                             </tr>
-                            <tr>
-                              <th scope="row">2</th>
-                              <td>PT Sinarmas</td>
-                              <td>Database Programmer</td>
-                              <td>Teknologi dan Komunikasi</td>
-                              <td>Rp6.000.000 - 10.000.000</td>
-                              <td>2019-sekarang</td>
-                              <td> <button class="btn btn-info btn-sm"><i class="fas fa-info-circle"></i></button></td>
-                              <td>
-                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn btn-warning btn-sm">
-                                    <input type="radio" name="options"><i class="far fa-edit"></i>
-                                  </label>
-                                  <label class="btn btn-danger btn-sm">
-                                    <input type="radio" name="options"><i class="fas fa-trash-alt"></i>
-                                  </label>
-                                </div>
-                              </td>
-                            </tr>
+                          <?php } ?>
                           </tbody>
                         </table>
                       </div>
@@ -101,28 +88,27 @@
                             </div>
                             <div class="modal-body">
                               <p></p>
-                              <form>
-                                <div class="form-group">
-                                  <label>Nama</label>
-                                  <input type="text" value="Budiyono, S.Kom" class="form-control" name="">
-                                </div>
-                                <div class="form-group">
-                                  <label>Divisi</label>
-                                    <input type="text" value="Teknologi Informasi" class="form-control" name="">
+                               <div class="table-responsive">                       
+                                <table class="table table-striped table-hover">
+                                   <tbody>
+                                    <tr>
+                                      <th scope="row">Nama</th>
+                                      <td id="nama"></td>          
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">Email</th>
+                                      <td id="email"></td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">No Telepon</th>
+                                      <td id="telepon"></td>
+                                    </tr>
+                                  </tbody>
+                                </table>
                               </div>
-                              <div class="form-group">
-                                  <label>Email</label>
-                                    <input type="text" value="budiyono@pln.co.id" class="form-control" name="">
-                              </div>
-                              <div class="form-group">
-                                  <label>No HP/Telepon</label>
-                                    <input type="text" value="08123456789" class="form-control" name="">
-                              </div>
-                              </form>
                             </div>
                             <div class="modal-footer">
                               <button type="button" data-dismiss="modal" class="btn btn-secondary">Tutup</button>
-                              <button type="button" class="btn btn-primary">Tambah</button>
                             </div>
                           </div>
                         </div>
@@ -144,13 +130,42 @@
                             </div>
                             <div class="modal-footer">
                               <button type="button" data-dismiss="modal" class="btn btn-secondary">Tutup</button>
-                              <button type="button" class="btn btn-danger">Hapus</button>
+                              <button type="button" class="btn btn-danger" onclick='deletep()'>Hapus</button>
                             </div>
                           </div>
                         </div>
                       </div>
-
-
-
   </body>
 </html>
+
+<script type="text/javascript">
+  function pengguna(id) {
+    $.ajax({
+        url: "<?php echo base_url('alumni/Profil/getPengguna/') ?>/" + id,
+        type: "GET",
+        dataType: "JSON",
+        success: function(data) {
+          console.table(data);
+          $('#nama').text(data.nama);
+          $('#id_divisi').text(data.id_divisi);
+          $('#email').text(data.email);
+          $('#telepon').text(data.telepon);
+          
+          $('#ModalPengguna').modal('show');
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          console.log('gagal mengambil data');
+        }
+      });
+  }
+
+  var p_id;
+  function set_id(id) {
+    p_id = id;
+  }
+
+  function deletep(){
+    window.location.href =  "<?php echo base_url();?>alumni/Profil/hapusRiwayat/"+p_id;
+  }
+
+</script>

@@ -113,9 +113,9 @@ input:checked + .slider:before {
                               </td> -->
                               <td>
                                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn btn-info btn-sm" data-toggle="modal" data-target="#ModalRetracer">
+                                  <!-- <label class="btn btn-info btn-sm" data-toggle="modal" data-target="#ModalRetracer">
                                     <input type="radio" name="options"><i class="fas fa-sync"></i>
-                                  </label>
+                                  </label> -->
                                   <label class="btn btn-warning btn-sm">
                                     <input type="radio" name="options"><i class="far fa-edit"></i>
                                   </label>

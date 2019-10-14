@@ -34,30 +34,20 @@
                             </tr>
                           </thead>
                           <tbody>
+                            <?php $no = 1;
+                              foreach($alumnipengguna as $d){ 
+                             ?>
                             <tr>
-                              <th scope="row">1</th>
-                              <td>Rahman, S.Kom</td>
-                              <td>PT PLN Disjaya</td>
-                              <td>Teknologi Informasi</td>
-                              <td>rahman@pln.co.id</td>
+                              <th scope="row"><?php echo $no++ ?></th>
+                              <td><?php echo $d->pengguna_nama ?></td>
+                              <td><?php echo $this->m_master->getInstansiByID($d->id_instansi)->nama_instansi ?></td>
+                              <td><?php echo $this->m_master->getDivisiByID($d->id_divisi)->nama_divisi ?></td>
+                              <td><?php echo $d->pengguna_email ?></td>
                               <td>
-                                <button type="button" data-toggle="modal" data-target="#modalDetail" class="btn btn-info btn-sm"><i class="fas fa-info-circle"></i></button>
+                                <button  onclick='alumni(<?php echo $d->id_pengguna ?>)' type="button" data-toggle="modal" data-target="#modalDetail" class="btn btn-info btn-sm"><i class="fas fa-info-circle"></i></button>
                               </td>
                             </tr>
-                            <tr>
-                              <th scope="row">2</th>
-                              <td>Budiyono, S.Kom</td>
-                              <td>PT Angkasa Pura</td>
-                              <td>Jaringan</td>
-                              <td>budiyono@gmail.com</td>
-                              <td>
-                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn btn-info btn-sm">
-                                    <input type="radio" name="options"><i class="fas fa-info-circle"></i>
-                                  </label>
-                                </div>
-                              </td>
-                            </tr>
+                          <?php } ?>
                           </tbody>
                         </table>
                       </div>
@@ -95,13 +85,13 @@
                                         <tbody>
                                           <tr>
                                             <th scope="row">1</th>
-                                            <td>Saulia</td>
-                                            <td>Web Developer</td>
-                                            <td>2019-sekarang</td>
+                                            <td>M Reyhan Fahlevi</td>
+                                            <td>Software Engineer</td>
+                                            <td>2017-sekarang</td>
                                           </tr>
                                           <tr>
                                             <th scope="row">2</th>
-                                            <td>Karina</td>
+                                            <td>Nama Alumni</td>
                                             <td>Teknisi Jaringan</td>
                                             <td>2015-2019</td>
                                           </tr>
@@ -117,3 +107,22 @@
                           </div>
                         </div>
                       </div>
+
+<script type="text/javascript">
+   function alumni(id) {
+      $.ajax({
+        url: "<?php echo base_url('alumni/Pengguna/getAlumniByPengguna') ?>/" + id,
+        type: "GET",
+        dataType: "JSON",
+        success: function(data) {
+          console.table(data);
+          $('#nama').text(data.nama);
+          
+          $('#modalDetail').modal('show');
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          console.log('gagal mengambil data');
+        }
+      });
+    }
+</script>
