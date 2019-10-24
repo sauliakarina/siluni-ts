@@ -99,8 +99,9 @@ class M_alumni extends CI_Model{
 		$this->db->delete('alumni_pengguna');
 	}
 
-	function hapusPekerjaan($id) {
-		"DELETE FROM pekerjaan WHERE id like '%$id%'";
+	public function hapusPekerjaan($id)
+	{
+		return $this->db->delete('pekerjaan', array('id' => $id));
 	}
 	
 }

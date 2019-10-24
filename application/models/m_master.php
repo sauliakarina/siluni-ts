@@ -52,11 +52,21 @@ class M_master extends CI_Model{
 
 	}
 
+
 		function getDivisiByID($id)
 	{
 		$this->db->select('*');
 		$this->db->where('id',$id);
 		$query = $this->db->get('divisi');
+		return $query->row();
+
+	}
+
+	function getBeranda()
+	{
+		$this->db->select('*');
+		$this->db->where('id','1');
+		$query = $this->db->get('beranda');
 		return $query->row();
 
 	}
@@ -92,6 +102,15 @@ class M_master extends CI_Model{
 	{
 		$this->db->select('*');
 		$this->db->where('username',$username);
+		$query = $this->db->get('user');
+		return $query->row();
+
+	}
+
+	function getUserByUserID($userID)
+	{
+		$this->db->select('*');
+		$this->db->where('id',$userID);
 		$query = $this->db->get('user');
 		return $query->row();
 

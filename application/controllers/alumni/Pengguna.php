@@ -30,4 +30,18 @@ class Pengguna extends CI_Controller {
 		$data = $this->m_pengguna->getAlumniPengguna($id);
 		echo(json_encode($data));
 	}
+
+	public function daftarAlumni()
+	{
+		$data = array(
+			'role' => $this->session->userdata('role'),
+			'userID' => $this->session->userdata('userID'),
+			'prodiID' => $this->session->userdata('prodiID')
+		);
+		$this->load->view('element/head');
+		$this->load->view('element/header');
+		$this->load->view('element/navbar', $data);
+		$this->load->view('alumni/v_dataAlumniPengguna', $data);
+		$this->load->view('element/footer');
+	}
 }

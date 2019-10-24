@@ -47,11 +47,11 @@
                              foreach($pengguna as $p){ ?> 
                             <tr>
                               <th scope="row"><?php echo $no++ ?></th>
-                              <td><?php echo $this->m_pengguna->getPenggunaByID($p->id_pengguna)->pengguna_nama ?></td>
-                              <td><?php echo $this->m_master->getDivisiByID($this->m_master->getDivisiByPenggunaID($p->id_pengguna)->id_divisi)->nama_divisi ?></td>
+                              <td><?php echo $this->m_pengguna->getPenggunaByID($p->id)->pengguna_nama ?></td>
+                              <td><?php echo $this->m_master->getDivisiByID($p->id_divisi)->nama_divisi ?></td>
                               
                               <td>
-                               <input id="radioCustom1" type="radio" value="<?php echo $p->id_pengguna ?>" name="id_pengguna" class="radio-template">
+                               <input id="radioCustom1" type="radio" value="<?php echo $p->id ?>" name="id_pengguna" class="radio-template">
                                <input type="hidden" value="<?php echo $id_pekerjaan ?>" name="id_pekerjaan">
                                <input type="hidden" value="<?php echo $posisi ?>" name="posisi">
                                <input type="hidden" value="<?php echo $gaji ?>" name="gaji">

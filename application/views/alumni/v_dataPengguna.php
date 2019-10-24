@@ -26,7 +26,6 @@
                           <thead>
                             <tr>
                               <th>No</th>
-                              <th>Nama</th>
                               <th>Instansi</th>
                               <th>Divisi</th>
                               <th>Email</th>
@@ -48,6 +47,33 @@
                               </td>
                             </tr>
                           <?php } ?>
+                          <tr>
+                              <th scope="row">1</th>
+                              <td>PT Kompas Media</td>
+                              <td>Teknologi Informasi</td>
+                              <td>pengguna@kompas.com</td>
+                              <td>
+                                <a type="button" href="<?php echo site_url('alumni/Pengguna/daftarAlumni') ?>" class="btn btn-info btn-sm">Lihat</a>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="row">2</th>
+                              <td>PT Tokopedia</td>
+                              <td>Teknologi Informasi</td>
+                              <td>pengguna@tokopedia.com</td>
+                              <td>
+                                <a type="button" href="" class="btn btn-info btn-sm">Lihat</a>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="row">3</th>
+                              <td>PT Sinarmas</td>
+                              <td>Jaringan</td>
+                              <td>pengguna@sinarmas.com</td>
+                              <td>
+                                <a type="button" href="" class="btn btn-info btn-sm">Lihat</a>
+                              </td>
+                            </tr>
                           </tbody>
                         </table>
                       </div>

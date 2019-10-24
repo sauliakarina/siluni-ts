@@ -3,7 +3,7 @@
          <!-- Side Navbar -->
         <div class="content-inner">
           <!-- Page Header-->
-          <header class="page-header">
+          <header class="page-header" style="background-color: #EFE037">
             <div class="container-fluid">
               <h2 class="no-margin-bottom">Laporan</h2>
             </div>

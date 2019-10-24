@@ -19,10 +19,9 @@
                     </div>
                     <div class="card-body">
                      <div class="col-sm-12">
-                        <center><img class="img-fluid" src="<?php echo base_url();?>/assets/template/img/wisuda.png ?>" alt="Card image cap" style="height: :270px;width:340px;margin-bottom: 15px"></center>
+                        <center><img class="img-fluid" src="<?php echo base_url();?>/assets/siluni/images/beranda/<?php echo $beranda->foto ?>" alt="Card image cap" style="height: :270px;width:340px;margin-bottom: 15px"></center>
                       </div>
-                      <p class="card-text" align="justify">Yth. Alumni Ilmu Komputer FMIPA UNJ</p>
-                      <p class="card-text" align="justify">FMIPA UNJ sedang melakukan Tracer Study (penelusuran alumni) pada Program Studi Ilmu Komputer. Adapun tujuan dari kegiatan ini adalah untuk mendapatkan basis data yang diperlukan dalam penyusunan Evaluasi Diri dalam rangka Akreditasi Program Studi. Berkaitan dengan hal tersebut, Kami mohon kesediaan alumni UNJ yang kami hormati untuk mengisi kuesioner Tracer Study yang dapat diisi pada website ini</p>
+                      <p class="card-text" align="justify"><?php echo $beranda->isi ?></p>
                     </div>
                   </div>
                 </div>

@@ -33,7 +33,8 @@ class Profil extends CI_Controller {
 			'role' => $this->session->userdata('role'),
 			'userID' => $this->session->userdata('userID'),
 			'prodiID' => $this->session->userdata('prodiID'),
-			'riwayat' => $this->m_alumni->getRiwayatByAlumniID($id_alumni),
+			/*'riwayat' => $this->m_alumni->getRiwayatByAlumniID($id_alumni),*/
+			'riwayat' => $this->m_pengguna->joinPekerjaanByPenggunaID($id_alumni),
 			'alumni_pengguna' => $this->m_alumni->getAlumniPengguna($id_alumni)
 		);
 		$this->load->view('element/head');
@@ -186,7 +187,8 @@ class Profil extends CI_Controller {
 			'role' => $this->session->userdata('role'),
 			'userID' => $this->session->userdata('userID'),
 			'id_instansi' => $id_instansi,
-			'pengguna' => $this->m_pengguna->getIDPenggunaFromPekerjaan($id_instansi),
+			/*'pengguna' => $this->m_pengguna->getIDPenggunaFromPekerjaan($id_instansi),*/
+			'pengguna' => $this->m_pengguna->getPenggunaByInstansiID($id_instansi),
 			'divisi' => $this->m_master->getDivisi(),
 			'id_pekerjaan' => $id_pekerjaan,
 			//data riwayat pekerjaan
@@ -212,9 +214,7 @@ class Profil extends CI_Controller {
 			'periode_kerja' => $this->input->post('periode'),
 			'id_alumni' => $this->m_alumni->getAlumniByUserID($this->session->userdata('userID'))->id,
 			'id_pengguna' => $this->input->post('id_pengguna'),
-			'id' => $this->input->post('id_pekerjaan'),
-			'id_divisi' => $this->input->post('id_divisi'),
-			'id_instansi' => $this->input->post('id_instansi')
+			'pekerjaanID' => $this->input->post('id_pekerjaan')
 		);
 
 		$this->m_master->inputData($data_pekerjaan,'pekerjaan');
@@ -227,7 +227,9 @@ class Profil extends CI_Controller {
 		$data = array(
 			'pengguna_email' => $this->input->post('email'),
 			'pengguna_telepon' => $this->input->post('telepon'),
-			'pengguna_nama' => $this->input->post('nama')
+			'pengguna_nama' => $this->input->post('nama'),
+			'id_instansi' => $this->input->post('id_instansi'),
+			'id_divisi' => $this->input->post('id_divisi')
 		);	
 		$this->m_master->inputData($data,'pengguna');
 		//data tabel pekerjaan
@@ -237,9 +239,7 @@ class Profil extends CI_Controller {
 			'periode_kerja' => $this->input->post('periode'),
 			'id_alumni' => $this->m_alumni->getAlumniByUserID($this->session->userdata('userID'))->id,
 			'id_pengguna' => $this->m_pengguna->getPenggunaByEmail($this->input->post('email'))->id,
-			'id' => $this->input->post('id_pekerjaan'),
-			'id_divisi' => $this->input->post('id_divisi'),
-			'id_instansi' => $this->input->post('id_instansi')
+			'pekerjaanID' => $this->input->post('id_pekerjaan')
 		);
 		$this->m_master->inputData($data_pekerjaan,'pekerjaan');
 		redirect('alumni/Profil/riwayatPekerjaan');
@@ -253,8 +253,7 @@ class Profil extends CI_Controller {
 	}
 
 	function hapusRiwayat($id){
-		$where = array('id' => $id,);
-		$this->m_alumni->hapusPekerjaan($where,'pekerjaan');
+		$this->m_alumni->hapusPekerjaan($id);
 		redirect('alumni/Profil/riwayatPekerjaan');
 	}
 

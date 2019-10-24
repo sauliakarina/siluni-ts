@@ -27,7 +27,7 @@
                      </tr>
                      <tr style="height: 40px">
                        <td width="170px"><b>Program Studi</b></td>
-                       <td width="250px"><?php echo $this->m_data->get_t_prodi($u->prodiID)->nama_prodi ?></td>
+                       <td width="250px"><?php echo $this->m_master->getProdiByID($this->m_master->getUserByuserID($u->userID)->prodiID)->nama_prodi; ?></td>
                        </tr>
                        <tr style="height: 40px">
                          <td><b>Tahun Masuk</b></td>
@@ -128,7 +128,7 @@
                               echo"</tr>";
                        }  
                   
-                        if ($u->tampil_waktu_skripsi == 'yes') {
+                        /*if ($u->tampil_waktu_skripsi == 'yes') {
                               echo "<tr style='height: 40px'>
                                    <td><b>Waktu Mengerjakan Skripsi</b></td>";
                                     if (isset($u->waktu_skripsi)) {
@@ -137,7 +137,7 @@
                                     echo "<td><p style='color: red;'><i>belum diisi</i></p></td>";
                                     }
                               echo"</tr>";
-                       }  
+                       }  */
                   
                          echo " <tr style='height: 40px'>
                                <td><b>Alamat Email</b></td>";

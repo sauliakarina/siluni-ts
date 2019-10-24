@@ -7,7 +7,7 @@ class M_pengguna extends CI_Model{
 	  parent::__construct();
 	 }
 
-/*	function getPenggunaByInstansiID($id_instansi)
+	function getPenggunaByInstansiID($id_instansi)
 	{
 		$this->db->select('*');
 		$this->db->where('id_instansi', $id_instansi);
@@ -19,7 +19,7 @@ class M_pengguna extends CI_Model{
 			return $query->result();
 		}
 
-	}*/
+	}
 
 	function getIDPenggunaFromPekerjaan($id_instansi)
 	{
@@ -45,6 +45,15 @@ class M_pengguna extends CI_Model{
 
 	}
 
+	function getInstansiIDByPengguna($id)
+	{
+		$this->db->select('id_instansi');
+		$this->db->where('id',$id);
+		$query = $this->db->get('pengguna');
+		return $query->row();
+
+	}
+
 	function getPenggunaByAlumniDivisi($id_alumni, $id_divisi)
 	{
 		$this->db->select('*');
@@ -64,7 +73,6 @@ class M_pengguna extends CI_Model{
 
 	    $this->db->select ( '*' ); 
 	    $this->db->from ( 'alumni_pengguna' );
-	    $this->db->join ( 'alumni', 'alumni.id = alumni_pengguna.id_alumni');
 	    $this->db->join ( 'pengguna', 'pengguna.id = alumni_pengguna.id_pengguna');
 	    $this->db->group_by('alumni_pengguna.id_pengguna');
 	    $query = $this->db->get();
@@ -81,6 +89,18 @@ class M_pengguna extends CI_Model{
 	    $query = $this->db->get();
 	    return $query->result ();
 	 }
+
+	public function joinPekerjaanByPenggunaID($id_alumni){
+      $this->db->select('
+          pekerjaan.*, pengguna.id AS id_pengguna, pengguna.*
+      ');
+      $this->db->join('pengguna', 'pekerjaan.id_pengguna = pengguna.id');
+      $this->db->from('pekerjaan');
+      $this->db->where('pekerjaan.id_alumni',$id_alumni);
+      $query = $this->db->get();
+      return $query->result();
+  	}
+
 
 	
 	

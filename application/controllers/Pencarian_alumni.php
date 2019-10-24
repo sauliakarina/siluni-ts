@@ -7,6 +7,7 @@ class Pencarian_alumni extends CI_Controller {
 		parent::__construct();		
 		$this->load->model('siluni/m_alumni');
 		$this->load->model('siluni/m_data');
+		$this->load->model('m_master');
 	}
 
 public function index() 

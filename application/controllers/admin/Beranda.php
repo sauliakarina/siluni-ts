@@ -28,7 +28,8 @@ class Beranda extends CI_Controller {
 		$data = array(
 			'role' => $this->session->userdata('role'),
 			'userID' => $this->session->userdata('userID'),
-			'prodiID' => $this->session->userdata('prodiID')
+			'prodiID' => $this->session->userdata('prodiID'),
+			'beranda' => $this->m_master->getBeranda()
 		);
 		$this->load->view('element/head');
 		$this->load->view('element/header');
@@ -49,5 +50,50 @@ class Beranda extends CI_Controller {
 		$this->load->view('element/navbar', $data);
 		$this->load->view('admin/v_kelolaBerandaPengguna', $data);
 		$this->load->view('element/footer');
+	}
+
+	 function exeUpdateBeranda(){
+
+	  	$isi = $this->input->post('isi');
+	 
+	 //Update Data selain foto
+		  $data = array(
+		    'isi' => $isi
+		  );
+
+	  $where = array(
+	    'id' => '1'
+	  );
+	  $this->m_master->updateData($where, $data,'beranda');
+
+	//Upload File gambar jika gambar ingin di Ubah	
+	  	  $time = time();
+		  $config = array(
+		      'upload_path' => "assets/siluni/images/beranda/",
+		      'allowed_types' => "gif|jpg|png|jpeg",
+		      'overwrite' => TRUE,
+		      'max_size' => "10000", 
+		      'file_name' => $time
+		      );
+			$this->load->library('upload', $config); 
+			$this->upload->initialize($config);
+		
+			if ($this->upload->do_upload('userfile')) {
+				$data['error'] = false;
+				$upload_data = $this->upload->data();
+				$data['data'] = $upload_data;
+				$data['msg'] = 'Image Successfully Uploaded.';
+				$foto = array(
+					'foto' => $upload_data['file_name']
+				);
+				$this->m_master->updateData($where,$foto,'beranda');
+			} 
+		 	else {
+				echo "Terjadi kesalahan";
+				$error = array('error' => $this->upload->display_errors());
+				print_r($error);
+			}	
+		
+	  redirect(base_url('admin/Beranda/kelolaBerandaAlumni'));
 	}
 }

@@ -63,8 +63,8 @@
                               <?php foreach($divisi as $d){ ?>
                                   <option value="<?php echo $d->nama_divisi ?>"><?php echo $d->nama_divisi ?></option>
                               <?php } ?>
+                              </select>
                               <input type="text" name="divisi_input" placeholder="Tulis disini jika tidak ada pada pilihan di atas" class="form-control">
-                            </select>
                           </div>
                         </div>
                          <div class="line"></div>
