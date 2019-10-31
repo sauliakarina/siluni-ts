@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 14, 2019 at 04:26 PM
+-- Generation Time: Oct 31, 2019 at 07:14 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.1.32
 
@@ -51,19 +51,20 @@ CREATE TABLE `alumni` (
   `tampil_ipk` enum('yes','no') NOT NULL,
   `tampil_pekerjaan` enum('yes','no') NOT NULL,
   `tampil_waktu_skripsi` enum('yes','no') NOT NULL,
-  `status` enum('aktif','tidak aktif') NOT NULL
+  `status` enum('aktif','tidak aktif') NOT NULL,
+  `prodiID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `alumni`
 --
 
-INSERT INTO `alumni` (`id`, `userID`, `nim`, `nama`, `jenis_kelamin`, `tempat_lahir`, `tanggal_lahir`, `alamat`, `avatar`, `tahun_masuk`, `tahun_lulus`, `tanggal_lulus`, `ipk`, `toefl`, `pekerjaan`, `email`, `kuesioner`, `no_telepon`, `waktu_skripsi`, `tampil_ipk`, `tampil_pekerjaan`, `tampil_waktu_skripsi`, `status`) VALUES
-(1, 'ALU3145136196', '3145136196', 'Mikael Yurubeli', 'Laki-laki', 'Jakarta', '1995-07-05', 'Jalan Hikmah No 64, Cilangkap, Cipayung, Jakarta Timur', 'default.png', '2013', '2017', '', '3.56', '', 'Frontend Software Engineering', 'mikaelyuru@gmail.com ', '', '087875076738 	', '3 bulan', 'yes', 'yes', 'yes', 'aktif'),
-(3, 'ALU3145136217', '3145136217', 'Muhammad Reyhan Fahlevi ', 'Laki-laki', 'Jakarta', '1994-09-17', 'Jl. Talempong Blok J/1, Pegangsaan Dua, Kelapa Gading ', 'default.png', '2013', '2017', '', '3.83', '', 'Junior PHP Programmer', 'reysdesign@hotmail.com ', '', '087785282705', '6 bulan', 'yes', 'yes', 'yes', 'aktif'),
-(4, 'ALU3145136208', '3145136208', 'Alitinia Prastiantari', 'Perempuan', 'Jakarta', '1995-12-11', 'Jl. Masjid No.27 Jaktim 13750 ', 'default.png', '2013', '2017', '', '3.72', '', 'Asisten Wakil I Anggota DPD RI ', 'alitiniapr@gmail.com', '', '081291429749', '5 bulan', 'yes', 'yes', 'yes', 'aktif'),
-(5, 'ALU3145136218', '3145136218', 'Gregorius Andito H', 'Laki-laki', 'Jakarta', '1994-11-20', 'Cluster Adena blok SA 2 No. 7 Graha Raya Bintaro Jaya, Tangerang Selatan, Banten ', 'default.png', '2013', '2017', '', '3.72', '', 'Full Stack Developer', 'gregorius.andito@gmail.com', '', '087881123212', '6 bulan', 'yes', 'yes', 'yes', 'aktif'),
-(6, 'ALU3145136223', '3145136223', 'Agustinus Purimbaga', 'Laki-laki', '', '1995-08-18', 'Jl. Lumbu barat 4 no 325, bekasi ', 'default.png', '2013', '2017', '', '3.59', '', 'IT Java Pega Programmer ', 'agus.purim@gmail.com ', '', 'agus.purim@gmail.com ', '2 bulan', 'yes', 'yes', 'yes', 'aktif');
+INSERT INTO `alumni` (`id`, `userID`, `nim`, `nama`, `jenis_kelamin`, `tempat_lahir`, `tanggal_lahir`, `alamat`, `avatar`, `tahun_masuk`, `tahun_lulus`, `tanggal_lulus`, `ipk`, `toefl`, `pekerjaan`, `email`, `kuesioner`, `no_telepon`, `waktu_skripsi`, `tampil_ipk`, `tampil_pekerjaan`, `tampil_waktu_skripsi`, `status`, `prodiID`) VALUES
+(1, 'ALU3145136196', '3145136196', 'Mikael Yurubeli', 'Laki-laki', 'Jakarta', '1995-07-05', 'Jalan Hikmah No 64, Cilangkap, Cipayung, Jakarta Timur', 'default.png', '2013', '2017', '', '3.56', '', 'Frontend Software Engineering', 'mikaelyuru@gmail.com ', '', '087875076738 	', '3 bulan', 'yes', 'yes', 'yes', 'aktif', 1),
+(3, 'ALU3145136217', '3145136217', 'Muhammad Reyhan Fahlevi ', 'Laki-laki', 'Jakarta', '1994-09-17', 'Jl. Talempong Blok J/1, Pegangsaan Dua, Kelapa Gading ', 'default.png', '2013', '2017', '', '3.83', '', 'Junior PHP Programmer', 'reysdesign@hotmail.com ', '', '087785282705', '6 bulan', 'yes', 'yes', 'yes', 'aktif', 1),
+(4, 'ALU3145136208', '3145136208', 'Alitinia Prastiantari', 'Perempuan', 'Jakarta', '1995-12-11', 'Jl. Masjid No.27 Jaktim 13750 ', 'default.png', '2013', '2017', '', '3.72', '', 'Asisten Wakil I Anggota DPD RI ', 'alitiniapr@gmail.com', '', '081291429749', '5 bulan', 'yes', 'yes', 'yes', 'aktif', 1),
+(5, 'ALU3145136218', '3145136218', 'Gregorius Andito H', 'Laki-laki', 'Jakarta', '1994-11-20', 'Cluster Adena blok SA 2 No. 7 Graha Raya Bintaro Jaya, Tangerang Selatan, Banten ', 'default.png', '2013', '2017', '', '3.72', '', 'Full Stack Developer', 'gregorius.andito@gmail.com', '', '087881123212', '6 bulan', 'yes', 'yes', 'yes', 'aktif', 1),
+(6, 'ALU3145136223', '3145136223', 'Agustinus Purimbaga', 'Laki-laki', '', '1995-08-18', 'Jl. Lumbu barat 4 no 325, bekasi ', 'default.png', '2013', '2017', '', '3.59', '', 'IT Java Pega Programmer ', 'agus.purim@gmail.com ', '', 'agus.purim@gmail.com ', '2 bulan', 'yes', 'yes', 'yes', 'aktif', 1);
 
 -- --------------------------------------------------------
 
@@ -76,6 +77,25 @@ CREATE TABLE `alumni_pengguna` (
   `id_pengguna` int(11) NOT NULL,
   `id_pekerjaan` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `beranda`
+--
+
+CREATE TABLE `beranda` (
+  `id` int(11) NOT NULL,
+  `isi` text NOT NULL,
+  `foto` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `beranda`
+--
+
+INSERT INTO `beranda` (`id`, `isi`, `foto`) VALUES
+(1, '<p>Yth. Alumni Ilmu Komputer FMIPA UNJ</p>\r\n<p style=\"text-align: justify;\">FMIPA UNJ sedang melakukan Tracer Study (penelusuran alumni) pada Program Studi Ilmu Komputer. Adapun tujuan dari kegiatan ini adalah untuk mendapatkan basis data yang diperlukan dalam penyusunan Evaluasi Diri dalam rangka Akreditasi Program Studi. Berkaitan dengan hal tersebut, Kami mohon kesediaan alumni UNJ yang kami hormati untuk mengisi kuesioner Tracer Study yang dapat diisi pada website ini</p>', '1571833006.png');
 
 -- --------------------------------------------------------
 
@@ -174,17 +194,29 @@ INSERT INTO `instansi` (`id`, `nama_instansi`, `jenis_instansi`, `alamat`) VALUE
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `koorprodi`
+--
+
+CREATE TABLE `koorprodi` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(255) NOT NULL,
+  `nidn` varchar(50) NOT NULL,
+  `userID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `pekerjaan`
 --
 
 CREATE TABLE `pekerjaan` (
-  `id` varchar(50) NOT NULL,
+  `id` int(11) NOT NULL,
+  `pekerjaanID` varchar(50) NOT NULL,
   `posisi` varchar(225) DEFAULT NULL,
   `gaji` varchar(225) DEFAULT NULL,
   `periode_kerja` varchar(100) DEFAULT 'NULL',
-  `id_divisi` int(11) DEFAULT NULL,
   `id_alumni` int(11) NOT NULL,
-  `id_instansi` int(11) NOT NULL,
   `id_pengguna` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -192,9 +224,8 @@ CREATE TABLE `pekerjaan` (
 -- Dumping data for table `pekerjaan`
 --
 
-INSERT INTO `pekerjaan` (`id`, `posisi`, `gaji`, `periode_kerja`, `id_divisi`, `id_alumni`, `id_instansi`, `id_pengguna`) VALUES
-('KRM87BZ5', 'Front End Developer', '> 4jt', '2017-Sekarang', 1, 1, 2, 9),
-('ZF2YRMK4', 'PHP Engineer', '> 4jt', '2018-Sekarang', 1, 1, 2, 9);
+INSERT INTO `pekerjaan` (`id`, `pekerjaanID`, `posisi`, `gaji`, `periode_kerja`, `id_alumni`, `id_pengguna`) VALUES
+(4, 'QYZ4DZPC', 'Web Designer – Front End', '> 4jt', '2017-Sekarang', 1, 15);
 
 -- --------------------------------------------------------
 
@@ -206,15 +237,18 @@ CREATE TABLE `pengguna` (
   `id` int(11) NOT NULL,
   `pengguna_nama` varchar(225) NOT NULL,
   `pengguna_email` varchar(150) NOT NULL,
-  `pengguna_telepon` varchar(50) DEFAULT NULL
+  `pengguna_telepon` varchar(50) DEFAULT NULL,
+  `id_instansi` int(11) NOT NULL,
+  `id_divisi` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pengguna`
 --
 
-INSERT INTO `pengguna` (`id`, `pengguna_nama`, `pengguna_email`, `pengguna_telepon`) VALUES
-(9, 'Pengguna Harmoni ', 'harmoni@gmail.com', '0812345667');
+INSERT INTO `pengguna` (`id`, `pengguna_nama`, `pengguna_email`, `pengguna_telepon`, `id_instansi`, `id_divisi`) VALUES
+(15, 'Pengguna Harmoni IT', 'pengguna@harmoni.com', '0812345667', 2, 1),
+(16, 'Pengguna Sinarmas IT', 'penggunasinarmas2@sinarmas.com', '0812345667', 7, 1);
 
 -- --------------------------------------------------------
 
@@ -291,6 +325,12 @@ ALTER TABLE `alumni_pengguna`
   ADD KEY `alumnipengguna_fk1` (`id_pekerjaan`);
 
 --
+-- Indexes for table `beranda`
+--
+ALTER TABLE `beranda`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `berita_alumni`
 --
 ALTER TABLE `berita_alumni`
@@ -316,20 +356,26 @@ ALTER TABLE `instansi`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `koorprodi`
+--
+ALTER TABLE `koorprodi`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `pekerjaan`
 --
 ALTER TABLE `pekerjaan`
   ADD PRIMARY KEY (`id`),
   ADD KEY `pekerjaan_fk1` (`id_alumni`),
-  ADD KEY `pekerjaan_fk2` (`id_instansi`),
-  ADD KEY `pekerjaan_fk3` (`id_pengguna`),
-  ADD KEY `pekerjaan_fk4` (`id_divisi`);
+  ADD KEY `pekerjaan_fk3` (`id_pengguna`);
 
 --
 -- Indexes for table `pengguna`
 --
 ALTER TABLE `pengguna`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `pengguna_fk1` (`id_instansi`),
+  ADD KEY `pengguna_fk2` (`id_divisi`);
 
 --
 -- Indexes for table `prodi`
@@ -361,6 +407,12 @@ ALTER TABLE `alumni_pengguna`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT for table `beranda`
+--
+ALTER TABLE `beranda`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `berita_alumni`
 --
 ALTER TABLE `berita_alumni`
@@ -370,7 +422,7 @@ ALTER TABLE `berita_alumni`
 -- AUTO_INCREMENT for table `divisi`
 --
 ALTER TABLE `divisi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `dosen`
@@ -385,10 +437,22 @@ ALTER TABLE `instansi`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
+-- AUTO_INCREMENT for table `koorprodi`
+--
+ALTER TABLE `koorprodi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `pekerjaan`
+--
+ALTER TABLE `pekerjaan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `pengguna`
 --
 ALTER TABLE `pengguna`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `prodi`
@@ -410,7 +474,6 @@ ALTER TABLE `alumni`
 -- Constraints for table `alumni_pengguna`
 --
 ALTER TABLE `alumni_pengguna`
-  ADD CONSTRAINT `alumnipengguna_fk1` FOREIGN KEY (`id_pekerjaan`) REFERENCES `pekerjaan` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `alumnipengguna_fk2` FOREIGN KEY (`id_pengguna`) REFERENCES `pengguna` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
@@ -418,9 +481,14 @@ ALTER TABLE `alumni_pengguna`
 --
 ALTER TABLE `pekerjaan`
   ADD CONSTRAINT `pekerjaan_fk1` FOREIGN KEY (`id_alumni`) REFERENCES `alumni` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `pekerjaan_fk2` FOREIGN KEY (`id_instansi`) REFERENCES `instansi` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `pekerjaan_fk3` FOREIGN KEY (`id_pengguna`) REFERENCES `pengguna` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `pekerjaan_fk4` FOREIGN KEY (`id_divisi`) REFERENCES `divisi` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+  ADD CONSTRAINT `pekerjaan_fk3` FOREIGN KEY (`id_pengguna`) REFERENCES `pengguna` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+--
+-- Constraints for table `pengguna`
+--
+ALTER TABLE `pengguna`
+  ADD CONSTRAINT `pengguna_fk1` FOREIGN KEY (`id_instansi`) REFERENCES `instansi` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `pengguna_fk2` FOREIGN KEY (`id_divisi`) REFERENCES `divisi` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Constraints for table `user`
