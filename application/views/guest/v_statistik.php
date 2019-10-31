@@ -48,7 +48,7 @@
             <div class="row"  style="margin-top: 60px">
                <div class="col-md-2"></div>
                 <div class="col-md-8">
-                   <center><h5><b>Penghasilan</b></h5></center>
+                   <center><h5><b>Penghasilan Pertama</b></h5></center>
                    <!-- Bar Chart   -->
                   <div  class="bar-chart has-shadow bg-white">
                         <canvas id="chartPie"></canvas>

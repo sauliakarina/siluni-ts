@@ -252,8 +252,14 @@ class Profil extends CI_Controller {
 		echo json_encode($data);
 	}
 
-	function hapusRiwayat($id){
+	/*function hapusRiwayat($id){
 		$this->m_alumni->hapusPekerjaan($id);
+		redirect('alumni/Profil/riwayatPekerjaan');
+	}*/
+
+	function hapusRiwayat($id){
+		$where = array('id' => $id);
+		$this->m_alumni->hapusPekerjaan($where,'pekerjaan');
 		redirect('alumni/Profil/riwayatPekerjaan');
 	}
 

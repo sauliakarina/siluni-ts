@@ -60,7 +60,7 @@
                                   <label class="btn btn-warning btn-sm">
                                     <input type="radio" name="options"><i class="far fa-edit"></i>
                                   </label>
-                                  <label class="btn btn-danger btn-sm" data-toggle="modal" data-target="#ModalHapus" onclick="set_id(<?php echo $r->id ?>)">
+                                  <label class="btn btn-danger btn-sm" data-toggle="modal" data-target="#ModalHapus" onclick="set_id(<?php echo $r->id_pekerjaan ?>)">
                                     <input type="radio" name="options"><i class="fas fa-trash-alt"></i>
                                   </label>
                                 </div>

@@ -92,7 +92,7 @@ class M_pengguna extends CI_Model{
 
 	public function joinPekerjaanByPenggunaID($id_alumni){
       $this->db->select('
-          pekerjaan.*, pengguna.id AS id_pengguna, pengguna.*
+          pekerjaan.id AS id_pekerjaan, pekerjaan.*, pengguna.id AS id_pengguna, pengguna.*
       ');
       $this->db->join('pengguna', 'pekerjaan.id_pengguna = pengguna.id');
       $this->db->from('pekerjaan');
