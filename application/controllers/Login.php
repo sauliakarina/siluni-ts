@@ -52,7 +52,10 @@ class Login extends CI_Controller {
                 }
  
 		}else{
-			echo "Username dan password salah !";
+			echo " <script>
+                         alert('Gagal Masuk: Username atau Password anda salah!');
+                         history.go(-1);
+                        </script>";
 		}
 	}
 

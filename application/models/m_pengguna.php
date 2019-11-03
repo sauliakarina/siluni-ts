@@ -7,6 +7,20 @@ class M_pengguna extends CI_Model{
 	  parent::__construct();
 	 }
 
+	 function getPengguna()
+	{
+		$this->db->select('*');
+		$this->db->where('isDelete', 'no');
+		$query = $this->db->get('pengguna');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
+
+	}
+
 	function getPenggunaByInstansiID($id_instansi)
 	{
 		$this->db->select('*');
@@ -69,15 +83,6 @@ class M_pengguna extends CI_Model{
 		return $this->db->get_where('pengguna', array('id' => $id))->row();
 	}
 
-	function getAlumniPengguna() {
-
-	    $this->db->select ( '*' ); 
-	    $this->db->from ( 'alumni_pengguna' );
-	    $this->db->join ( 'pengguna', 'pengguna.id = alumni_pengguna.id_pengguna');
-	    $this->db->group_by('alumni_pengguna.id_pengguna');
-	    $query = $this->db->get();
-	    return $query->result ();
-	 }
 
 	 function getAlumniByPengguna($id) {
 
@@ -101,8 +106,17 @@ class M_pengguna extends CI_Model{
       return $query->result();
   	}
 
-
-	
+  	public function getPekerjaanByPenggunaID($id_pengguna){
+		$this->db->select('*');
+		$this->db->where('id_pengguna', $id_pengguna);
+		$query = $this->db->get('pekerjaan');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
+  	}
 	
 
 

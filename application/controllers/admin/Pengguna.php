@@ -6,6 +6,7 @@ class Pengguna extends CI_Controller {
 		parent::__construct();		
 		$this->load->model('m_alumni');
 		$this->load->model('m_master');
+		$this->load->model('m_pengguna');
 	}
 
 	public function index()
@@ -13,7 +14,8 @@ class Pengguna extends CI_Controller {
 		$data = array(
 			'role' => $this->session->userdata('role'),
 			'userID' => $this->session->userdata('userID'),
-			'prodiID' => $this->session->userdata('prodiID')
+			'prodiID' => $this->session->userdata('prodiID'),
+			'pengguna'=> $this->m_pengguna->getPengguna()
 		);
 		$this->load->view('element/head');
 		$this->load->view('element/header');
@@ -21,4 +23,28 @@ class Pengguna extends CI_Controller {
 		$this->load->view('admin/v_dataPengguna', $data);
 		$this->load->view('element/footer');
 	}
+
+	/*function deletePengguna($id){
+		$data = array(
+		'isDelete' => 'yes'
+		);
+		$where = array(
+		'id' => $id
+		);
+		$this->m_master->updateData($where,$data,'pengguna');
+		redirect('admin/Pengguna');
+	}*/
+
+	function deletePengguna($id){
+		$where = array('id' => $id);
+		$this->m_master->deleteData($where,'pengguna');
+		redirect('admin/Pengguna');
+	}
+
+	public function getPengguna($id)
+	{
+		$data = $this->m_pengguna->getPenggunaByID($id);
+		echo json_encode($data);
+	}
+
 }

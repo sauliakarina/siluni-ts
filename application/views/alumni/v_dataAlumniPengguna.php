@@ -8,8 +8,8 @@
           <!-- Breadcrumb-->
           <div class="breadcrumb-holder container-fluid">
             <ul class="breadcrumb">
-              <li class="breadcrumb-item"><a href="index.html">Beranda</a></li>
-              <li class="breadcrumb-item active">Data</li>
+              <li class="breadcrumb-item"><a href="<?php echo base_url('alumni/Pengguna') ?>"><i class="fas fa-chevron-left"></i> Pengguna Alumni</a></li>
+              <!-- <li class="breadcrumb-item active">Data</li> -->
             </ul>
           </div>
           <section class="tables">   
@@ -18,7 +18,8 @@
                 <div class="col-lg-12">
                   <div class="card">
                     <div class="card-header d-flex align-items-center">
-                      <h3 class="h4">Alumni yang Bekerja pada PT Kompas Media</h3>
+                      <?php $id_instansi = $this->m_pengguna->getPenggunaByID($id_pengguna)->id_instansi ?>
+                      <h3 class="h4">Alumni yang Bekerja pada <?php echo $this->m_master->getInstansiByID($id_instansi)->nama_instansi ?></h3>
                     </div>
                     <div class="card-body">
                       <div class="table-responsive">                       
@@ -33,20 +34,16 @@
                             </tr>
                           </thead>
                           <tbody>
+                            <?php $no = 1;
+                            foreach($pekerjaan as $a) { ?>
                           <tr>
-                              <th scope="row">1</th>
-                              <td>Gregorius Andito H</td>
-                              <td>Front End Developer</td>
-                              <td>gregoriusandito@gmail.com</td>
-                              <td>2017-Sekarang</td>
+                              <th scope="row"><?php echo $no++ ?></th>
+                              <td><?php echo $this->m_alumni->getAlumniByID($a->id_alumni)->nama ?></td>
+                              <td><?php echo $a->posisi ?></td>
+                              <td><?php echo $this->m_alumni->getAlumniByID($a->id_alumni)->email ?></td>
+                              <td><?php echo $a->periode_kerja ?></td>
                             </tr>
-                            <tr>
-                              <th scope="row">2</th>
-                              <td>Mikael Yurubeli</td>
-                              <td>System Analyst</td>
-                              <td>mikaelo@gmail.com</td>
-                              <td>2017-Sekarang</td>
-                            </tr>
+                          <?php } ?>
                           </tbody>
                         </table>
                       </div>

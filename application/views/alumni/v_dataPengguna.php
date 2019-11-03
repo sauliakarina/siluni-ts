@@ -6,12 +6,12 @@
             </div>
           </header>
           <!-- Breadcrumb-->
-          <div class="breadcrumb-holder container-fluid">
+          <!-- <div class="breadcrumb-holder container-fluid">
             <ul class="breadcrumb">
               <li class="breadcrumb-item"><a href="index.html">Beranda</a></li>
               <li class="breadcrumb-item active">Data</li>
             </ul>
-          </div>
+          </div> -->
           <section class="tables">   
             <div class="container-fluid">
               <div class="row">
@@ -27,53 +27,23 @@
                             <tr>
                               <th>No</th>
                               <th>Instansi</th>
-                              <th>Divisi</th>
-                              <th>Email</th>
+                              <th>Alamat</th>
                               <th>Daftar Alumni</th>
                             </tr>
                           </thead>
                           <tbody>
                             <?php $no = 1;
-                              foreach($alumnipengguna as $d){ 
+                              foreach($pengguna as $d){ 
                              ?>
                             <tr>
                               <th scope="row"><?php echo $no++ ?></th>
-                              <td><?php echo $d->pengguna_nama ?></td>
                               <td><?php echo $this->m_master->getInstansiByID($d->id_instansi)->nama_instansi ?></td>
-                              <td><?php echo $this->m_master->getDivisiByID($d->id_divisi)->nama_divisi ?></td>
-                              <td><?php echo $d->pengguna_email ?></td>
+                              <td><?php echo $this->m_master->getInstansiByID($d->id_instansi)->alamat ?></td>
                               <td>
-                                <button  onclick='alumni(<?php echo $d->id_pengguna ?>)' type="button" data-toggle="modal" data-target="#modalDetail" class="btn btn-info btn-sm"><i class="fas fa-info-circle"></i></button>
+                                 <a type="button" href="<?php echo site_url('alumni/Pengguna/daftarAlumni/'.$d->id) ?>" class="btn btn-info btn-sm">Lihat</a>
                               </td>
                             </tr>
                           <?php } ?>
-                          <tr>
-                              <th scope="row">1</th>
-                              <td>PT Kompas Media</td>
-                              <td>Teknologi Informasi</td>
-                              <td>pengguna@kompas.com</td>
-                              <td>
-                                <a type="button" href="<?php echo site_url('alumni/Pengguna/daftarAlumni') ?>" class="btn btn-info btn-sm">Lihat</a>
-                              </td>
-                            </tr>
-                            <tr>
-                              <th scope="row">2</th>
-                              <td>PT Tokopedia</td>
-                              <td>Teknologi Informasi</td>
-                              <td>pengguna@tokopedia.com</td>
-                              <td>
-                                <a type="button" href="" class="btn btn-info btn-sm">Lihat</a>
-                              </td>
-                            </tr>
-                            <tr>
-                              <th scope="row">3</th>
-                              <td>PT Sinarmas</td>
-                              <td>Jaringan</td>
-                              <td>pengguna@sinarmas.com</td>
-                              <td>
-                                <a type="button" href="" class="btn btn-info btn-sm">Lihat</a>
-                              </td>
-                            </tr>
                           </tbody>
                         </table>
                       </div>

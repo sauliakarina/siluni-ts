@@ -65,7 +65,7 @@
             </div>
           </section>
 
-          <!-- Modal Import Alumni-->
+          <!-- Modal Tambah Alumni-->
                       <div id="modalTambah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
                         <div role="document" class="modal-dialog">
                           <div class="modal-content">
@@ -109,7 +109,7 @@
                         </div>
                       </div>
 
-                        <!-- Modal Tambah Data Alumni-->
+<!-- Modal Tambah Data Alumni-->
                       <div id="modalImport" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
                         <div role="document" class="modal-dialog">
                           <div class="modal-content">
