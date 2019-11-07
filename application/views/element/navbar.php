@@ -70,7 +70,7 @@
             <!-- menu alumni -->
             <?php if ($role == 'alumni') { ?>
               <li class="<?php if($this->uri->segment(2)=="Beranda"){echo "active";} ?>"><a href="<?php echo site_url('alumni/Beranda') ?>"> <i class="icon-home"></i>Beranda </a></li>
-               <li class="<?php if($this->uri->segment(2)=="Profil" && $this->uri->segment(3) == "biodata"){echo "active";} ?>"><a href="#dropdownKelolaData" aria-expanded="false" data-toggle="collapse"><i class="icon-user"></i>Biodata</a>
+               <li class="<?php if($this->uri->segment(2)=="Profil" && ($this->uri->segment(3)=="biodata" || $this->uri->segment(3)=="riwayatPekerjaan")){echo "active";} ?>"><a href="#dropdownKelolaData" aria-expanded="false" data-toggle="collapse"><i class="icon-user"></i>Biodata</a>
               <ul id="dropdownKelolaData" class="collapse list-unstyled ">
                 <li><a href="<?php echo site_url('alumni/Profil/biodata') ?>">Profil</a></li>
                 <li><a href="<?php echo site_url('alumni/Profil/riwayatPekerjaan') ?>">Riwayat Pekerjaan</a></li>

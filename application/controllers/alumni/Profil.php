@@ -347,5 +347,27 @@ class Profil extends CI_Controller {
 		redirect('alumni/Profil/biodata/');
 	}
 
+	function exeEditPekerjaan()
+	{
+		//data tabel pekerjaan
+		$data = array(
+			'gaji' => $this->input->post('gaji'),
+			'posisi' => $this->input->post('posisi'),
+			'periode_kerja' => $this->input->post('p1')."-".$this->input->post('p2')
+		);
+		$where = array('id' => $this->input->post('id_pekerjaan'));
+		$this->m_master->updateData($where,$data,'pekerjaan');
+		//data tabel pengguna
+		$data = array(
+			'pengguna_nama' => $this->input->post('pengguna_nama'),
+			'pengguna_email' => $this->input->post('pengguna_email'),
+			'pengguna_telepon' => $this->input->post('pengguna_telepon')
+		);
+		$where = array('id' => $this->input->post('id_pengguna'));
+		$this->m_master->updateData($where,$data,'pengguna');
+
+		redirect('alumni/Profil/riwayatPekerjaan/');
+	}
+
 
 }

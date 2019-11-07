@@ -33,7 +33,7 @@
                               <th>Instansi</th>
                               <th>Posisi</th>
                               <th>Divisi</th>
-                              <th>Gaji tiap Bulan</th>
+                              <th>Pendapatan per Bulan</th>
                               <th>Periode Kerja</th>
                               <th></th>
                              <!--  <th>Data Pengguna</th> -->
@@ -53,7 +53,7 @@
                               <td><?php echo $r->periode_kerja ?></td>
                               <td>
                                 <div class="btn-group btn-group-toggle">
-                                 <form method='' action="<?php echo base_url('alumni/Profil/editPekerjaan/'.$r->id_pekerjaan) ?>"><button type="submit" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="Profil"><i class="fas fa-user-edit"></i></button></form>
+                                 <form method='' action="<?php echo base_url('alumni/Profil/editPekerjaan/'.$r->id_pekerjaan) ?>"><button type="submit" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="Sunting"><i class="far fa-edit"></i></button></form>
                                   <label class="btn btn-danger btn-sm" data-toggle="modal" data-target="#ModalHapus" onclick="set_id(<?php echo $r->id_pekerjaan ?>)">
                                     <input type="radio" name="options"><i class="fas fa-trash-alt"></i>
                                   </label>
