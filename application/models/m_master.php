@@ -38,10 +38,24 @@ class M_master extends CI_Model{
 
 	}
 
-	function getDivisi() {
+/*	function getDivisi() {
 		$this->db->distinct();
 		$this->db->select('nama_divisi');
 		$this->db->order_by('nama_divisi', 'ASC');
+		$query = $this->db->get('divisi');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
+
+	}*/
+
+	function getDivisi() {
+		$this->db->select('*');
+		$this->db->order_by('nama_divisi', 'ASC');
+		$this->db->group_by('nama_divisi');
 		$query = $this->db->get('divisi');
 		if($query->num_rows()>0)
 		{
@@ -110,7 +124,16 @@ class M_master extends CI_Model{
 	function getUserByUserID($userID)
 	{
 		$this->db->select('*');
-		$this->db->where('id',$userID);
+		$this->db->where('userID',$userID);
+		$query = $this->db->get('user');
+		return $query->row();
+
+	}
+
+	function getUserByID($id)
+	{
+		$this->db->select('*');
+		$this->db->where('id',$id);
 		$query = $this->db->get('user');
 		return $query->row();
 
@@ -143,7 +166,7 @@ class M_master extends CI_Model{
 
 	}
 
-	function hapusData($where,$table){
+	function deleteData($where,$table){
 		$this->db->where($where);
 		$this->db->delete($table);
 	}

@@ -7,6 +7,7 @@ class Alumni extends CI_Controller {
 		$this->load->model('m_alumni');
 		$this->load->model('m_master');
 		$this->load->model('m_dosen');
+		$this->load->model('m_pengguna');
  
 	}
 
@@ -23,6 +24,23 @@ class Alumni extends CI_Controller {
 		$this->load->view('element/header');
 		$this->load->view('element/navbar', $data);
 		$this->load->view('koorprodi/v_dataAlumni', $data);
+		$this->load->view('element/footer');
+	}
+
+	public function pekerjaan($id_alumni)
+	{
+		$prodiID = $this->session->userdata('prodiID');
+		$data = array(
+			'role' => $this->session->userdata('role'),
+			'userID' => $this->session->userdata('userID'),
+			'prodiID' => $prodiID,
+			'pekerjaan' => $this->m_pengguna->joinPekerjaanByPenggunaID($id_alumni),
+			'id_alumni' => $id_alumni
+		);
+		$this->load->view('element/head');
+		$this->load->view('element/header');
+		$this->load->view('element/navbar', $data);
+		$this->load->view('koorprodi/v_riwayatPekerjaan', $data);
 		$this->load->view('element/footer');
 	}
 }

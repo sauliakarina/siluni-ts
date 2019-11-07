@@ -7,7 +7,23 @@ class M_pengguna extends CI_Model{
 	  parent::__construct();
 	 }
 
+	 //group by instansi
 	 function getPengguna()
+	{
+		$this->db->select('*');
+		$this->db->where('isDelete', 'no');
+		$this->db->group_by('id_instansi');
+		$query = $this->db->get('pengguna');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
+
+	}
+
+	 function getAllPengguna()
 	{
 		$this->db->select('*');
 		$this->db->where('isDelete', 'no');
@@ -23,7 +39,7 @@ class M_pengguna extends CI_Model{
 
 	function getPenggunaByInstansiID($id_instansi)
 	{
-		$this->db->select('*');
+		$this->db->select('id');
 		$this->db->where('id_instansi', $id_instansi);
 		$query = $this->db->get('pengguna');
 		if($query->num_rows()>0)
@@ -116,6 +132,28 @@ class M_pengguna extends CI_Model{
 		} else{
 			return $query->result();
 		}
+  	}
+
+  	public function joinPenggunaPekerjaanByInstansiID($id_instansi){
+      $this->db->select('
+          pekerjaan.id AS id_pekerjaan, pekerjaan.*, pengguna.id AS id_pengguna, pengguna.*
+      ');
+      $this->db->join('pengguna', 'pekerjaan.id_pengguna = pengguna.id');
+      $this->db->from('pekerjaan');
+      $this->db->where('pengguna.id_instansi',$id_instansi);
+      $query = $this->db->get();
+      return $query->result();
+  	}
+
+  	public function joinPenggunaPekerjaanByPekerjaanID($id_pekerjaan){
+      $this->db->select('
+          pekerjaan.id AS id_pekerjaan, pekerjaan.*, pengguna.id AS id_pengguna, pengguna.*
+      ');
+      $this->db->join('pengguna', 'pekerjaan.id_pengguna = pengguna.id');
+      $this->db->from('pekerjaan');
+      $this->db->where('pekerjaan.id',$id_pekerjaan);
+      $query = $this->db->get();
+      return $query->row();
   	}
 	
 

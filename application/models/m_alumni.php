@@ -108,4 +108,26 @@ class M_alumni extends CI_Model{
 		$this->db->where($where);
 		$this->db->delete($table);
 	}
+
+	function getPekerjaanByAlumniID($id)
+	{
+		$this->db->select('*');
+		$this->db->where('id_alumni', $id);
+		$query = $this->db->get('pekerjaan');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
+
+	}
+
+	function getPekerjaanByID($id)
+	{
+		$this->db->select('*');
+		$this->db->where('id',$id);
+		$query = $this->db->get('pekerjaan');
+		return $query->row();
+	}
 }

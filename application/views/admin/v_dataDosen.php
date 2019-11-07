@@ -30,6 +30,8 @@
                               <th>NIDN</th>
                               <th>Nama</th>
                               <th>Jenis Kelamin</th>
+                              <th>Email</th>
+                              <th>No Telepon</th>
                               <th></th>
                             </tr>
                           </thead>
@@ -43,17 +45,14 @@
                               <td><?php echo $d->nidn ?></td>
                               <td><?php echo $d->nama ?></td>
                               <td><?php echo $d->jenis_kelamin ?></td>
+                              <td><?php echo $d->email ?></td>
+                              <td><?php echo $d->no_telepon ?></td>
                               <td>
                                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn btn-info btn-sm">
-                                    <input type="radio" name="options"><i class="fas fa-info-circle"></i>
-                                  </label>
                                   <label class="btn btn-warning btn-sm">
                                     <input type="radio" name="options"><i class="fas fa-user-edit"></i>
                                   </label>
-                                  <label class="btn btn-danger btn-sm">
-                                    <input type="radio" name="options"><i class="fas fa-trash-alt"></i>
-                                  </label>
+                                  <button onclick="set_id(<?php echo $d->userID ?>)" class="btn btn-danger btn-sm" data-toggle="modal" data-placement="top" title="Hapus" data-target="#ModalHapus"><i class="fas fa-trash-alt"></i></button>
                                 </div>
                               </td>
                             </tr>
@@ -95,6 +94,14 @@
                                     <option value="Perempuan">Perempuan</option>
                                   </select>
                               </div>
+                              <div class="form-group">
+                                  <label>Email</label>
+                                  <input type="text" placeholder="" class="form-control" name="email">
+                              </div>
+                              <div class="form-group">
+                                  <label>No Telepon</label>
+                                  <input type="text" placeholder="" class="form-control" name="no_telepon">
+                              </div>
                             </div>
                             <div class="modal-footer">
                               <button type="button" data-dismiss="modal" class="btn btn-secondary">Tutup</button>
@@ -106,6 +113,37 @@
                       </div>
 <!-- modal tambah -->
 
+  <!-- Modal Hapus-->
+                      <div id="ModalHapus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+                        <div role="document" class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h4 id="exampleModalLabel" class="modal-title">Hapus Data</h4>
+                              <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                            </div>
+                            <div class="modal-body">
+                              <p>Apakah anda yakin ingin menghapus data ini?</p>
+                              <div class="text-center">
+                              <i class="far fa-times-circle fa-4x mb-3 animated bounce" style="color: #D60C0C"></i>
+                            </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" data-dismiss="modal" class="btn btn-secondary">Tutup</button>
+                              <button type="submit" class="btn btn-danger" onclick='deletep()'>Hapus</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
 
 <script type="text/javascript">
+   var p_id;
+    function set_id(id) {
+        p_id = id;
+
+    }
+
+    function deletep(){
+        window.location.href =  "<?php echo base_url();?>admin/Dosen/deleteDosen/"+p_id;
+    }
 </script>

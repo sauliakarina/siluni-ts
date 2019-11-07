@@ -22,7 +22,7 @@
                     </div>
                     <div class="card-body">
                       <div class="table-responsive">                       
-                        <table class="table table-striped table-hover">
+                        <table id="myTable" class="table table-striped table-hover">
                           <thead>
                             <tr>
                               <th>No</th>
@@ -30,7 +30,7 @@
                               <th>NIM</th>
                               <th>Angkatan</th>
                               <th>Tahun Lulus</th>
-                              <th></th>
+                              <th>Pekerjaan</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -45,11 +45,7 @@
                               <td><?php echo $d->tahun_masuk ?></td>
                               <td><?php echo $d->tahun_lulus ?></td>
                               <td>
-                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn btn-info btn-sm">
-                                    <input type="radio" name="options"><i class="fas fa-info-circle"></i>
-                                  </label>
-                                </div>
+                                  <a type="button" href="<?php echo site_url('koorprodi/Alumni/pekerjaan/'.$d->id) ?>" class="btn btn-info btn-sm">Lihat</a>
                               </td>
                             </tr>
                            <?php } ?>
@@ -62,3 +58,13 @@
               </div> <!-- row -->
             </div>
           </section>
+
+<script type="text/javascript">
+  $(document).ready( function () {
+    $('#myTable').DataTable(
+        {
+        "ordering": false,
+    }
+      );
+} );
+</script>

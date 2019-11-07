@@ -26,7 +26,7 @@
                     </div>
                     <div class="card-body">
                       <div class="table-responsive">                       
-                        <table class="table table-striped table-hover">
+                        <table id="myTable" class="table table-striped table-hover">
                           <thead>
                             <tr>
                               <th>No</th>
@@ -51,15 +51,9 @@
                               <td><?php echo $this->m_master->getDivisiByID($r->id_divisi)->nama_divisi ?></td>
                               <td><?php echo $r->gaji ?></td>
                               <td><?php echo $r->periode_kerja ?></td>
-                              <!-- <td>
-                                <?php $id_pengguna// = $this->m_pengguna->getPenggunaByAlumniDivisi($r->id_alumni, $r->id_divisi)->id_pengguna; ?>
-                                <button onclick="pengguna(<?php// echo $id_pengguna ?>)" class="btn btn-sm btn-info" data-toggle="modal" data-target="#ModalPengguna"><i class="fas fa-info-circle"></i></button>
-                              </td> -->
                               <td>
-                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn btn-warning btn-sm">
-                                    <input type="radio" name="options"><i class="far fa-edit"></i>
-                                  </label>
+                                <div class="btn-group btn-group-toggle">
+                                 <form method='' action="<?php echo base_url('alumni/Profil/editPekerjaan/'.$r->id_pekerjaan) ?>"><button type="submit" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="Profil"><i class="fas fa-user-edit"></i></button></form>
                                   <label class="btn btn-danger btn-sm" data-toggle="modal" data-target="#ModalHapus" onclick="set_id(<?php echo $r->id_pekerjaan ?>)">
                                     <input type="radio" name="options"><i class="fas fa-trash-alt"></i>
                                   </label>
@@ -167,5 +161,13 @@
   function deletep(){
     window.location.href =  "<?php echo base_url();?>alumni/Profil/hapusRiwayat/"+p_id;
   }
+
+   $(document).ready( function () {
+    $('#myTable').DataTable(
+        {
+        "ordering": false,
+    }
+      );
+} );
 
 </script>

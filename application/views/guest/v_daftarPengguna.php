@@ -27,9 +27,9 @@
                 <td><?php echo $this->m_master->getInstansiByID($p->id_instansi)->nama_instansi ?></td>
                 <td><?php echo $this->m_master->getInstansiByID($p->id_instansi)->alamat ?></td>
                 <td><ul style="list-style-type:circle;">
-                  <?php $posisi = $this->m_pengguna->getPekerjaanByPenggunaID($p->id);
-                    foreach($posisi as $ps) {
-                   ?>
+                  <?php 
+                  $posisi= $this->m_pengguna->joinPenggunaPekerjaanByInstansiID($p->id_instansi);
+                    foreach($posisi as $ps) { ?>
                     <li><?php echo $ps->posisi ?></li>
                   <?php } ?>
                     </ul>

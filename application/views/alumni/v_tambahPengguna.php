@@ -28,7 +28,7 @@
                        <button type="submit" class="btn btn-primary ml-auto btn-sm" style="margin-left: 50px">Simpan</button>
                     </div>
                     <div class="card-body">
-                      <p>Pilih Pengguna Alumni Sesuai</p>
+                      <p>Pilih Pengguna Alumni Sesuai dengan Divisi anda</p>
                       <form class="form-horizontal">
                           
                       <div class="table-responsive">                       

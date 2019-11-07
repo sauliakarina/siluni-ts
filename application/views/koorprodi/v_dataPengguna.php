@@ -22,39 +22,36 @@
                     </div>
                     <div class="card-body">
                       <div class="table-responsive">                       
-                        <table class="table table-striped table-hover">
+                        <table id="myTable" class="table table-striped table-hover">
                           <thead>
                             <tr>
                               <th>No</th>
-                              <th>Nama</th>
-                              <th>Instansi</th>
+                              <th>Nama Pengguna</th>
                               <th>Divisi</th>
-                              <th></th>
+                              <th>Instansi</th>
+                              <th>Email</th>
+                              <th>Telepon</th>
+                              <th>Alamat</th>
+                              <th>Daftar Alumni</th>
                             </tr>
                           </thead>
                           <tbody>
+                            <?php $no = 1;
+                              foreach($pengguna as $d){ 
+                             ?>
                             <tr>
-                              <th scope="row">1</th>
-                              <td>Saulia</td>
-                              <td>PT PLN Disjaya</td>
-                              <td>Teknologi Informasi</td>
+                              <th scope="row"><?php echo $no++ ?></th>
+                              <td><?php echo $d->pengguna_nama ?></td>
+                              <td><?php echo $this->m_master->getDivisiByID($d->id_divisi)->nama_divisi ?></td>
+                              <td><?php echo $this->m_master->getInstansiByID($d->id_instansi)->nama_instansi ?></td>
+                              <td><?php echo $d->pengguna_email ?></td>
+                              <td><?php echo $d->pengguna_telepon ?></td>
+                              <td><?php echo $this->m_master->getInstansiByID($d->id_instansi)->alamat ?></td>
                               <td>
-                                <button type="button" data-toggle="modal" data-target="#modalDetail" class="btn btn-info btn-sm"><i class="fas fa-info-circle"></i></button>
+                                 <a type="button" href="<?php echo site_url('koorprodi/Pengguna/daftarAlumni/'.$d->id) ?>" class="btn btn-info btn-sm">Lihat</a>
                               </td>
                             </tr>
-                            <tr>
-                              <th scope="row">2</th>
-                              <td>Karina</td>
-                              <td>PT Angkasa Pura</td>
-                              <td>Jaringan</td>
-                              <td>
-                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn btn-info btn-sm">
-                                    <input type="radio" name="options"><i class="fas fa-info-circle"></i>
-                                  </label>
-                                </div>
-                              </td>
-                            </tr>
+                          <?php } ?>
                           </tbody>
                         </table>
                       </div>
@@ -65,79 +62,13 @@
             </div>
           </section>
 
-<!-- Modal Detail-->
-                      <div id="modalDetail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
-                        <div role="document" class="modal-dialog">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h4 id="exampleModalLabel" class="modal-title">Pengguna Alumni</h4>
-                              <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
-                            </div>
-                            <div class="modal-body">
-                              <p></p>
-                              <form class="form-horizontal">
-                                <div class="form-group row">
-                                  <label class="col-sm-3 form-control-label">Nama</label>
-                                  <div class="col-sm-9">
-                                    <p>Saulia</p>
-                                  </div>
-                                </div>
-                                <div class="line"></div>
-                                <div class="form-group row">
-                                  <label class="col-sm-3 form-control-label">Posisi</label>
-                                  <div class="col-sm-9">
-                                    <p>Manager Teknologi Informasi</p>
-                                  </div>
-                                </div>
-                                <div class="line"></div>
-                                <div class="form-group row">
-                                  <label class="col-sm-3 form-control-label">Email</label>
-                                  <div class="col-sm-9">
-                                    <p>sauliakarina@gmail.com</p>
-                                  </div>
-                                </div>
-                                <div class="form-group row">
-                                  <label class="col-sm-3 form-control-label">No Telepon</label>
-                                  <div class="col-sm-9">
-                                    <p>0838123452</p>
-                                  </div>
-                                </div>
-                                <div class="line"></div>
-                                <div class="form-group">
-                                  <!-- <label class="form-control-label">Daftar Alumni</label> -->
-                                     <p><b>Daftar Alumni</b></p>
-                                     <div class="table-responsive">                       
-                                      <table class="table table-striped table-hover">
-                                        <thead>
-                                          <tr>
-                                            <th>No</th>
-                                            <th>Nama</th>
-                                            <th>Posisi</th>
-                                            <th>Periode Kerja</th>
-                                          </tr>
-                                        </thead>
-                                        <tbody>
-                                          <tr>
-                                            <th scope="row">1</th>
-                                            <td>Saulia</td>
-                                            <td>Web Developer</td>
-                                            <td>2019-sekarang</td>
-                                          </tr>
-                                          <tr>
-                                            <th scope="row">2</th>
-                                            <td>Karina</td>
-                                            <td>Teknisi Jaringan</td>
-                                            <td>2015-2019</td>
-                                          </tr>
-                                        </tbody>
-                                      </table>
-                                     </div>
-                                </div>
-                              </form>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" data-dismiss="modal" class="btn btn-secondary">Close</button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+
+<script type="text/javascript">
+  $(document).ready( function () {
+    $('#myTable').DataTable(
+        {
+        "ordering": false,
+    }
+      );
+} );
+</script>

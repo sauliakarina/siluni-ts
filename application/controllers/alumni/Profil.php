@@ -61,6 +61,23 @@ class Profil extends CI_Controller {
 		$this->load->view('element/footer');
 	}
 
+	public function editPekerjaan($id)
+	{
+		$data = array(
+			'role' => $this->session->userdata('role'),
+			'userID' => $this->session->userdata('userID'),
+			'prodiID' => $this->session->userdata('prodiID'),
+			'instansi' => $this->m_master->getInstansi(),
+			'divisi' => $this->m_master->getDivisi(),
+			'p' => $this->m_pengguna->joinPenggunaPekerjaanByPekerjaanID($id)
+		);
+		$this->load->view('element/head');
+		$this->load->view('element/header');
+		$this->load->view('element/navbar', $data);
+		$this->load->view('alumni/v_editPekerjaan', $data);
+		$this->load->view('element/footer');
+	}
+
 	/*public function tambahPenggunaAlumni($id_instansi)
 	{
 		$data = array(
@@ -89,7 +106,7 @@ class Profil extends CI_Controller {
 		$this->load->view('element/head');
 		$this->load->view('element/header');
 		$this->load->view('element/navbar', $data);
-		$this->load->view('v_gantiPassword', $data);
+		$this->load->view('alumni/v_gantiPassAlumni', $data);
 		$this->load->view('element/footer');
 	}
 
@@ -252,15 +269,83 @@ class Profil extends CI_Controller {
 		echo json_encode($data);
 	}
 
-	/*function hapusRiwayat($id){
-		$this->m_alumni->hapusPekerjaan($id);
-		redirect('alumni/Profil/riwayatPekerjaan');
-	}*/
-
-	function hapusRiwayat($id){
+	public function hapusRiwayat($id){
 		$where = array('id' => $id);
 		$this->m_alumni->hapusPekerjaan($where,'pekerjaan');
 		redirect('alumni/Profil/riwayatPekerjaan');
 	}
+
+	public function exeEditPass(){
+		//set form validation
+		$this->form_validation->set_rules('oldpass','Password Lama','callback_passwordCheck');
+		$this->form_validation->set_rules('newpass','Password Baru', 'required');
+		$this->form_validation->set_rules('confirm','Konfirmasi Password','required|matches[newpass]');
+
+		$this->form_validation->set_error_delimiters('<div class="error" style="color: red">', '</div>');
+		if ($this->form_validation->run() == false) {
+			$data = array(
+			'role' => $this->session->userdata('role'),
+			'userID' => $this->session->userdata('userID'),
+			'prodiID' => $this->session->userdata('prodiID'),
+		);
+			$this->load->view('element/head');
+			$this->load->view('element/header');
+			$this->load->view('element/navbar', $data);
+			$this->load->view('alumni/v_gantiPassAlumni', $data);
+			$this->load->view('element/footer');
+		} else {
+			$id = $this->session->userdata('id');
+			$newpass = $this->input->post('newpass');
+			$where = array(
+				'id' => $id
+			);
+			$data = array(
+				'password' => md5($newpass)
+			);
+			$this->m_master->updateData($where, $data, 'user');
+			echo " <script>
+                     alert('Ganti password sukses!');
+                     history.go(-1);
+                    </script>";
+
+		}
+	}
+
+	public function passwordCheck($oldpass){
+		$userID = $this->session->userdata('userID');
+		$userpass = $this->m_master->getUserByuserID($userID)->password;
+
+		if ($userpass !== md5($oldpass)) {
+			$this->form_validation->set_message('passwordCheck', 'Password yang anda masukan salah.');
+			return false;
+		}
+
+		return true;
+
+	}
+
+	function exeEditProfil()
+	{
+
+		$data_alumni = array(
+			'nama' => $this->input->post('nama'),
+			'jenis_kelamin' => $this->input->post('jenis_kelamin'),
+			'tahun_masuk' => $this->input->post('tahun_masuk'),
+			'tahun_lulus' => $this->input->post('tahun_lulus'),
+			'tanggal_lulus' => $this->input->post('tanggal_lulus'),
+			'ipk' => $this->input->post('ipk'),
+			'toefl' => $this->input->post('toefl'),
+			'alamat' => $this->input->post('alamat'),
+			'tempat_lahir' => $this->input->post('tempat_lahir'),
+			'tanggal_lahir' => $this->input->post('tanggal_lahir'),
+			'email' => $this->input->post('email'),
+			'no_telepon' => $this->input->post('no_telepon'),
+		);
+		
+		$where = array('id' => $this->input->post('id'));
+		$this->m_master->updateData($where,$data_alumni,'alumni');
+		redirect('alumni/Profil/biodata/');
+	}
+
 
 }

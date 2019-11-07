@@ -32,6 +32,31 @@ class M_dosen extends CI_Model{
 
 	}
 
+	function getKoorByProdiID($prodiID)
+	{
+		$this->db->select('*');
+		$this->db->where('prodiID',$prodiID);
+		$this->db->where('jabatan','koorprodi');
+		$query = $this->db->get('dosen');
+		return $query->row();
+
+	}
+
+	function getDosenByProdiID($prodiID)
+	{
+		$this->db->select('*');
+		$this->db->where('prodiID',$prodiID);
+		$this->db->order_by('nama', 'ASC');
+		$query = $this->db->get('dosen');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
+
+	}
+
 
 	
 }

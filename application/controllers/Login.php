@@ -27,7 +27,8 @@ class Login extends CI_Controller {
 		$cek2 = $this->m_user->cekData("user",$where);
 		if($cek > 0){
 			foreach ($cek2->result() as $sess ) {
-                    $sess_data['userID'] = $sess->id;
+                    $sess_data['id'] = $sess->id;
+                    $sess_data['userID'] = $sess->userID;
                     $sess_data['username'] = $sess->username;
                     $sess_data['role'] = $sess->role;
                     $sess_data['prodiID'] = $sess->prodiID;
