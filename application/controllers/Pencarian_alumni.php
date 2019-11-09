@@ -18,7 +18,8 @@ public function index()
         	'nama' => $this->session->userdata('nama'),
         	'username' => $this->session->userdata('username'),
         	'prodi' => $this->m_alumni->get_prodi(),
-        	'alumni' => $this->m_alumni->fetch_alumni()
+        	'alumni' => $this->m_alumni->fetch_alumni(),
+        	'prodi' => $this->m_master->getProdi()
         );
         $this->load->view('element/header_siluni',$data);
 		$this->load->view('guest/v_pencarian_alumni',$data);
@@ -45,6 +46,7 @@ public function index()
             'title'=>'Pencarian Alumni - SiLuni',
             'status' => $this->session->userdata('status'),
         	'nama' => $this->session->userdata('nama'),
+        	'prodi' => $this->m_master->getProdi(),
         	'user_alumni' => $user_alumni
         	);
         	$this->load->view('element/header_siluni', $data);
@@ -59,12 +61,13 @@ public function index()
 		  $where = array('id' => $nrm);
 		  //$username = array('username' => $nrm);
 		  	$data=array(
-		            'title'=>'Profil Alumni - SiLuni',
-		            'active_beranda'=>'active',
-		            'status' => $this->session->userdata('status'),
-		          'nama' => $this->session->userdata('nama'),
-		          'username' => $this->session->userdata('username'),
-		          'alumni' => $this->m_data->tampil_user($where,'alumni')->result(),
+		        'title'=>'Profil Alumni - SiLuni',
+		        'active_beranda'=>'active',
+		        'status' => $this->session->userdata('status'),
+		         'nama' => $this->session->userdata('nama'),
+		         'username' => $this->session->userdata('username'),
+		         'alumni' => $this->m_data->tampil_user($where,'alumni')->result(),
+		         'prodi' => $this->m_master->getProdi()
 		        );
 		        $this->load->view('element/header_siluni',$data);
 		        $this->load->view('guest/v_profil_user',$data);

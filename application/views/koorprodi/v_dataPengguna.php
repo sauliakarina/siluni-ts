@@ -42,7 +42,7 @@
                             <tr>
                               <th scope="row"><?php echo $no++ ?></th>
                               <td><?php echo $d->pengguna_nama ?></td>
-                              <td><?php echo $this->m_master->getDivisiByID($d->id_divisi)->nama_divisi ?></td>
+                              <td><?php echo $d->divisi ?></td>
                               <td><?php echo $this->m_master->getInstansiByID($d->id_instansi)->nama_instansi ?></td>
                               <td><?php echo $d->pengguna_email ?></td>
                               <td><?php echo $d->pengguna_telepon ?></td>

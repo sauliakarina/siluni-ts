@@ -27,7 +27,8 @@ class M_master extends CI_Model{
 
 	function getInstansi() {
 		$this->db->select('*');
-		$this->db->distinct();
+		$this->db->order_by('nama_instansi', 'ASC');
+		$this->db->group_by('nama_instansi');
 		$query = $this->db->get('instansi');
 		if($query->num_rows()>0)
 		{
@@ -56,6 +57,7 @@ class M_master extends CI_Model{
 		$this->db->select('*');
 		$this->db->order_by('nama_divisi', 'ASC');
 		$this->db->group_by('nama_divisi');
+		$this->db->where('nama_divisi !=', '');
 		$query = $this->db->get('divisi');
 		if($query->num_rows()>0)
 		{

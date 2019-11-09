@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row" style="margin-top: 30px">
         <div class="col-md-12">
-               <h3>Daftar Pengguna Alumni Ilmu Komputer</h3>
+               <h3>Daftar Pengguna Alumni <?php echo $this->m_master->getProdiByID($prodiID)->nama_prodi ?></h3>
       </div><!-- col-12 -->
     </div> <!-- row -->
       <div class="row" style="margin-top: 40px">
@@ -13,7 +13,7 @@
               <tr>
                 <th>No</th>
                 <th>Instansi</th>
-                <th>Alamat</th>
+                <th style="width: 500px">Alamat</th>
                 <th>Posisi Alumni</th>
               </tr>
             </thead>

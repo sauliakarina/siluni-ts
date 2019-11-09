@@ -12,11 +12,12 @@ class Alumni extends CI_Controller {
 
 	public function index()
 	{
+		$prodiID = $this->session->userdata('prodiID');
 		$data = array(
 			'role' => $this->session->userdata('role'),
 			'userID' => $this->session->userdata('userID'),
-			'prodiID' => $this->session->userdata('prodiID'),
-			'alumni' => $this->m_alumni->getAlumni(),
+			'prodiID' => $prodiID,
+			'alumni' => $this->m_alumni->getAlumni($prodiID),
 		);
 		$this->load->view('element/head');
 		$this->load->view('element/header');

@@ -7,6 +7,7 @@ class Berita_alumni extends CI_Controller {
   function __construct(){
     parent::__construct();    
     $this->load->model('siluni/m_berita');
+    $this->load->model('m_master');
   }
  
   //info alumni
@@ -45,6 +46,7 @@ class Berita_alumni extends CI_Controller {
           'berita' => $this->m_berita->tampil_berita_info($config['per_page'], $page),
           'links' => $this->pagination->create_links(),
           'title'=>'Info Alumni- SiLuni',
+          'prodi' => $this->m_master->getProdi()
           );
 
         $this->load->view('element/header_siluni',$data);
@@ -89,6 +91,7 @@ class Berita_alumni extends CI_Controller {
           'berita' => $this->m_berita->tampil_berita_lowongan($config['per_page'], $page),
           'links' => $this->pagination->create_links(),
           'title'=>'Lowongan Kerja- SiLuni',
+          'prodi' => $this->m_master->getProdi()
           );
 
         $this->load->view('element/header_siluni',$data);
@@ -132,6 +135,7 @@ class Berita_alumni extends CI_Controller {
           'berita' => $this->m_berita->tampil_berita_karir($config['per_page'], $page),
           'links' => $this->pagination->create_links(),
           'title'=>'Tips Karir - SiLuni',
+          'prodi' => $this->m_master->getProdi()
           );
 
         $this->load->view('element/header_siluni',$data);
@@ -181,7 +185,8 @@ class Berita_alumni extends CI_Controller {
           'berita' => $this->m_berita->tampil_berita_saya($config['per_page'], $page,$nrm),
           'links' => $this->pagination->create_links(),
           'title'=>'Berita Saya - SiLuni',
-          'error_upload' => ''
+          'error_upload' => '',
+          'prodi' => $this->m_master->getProdi()
           );
 
         $this->load->view('element/header_siluni',$data);
@@ -241,7 +246,8 @@ class Berita_alumni extends CI_Controller {
         'status' => $this->session->userdata('status'),
         'user_id' => $this->session->userdata('user_id'),
         'username' => $this->session->userdata('username'),
-        'berita' => $this->m_berita->tampil_berita($where,'berita_alumni')->result()
+        'berita' => $this->m_berita->tampil_berita($where,'berita_alumni')->result(),
+        'prodi' => $this->m_master->getProdi()
     );
         $this->load->view('element/header_siluni',$data);
         $this->load->view('guest/v_tampil_berita',$data);
@@ -257,7 +263,8 @@ class Berita_alumni extends CI_Controller {
             'user_id' => $this->session->userdata('user_id'),
             'username' => $this->session->userdata('username'),
             'sukses' => '',
-            'warning' => ''
+            'warning' => '',
+            'prodi' => $this->m_master->getProdi()
         );
       $this->load->view('element/header_siluni',$data);
       $this->load->view('berita/v_tambah_berita',$data);
@@ -417,7 +424,8 @@ function tambah_aksi(){
             'user_id' => $this->session->userdata('user_id'),
             'username' => $this->session->userdata('username'),
             'error' => '',
-            'warning'=>''
+            'warning'=>'',
+            'prodi' => $this->m_master->getProdi()
           );
           $this->load->view('element/header_siluni',$data);
           $this->load->view('berita/v_tambah_berita',$data);
@@ -439,7 +447,8 @@ function tambah_aksi(){
                           <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
                           <strong>Berita alumni gagal di tambah! pastikan anda mengisi judul dan kategori</strong> 
                           </div>',
-            'error_validation' => validation_errors()
+            'error_validation' => validation_errors(),
+            'prodi' => $this->m_master->getProdi()
         );
     $this->load->view('element/header_siluni',$data);
     $this->load->view('berita/v_tambah_berita',$data);
@@ -459,7 +468,8 @@ function tambah_aksi(){
             'nama' => $this->session->userdata('nama'),
             'username' => $this->session->userdata('username'),
             'sukses' => '',
-            'warning' => ''
+            'warning' => '',
+            'prodi' => $this->m_master->getProdi()
         );
     $this->load->view('element/header_siluni',$data);
     $this->load->view('berita/v_tambah_berita_admin',$data);
@@ -541,7 +551,8 @@ public function do_upload(){
           'error_upload' => '<div class="alert alert-danger alert-dismissable" style="margin-top: 10px">
                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
                          <strong>Foto berita gagal diganti! cek ukuran dan dimensi foto berita.</strong> 
-                      </div>'
+                      </div>',
+          'prodi' => $this->m_master->getProdi()
           );
 
         $this->load->view('element/header_siluni',$data);

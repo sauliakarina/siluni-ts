@@ -39,18 +39,6 @@
                             </select>
                           </div>
                         </div>
-                        <div class="line"></div>
-                        <div class="form-group row">
-                          <label class="col-sm-3 form-control-label">Divisi</label>
-                          <div class="col-sm-9">
-                            <select name="id_divisi" class="form-control mb-3" disabled>
-                              <option value="<?php echo $p->id_divisi ?>"><b><?php echo $this->m_master->getDivisiByID($p->id_divisi)->nama_divisi ?></b></option>
-                              <?php foreach ($divisi as $d) { ?>
-                                <option value="<?php echo $d->id ?>"><b><?php echo $d->nama_divisi ?></b></option>
-                              <?php } ?>
-                            </select>
-                          </div>
-                        </div>
                       <div class="line"></div>
                         <div class="form-group row">
                           <label class="col-sm-3 form-control-label">Posisi</label>
@@ -95,11 +83,12 @@
                               <small class="help-block-none">Nama pengguna.</small><input type="text" name="pengguna_nama" class="form-control" value="<?php echo $this->m_pengguna->getPenggunaByID($p->id_pengguna)->pengguna_nama ?>" style="margin-bottom: 10px">
                               <small class="help-block-none">Email pengguna.</small><input type="text" name="pengguna_email" class="form-control"  value="<?php echo $this->m_pengguna->getPenggunaByID($p->id_pengguna)->pengguna_email ?>" style="margin-bottom: 10px">
                               <small class="help-block-none">No telepon/hp pengguna.</small><input type="text" name="pengguna_telepon" class="form-control"  value="<?php echo $this->m_pengguna->getPenggunaByID($p->id_pengguna)->pengguna_telepon ?>">
-                              <input type="hidden" name="id_pengguna" class="form-control" value="<?php echo $p->id_pengguna ?>">
+                              <small class="help-block-none">Divisi.</small><input type="text" name="pengguna_telepon" class="form-control"  value="<?php echo $this->m_pengguna->getPenggunaByID($p->id_pengguna)->divisi ?>">
+                              <input type="hidden" name="divisi" class="form-control" value="<?php echo $p->id_pengguna ?>">
                           </div>
                         </div>
                          <div class="line"></div>
-                        <div class="form-group">
+                        <div class="form-group" style="float: right;">
                             <button type="submit" class="btn btn-primary ml-auto">Simpan</button>
                         </div>
                       </form>

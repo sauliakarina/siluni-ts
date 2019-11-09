@@ -6,6 +6,7 @@ class Pencarian_dosen extends CI_Controller {
 	function __construct(){
 		parent::__construct();		
 		$this->load->model('siluni/m_data');
+		$this->load->model('m_master');
 	}
 
 public function index() 
@@ -15,7 +16,8 @@ public function index()
             'status' => $this->session->userdata('status'),
         	'username' => $this->session->userdata('username'),
         	'prodi' => $this->m_data->get_prodi(),
-        	'dosen' => $this->m_data->tampil_data_dosen()
+        	'dosen' => $this->m_data->tampil_data_dosen(),
+        	'prodi' => $this->m_master->getProdi()
         );
         $this->load->view('element/header_siluni',$data);
 		$this->load->view('guest/v_pencarian_dosen',$data);
@@ -42,6 +44,7 @@ public function index()
             'title'=>'Pencarian Dosen - SiLuni',
             'status' => $this->session->userdata('status'),
         	'nama' => $this->session->userdata('nama'),
+        	'prodi' => $this->m_master->getProdi(),
         	'user_dosen' => $user_dosen
         	);
         	$this->load->view('element/header_siluni', $data);

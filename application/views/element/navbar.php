@@ -118,7 +118,7 @@
             <?php } ?>
             <!-- menu superadmin -->
             <?php if ($role == 'superadmin') { ?>
-              <li class="<?php if($this->uri->segment(2)=="Profil"){echo "active";} ?>"><a href="<?php echo site_url('dosen/Profil') ?>"> <i class="icon-user"></i>Beranda</a></li> 
+              <li class="<?php if($this->uri->segment(2)=="Profil"){echo "active";} ?>"><a href="<?php echo site_url('superadmin/Beranda') ?>"> <i class="icon-user"></i>Beranda</a></li> 
               <li class="<?php if($this->uri->segment(2)=="Profil"){echo "active";} ?>"><a href="<?php echo site_url('dosen/Profil') ?>"> <i class="fas fa-university"></i>Fakultas</a></li> 
               <li class="<?php if($this->uri->segment(2)=="Profil"){echo "active";} ?>"><a href="<?php echo site_url('dosen/Profil') ?>"> <i class="icon-grid"></i>Program Studi</a></li> 
              <li class="<?php if($this->uri->segment(2)=="Alumni" ){echo "active";} ?>"><a href="<?php echo site_url('koorprodi/Alumni') ?>"><i class="fas fa-user-graduate"></i>Alumni</a></li>

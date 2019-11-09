@@ -190,51 +190,43 @@
                     </li>
                    
                     ";
-                    }
-                    /*
-                     <li class='nav-item'>
-                        <a style='color: grey' class='nav-link' href=''><b>Kelola Forum</b></a>
-                    </li>
-                    */
-                    /*<li class='nav-item'>
-                        <a style='color: grey' class='nav-link' href='".base_url('pencarian_dosen')."'><b>Daftar Dosen</b></a>
-                    </li>*/
-                     else{
-                      echo "
+                    } else { ?>
                     <li class='nav-item'>
-                        <a style='color: grey' class='nav-link' href='".base_url('pencarian_alumni')."'><b>Pencarian Alumni</b></a>
+                        <a style='color: grey' class='nav-link' href="<?php echo base_url('pencarian_alumni') ?>"><b>Pencarian Alumni</b></a>
                     </li>
                     <li class='nav-item'>
-                        <a style='color: grey' class='nav-link' href='".base_url('pencarian_dosen')."'><b>Daftar Dosen</b></a>
+                        <a style='color: grey' class='nav-link' href="<?php echo base_url('pencarian_dosen') ?>"><b>Daftar Dosen</b></a>
                     </li>
                      <li class='nav-item dropdown'>
-                        <a class='nav-link dropdown-toggle dropbtn' href='#'' id='navbarDropdownMenuLink' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                        <a class='nav-link dropdown-toggle dropbtn' href='#' id='navbarDropdownMenuLink' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
                         <b>Pengguna Alumni</b>
                         </a>
                         <div class='dropdown-content' >
-                            <a class='dropdown-item' href=".base_url('pengguna/Pengguna').">Ilmu Komputer</a>
+                            <?php foreach ($prodi as $p ) { ?>
+                            <a class='dropdown-item' href="<?php echo base_url('pengguna/Pengguna/daftarPengguna/'.$p->id) ?>"><?php echo $p->nama_prodi ?></a>
+                            <?php } ?>
                         </div>
                     </li>
                     <li class='nav-item dropdown'>
-                        <a class='nav-link dropdown-toggle dropbtn' href='#'' id='navbarDropdownMenuLink' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                        <a class='nav-link dropdown-toggle dropbtn' href='#' id='navbarDropdownMenuLink' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
                         <b>Statistik Alumni</b>
                         </a>
                         <div class=' dropdown-content' >
-                            <a class='dropdown-item dropdown-submenu' href=".base_url('Statistik').">Ilmu Komputer</a>
+                            <a class='dropdown-item dropdown-submenu' href="<?php echo base_url('Statistik') ?>">Ilmu Komputer</a>
                         </div>
                     </li>
                     <li class='nav-item dropdown'>
-                        <a class='nav-link dropdown-toggle dropbtn' href='#'' id='navbarDropdownMenuLink' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                        <a class='nav-link dropdown-toggle dropbtn' href='#' id='navbarDropdownMenuLink' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
                         <b>Berita Alumni</b>
                         </a>
                         <div class=' dropdown-content' >
-                            <a class='dropdown-item' href=".base_url('berita_alumni').">Info Alumni</a>
-                              <a class='dropdown-item' href=".base_url('berita_alumni/tampil_karir')."> Tips Karir </a>
-                            <a class='dropdown-item' href=".base_url('berita_alumni/tampil_lowongan')."> Lowongan Kerja</a>
+                            <a class='dropdown-item' href="<?php echo base_url('berita_alumni') ?>">Info Alumni</a>
+                              <a class='dropdown-item' href="<?php echo base_url('berita_alumni/tampil_karir') ?>"> Tips Karir </a>
+                            <a class='dropdown-item' href="<?php echo base_url('berita_alumni/tampil_lowongan') ?>"> Lowongan Kerja</a>
                         </div>
                     </li>
                     <li class='nav-item dropdown'>
-                        <a class='nav-link dropdown-toggle dropbtn' href='#'' id='navbarDropdownMenuLink' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                        <a class='nav-link dropdown-toggle dropbtn' href='#' id='navbarDropdownMenuLink' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
                         <b>Berita Prodi</b>
                         </a>
                         <div class=' dropdown-content' >
@@ -243,13 +235,13 @@
                             <a class='dropdown-item' href='http://fmipa.unj.ac.id/mtk/'> Matematika Murni</a>
                         </div>
                     </li>
-                    ";
+                    <?php  
                     if ($status=='alumni') {
                       echo "<li class='nav-item'>
                         <a style='color: grey' class='nav-link' href='".base_url('tracer_study')."'><b>Tracer Study</b></a>
                     </li>";
                     }
-                    } ?>
+                } ?>
                      
                 </ul>
                 <ul class="navbar-nav nav-flex-icons">

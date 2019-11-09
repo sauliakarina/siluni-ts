@@ -54,19 +54,6 @@
                             <input type="text" class="form-control" name="posisi">
                           </div>
                         </div>
-                        <div class="line"></div>
-                        <div class="form-group row">
-                          <label class="col-sm-3 form-control-label">Divisi</label>
-                          <div class="col-sm-9">
-                            <select name="divisi_select" class="form-control mb-3">
-                              <option value="">Pilih Divisi</option>
-                              <?php foreach($divisi as $d){ ?>
-                                  <option value="<?php echo $d->nama_divisi ?>"><?php echo $d->nama_divisi ?></option>
-                              <?php } ?>
-                              </select>
-                              <input type="text" name="divisi_input" placeholder="Tulis disini jika tidak ada pada pilihan di atas" class="form-control">
-                          </div>
-                        </div>
                          <div class="line"></div>
                         <div class="form-group row">
                           <label class="col-sm-3 form-control-label">Pendapatan Tiap Bulan</label>

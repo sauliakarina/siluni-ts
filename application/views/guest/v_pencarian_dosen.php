@@ -60,7 +60,7 @@
                     $nodosen = $u->nidn;
                 echo $nodosen; ?></td>
                 <td><?php echo $u->nama; ?></td>
-                <td><?php echo $this->m_data->get_t_prodi($this->m_data->getUserByID($u->userID)->prodiID)->nama_prodi ?></td>
+                <td><?php echo $this->m_master->getProdiByID($u->prodiID)->nama_prodi ?></td>
                 <td><?php if (isset($u->email) and $u->email !='') {
                   echo $u->email;
                 } else {

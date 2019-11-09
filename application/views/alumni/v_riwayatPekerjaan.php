@@ -48,7 +48,7 @@
                               <th scope="row"><?php echo $no++ ?></th>
                               <td><?php echo $this->m_master->getInstansiByID($r->id_instansi)->nama_instansi ?></td>
                               <td><?php echo $r->posisi ?></td>
-                              <td><?php echo $this->m_master->getDivisiByID($r->id_divisi)->nama_divisi ?></td>
+                              <td><?php echo $r->divisi ?></td>
                               <td><?php echo $r->gaji ?></td>
                               <td><?php echo $r->periode_kerja ?></td>
                               <td>

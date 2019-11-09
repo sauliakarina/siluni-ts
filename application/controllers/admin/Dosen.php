@@ -11,11 +11,12 @@ class Dosen extends CI_Controller {
 
 	public function index()
 	{
+		$prodiID = $this->session->userdata('prodiID');
 		$data = array(
 			'role' => $this->session->userdata('role'),
 			'userID' => $this->session->userdata('userID'),
-			'prodiID' => $this->session->userdata('prodiID'),
-			'dosen' => $this->m_dosen->getDosen(),
+			'prodiID' => $prodiID,
+			'dosen' => $this->m_dosen->getDosenByProdiID($prodiID),
 			'prodi' => $this->m_master->getProdi()
 		);
 		$this->load->view('element/head');

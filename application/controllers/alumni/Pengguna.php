@@ -12,11 +12,12 @@ class Pengguna extends CI_Controller {
 
 	public function index()
 	{
+		$prodiID = $this->session->userdata('prodiID');
 		$data = array(
 			'role' => $this->session->userdata('role'),
 			'userID' => $this->session->userdata('userID'),
-			'prodiID' => $this->session->userdata('prodiID'),
-			'pengguna' => $this->m_pengguna->getPengguna()
+			'prodiID' => $prodiID,
+			'pengguna' => $this->m_pengguna->getPengguna($prodiID)
 		);
 		$this->load->view('element/head');
 		$this->load->view('element/header');

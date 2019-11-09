@@ -11,14 +11,16 @@ class Pengguna extends CI_Controller {
  
 	}
 
-	public function index()
+	public function daftarPengguna($prodiID)
 	{
 		$data=array(
             'title'=>'Beranda - SiLuni',
             'active_beranda'=>'active',
             'status' => $this->session->userdata('role'),
             'nama' => $this->session->userdata('nama'),
-            'pengguna' => $this->m_pengguna->getPengguna()
+            'pengguna' => $this->m_pengguna->getPengguna($prodiID),
+            'prodi' => $this->m_master->getProdi(),
+            'prodiID'=> $prodiID
         );
 		 $this->load->view('element/header_siluni',$data);
 		$this->load->view('guest/v_daftarPengguna', $data);

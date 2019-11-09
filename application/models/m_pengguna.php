@@ -8,10 +8,11 @@ class M_pengguna extends CI_Model{
 	 }
 
 	 //group by instansi
-	 function getPengguna()
+	 function getPengguna($prodiID)
 	{
 		$this->db->select('*');
 		$this->db->where('isDelete', 'no');
+		$this->db->where('prodiID', $prodiID);
 		$this->db->group_by('id_instansi');
 		$query = $this->db->get('pengguna');
 		if($query->num_rows()>0)
@@ -23,10 +24,11 @@ class M_pengguna extends CI_Model{
 
 	}
 
-	 function getAllPengguna()
+	 function getPenggunaByProdiID($prodiID)
 	{
 		$this->db->select('*');
 		$this->db->where('isDelete', 'no');
+		$this->db->where('prodiID', $prodiID);
 		$query = $this->db->get('pengguna');
 		if($query->num_rows()>0)
 		{
@@ -37,9 +39,23 @@ class M_pengguna extends CI_Model{
 
 	}
 
-	function getPenggunaByInstansiID($id_instansi)
+	/*function getPenggunaByInstansiID($id_instansi)
 	{
 		$this->db->select('id');
+		$this->db->where('id_instansi', $id_instansi);
+		$query = $this->db->get('pengguna');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
+
+	}*/
+
+	function getPenggunaByInstansiID($id_instansi)
+	{
+		$this->db->select('*');
 		$this->db->where('id_instansi', $id_instansi);
 		$query = $this->db->get('pengguna');
 		if($query->num_rows()>0)
@@ -66,10 +82,10 @@ class M_pengguna extends CI_Model{
 
 	}
 
-	function getPenggunaByEmail($email)
+	function getPenggunaByPenggunaID($id)
 	{
 		$this->db->select('*');
-		$this->db->where('pengguna_email',$email);
+		$this->db->where('penggunaID',$id);
 		$query = $this->db->get('pengguna');
 		return $query->row();
 
