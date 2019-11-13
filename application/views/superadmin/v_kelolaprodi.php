@@ -1,60 +1,61 @@
+  <!-- head -->
+         <!-- Side Navbar -->
         <div class="content-inner">
           <!-- Page Header-->
-          <header class="page-header" style="background-color: #EFE037">
+           <header class="page-header" style="background-color: #EFE037">
             <div class="container-fluid">
-              <h2 class="no-margin-bottom">Data Alumni</h2>
+              <h2 class="no-margin-bottom">Riwayat Pekerjaan</h2>
             </div>
           </header>
-          <!-- Breadcrumb-->
+           <!-- Breadcrumb-->
           <div class="breadcrumb-holder container-fluid">
             <ul class="breadcrumb">
-              <li class="breadcrumb-item"><a href="index.html">Beranda</a></li>
-              <li class="breadcrumb-item active">Data</li>
+              <li class="breadcrumb-item"><a href="<?php echo site_url('alumni/Profil/biodata') ?>">Data Diri</a></li>
+              <li class="breadcrumb-item active"><a href="<?php echo site_url('alumni/Profil/riwayatPekerjaan') ?>">Riwayat Pekerjaan</a></li>
             </ul>
           </div>
-          <section class="tables">   
+         
+         <section class="tables">   
             <div class="container-fluid">
               <div class="row">
                 <div class="col-lg-12">
                   <div class="card">
                     <div class="card-header d-flex align-items-center">
-                      <h3 class="h4">Alumni Ilmu Komputer</h3>
+                      <h3 class="h4">Program Studi UNJ</h3>
                       <button type="button" class="btn btn-primary ml-auto btn-sm" data-toggle="modal" data-target="#modalTambah"><i class="fas fa-user-plus"></i> Tambah Data</button>
-                      <button type="button" class="btn btn-dark ml-3 btn-sm" data-toggle="modal" data-target="#modalImport"><i class="fas fa-cloud-upload-alt"></i>  Import</button>
                     </div>
                     <div class="card-body">
                       <div class="table-responsive">                       
                         <table id="myTable" class="table table-striped table-hover">
-                          <thead>
+                           <thead>
                             <tr>
                               <th>No</th>
-                              <th>Nama</th>
-                              <th>NIM</th>
-                              <th>Angkatan</th>
-                              <th>Tahun Lulus</th>
+                              <th>Kode Prodi</th>
+                              <th>Prodi</th>
+                              <th>Fakultas</th>
                               <th></th>
                             </tr>
                           </thead>
                           <tbody>
                             <?php 
                               $no = 1;
-                              foreach($alumni as $d){ 
+                              foreach($prodi as $d){ 
                               ?>
                             <tr>
                               <th scope="row"><?php echo $no++ ?></th>
-                              <td><?php echo $d->nama ?></td>
-                              <td><?php echo $d->nim ?></td>
-                              <td><?php echo $d->tahun_masuk ?></td>
-                              <td><?php echo $d->tahun_lulus ?></td>
+                              <td><?php echo $d->kode_prodi ?></td>
+                              <td><?php echo $d->nama_prodi ?></td>
+                              <td><?php echo $this->m_master->getFakultasByID($d->fakultasID)->nama_fakultas ?></td>
                               <td>
                                 <div class="btn-group btn-group-toggle">
-                                    <!-- <button type="submit" class="btn btn-info btn-sm"  data-toggle="tooltip" data-placement="top" title="Data Tracer"><i class="fas fa-database"></i></button> -->
-                                    <form method='' action="<?php echo base_url('admin/Alumni/editProfil/'.$d->id) ?>"><button type="submit" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="Profil"><i class="fas fa-user-edit"></i></button></form>
-                                    <button onclick="set_id(<?php echo $d->id ?>)" name="options" class="btn btn-danger btn-sm" data-toggle="modal" data-placement="top" title="Hapus" data-target="#ModalHapus"><i class="fas fa-trash-alt"></i></button>
+                                 <button onclick='editProdi(<?php echo $d->id ?>)' id="btn-edit" class="btn-warning btn-sm" data-toggle="modal" data-target="#ModalEdit"><i class="fas fa-user-edit"></i></button>
+                                  <label class="btn btn-danger btn-sm" data-toggle="modal" data-target="#ModalHapus" onclick="set_id(<?php echo $d->id ?>)">
+                                    <input type="radio" name="options"><i class="fas fa-trash-alt"></i>
+                                  </label>
                                 </div>
                               </td>
                             </tr>
-                            <?php } ?>
+                          <?php } ?>
                           </tbody>
                         </table>
                       </div>
@@ -65,64 +66,72 @@
             </div>
           </section>
 
-          <!-- Modal Tambah Alumni-->
+  <!-- Modal Tambah-->
                       <div id="modalTambah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
                         <div role="document" class="modal-dialog">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h4 id="exampleModalLabel" class="modal-title">Tambah Data Alumni</h4>
+                              <h4 id="exampleModalLabel" class="modal-title">Tambah Prodi</h4>
                               <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
                             </div>
                             <div class="modal-body">
                               <p></p>
-                              <?php echo form_open_multipart('admin/Alumni/exeAddAlumni'); ?>
+                              <?php echo form_open_multipart('superadmin/Master/exeAddProdi'); ?>
                                 <div class="form-group">
-                                  <label>Nama</label>
-                                  <input type="text" placeholder="" class="form-control" name="nama">
+                                  <label>Nama Prodi</label>
+                                  <input type="text" placeholder="" class="form-control" name="nama_prodi">
                                 </div>
                                 <div class="form-group">       
-                                  <label>No Registrasi</label>
-                                  <input type="text" placeholder="" class="form-control" name="nim">
+                                  <label>Kode Prodi</label>
+                                  <input type="text" placeholder="" class="form-control" name="kode_prodi">
                                 </div>
                                 <div class="form-group">
-                                  <label>Jenis Kelamin</label>
-                                    <select name="jenis_kelamin" class="form-control">
-                                      <option value="Laki-laki">Laki-laki</option>
-                                      <option value="Perempuan">Perempuan</option>
+                                  <label>Fakultas</label>
+                                    <select name="fakultasID" class="form-control">
+                                      <option></option>
+                                      <?php foreach ($fakultas as $f) { ?>
+                                      <option value="<?php echo $f->id ?>"><?php echo $f->nama_fakultas ?></option>
+                                    <?php } ?>
                                     </select>
-                                </div>
-                                <div class="form-group">       
-                                  <label>Tahun Masuk</label>
-                                  <input type="text" placeholder="" class="form-control" name="tahun_masuk">
-                                </div>
-                                <div class="form-group">       
-                                  <label>Tanggal Kelulusan</label>
-                                  <input type="date" placeholder="" class="form-control" name="tanggal_lulus">
                                 </div>
                             </div>
                             <div class="modal-footer">
                               <button type="button" data-dismiss="modal" class="btn btn-secondary">Tutup</button>
                               <button type="submit" class="btn btn-primary">Simpan</button>
-                            </div>
                             </form>
+                            </div>
                           </div>
                         </div>
                       </div>
+<!-- modal tambah -->
 
-<!-- Modal Import Alumni-->
-                      <div id="modalImport" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+<!-- Modal Edit Prodi-->
+          <div id="ModalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
                         <div role="document" class="modal-dialog">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h4 id="exampleModalLabel" class="modal-title">Tambah Data Alumni</h4>
+                              <h4 id="exampleModalLabel" class="modal-title">Sunting Prodi</h4>
                               <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
                             </div>
                             <div class="modal-body">
-                              <p>Template Master pengisian data dapat di unduh pada link berikut ini : <a href="<?php echo base_url('assets/file/Alumni-2.xlsx'); ?>">Alumni.xls</a></p>
-                              <form action="<?php echo base_url();?>admin/Alumni/exeImport/" method="post" enctype="multipart/form-data">
+                              <p></p>
+                              <?php echo form_open_multipart('superadmin/Master/exeEditProdi'); ?>
                                 <div class="form-group">
-                                  <label>Upload File</label>
-                                  <input type="file" placeholder="" class="form-control" name="file">
+                                  <label>Nama Prodi</label>
+                                  <input type="text" id="nama_prodi" value="<?php echo $d->nama_prodi ?>" class="form-control" name="nama_prodi">
+                                </div>
+                                <div class="form-group">       
+                                  <label>Kode Prodi</label>
+                                  <input type="text" placeholder="" class="form-control"  name="kode_prodi" id="kode_prodi" value="<?php echo $d->kode_prodi ?>">
+                                </div>
+                                <div class="form-group">
+                                  <label>Fakultas</label>
+                                    <select  id="fakultasID" name="fakultasID" class="form-control">
+                                      <option value="<?php echo $d->fakultasID ?>"><?php echo $d->fakultasID ?></option>
+                                      <?php foreach ($fakultas as $f) { ?>
+                                      <option value="<?php echo $f->id ?>"><?php echo $f->nama_fakultas ?></option>
+                                      <?php } ?>
+                                    </select>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -134,7 +143,7 @@
                         </div>
                       </div>
 
- <!-- Modal Hapus-->
+<!-- Modal Hapus-->
                       <div id="ModalHapus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
                         <div role="document" class="modal-dialog">
                           <div class="modal-content">
@@ -150,28 +159,50 @@
                             </div>
                             <div class="modal-footer">
                               <button type="button" data-dismiss="modal" class="btn btn-secondary">Tutup</button>
-                              <button type="submit" class="btn btn-danger" onclick='deletep()'>Hapus</button>
+                              <button type="button" class="btn btn-danger" onclick='deletep()'>Hapus</button>
                             </div>
                           </div>
                         </div>
                       </div>
+  </body>
+</html>
 
 <script type="text/javascript">
-   var p_id;
-    function set_id(id) {
-        p_id = id;
+  var p_id;
+  function set_id(id) {
+    p_id = id;
+  }
 
+  function deletep(){
+    window.location.href =  "<?php echo base_url();?>superadmin/Master/deleteProdi/"+p_id;
+  }
+
+  function editProdi(id) {
+
+      $.ajax({
+        url: "<?php echo base_url('superadmin/Master/getProdi/') ?>/" + id,
+        type: "GET",
+        dataType: "JSON",
+        success: function(data) {
+          $('[name="id"]').val(data.id);
+          $('[name="nama_prodi"]').val(data.nama_prodi);
+          $('[name="kode_prodi"]').val(data.kode_prodi);
+          $('[name="fakultasID"]').val(data.fakultasID);
+          
+          $('#ModalEdit').modal('show');
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          console.log('gagal mengambil data');
+        }
+      });
     }
 
-    function deletep(){
-        window.location.href =  "<?php echo base_url();?>admin/Alumni/deleteAlumni/"+p_id;
-    }
-
-  $(document).ready( function () {
+   $(document).ready( function () {
     $('#myTable').DataTable(
         {
         "ordering": false,
     }
       );
   } );
+
 </script>

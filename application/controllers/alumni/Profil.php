@@ -374,6 +374,12 @@ class Profil extends CI_Controller {
 
 	function exeEditPekerjaan()
 	{
+		//data tabel instansi
+		$data = array(
+			'jenis_instansi' => $this->input->post('jenis_instansi'),
+		);
+		$where = array('id' => $this->input->post('id_instansi'));
+		$this->m_master->updateData($where,$data,'instansi');
 		//data tabel pekerjaan
 		$data = array(
 			'gaji' => $this->input->post('gaji'),
@@ -382,15 +388,27 @@ class Profil extends CI_Controller {
 		);
 		$where = array('id' => $this->input->post('id_pekerjaan'));
 		$this->m_master->updateData($where,$data,'pekerjaan');
-		//data tabel pengguna
-		$data = array(
-			'pengguna_nama' => $this->input->post('pengguna_nama'),
-			'pengguna_email' => $this->input->post('pengguna_email'),
-			'pengguna_telepon' => $this->input->post('pengguna_telepon'),
-			'divisi' => $this->input->post('divisi')
-		);
-		$where = array('id' => $this->input->post('id_pengguna'));
-		$this->m_master->updateData($where,$data,'pengguna');
+		//data pengguna
+		if ($this->input->post('radioPenggunaID') == "") {
+			$data = array(
+				'pengguna_nama' => $this->input->post('pengguna_nama'),
+				'pengguna_email' => $this->input->post('pengguna_email'),
+				'pengguna_telepon' => $this->input->post('pengguna_telepon'),
+				'divisi' => $this->input->post('divisi')
+			);
+			$where = array('id' => $this->input->post('id_pengguna'));
+			$this->m_master->updateData($where,$data,'pengguna');
+		} else {
+			//update id pengguna di tabel pekerjaan
+			$data = array(
+				'id_pengguna' => $this->input->post('radioPenggunaID')
+			);
+			$where = array('id' => $this->input->post('id_pekerjaan'));
+			$this->m_master->updateData($where,$data,'pekerjaan');
+			//hapus pengguna sebelumnya
+			$where = array('id' => $this->input->post('id_pengguna'));
+			$this->m_master->deleteData($where,'pengguna');
+		}
 
 		redirect('alumni/Profil/riwayatPekerjaan/');
 	}

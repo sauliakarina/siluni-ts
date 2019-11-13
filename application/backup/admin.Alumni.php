@@ -6,7 +6,6 @@ class Alumni extends CI_Controller {
 		parent::__construct();		
 		$this->load->model('m_alumni');
 		$this->load->model('m_master');
-		$this->load->model('m_pengguna');
 		$this->load->library(array('PHPExcel','PHPExcel/IOFactory'));
  
 	}
@@ -141,77 +140,35 @@ class Alumni extends CI_Controller {
 				$nim = $rowData[0][1];
 				$cek = $this->m_alumni->cekAlumni($nim);
 				if($cek->num_rows() < 1){
-					//tabel user
+
+					//sesuaikan nama dengan nama tabel
 					$data = array(
-						"userID"=> "ALU".$rowData[0][1],
+						"id"=> "ALU".$rowData[0][1],
 						"username"=> $rowData[0][1],
 						"password"=> md5($rowData[0][1]),
 						"role"=> 'alumni',
-						"prodiID" => $this->session->userdata('prodiID')
+						'prodiID' => $this->session->userdata('prodiID')
 					);
 
 					$insert = $this->db->insert("user",$data);
-					//tabel alumni
-					$tanggal_lulus = strtotime($rowData[0][6]);
+					//Sesuaikan sama nama kolom tabel di database
+					/*$d=strtotime($rowData[0][4]); 
+					$tanggal_lulus = date("d M", $d);
+					$tahun_lulus = date("Y", $d);*/
 					$data = array(
 						"nim"=> $rowData[0][1],
 						"nama"=> $rowData[0][0],
-						"no_telepon" => $rowData[0][2],
-						"ipk" => $rowData[0][3],
 						"userID"=> "ALU".$rowData[0][1],
-						"jenis_kelamin"=> $rowData[0][4],
-						"tahun_masuk"=> $rowData[0][5],
-						"tahun_lulus"=> $rowData[0][6],
-						"prodiID" => $this->session->userdata('prodiID')
+						"jenis_kelamin"=> $rowData[0][2],
+						"tahun_masuk"=> $rowData[0][3],
+						"tanggal_lulus"=> $rowData[0][4],
+						"tahun_lulus"=> $rowData[0][5]
 					);
 					$insert = $this->db->insert("alumni",$data);
-				} else {
-					unlink($inputFileName);
+
 				}
-					//data instansi
-					$where = array( 'nama_instansi' => $rowData[0][7]);
-				    $cek = $this->m_master->cekData("instansi",$where)->num_rows();
-				    if ($cek == 0) {
-				    	$data = array("nama_instansi" => $rowData[0][7]);
-				    	$insert = $this->db->insert("instansi",$data);
-				    	$id_instansi = $this->m_master->getInstansiByName($rowData[0][7])->id;
-				    } else {
-				    	$id_instansi = $this->m_master->getInstansiByName($rowData[0][7])->id;
-				    }
-				    //generate pengguna id
-				    $id_length = 8;
-					$id_found = false;
-					$possible_chars = "23456789BCDFGHJKMNPQRSTVWXYZ"; 
-					while (!$id_found) {  
-					    $penggunaID = "";  
-					    $i = 0;  
-					    while ($i < $id_length) {  
-					        $char = substr($possible_chars, mt_rand(0, strlen($possible_chars)-1), 1);  
-					        $penggunaID .= $char;   
-					        $i++;   
-					    }  
-					    $where = array( 'penggunaID' => $penggunaID);
-					    $cek = $this->m_master->cekData("pengguna",$where)->num_rows();
-					    if ($cek == 0) {
-					    	$id_found = true;
-					    }
-					}
-				    //tabel pengguna
-				    $data = array(
-				    	"id_instansi" => $id_instansi,
-				    	"prodiID" => $this->session->userdata('prodiID'),
-				    	"penggunaID" => $penggunaID
-				    );
-				    $insert = $this->db->insert("pengguna",$data);
-				    //tabel pekerjaan
-				    $data = array(
-				    	"posisi" => $rowData[0][8],
-				    	"gaji" => $rowData[0][9],
-				    	"id_pengguna" => $this->m_pengguna->getPenggunaByPenggunaID($penggunaID)->id,
-				    	"id_alumni" => $this->m_alumni->getAlumniByUserID("ALU".$rowData[0][1])->id
-				    );
-				    $insert = $this->db->insert("pekerjaan",$data);
-				
+			
+				unlink($inputFileName);
 			}
 			$this->session->set_flashdata("pesan", '<div><div class="alert alert-info" id="alert" align="center">Date telah diimpor</div></div>');
 			redirect('admin/Alumni');

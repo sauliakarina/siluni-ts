@@ -84,9 +84,9 @@
                         </div>
                         <div class="line"></div>
                         <div class="form-group row">
-                          <label class="col-sm-3 form-control-label">Tahun Lulus</label>
+                          <label class="col-sm-3 form-control-label">Tanggal Lulus</label>
                           <div class="col-sm-3">
-                            <input type="text" name="tahun_lulus" class="form-control" value="<?php echo $profil->tahun_lulus ?>">
+                            <input type="text" name="tahun_lulus" class="form-control" value="<?php echo $profil->tanggal_lulus ?>">
                           </div>
                         </div>
                         <div class="line"></div>

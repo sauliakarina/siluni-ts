@@ -57,7 +57,6 @@
                           <div class="col-sm-9">
                             <input type="text" name="posisi" class="form-control" value="<?php echo $p->posisi ?>">
                              <input type="hidden" name="id_pekerjaan" class="form-control" value="<?php echo $p->id_pekerjaan ?>">
-                             <input type="hidden" name="id_pengguna" class="form-control" value="<?php echo $p->id_pengguna ?>">
                           </div>
                         </div>
                         <div class="line"></div>
@@ -101,7 +100,11 @@
                               </div>
                         </div>
                         <div class="line"></div>
-                     <?php if ($this->m_pengguna->getPenggunaByID($p->id_pengguna)->pengguna_nama == NULL) { ?>
+                     <?php if ($this->m_pengguna->getPenggunaByID($p->id_pengguna)->pengguna_nama == NULL) { 
+                              $where = array( 'id_instansi' => $p->id_instansi, 'pengguna_nama !=' => NULL);
+                              $cek = $this->m_master->cekData("pengguna",$where)->num_rows();
+                              if ($cek > 0) {
+                        ?>
                           <p>Pilih Pengguna Alumni Sesuai dengan Divisi anda</p>
                           <div class="table-responsive">                       
                           <table class="table table-striped table-hover">
@@ -123,55 +126,48 @@
                                 <td><?php echo $this->m_pengguna->getPenggunaByID($d->id)->pengguna_nama ?></td>
                                 <td><?php echo $d->divisi ?></td>
                                 <td>
-                                 <input id="radioCustom1" type="radio" value="<?php echo $d->id ?>" name="radioPenggunaID" class="radio-template">
+                                 <input id="radioCustom1" type="radio" value="<?php echo $p->id ?>" name="id_pengguna" class="radio-template">
                                 </td>
                               </tr>
                             <?php } ?>
                             </tbody>
                           </table>
                         </div>
-                          <p>*Jika Pengguna Alumni Tidak Terdapat Pada Daftar Diatas Silahkan Isi Form <a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> Disini</a></p>
+                      <?php } else { ?>
+                         <p>*Jika Pengguna Alumni Tidak Terdapat Pada Daftar Diatas Silahkan Isi Form <a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> Disini</a></p>
                          <div class="collapse" id="collapseExample">
                           <div class="card card-body">
                             <div class="form-group">
                             <label class="form-control-label">Nama Pengguna</label>
-                            <input type="text" placeholder="" class="form-control" name="pengguna_nama" value="<?php echo $this->m_pengguna->getPenggunaByID($p->id_pengguna)->pengguna_nama ?>">
+                            <input type="text" placeholder="" class="form-control" name="nama">
                           </div>
                           <div class="form-group">       
                             <label class="form-control-label">Divisi</label>
-                            <input type="text" placeholder="" class="form-control" name="divisi" value="<?php echo $this->m_pengguna->getPenggunaByID($p->id_pengguna)->divisi ?>">
+                            <input type="text" placeholder="" class="form-control" name="divisi">
                           </div>
                           <div class="form-group">       
                             <label class="form-control-label">Email</label>
-                            <input type="text" placeholder="" class="form-control" name="pengguna_email" value="<?php echo $this->m_pengguna->getPenggunaByID($p->id_pengguna)->pengguna_email ?>">
+                            <input type="text" placeholder="" class="form-control" name="email">
                           </div>
                           <div class="form-group">       
                             <label class="form-control-label">No HP/Telepon</label>
-                            <input type="text" placeholder="" class="form-control" name="pengguna_telepon" value="<?php echo $this->m_pengguna->getPenggunaByID($p->id_pengguna)->pengguna_telepon ?>">
+                            <input type="text" placeholder="" class="form-control" name="telepon">
                           </div>
                           </div>
                         </div> <!-- collapse -->
+                        <?php } ?>
                         <div class="line"></div>
                        <?php } else { ?>
-                         <p>Data Pengguna Alumni</p>
-                          <div class="card card-body">
-                            <div class="form-group">
-                            <label class="form-control-label">Nama Pengguna</label>
-                            <input type="text" placeholder="" class="form-control" name="pengguna_nama" value="<?php echo $this->m_pengguna->getPenggunaByID($p->id_pengguna)->pengguna_nama ?>">
+                        <div class="form-group row">
+                          <label class="col-sm-3 form-control-label">Data Pengguna</label>
+                          <div class="col-sm-9">
+                              <small class="help-block-none">Nama pengguna.</small><input type="text" name="pengguna_nama" class="form-control" value="<?php echo $this->m_pengguna->getPenggunaByID($p->id_pengguna)->pengguna_nama ?>" style="margin-bottom: 10px">
+                              <small class="help-block-none">Email pengguna.</small><input type="text" name="pengguna_email" class="form-control"  value="<?php echo $this->m_pengguna->getPenggunaByID($p->id_pengguna)->pengguna_email ?>" style="margin-bottom: 10px">
+                              <small class="help-block-none">No telepon/hp pengguna.</small><input type="text" name="pengguna_telepon" class="form-control"  value="<?php echo $this->m_pengguna->getPenggunaByID($p->id_pengguna)->pengguna_telepon ?>">
+                              <small class="help-block-none">Divisi.</small><input type="text" name="pengguna_telepon" class="form-control"  value="<?php echo $this->m_pengguna->getPenggunaByID($p->id_pengguna)->divisi ?>">
+                              <input type="hidden" name="divisi" class="form-control" value="<?php echo $p->id_pengguna ?>">
                           </div>
-                          <div class="form-group">       
-                            <label class="form-control-label">Divisi</label>
-                            <input type="text" placeholder="" class="form-control" name="divisi" value="<?php echo $this->m_pengguna->getPenggunaByID($p->id_pengguna)->divisi ?>">
-                          </div>
-                          <div class="form-group">       
-                            <label class="form-control-label">Email</label>
-                            <input type="text" placeholder="" class="form-control" name="pengguna_email" value="<?php echo $this->m_pengguna->getPenggunaByID($p->id_pengguna)->pengguna_email ?>">
-                          </div>
-                          <div class="form-group">       
-                            <label class="form-control-label">No HP/Telepon</label>
-                            <input type="text" placeholder="" class="form-control" name="pengguna_telepon" value="<?php echo $this->m_pengguna->getPenggunaByID($p->id_pengguna)->pengguna_telepon ?>">
-                          </div>
-                          </div>
+                        </div>
                       <?php } ?>
                          <div class="line"></div>
                         <div class="form-group" style="float: right;">

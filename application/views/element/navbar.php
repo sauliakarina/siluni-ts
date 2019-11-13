@@ -70,7 +70,7 @@
             <!-- menu alumni -->
             <?php if ($role == 'alumni') { ?>
               <li class="<?php if($this->uri->segment(2)=="Beranda"){echo "active";} ?>"><a href="<?php echo site_url('alumni/Beranda') ?>"> <i class="icon-home"></i>Beranda </a></li>
-               <li class="<?php if($this->uri->segment(2)=="Profil" && ($this->uri->segment(3)=="biodata" || $this->uri->segment(3)=="riwayatPekerjaan")){echo "active";} ?>"><a href="#dropdownKelolaData" aria-expanded="false" data-toggle="collapse"><i class="icon-user"></i>Profil</a>
+               <li class="<?php if($this->uri->segment(2)=="Profil"){echo "active";} ?>"><a href="#dropdownKelolaData" aria-expanded="false" data-toggle="collapse"><i class="icon-user"></i>Profil</a>
               <ul id="dropdownKelolaData" class="collapse list-unstyled ">
                 <li><a href="<?php echo site_url('alumni/Profil/biodata') ?>">Data Diri</a></li>
                 <li><a href="<?php echo site_url('alumni/Profil/riwayatPekerjaan') ?>">Riwayat Pekerjaan</a></li>
@@ -118,9 +118,9 @@
             <?php } ?>
             <!-- menu superadmin -->
             <?php if ($role == 'superadmin') { ?>
-              <li class="<?php if($this->uri->segment(2)=="Profil"){echo "active";} ?>"><a href="<?php echo site_url('superadmin/Beranda') ?>"> <i class="icon-user"></i>Beranda</a></li> 
+              <li class="<?php if($this->uri->segment(2)=="Profil"){echo "active";} ?>"><a href="<?php echo site_url('superadmin/Beranda') ?>"> <i class="icon-home"></i>Beranda</a></li> 
               <li class="<?php if($this->uri->segment(2)=="Profil"){echo "active";} ?>"><a href="<?php echo site_url('dosen/Profil') ?>"> <i class="fas fa-university"></i>Fakultas</a></li> 
-              <li class="<?php if($this->uri->segment(2)=="Profil"){echo "active";} ?>"><a href="<?php echo site_url('dosen/Profil') ?>"> <i class="icon-grid"></i>Program Studi</a></li> 
+              <li class="<?php if($this->uri->segment(2)=="Master" && $this->uri->segment(3)=="kelolaProdi"){echo "active";} ?>"><a href="<?php echo site_url('superadmin/Master/kelolaProdi') ?>"> <i class="icon-grid"></i>Program Studi</a></li> 
              <li class="<?php if($this->uri->segment(2)=="Alumni" ){echo "active";} ?>"><a href="<?php echo site_url('koorprodi/Alumni') ?>"><i class="fas fa-user-graduate"></i>Alumni</a></li>
              <li class="<?php if($this->uri->segment(2)=="Profil" && $this->uri->segment(3)=="gantiPassword"){echo "active";} ?>"><a href="<?php echo site_url('dosen/Profil/gantiPassword') ?>"> <i class="fas fa-unlock-alt"></i>Ganti Password </a></li>
           </ul>

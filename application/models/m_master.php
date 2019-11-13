@@ -21,6 +21,19 @@ class M_master extends CI_Model{
 
 	}
 
+	function getFakultas()
+	{
+		$this->db->select('*');
+		$query = $this->db->get('fakultas');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
+
+	}
+
 	function cekData($table,$where){		
 		return $this->db->get_where($table,$where);
 	}	
@@ -74,6 +87,15 @@ class M_master extends CI_Model{
 		$this->db->select('*');
 		$this->db->where('id',$id);
 		$query = $this->db->get('divisi');
+		return $query->row();
+
+	}
+
+	function getFakultasByID($id)
+	{
+		$this->db->select('*');
+		$this->db->where('id',$id);
+		$query = $this->db->get('fakultas');
 		return $query->row();
 
 	}

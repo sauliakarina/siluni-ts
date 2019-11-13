@@ -45,7 +45,7 @@
                             <tr>
                               <th scope="row"><?php echo $no++ ?></th>
                               <td><?php echo $this->m_pengguna->getPenggunaByID($p->id)->pengguna_nama ?></td>
-                              <td><?php echo $this->m_master->getDivisiByID($p->id_divisi)->nama_divisi ?></td>
+                              <td><?php echo $this->m_pengguna->getPenggunaByID($p->id)->divisi ?></td>
                               <td>
                                <input id="radioCustom1" type="radio" value="<?php echo $p->id ?>" name="id_pengguna" class="radio-template">
                               </td>
