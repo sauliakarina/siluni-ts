@@ -204,9 +204,19 @@ class Alumni extends CI_Controller {
 				    );
 				    $insert = $this->db->insert("pengguna",$data);
 				    //tabel pekerjaan
+				    $gajiawal = str_replace(".","",$rowData[0][9]);
+				    if ($gajiawal < "1000000") {
+				    	$gaji = "< 1jt";
+				    } elseif ($gajiawal >= "1000000" && $gajiawal <= "2000000" ) {
+				    	$gaji = "1jt - 2jt";
+				    } elseif ($gajiawal >= "3000000" && $gajiawal <= "4000000" ) {
+				    	$gaji = "3jt - 4jt";
+				    } elseif ($gajiawal > "4000000" ) {
+				    	$gaji = "> 4jt";
+				    }
 				    $data = array(
 				    	"posisi" => $rowData[0][8],
-				    	"gaji" => $rowData[0][9],
+				    	"gaji" => $gaji,
 				    	"id_pengguna" => $this->m_pengguna->getPenggunaByPenggunaID($penggunaID)->id,
 				    	"id_alumni" => $this->m_alumni->getAlumniByUserID("ALU".$rowData[0][1])->id
 				    );
