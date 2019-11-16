@@ -28,6 +28,7 @@
     <script src="<?php echo base_url('assets/template/vendor') ?>/jquery/jquery.min.js"></script>
     <!-- DataTables -->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/DataTables/datatables.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/DataTables/datatables.min.css">
     <script type="text/javascript" charset="utf8" src="<?php echo base_url(); ?>assets/DataTables/datatables.js"></script>
 
         

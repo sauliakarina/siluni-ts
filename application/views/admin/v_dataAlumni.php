@@ -1,3 +1,11 @@
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/DataTables/buttons.dataTables.min.css">
+<script src="<?php echo base_url(); ?>assets/DataTables/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/DataTables/buttons.flash.min.js" ></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/DataTables/jszip.min.js" ></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/DataTables/buttons.html5.min.js" ></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/DataTables/buttons.print.min.js" ></script>
+
+
         <div class="content-inner">
           <!-- Page Header-->
           <header class="page-header" style="background-color: #EFE037">
@@ -168,10 +176,15 @@
     }
 
   $(document).ready( function () {
-    $('#myTable').DataTable(
-        {
+    $('#myTable').DataTable({
         "ordering": false,
-    }
-      );
-  } );
+        "select": true,
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'excel', 'print'
+        ]
+      }); //input fungsi
+  });
+
 </script>
+
