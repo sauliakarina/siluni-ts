@@ -26,7 +26,7 @@ class Berita extends CI_Controller {
 	}
 	function hapusBeritaSaya($id){
 		$where = array('id' => $id,);
-		$this->m_master->hapusData($where,'berita_alumni');
+		$this->m_master->deleteData($where,'berita_alumni');
 		redirect('alumni/Berita');
 	}
 
@@ -43,6 +43,57 @@ class Berita extends CI_Controller {
 		$this->load->view('element/navbar', $data);
 		$this->load->view('alumni/v_editBeritaSaya', $data);
 		$this->load->view('element/footer');
+	}
+
+	public function addBerita()
+	{
+		$data = array(
+			'role' => $this->session->userdata('role'),
+			'userID' => $this->session->userdata('userID'),
+			'prodiID' => $this->session->userdata('prodiID')
+		);
+		$this->load->view('element/head');
+		$this->load->view('element/header');
+		$this->load->view('element/navbar', $data);
+		$this->load->view('v_buatBerita', $data);
+		$this->load->view('element/footer');
+	}
+
+	 function exeAddBerita(){
+
+		 $time = time();
+		  $config = array(
+		      'upload_path' => "assets/siluni/images/berita/",
+		      'allowed_types' => "gif|jpg|png|jpeg",
+		      'overwrite' => TRUE,
+		      'max_size' => "10000", 
+		      'file_name' => $time
+		      );
+			$this->load->library('upload', $config); 
+			$this->upload->initialize($config);
+		
+		if ($this->upload->do_upload('userfile')) {
+				$data['error'] = false;
+				$upload_data = $this->upload->data();
+				$data['data'] = $upload_data;
+				$data['msg'] = 'Image Successfully Uploaded.';
+				$foto = $upload_data['file_name'];
+
+				 $data = array(
+				    'judul' => $this->input->post('judul'),
+				    'kategori' => $this->input->post('kategori'),
+				    'isi' => $this->input->post('isi'),
+				    'gambar_berita' => $foto,
+				    'userID' => $this->session->userdata('userID')
+				 );
+				 $this->m_master->inputData($data,'berita_alumni');
+		} else {
+			echo "Terjadi kesalahan";
+				$error = array('error' => $this->upload->display_errors());
+				print_r($error);
+		}  
+					
+	  redirect(base_url('alumni/Berita'));
 	}
 
 	 function exeUpdateBerita(){

@@ -25,27 +25,45 @@ class Pengguna extends CI_Controller {
 		$this->load->view('element/footer');
 	}
 
-	/*function deletePengguna($id){
+	function deletePengguna($id){
 		$data = array(
-		'isDelete' => 'yes'
+		'isDelete' => 'yes',
+		'penggunaID' => Null,
 		);
 		$where = array(
 		'id' => $id
 		);
 		$this->m_master->updateData($where,$data,'pengguna');
 		redirect('admin/Pengguna');
-	}*/
+	}
 
-	function deletePengguna($id){
+	/*function deletePengguna($id){
+		$data = array('isDelete');
 		$where = array('id' => $id);
 		$this->m_master->deleteData($where,'pengguna');
 		redirect('admin/Pengguna');
-	}
+	}*/
 
 	public function getPengguna($id)
 	{
 		$data = $this->m_pengguna->getPenggunaByID($id);
 		echo json_encode($data);
+	}
+
+	function exeEdit()
+	{
+
+		$data = array(
+			'pengguna_nama' => $this->input->post('pengguna_nama'),
+			'divisi' => $this->input->post('divisi'),
+			'id_instansi' => $this->input->post('id_instansi'),
+			'pengguna_email' => $this->input->post('pengguna_email'),
+			'pengguna_telepon' => $this->input->post('pengguna_telepon'),
+		);
+		
+		$where = array('id' => $this->input->post('id'));
+		$this->m_master->updateData($where,$data,'pengguna');
+		redirect('admin/Pengguna');
 	}
 
 }

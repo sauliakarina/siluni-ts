@@ -52,13 +52,13 @@
           <!-- Page Header-->
            <header class="page-header" style="background-color: #EFE037">
             <div class="container-fluid">
-              <h2 class="no-margin-bottom">Berita Saya</h2>
+              <h2 class="no-margin-bottom">Update Berita Saya</h2>
             </div>
           </header>
            <!-- Breadcrumb-->
           <div class="breadcrumb-holder container-fluid">
             <ul class="breadcrumb">
-               <li class="breadcrumb-item"><a href="<?php echo site_url('alumni/Berita') ?>">Berita Saya</a></li>
+              <li class="breadcrumb-item"><a href="<?php echo site_url('alumni/Berita') ?>">Berita Saya</a></li>
             </ul>
           </div>
 
@@ -70,17 +70,15 @@
                 <div class="col-lg-12">
                   <div class="card">
                     <div class="card-header d-flex align-items-center">
-                      <h3 class="h3">Sunting Berita</h3>
+                      <h3 class="h4"></h3>
                     </div>
                     <div class="card-body">
                       <p></p>
-                      <form method="post" action="<?php echo base_url();?>alumni/Berita/exeUpdateBerita"  enctype="multipart/form-data" class="form-horizontal">
+                      <form method="post" action="<?php echo base_url();?>alumni/Berita/exeAddBerita"  enctype="multipart/form-data" class="form-horizontal">
                         <div class="form-group row">
                           <label class="col-sm-3 form-control-label">Judul</label>
                           <div class="col-sm-9">
-                            <input type="text" class="form-control" name="judul" value="<?php echo $berita->judul ?>">
-                            <input type="hidden" class="form-control" name="id" value="<?php echo $berita->id ?>">
-                            <input type="hidden" class="form-control" name="tanggal_dibuat" value="<?php echo $berita->tanggal_dibuat ?>">
+                            <input type="text" class="form-control" name="judul">
                           </div>
                         </div>
                         <div class="line"></div>
@@ -88,32 +86,25 @@
                           <label class="col-sm-3 form-control-label">Kategori Berita</label>
                           <div class="col-sm-9">
                             <select name="kategori" class="form-control mb-3">
-                              <option value="<?php echo $berita->kategori ?>"><b><?php echo $berita->kategori ?></b></option>
+                              <option value=""></option>
                               <option value="Info Alumni">Info Alumni</option>
                               <option value="Tips Karir">Tips Karir</option>
                               <option value="Lowongan Kerja">Lowongan Kerja</option>
                             </select>
                           </div>
                         </div>
-                        <div class="line"></div>
-                         <div class="form-group row">
-                          <label class="col-sm-3 form-control-label">Gambar</label>
-                          <div class="col-sm-9">
-                            <img width="50%" src="<?php echo base_url();?>/assets/siluni/images/berita/<?php echo $berita->gambar_berita ?>">
-                          </div>
-                        </div>
                          <div class="line"></div>
                          <div class="form-group row">
                           <label class="col-sm-3 form-control-label">Pilih File Gambar</label>
                           <div class="col-sm-9">
-                            <input type="file" class="form-control" name="userfile" value="<?php echo $berita->gambar_berita ?>">
+                            <input type="file" class="form-control" name="userfile">
                           </div>
                         </div>
                         <div class="line"></div>
                         <div class="form-group row">
                           <label class="col-sm-3 form-control-label">Isi</label>
                           <div class="col-sm-9">
-                            <textarea class="form-control" rows="15" name="isi"><?php echo $berita->isi ?></textarea>
+                            <textarea class="form-control" rows="15" name="isi"></textarea>
                           </div>
                       </div>
                          <div class="line"></div>

@@ -232,13 +232,22 @@ class Alumni extends CI_Controller {
 	}
 
 	function deleteAlumni($id){
-		$data = array(
-		'status' => 'tidak aktif'
+		//hapus pekerjaan
+		$where = array(
+		'id_alumni' => $id
 		);
+		$this->m_master->deleteData($where,'pekerjaan');
+		//hapus akun di tabel user
+		$userID = $this->m_alumni->getAlumniByID($id)->userID;
+		$where = array(
+		'userID' => $userID
+		);
+		$this->m_master->deleteData($where,'user');
+		//hapus data di tabel alumni
 		$where = array(
 		'id' => $id
 		);
-		$this->m_master->updateData($where,$data,'alumni');
+		$this->m_master->deleteData($where,'alumni');
 		redirect('admin/Alumni');
 	}
 

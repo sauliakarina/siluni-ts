@@ -100,16 +100,6 @@ class M_alumni extends CI_Model{
 		$this->db->delete('alumni_pengguna');
 	}
 
-	/*public function hapusPekerjaan($id)
-	{
-		return $this->db->delete('pekerjaan', array('id' => $id));
-	}*/
-	
-	function hapusPekerjaan($where,$table){
-		$this->db->where($where);
-		$this->db->delete($table);
-	}
-
 	function getPekerjaanByAlumniID($id)
 	{
 		$this->db->select('*');

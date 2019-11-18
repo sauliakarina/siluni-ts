@@ -100,21 +100,18 @@
                                 <div class="form-group">
                                   <label>Nama</label>
                                   <input type="text" id="pengguna_nama" value="<?php echo $p->pengguna_nama ?>" class="form-control" name="pengguna_nama">
+                                  <input type="hidden" id="id" value="<?php echo $p->id ?>" class="form-control" name="id">
                                 </div>
                                 <div class="form-group">
                                   <label>Instansi</label>
-                                    <select  id="id_instansi" name="id_instansi" class="form-control">
-                                      <option value="<?php echo $p->id_instansi ?>"><?php echo $p->id_instansi ?></option>
-                                      <option value="Laki-laki">Laki-laki</option>
-                                      <option value="Perempuan">Perempuan</option>
-                                    </select>
+                                   <!--  <select  id="id_instansi" name="id_instansi" class="form-control" value="<?php //echo $p->id_instansi ?>">
+                                      <option><?php //echo $p->id_instansi ?></option>
+                                    </select> -->
+                                  <input type="text" placeholder="" class="form-control"  name="id_instansi" id="id_instansi" value="<?php echo $this->m_master->getInstansiByID($p->id_instansi)->nama_instansi ?>">
                                 </div>
                                 <div class="form-group">
                                   <label>Divisi</label>
-                                    <select name="jenis_kelamin" class="form-control">
-                                      <option value="Laki-laki">Laki-laki</option>
-                                      <option value="Perempuan">Perempuan</option>
-                                    </select>
+                                    <input type="text" placeholder="" class="form-control"  name="divisi" id="divisi" value="<?php echo $p->divisi ?>">
                                 </div>
                                 <div class="form-group">       
                                   <label>Email</label>

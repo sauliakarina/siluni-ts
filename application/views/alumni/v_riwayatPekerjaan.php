@@ -22,7 +22,7 @@
                   <div class="card">
                     <div class="card-header d-flex align-items-center">
                       <h3 class="h4">Riwayat Pekerjaan Anda</h3>
-                      <a type="button" class="btn btn-primary ml-auto btn-sm" href="<?php echo site_url('alumni/Profil/tambahRiwayat') ?>" >Tambah</a>
+                      <a type="button" class="btn btn-primary ml-auto btn-sm" href="<?php echo site_url('alumni/Profil/tambahRiwayat') ?>" ><i class="fas fa-plus-circle"></i> Tambah</a>
                     </div>
                     <div class="card-body">
                       <div class="table-responsive">                       
@@ -70,43 +70,6 @@
               </div> <!-- row -->
             </div>
           </section>
-
-
- <!-- Modal Data Pengguna-->
-                      <div id="ModalPengguna" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
-                        <div role="document" class="modal-dialog">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h4 id="exampleModalLabel" class="modal-title">Data Pengguna Alumni</h4>
-                              <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
-                            </div>
-                            <div class="modal-body">
-                              <p></p>
-                               <div class="table-responsive">                       
-                                <table class="table table-striped table-hover">
-                                   <tbody>
-                                    <tr>
-                                      <th scope="row">Nama</th>
-                                      <td id="nama"></td>          
-                                    </tr>
-                                    <tr>
-                                      <th scope="row">Email</th>
-                                      <td id="email"></td>
-                                    </tr>
-                                    <tr>
-                                      <th scope="row">No Telepon</th>
-                                      <td id="telepon"></td>
-                                    </tr>
-                                  </tbody>
-                                </table>
-                              </div>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" data-dismiss="modal" class="btn btn-secondary">Tutup</button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
 
                       <!-- Modal Hapus-->
                       <div id="ModalHapus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">

@@ -2,7 +2,7 @@
           <!-- Page Header-->
           <header class="page-header" style="background-color: #EFE037">
             <div class="container-fluid">
-              <h2 class="no-margin-bottom">Data Pengguna Alumni</h2>
+              <h2 class="no-margin-bottom">Berita</h2>
             </div>
           </header>
           <!-- Breadcrumb-->
@@ -19,6 +19,7 @@
                   <div class="card">
                     <div class="card-header d-flex align-items-center">
                       <h3 class="h4">Berita Saya</h3>
+                      <a type="button" class="btn btn-primary ml-auto btn-sm" href="<?php echo site_url('alumni/Berita/addBerita') ?>" ><i class="fas fa-plus-circle"></i> Buat Berita</a>
                     </div>
                     <div class="card-body">
                       <div class="table-responsive">                       
@@ -61,6 +62,28 @@
               </div> <!-- row -->
             </div>
           </section>
+
+ <!-- Modal Hapus-->
+        <div id="ModalHapus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+             <div role="document" class="modal-dialog">
+                  <div class="modal-content">
+                            <div class="modal-header">
+                              <h4 id="exampleModalLabel" class="modal-title">Hapus Data</h4>
+                              <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                            </div>
+                            <div class="modal-body">
+                              <p>Apakah anda yakin ingin menghapus data ini?</p>
+                              <div class="text-center">
+                              <i class="far fa-times-circle fa-4x mb-3 animated bounce" style="color: #D60C0C"></i>
+                            </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" data-dismiss="modal" class="btn btn-secondary">Tutup</button>
+                              <button type="submit" class="btn btn-danger" onclick='deletep()'>Hapus</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
 
         <script type="text/javascript">
            var p_id;

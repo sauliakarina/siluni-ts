@@ -84,7 +84,7 @@ input:checked + .slider:before {
                   <div class="card">
                     <div class="card-header d-flex align-items-center">
                       <h3 class="h4">Kategori Kuesioner</h3>
-                      <a type="button" class="btn btn-primary ml-auto btn-sm" href="<?php echo site_url('admin/Kuesioner/buatKuesioner') ?>">Tambah Data</a>
+                      <button type="button" class="btn btn-primary ml-auto btn-sm" data-toggle="modal" data-target="#addKuesioner"><i class="fas fa-plus-circle"></i> Buat Kuesioner</button>
                     </div>
                     <div class="card-body">
                       <div class="table-responsive">                       
@@ -172,3 +172,29 @@ input:checked + .slider:before {
                           </div>
                         </div>
                       </div>
+
+  <!-- Modal add kuesioner-->
+  <div id="addKuesioner" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+          <div role="document" class="modal-dialog modal-dialog-centered">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h4 id="exampleModalLabel" class="modal-title">Buat Kuesioner</h4>
+                              <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                            </div>
+                            <div class="modal-body">
+                              <p></p>
+                              <form method="post" action="<?php echo base_url();?>admin/Kuesioner/addKuesionerAlumni">
+                                <div class="form-group">
+                                  <label>Nama Kuesioner</label>
+                                  <input type="text" class="form-control" name="nama_kuesioner">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                              <button type="submit" class="btn btn-primary">Simpan</button>
+                            </div>
+                          </form>
+                            </div>
+                          </div>
+                        </div>
+    </div>

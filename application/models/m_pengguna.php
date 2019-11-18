@@ -13,6 +13,7 @@ class M_pengguna extends CI_Model{
 		$this->db->select('*');
 		$this->db->where('isDelete', 'no');
 		$this->db->where('prodiID', $prodiID);
+		$this->db->where('pengguna_nama !=', NULL);
 		$this->db->group_by('id_instansi');
 		$query = $this->db->get('pengguna');
 		if($query->num_rows()>0)
@@ -57,6 +58,7 @@ class M_pengguna extends CI_Model{
 	{
 		$this->db->select('*');
 		$this->db->where('id_instansi', $id_instansi);
+		$this->db->where('isDelete', 'no');
 		$this->db->where('pengguna_nama !=', NULL);
 		$query = $this->db->get('pengguna');
 		if($query->num_rows()>0)
