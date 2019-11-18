@@ -4,7 +4,7 @@
           <!-- Page Header-->
            <header class="page-header" style="background-color: #EFE037">
             <div class="container-fluid">
-              <h2 class="no-margin-bottom">Form Kuesioner</h2>
+              <h2 class="no-margin-bottom">Buat Form Kuesioner</h2>
             </div>
           </header>
            <!-- Breadcrumb-->
@@ -94,7 +94,7 @@
                                 <table class="table table-condensed">
                                   <tbody id="isianForm">
                                     <tr>
-                                      <td><input type="text" placeholder="Tuliskan jawaban" class="form-control" name="pilihan_jawaban[0]"></td>
+                                      <td><input placeholder="Tuliskan jawaban" class="form-control" name="jawaban[0]"></td>
                                       <td><button class="btn btn-small btn-info" onclick="pilihanForm(); return false"><i class="fas fa-plus-circle"></i></button></td>
                                     </tr>
                                   </tbody>
@@ -108,6 +108,7 @@
                           </div>
                         </div>
                       </div>
+
         <!-- Modal Ganda-->
                       <div id="gandaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
                         <div role="document" class="modal-dialog modal-dialog-centered">
@@ -118,25 +119,26 @@
                             </div>
                             <div class="modal-body">
                               <p></p>
-                              <form>
+                              <form method="post" action="<?php echo base_url();?>admin/Kuesioner/addGanda">
                                 <div class="form-group">
                                   <label>Pertanyaan</label>
-                                  <input type="email" placeholder="Masukkan pertanyaan" class="form-control">
+                                  <input type="text" placeholder="Masukkan pertanyaan" class="form-control" name="pertanyaan">
+                                   <input type="hidden" class="form-control" name="kuesionerID" value="<?php echo $kuesioner->id ?>">
                                 </div>
                                 <table class="table table-condensed">
                                   <tbody id="gandaForm">
                                     <tr>
-                                      <td><input type="text" placeholder="Tuliskan jawaban" class="form-control"></td>
+                                      <td><input type="text" placeholder="Tuliskan jawaban" class="form-control" name="jawaban[0]"></td>
                                       <td><button class="btn btn-small btn-info" onclick="gandaForm(); return false"><i class="fas fa-plus-circle"></i></button></td>
                                     </tr>
                                   </tbody>
                                 </table>
-                              </form>
                             </div>
                             <div class="modal-footer">
                               <button type="button" data-dismiss="modal" class="btn btn-secondary">Close</button>
-                              <button type="button" class="btn btn-primary">Simpan</button>
+                              <button type="submit" class="btn btn-primary">Simpan</button>
                             </div>
+                          </form>
                           </div>
                         </div>
                       </div>
@@ -144,7 +146,7 @@
 </html>
 
 <script type="text/javascript">
-  var i = 0;
+  var i = 1;
       function pilihanForm() {
         var table = document.getElementById('isianForm');
         
@@ -160,25 +162,26 @@
 
         //input pertanyaan
         var jawaban = document.createElement('input');
-        jawaban.setAttribute('name', 'jawaban[' + i + ']');
+        jawaban.setAttribute('name', 'jawaban['+i+']');
         jawaban.setAttribute('class', 'form-control');
         jawaban.setAttribute('placeholder', 'Tuliskan jawaban');
 
         //input button hapus
         var hapus = document.createElement('span');
+
+        col.appendChild(jawaban);
+        col2.appendChild(hapus);
+
         hapus.innerHTML = '<button class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></button>';
         hapus.onclick = function () {
             row.parentNode.removeChild(row);
         };
 
-        col.appendChild(jawaban);
-        col2.appendChild(hapus);
-
 
         i++;
       }
 
-      var i = 0;
+      var j = 1;
       function gandaForm() {
         var table = document.getElementById('gandaForm');
         
@@ -194,7 +197,7 @@
 
         //input pertanyaan
         var jawaban = document.createElement('input');
-        jawaban.setAttribute('name', 'jawaban[' + i + ']');
+        jawaban.setAttribute('name', 'jawaban[' + j + ']');
         jawaban.setAttribute('class', 'form-control');
         jawaban.setAttribute('placeholder', 'Tuliskan jawaban');
 
@@ -209,6 +212,6 @@
         col2.appendChild(hapus);
 
 
-        i++;
+        j++;
       }
 </script>

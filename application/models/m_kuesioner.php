@@ -24,5 +24,14 @@ class M_kuesioner extends CI_Model{
 
 	}
 
+	function getPertanyaanByCustomID($customID)
+	{
+		$this->db->select('*');
+		$this->db->where('customID',$customID);
+		$query = $this->db->get('pertanyaan');
+		return $query->row();
+
+	}
+
 	
 }

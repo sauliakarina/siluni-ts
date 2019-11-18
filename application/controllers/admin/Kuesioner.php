@@ -90,6 +90,7 @@ class Kuesioner extends CI_Controller {
 
 	public function addIsian() {
 		//generate customID pertanyaan
+			$id_found = false;
 			while (!$id_found) {  
 			    $customID = 'PR'.time();
 			    $where = array( 'customID' => $customID);
@@ -113,6 +114,7 @@ class Kuesioner extends CI_Controller {
 	public function addPilihan() {
 		//set pertanyaan
 		//generate customID pertanyaan
+		$id_found = false;
 		while (!$id_found) {  
 			$customIDPR = 'PR'.time();
 			$where = array( 'customID' => $customIDPR);
@@ -129,16 +131,55 @@ class Kuesioner extends CI_Controller {
 		);	
 		$this->m_master->inputData($data,'pertanyaan');
 
+		$pertanyaanID = $this->m_kuesioner->getPertanyaanByCustomID($customIDPR)->id;
 		//set pilihan jawaban
-		$pilihan_jawaban = $this->input->post('pilihan_jawaban');
+		$pilihan_jawaban = $this->input->post('jawaban');
 		foreach ($pilihan_jawaban as $list_pilihan_jawaban) {
         $data = array(
-          'pilihan'=>$list_pilihan_jawaban,
-          'pertanyaanID' =>$customIDPR,
+          'pilihan'=> $list_pilihan_jawaban,
+          'pertanyaanID' =>$pertanyaanID,
         );
         $this->m_master->inputData($data,'pilihan_jawaban');
-        //href
+		}
+		//href
         $kuesionerID = $this->input->post('kuesionerID');
 		redirect('admin/Kuesioner/buatPertanyaan/'.$kuesionerID);
+
+	}
+
+	public function addGanda() {
+		//set pertanyaan
+		//generate customID pertanyaan
+		$id_found = false;
+		while (!$id_found) {  
+			$customIDPR = 'PR'.time();
+			$where = array( 'customID' => $customIDPR);
+			$cek = $this->m_master->cekData("pertanyaan",$where)->num_rows();
+			if ($cek == 0) {
+				$id_found = true;
+			 }
+		}  //tutup while
+		$data = array(
+			'pertanyaan' => $this->input->post('pertanyaan'),
+			'kuesionerID' => $this->input->post('kuesionerID'),
+			'jenis' => 'ganda',
+			'customID' => $customIDPR 
+		);	
+		$this->m_master->inputData($data,'pertanyaan');
+
+		$pertanyaanID = $this->m_kuesioner->getPertanyaanByCustomID($customIDPR)->id;
+		//set pilihan jawaban
+		$pilihan_jawaban = $this->input->post('jawaban');
+		foreach ($pilihan_jawaban as $list_pilihan_jawaban) {
+	        $data = array(
+	          'pilihan'=> $list_pilihan_jawaban,
+	          'pertanyaanID' =>$pertanyaanID,
+	        );
+	        $this->m_master->inputData($data,'pilihan_jawaban');
+		}
+		//href
+        $kuesionerID = $this->input->post('kuesionerID');
+		redirect('admin/Kuesioner/buatPertanyaan/'.$kuesionerID);
+
 	}
 }
