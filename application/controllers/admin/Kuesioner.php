@@ -16,7 +16,8 @@ class Kuesioner extends CI_Controller {
 		$data = array(
 			'role' => $this->session->userdata('role'),
 			'userID' => $this->session->userdata('userID'),
-			'prodiID' => $this->session->userdata('prodiID')
+			'prodiID' => $this->session->userdata('prodiID'),
+			'kuesioner' => $this->m_kuesioner->getKuesioner()
 		);
 		$this->load->view('element/head');
 		$this->load->view('element/header');
@@ -31,7 +32,8 @@ class Kuesioner extends CI_Controller {
 			'role' => $this->session->userdata('role'),
 			'userID' => $this->session->userdata('userID'),
 			'prodiID' => $this->session->userdata('prodiID'),
-			'kuesioner' => $this->m_kuesioner->getKuesionerByID($kuesionerID)
+			'kuesioner' => $this->m_kuesioner->getKuesionerByID($kuesionerID),
+			'pertanyaan' => $this->m_kuesioner->getPertanyaanByKuesionerID($kuesionerID)
 
 		);
 		$this->load->view('element/head');
@@ -181,5 +183,62 @@ class Kuesioner extends CI_Controller {
         $kuesionerID = $this->input->post('kuesionerID');
 		redirect('admin/Kuesioner/buatPertanyaan/'.$kuesionerID);
 
+	}
+
+	function deleteKuesioner($id){
+		//get id pertanyaan
+		$pertanyaan = $this->m_kuesioner->getPertanyaanByKuesionerID($id);
+		//delete pilihan jawaban
+		foreach ($pertanyaan as $p) {
+			$pertanyaanID = $p->id;
+			$this->m_kuesioner->deletePilihan($pertanyaanID);
+		}
+		//delete pertanyaan
+		$where = array(
+			'kuesionerID' => $id
+		);
+		$this->m_master->deleteData($where,'pertanyaan');
+		//delete kuesioner
+		$where = array(
+			'id' => $id
+		);
+		$this->m_master->deleteData($where,'kuesioner');
+		redirect('admin/Kuesioner/kuesionerAlumni');
+	}
+
+	function nonaktifKuesioner($id)
+	{
+		$data = array(
+			'status' => 'nonaktif'
+		);
+		
+		$where = array('id' => $id);
+		$this->m_master->updateData($where,$data,'kuesioner');
+		redirect('admin/Kuesioner/kuesionerAlumni');
+	}
+
+	function aktifKuesioner($id)
+	{
+		$data = array(
+			'status' => 'aktif'
+		);
+		
+		$where = array('id' => $id);
+		$this->m_master->updateData($where,$data,'kuesioner');
+		redirect('admin/Kuesioner/kuesionerAlumni');
+	}
+
+
+	function simpanPertanyaan()
+	{
+		$pertanyaanID = $this->input->post('pertanyaanID');
+		foreach ($pertanyaanID as $p) {
+			$data = array(
+			'inputBox' => $this->input->post('inputBox'.$p)
+			);
+			$where = array('id' => $p);
+			$this->m_master->updateData($where,$data,'pertanyaan');
+		}
+		redirect('admin/Kuesioner/kuesionerAlumni');
 	}
 }

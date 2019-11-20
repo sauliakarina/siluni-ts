@@ -1,0 +1,252 @@
+%-------------------------------------------------------------------------------
+%                      Template Naskah Skripsi
+%               	Berdasarkan format JTETI FT UGM
+% 						(c) @gunturdputra 2014
+%-------------------------------------------------------------------------------
+
+%Template pembuatan naskah skripsi.
+\documentclass{jtetiskripsi}
+
+%Untuk prefiks pada daftar gambar dan tabel
+\usepackage[titles]{tocloft}
+\renewcommand\cftfigpresnum{Gambar\  }
+\renewcommand\cfttabpresnum{Tabel\   }
+
+%Untuk hyperlink dan table of content
+\usepackage{hyperref}
+\newlength{\mylenf}
+\settowidth{\mylenf}{\cftfigpresnum}
+\setlength{\cftfignumwidth}{\dimexpr\mylenf+2em}
+\setlength{\cfttabnumwidth}{\dimexpr\mylenf+2em}
+
+%Untuk Bold Face pada Keterangan Gambar
+\usepackage[labelfont=bf]{caption}
+
+%Untuk caption dan subcaption
+\usepackage{caption}
+\usepackage{subcaption}
+
+%pdf
+\usepackage{pdfpages}
+
+%table
+\usepackage{graphics}
+
+\usepackage{wrapfig}
+%figure
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+
+%-----------------------------------------------------------------
+%Disini awal masukan untuk data proposal skripsi
+%-----------------------------------------------------------------
+\titleind{PENGEMBANGAN SISTEM INFORMASI 
+	\textit{TRACER STUDY} PROGRAM STUDI ILMU KOMPUTER FMIPA UNIVERSITAS NEGERI JAKARTA}
+
+\fullname{Saulia Karina}
+
+\idnum{3145153851}
+
+\approvaldate{26 Juni 2018}
+
+\degree{Sarjana Ilmu Komputer}
+
+\yearsubmit{2019}
+
+\program{Ilmu Komputer}
+
+\dept{Ilmu Komputer}
+
+\firstsupervisor{Ratna Widyati, S.Si., M.Kom.}
+\firstnip{19750925 200212 2 002}
+
+\secondsupervisor{Ir. Fariani Hermin Indiyah, M.T.}
+\secondnip{19600211 198703 2 001}
+
+%hypenation
+
+\hyphenation{Al-go-rit-ma pe-san kom-pre-si di-gu-na-kan seg-men di-rep-re-sen-ta-si-kan di-kem-bang-kan di-sem-bu-nyi-kan eks-trak-si meng-gu-na-kan bi-lang-an pe-ri-o-de di-ma-suk-kan a-kan me-nga-la-mi pe-rang-kat di-pub-li-ka-si-kan di-la-ku-kan mem-be-ri-kan di-si-sip-kan }
+
+%-----------------------------------------------------------------
+%Disini akhir masukan untuk data proposal skripsi
+%-----------------------------------------------------------------
+
+\begin{document}
+
+\cover
+
+\include{pengesahan}
+\include{persetujuan}
+\include{orisinalitas}
+
+%-----------------------------------------------------------------
+%Disini awal masukan Acknowledment
+%-----------------------------------------------------------------
+\acknowledgment
+\begin{flushright}
+	\emph{Untuk Mamah, Bapak,\\dan Adik-adikku tercinta.}
+\end{flushright}
+
+%-----------------------------------------------------------------
+%Disini awal masukan untuk Kata Pengantar
+%-----------------------------------------------------------------
+\preface
+\vspace{0.5cm}
+Dengan memanjatkan puji dan syukur ke hadirat Allah SWT karena dengan rahmat dan karunia-Nya, Tugas Akhir ini dapat terselesaikan tanpa halangan berarti. Keberhasilan dalam menyusun laporan Tugas Akhir ini tidak lepas dari bantuan berbagai pihak yang memberikan dukungan moril maupun materil dan masukan guna sempurnanya Tugas Akhir ini. Oleh karena itu dalam kesempatan ini penulis mengucapkan terima kasih kepada:
+
+\begin{enumerate}
+	\item{Ibu Ir. Fariani Hermin Indiyah, M.T., selaku Koordinator Program Studi Ilmu Komputer Fakultas MIPA Universitas Negeri Jakarta dan dosen pembimbing kedua yang telah memberikan banyak bantuan, bimbingan, serta arahan dalam Tugas Akhir,}
+	\item{Ibu Ratna Widyati, S.Si., M.Kom., selaku dosen pembimbing pertama yang telah memberikan banyak bantuan, bimbingan, serta arahan dalam Tugas Akhir ini,}
+	\item{Bapak Med Irzal, M.Kom., selaku dosen pembimbing akademis penulis,}
+	\item{Seluruh Dosen di Jurusan Ilmu Komputer FMIPA UNJ, yang tidak bisa disebutkan satu-satu, atas ilmu dan bimbingannya selama penulis berkuliah,}
+	\item{Mamah dan Bapak yang selama ini telah sabar mendukung, mengarahkan, dan mendoakan penulis.}
+\end{enumerate}
+
+Penulis menyadari bahwa laporan Tugas Akhir ini masih jauh dari kesempurnaan. Masih banyaknya kekurangan dalam penyusunan laporan ini baik materi maupun tata cara penulisan. Untuk itu, kritik dan saran yang bersifat membangun sangat diharapkan bagi penulis demi tercapainya laporan yang lebih baik lagi. Akhir kata penulis mohon maaf apabila ada kekeliruan di dalam penulisan Tugas Akhir ini.
+\vspace{0.5cm}
+
+\begin{tabular}{p{7.5cm}c}
+	&Jakarta, 15 Januari 2020\\
+	&\\
+	&\\
+	&\textbf{Penulis}
+\end{tabular}
+
+%-----------------------------------------------------------------
+%Disini awal masukan Intisari
+%-----------------------------------------------------------------
+\begin{abstractind}
+\textbf{SAULIA KARINA}. Pengembangan Sistem Informasi \textit{Tracer Study} Program Studi Ilmu Komputer FMIPA Universitas Negeri Jakarta . Skripsi. Fakultas Matematika dan Ilmu Pengetahuan Alam, Universitas Negeri Jakarta. 2019. Di bawah bimbingan Ratna Widyati, S.Si, M.Kom dan Ir. Fariani I., M.T.
+\vskip1cm
+
+	%Sistem Informasi Manajemen (SIM) merupakan sebuah sistem yang dapat memberikan informasi dalam bentuk laporan dan tampilan kepada pelaku bisnis. Sistem tersebut berfungsi sebagai media yang dapat digunakan sebagai penyambung komunikasi antar pelaku bisnis. Universitas Negeri Jakarta memiliki sebuah Organisasi Mahasiswa (Ormawa) yang disebut sebagai laboratorium kecil pemerintahan dalam kampus yang dinamakan Organisasi Pemerintahan Mahasiswa (Opmawa). Opmawa merupakan sebuah organisasi yang memiliki sistem yang merupakan gambaran dari sistem pemerintahan yang ada di Indonesia. Pada penelitian ini dilakukan analisis kebutuhan berdasarkan permasalahan-permasalahan manajerial di dalam opmawa yang nantinya akan dikembangkan menjadi sebuah sistem yang dapat membantu dalam pendataan dan pengolahan data internal organisasi tersebut  .Sistem berbasis \textit{website} ini dikembangkan dengan menggunakan \textit{framework} Codeigniter yang menganut sistem \textit{Model View Controller} (MVC). Dengan sistem yang sistematis akan membantu setiap anggota dalam sebuah organisasi untuk bekerja sesuai dengan aturan-aturan yang telah ditentukan 
+	
+	\textit{Tracer Study} merupakan studi penelusuran alumni dengan tujuan menggali informasi tentang perjalanan alumni setelah lulus dari perguruan tinggi. Melalui kegiatan tersebut perguruan tinggi dapat mengetahui apakah kemampuan yang dimiliki lulusannya sudah sesuai yang diharapkan program studi. Informasi yang didapat berguna untuk evaluasi terhadap proses pendidikan, sumber informasi bagi pihak perguruan tinggi dalam membuat kebijakan khususnya kurikulum, dan kelengkapan persyaratan akreditasi. Saat ini telah tersedia beberapa sistem tracer study, yang pertama ialah yang dikembangkan oleh Dikti. Sistem tracer study Dikti bertujuan untuk merintis kompilasi data tracer study nasional dimana informasi yang dihasilkan dapat membantu pemerintah dalam memetakan kebutuhan dunia kerja. Kedua, Universitas Negeri Jakarta telah memiliki sistem tracer study yang dapat membantu pihak perguruan tinggi maupun program studi untuk mengarsipkan data alumni. Pada penelitian ini dilakukan analisis dan evaluasi dari perbandingan kedua sistem tersebut yang kemudian hasilnya akan dituangkan pada pengembangan sistem informasi \textit{tracer study} pada program studi Ilmu Komputer. Pada pengembangan sistem ini tidak hanya bersifat repositori, namun disediakan \textit{open access} bagi pengunjung sistem untuk melihat data alumni dan hasil \textit{tracer}. Sistem \textit{tracer study} ini memiliki lima \textit{user}, yaitu admin, koorprodi, alumni, dan pengunjung yang memiliki sub-aktor pengguna alumni. Admin dapat mengelola data alumni, kuesioner dan hasil \textit{tracer}, koorprodi dapat melihat data alumni dan hasil atau laporan \textit{tracer study}, alumni dapat mengelola data diri dan mengisi pertanyaan kuesioner, dan pengguna alumni dapat mengisi kuesioner. Sistem ini dikembangkan dengan menggunakan metode pengembangan perangkat lunak SDLC (\textit{System Development Life Cycle}) dengan model Spiral. Dalam pengkodean sistem akan digunakan konsep MVC \textit{(Model View Controller}).
+	
+	
+	\bigskip
+	\noindent
+	\textbf{Kata kunci :} \textit{Tracer Study}, Sistem Informasi, SDLC, \textit{Spiral Model}, \textit{Model View Controller}.
+\end{abstractind}
+
+\begin{abstracteng}
+\textbf{SAULIA KARINA}. Implementation of Steganography in Digital Image with Least Significant Bit Method. Thesis. Faculty of Mathematics and Science, State University of Jakarta. Under supervised by Drs. Mulyono, M.Kom dan Ratna Widyati, S.Si, M.Kom.
+\vskip1cm
+
+	\textit{Steganography can be used as one of the techniques in information security. Steganography can combine message files so others do not know of hidden message files. One method of steganography is Least Significant Bit (LSB). LSB inserts message bits into original media files of bits. In this final project, the media is digital image RGB (Red, Green and Blue), and program was developed by using MATLAB R2016b. Steganography begins with entering a digital image that will be used, then entering a message or hiddentext then the insertion or encoding process begins. After the encoding process is successful, the digital image is stored as a stego image. To get the message back the decoding process is carried out. If the decoding process is successful, the message will be displayed. In 24 bit and 32 bit digital image, the encoding process is success, but in 8 bit digital image the process is failed. Stego Image has not significant changes from Cover Image. So it will not cause suspicion and the security of the message is safe.}    
+	
+	\bigskip
+	\noindent
+	\textbf{\emph{Keywords :}} \emph{Steganography, message, LSB, digital image}.
+\end{abstracteng}
+%-----------------------------------------------------------------
+%Disini akhir masukan Intisari
+%-----------------------------------------------------------------
+%-----------------------------------------------------------------
+
+%-----------------------------------------------------------------
+%Disini akhir masukan untuk muka skripsi
+%-----------------------------------------------------------------
+
+\tableofcontents 
+\listoffigures
+%\addcontentsline{toc}{chapter}{DAFTAR ISI}
+\addcontentsline{toc}{chapter}{DAFTAR GAMBAR}
+\listoftables
+\addcontentsline{toc}{chapter}{DAFTAR TABEL}
+
+\begin{counterpage}
+\end{counterpage}
+%Disini awal masukan untuk Bab
+%-----------------------------------------------------------------
+\include{bab1}
+
+\include{bab2}
+
+\include{bab3}
+
+\addcontentsline{toc}{chapter}{DAFTAR PUSTAKA}
+
+%\include{bab4}
+
+%-----------------------------------------------------------------
+%Disini akhir masukan Bab
+%-----------------------------------------------------------------
+
+
+%-----------------------------------------------------------------
+% Disini awal masukan untuk Daftar Pustaka
+% - Daftar pustaka diambil dari file .bib yang ada pada folder ini
+%   juga.
+% - Untuk memudahkan dalam memanajemen dan menggenerate file .bib
+%   gunakan reference manager seperti Mendeley, Zotero, EndNote,
+%   dll.
+%-----------------------------------------------------------------
+%\bibliography{IEEEabrv,daftar-pustaka}
+\begin{thebibliography}{99}
+	
+	\bibitem{Rifqi} Alim, R. S.2019. Perancangan dan Implementasi Sistem Informasi Penelusuran Alumni (\textit{Tracer Study})[Skripsi]. Jakarta: Universitas Negeri Jakarta.
+	
+	\bibitem{Elisabet} Anggraeni, E. Y., Irviani, R.2017. Pengantar Sistem Informasi. Yogyakarta: ANDI.
+	
+	\bibitem{Azis} Azis, M. F.2005. Object Oriented Programming dengan PHP 5. Jakarta: Elex Media Komputindo
+	
+	\bibitem{Sebastian} Boell, S. K., Cecez-Kecmanovic, D. 2015. "What is an Information System?". Hawaii International Conference on System Sciences.
+	
+	\bibitem{DoroEdi} Edi, D., Betshani, S. 2009. "Analisis Data dengan Menggunakan". Jurnal Informatika, 5(1).
+	
+	\bibitem{Nuryake} Fajaryati, N., Priyanto, Sukardiyono, T., Wiji, A. D., Pambudi, S., Destiana, B. 2015. "Studi Penelusuran (\textit{Tracer Study}) Terhadap Alumni". Jurnal Electronics, Informatics, and Vocational Education (ELINVO), 1(1).
+	
+	\bibitem{BPAFMIPA} FMIPA Universitas Negeri Jakarta. 2015. Pedoman Akademik 2015/2016 Fakultas Matematika dan Ilmu Pengetahuan Alam (FMIPA) Universitas Negeri Jakarta. Jakarta: Universitas Negeri Jakarta.
+	
+	\bibitem{Fridayanthie} Fridayanthie, E. W., Mahdiati, T. 2016. "Rancang Bangun Sistem Informasi Permintaan Atk Berbasis Intranet". Jurnal Khatulistiwa Informatika, 2(4).
+	
+	\bibitem{Ghozaly} Ghozaly, A., Nurcahyawati, V., Suhandiah, S. 2016. "Rancang Bangun Aplikasi \textit{Tracer Study} Berbasis Web Pada Stikes Yayasan Rs. Dr. Soetomo Surabaya". Jurnal Sistem Informasi dan Komputer Akuntansi, 5(6).
+	
+	\bibitem{Wellem} Hartomo, K. D., Wellem, T., Sanjaya, A. D. 2009. "Implementasi Model View Controller dan Object Relational Mapping pada Content Management System Sistem Informasi Keuangan". Jurnal Teknologi Informasi, 6(1).
+	
+	\bibitem{Haviluddin} Haviluddin. 2011. "Memahami Penggunaan UML (Unified Modelling Language)". Jurnal Informatika Mulawarman, 6(1).
+	
+	\bibitem{AdeHendini} Hendini, A. 2016. "Pemodelan Uml Sistem Informasi Monitoring Penjualan Dan Stok". Jurnal Khatulistiwa Informatika, 4(2).
+	
+	\bibitem{Fariani} Hermin, F. 2017. Desain Sistem Informasi Alumni (SILUNI) Berbasis Website. Jakarta: Universitas Negeri Jakarta.
+	
+	\bibitem{AriefHidayat} Hidayat, A., Surarso, B. 2012. "Penerapan Arsitektur Model View Controller (MVC) dalam Rancang Bangun Sistem Kuis Online Adaptif". Seminar Nasional Teknologi Informasi dan Komunikasi 2012 (SENTIKA 2012).
+	
+	\bibitem{BorangIlkom} Ilmu Komputer FMIPA UNJ. 2017. Borang Akreditasi Program Studi Ilmu Komputer. Jakarta: Universitas Negeri Jakarta.
+
+	\bibitem{Martono} Martono, K. T. 2018. "Rancang Bangun Sistem Informasi Produksi Ayam Petelur Dengan Menggunakan Framework Codeigniter". Jurnal Sistem Komputer, 8(1).
+	
+	\bibitem{Muslihudin} Muslihudin, M., Oktafianto. 2016. Analisis dan Perancangan Sistem Informasi. Yogyakarta: ANDI.
+	
+	\bibitem{EkoNursubiyantoro} Nursubiyantoro, E., Puryani. 2016. "Perancangan Sistem Penulusuran Alumni (\textit{Tracer Study}) Berbasis Web". Jurnal Optimasi Sistem Industri (OPSI), 9(2).
+	
+	\bibitem{Pressman} Pressman, R. S. 2002. Rekayasa Perangkat Lunak. LN Harnaningrum, penerjemah: Yogyakarta: Andi. Terjemahan dari: Software Engineering, a Practitioner's Approach. McGraw Hill Company, Inc.
+	
+	\bibitem{Made} Raharja, I. S., SN, A. 2012. "Perbandingan Proses Pengembangan Perangkat Lunak". Seminar Nasional Informatika 2012 (semnasIF 2012).
+	
+	\bibitem{ExploringTS} Renny, Chandra, R., Ruhana, S., Sarjono, M. W. 2013. "Exploring Tracer Study Service in Career Center". International Journal of Computer Science and Information Security (IJCSIS), 11(3).
+	
+	\bibitem{RistekdiktiPanduan} Ristekdikti. 2018. Panduan Program Bantuan Pengembangan Layanan Pusat Karir Lanjutan/Tracer Study 2019 [Online]. Diambil dari http://pkts.belmawa.ristekdikti.go.id/upload/1548740521Panduan-Bantuan-PKL-2019.pdf
+	
+	\bibitem{RistekdiktiWeb} Ristekdikti. 2018. Tentang \textit{Tracer Study} [Online]. Diambil dari http://pkts.belmawa.ristekdikti.go.id/index.php/site/about
+	
+	\bibitem{Mohit} Sharma, M. K. 2017. "A Study of SDLC to Develop Well Engineered Software". International Journal of Advanced Research in Computer Science, 8(3).
+	
+	\bibitem{Sulianta} Sulianta, F., Juju, D. 2010. Data Mining. Jakarta: Elex Media Komputindo.
+	
+	\bibitem{Edhy} Sutanta, E. 2004. Sistem Basis Data. Yogyakarta: Graha Ilmu.
+	
+	\bibitem{Robi} Yanto, R. 2016. Manajemen Basis Data Menggunakan MySQL. Yogyakarta: Deepublish.
+	
+		
+	
+\end{thebibliography}
+
+%-----------------------------------------------------------------
+%Disini akhir masukan Daftar Pustaka
+%-----------------------------------------------------------------
+%\include{lampiran}
+\include{cv}
+
+\end{document}

@@ -36,12 +36,91 @@
                       </div>
                     </div>
                     <div class="card-body">
-                      <p></p>
+                      <div class="table-responsive">  
+                        <table class="table table-striped table-bordered">
+                           <form method="post" action="<?php echo base_url(); ?>admin/Kuesioner/simpanPertanyaan">
+                          <thead>
+                            <tr>
+                              <th width="10px">No</th>
+                              <th>Pertanyaan</th>
+                              <th>Pilihan Jawaban</th>
+                              <th></th>
+                              <th></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <?php $no = 1; 
+                                  $i = 0;
+                              foreach ($pertanyaan as $p) {
+                            ?>
+                            <tr>
+                              <th scope="row"><?php echo $no++ ?></th>
+                              <td><?php echo $p->pertanyaan ?></td>
+                              <td>
+                              <?php if ($p->jenis == 'pilihan') {
+                                $pilihan = $this->m_kuesioner->getPilihanJawabanByPertanyaanID($p->id); ?>
+                                  <ul class="list-group list-group-flush">
+                                    <?php foreach ($pilihan as $k) { ?>
+                                      <li class="list-group-item">
+                                        <input id="radioCustom2" type="radio" checked="" value="option2" name="a" class="radio-template">
+                                        <label for="radioCustom2"><?php echo $k->pilihan ?></label>
+                                      </li>
+                                    <?php } ?>
+                                  </ul>
+                              <?php } elseif ($p->jenis == 'isian') { ?>
+                                <div class="form-group">
+                                <input type="text"
+                                 class="form-control">
+                               </div>
+                             <?php } elseif ($p->jenis == 'ganda') { 
+                              $pilihan = $this->m_kuesioner->getPilihanJawabanByPertanyaanID($p->id); ?>
+                               <ul class="list-group list-group-flush">
+                                    <?php foreach ($pilihan as $k) { ?>
+                                      <li class="list-group-item">
+                                        <input id="checkboxCustom2" type="checkbox" class="checkbox-template">
+                                        <label for="checkboxCustom2"><?php echo $k->pilihan ?></label>
+                                      </li>
+                                    <?php } ?>
+                                  </ul>
+                             <?php } ?>
+                              </td>
+                              <td> 
+                                <?php if ($p->jenis == 'pilihan' || $p->jenis == 'ganda') { ?>
+                                  <input type="hidden" value="<?php echo $p->id ?>" name="pertanyaanID[<?php echo $i++; ?>]">
+                                <div class="form-group row">
+                                  <label class="col-sm-6 form-control-label"><small class="text-primary">Perlu tambahan input teks?</small></label>
+                                  <div class="col-sm-6">
+                                    <div class="i-checks">
+                                      <input type="radio" value="ya" name="inputBox<?php echo $p->id ?>" class="radio-template">
+                                      <label>Ya</label>
+                                    </div>
+                                    <div class="i-checks">
+                                      <input type="radio" value="tidak" name="inputBox<?php echo $p->id ?>" class="radio-template">
+                                      <label>Tidak</label>
+                                    </div>
+                                  </div>
+                                </div>
+                              <?php } ?>
+                              </td>
+                              <td>
+                                <div class="btn-group btn-group-toggle">
+                                  <button class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="Sunting"><i class="far fa-edit"></i></button>
+                                  <label class="btn btn-danger btn-sm" data-toggle="modal" data-target="#ModalHapus" onclick="set_id(<?php ?>)">
+                                    <input type="radio" name="options"><i class="fas fa-trash-alt"></i>
+                                  </label>
+                                </div>
+                              </td>
+                            </tr>
+                          <?php } ?>
+                          </tbody>
+                        </table>
+                      </div>
                         <div class="line"></div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary ml-auto">Simpan</button>
                         </div>
                     </div>
+                    </form>
                   </div>
                 </div>
               </div>
@@ -214,4 +293,13 @@
 
         j++;
       }
+
+      $('#addInput').on('change', function(){
+        var val = this.value;
+        if(val == "ya"){
+          $('#inputBox').attr('style','display:block !important');
+        }else if(val =="tidak"){
+          $('#inputBox').attr('style','display:none !important');
+           }
+      });
 </script>

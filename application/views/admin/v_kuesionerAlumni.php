@@ -1,68 +1,3 @@
-<style type="text/css">
-  /* The switch - the box around the slider */
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
-}
-
-/* Hide default HTML checkbox */
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-/* The slider */
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-input:checked + .slider {
-  background-color: #2196F3;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
-
-/* Rounded sliders */
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
-}
-</style>
-
         <div class="content-inner">
           <!-- Page Header-->
           <header class="page-header" style="background-color: #EFE037">
@@ -96,55 +31,37 @@ input:checked + .slider:before {
                               <th>Tanggal Dibuat</th>
                               <th>Status</th>
                               <th></th>
+                              <th></th>
                             </tr>
                           </thead>
                           <tbody>
+                            <?php $no = 1;
+                              foreach ($kuesioner as $k) {
+                             ?>
                             <tr>
-                              <th scope="row">1</th>
-                              <td><a href="form.html">Pekerjaan</a></td>
-                              <td>9 Juli 2019</td>
-                              <td><button type="button" class="btn btn-outline-danger btn-sm">Nonaktifkan</button></td>
-                              <!-- 
-                              <td style="color: blue"> Aktif<br>
-                                 <label class="switch">
-                                <input type="checkbox">
-                                <span class="slider round"></span>
-                              </label>
-                              </td> -->
-                              <td>
-                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                  <!-- <label class="btn btn-info btn-sm" data-toggle="modal" data-target="#ModalRetracer">
-                                    <input type="radio" name="options"><i class="fas fa-sync"></i>
-                                  </label> -->
-                                  <label class="btn btn-warning btn-sm">
-                                    <input type="radio" name="options"><i class="far fa-edit"></i>
-                                  </label>
-                                  <label class="btn btn-danger btn-sm">
-                                    <input type="radio" name="options"><i class="fas fa-trash-alt"></i>
-                                  </label>
-                                </div>
+                              <th scope="row"><?php echo $no++ ?></th>
+                              <td><a href="form.html"><?php echo $k->nama_kuesioner ?></a></td>
+                              <td><?php $d=strtotime($k->tanggal_dibuat);
+                                        echo date("d M Y", $d); ?>
                               </td>
-                            </tr>
-                            <tr>
-                              <th scope="row">2</th>
-                              <td><a href="form.html">Melanjutkan Pendidikan</a></td>
-                              <td>27 Juni 2019</td>
-                              <td><div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn btn-outline-info btn-sm">
-                                    <input type="radio" name="options">Aktifkan
-                                  </label>
-                                </div></td>
+                              <td><b><?php echo $k->status ?></b></td>
+                              <td> 
+                                <?php if ($k->status == 'aktif') { ?>
+                                <button type="button" class="btn btn-outline-danger btn-sm" onclick="set_id(<?php echo $k->id ?>)"  data-toggle="modal" data-target="#ModalNonaktif">Nonaktifkan</button>
+                              <?php } else {?>
+                                <button type="button" class="btn btn-outline-info btn-sm" onclick="set_id(<?php echo $k->id ?>)"  data-toggle="modal" data-target="#ModalAktif">Aktifkan</button>
+                              <?php } ?>
+                              </td>
                               <td>
                                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                   <label class="btn btn-warning btn-sm">
                                     <input type="radio" name="options"><i class="far fa-edit"></i>
                                   </label>
-                                  <label class="btn btn-danger btn-sm">
-                                    <input type="radio" name="options"><i class="fas fa-trash-alt"></i>
-                                  </label>
+                                  <button onclick="set_id(<?php echo $k->id ?>)" name="options" class="btn btn-danger btn-sm" data-toggle="modal" data-placement="top" title="Hapus" data-target="#ModalHapus"><i class="fas fa-trash-alt"></i></button>
                                 </div>
                               </td>
                             </tr>
+                          <?php } ?>
                           </tbody>
                         </table>
                       </div>
@@ -197,4 +114,92 @@ input:checked + .slider:before {
                             </div>
                           </div>
                         </div>
-    </div>
+        </div>
+
+         <!-- Modal Hapus-->
+        <div id="ModalHapus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+            <div role="document" class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 id="exampleModalLabel" class="modal-title">Hapus Data</h4>
+                              <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                            </div>
+                            <div class="modal-body">
+                              <p>Apakah anda yakin ingin menghapus data ini?</p>
+                              <div class="text-center">
+                              <i class="far fa-times-circle fa-4x mb-3 animated bounce" style="color: #D60C0C"></i>
+                            </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" data-dismiss="modal" class="btn btn-secondary">Tutup</button>
+                              <button type="submit" class="btn btn-danger" onclick='deletep()'>Hapus</button>
+                            </div>
+                          </div>
+              </div>
+         </div>
+
+          <!-- Modal Nonaktif-->
+        <div id="ModalNonaktif" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+            <div role="document" class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 id="exampleModalLabel" class="modal-title">Nonaktifkan Kuesioner</h4>
+                              <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                            </div>
+                            <div class="modal-body">
+                              <p>Apakah anda yakin ingin menonaktifkan kuesioner ini?</p>
+                              <div class="text-center">
+                              <i class="fas fa-power-off fa-4x mb-3 animated bounce"  style="color: #D60C0C"></i>
+                            </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" data-dismiss="modal" class="btn btn-secondary">Tutup</button>
+                              <button type="submit" class="btn btn-danger" onclick='nonaktif()'>Ya</button>
+                            </div>
+                          </div>
+              </div>
+         </div>
+
+           <!-- Modal aktif-->
+        <div id="ModalAktif" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+            <div role="document" class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 id="exampleModalLabel" class="modal-title">Aktifkan Kuesioner</h4>
+                              <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                            </div>
+                            <div class="modal-body">
+                              <p>Apakah anda yakin ingin mengaktifkan kuesioner ini?</p>
+                              <div class="text-center">
+                              <i class="far fa-times-circle fa-4x mb-3 animated bounce" style="color: #D60C0C"></i>
+                            </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" data-dismiss="modal" class="btn btn-secondary">Tutup</button>
+                              <button type="submit" class="btn btn-danger" onclick='aktif()'>Ya</button>
+                            </div>
+                          </div>
+              </div>
+         </div>
+
+<script type="text/javascript">
+
+  var p_id;
+    function set_id(id) {
+        p_id = id;
+
+    }
+
+   function deletep(){
+        window.location.href =  "<?php echo base_url();?>admin/Kuesioner/deleteKuesioner/"+p_id;
+    }
+
+    function nonaktif(){
+        window.location.href =  "<?php echo base_url();?>admin/Kuesioner/nonaktifKuesioner/"+p_id;
+    }
+
+     function aktif(){
+        window.location.href =  "<?php echo base_url();?>admin/Kuesioner/aktifKuesioner/"+p_id;
+    }
+
+</script>
