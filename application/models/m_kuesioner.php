@@ -75,5 +75,10 @@ class M_kuesioner extends CI_Model{
 	{
 		return $this->db->delete('pilihan_jawaban', array('pertanyaanID' => $id));
 	}
+
+	function getPertanyaanByID($id)
+	{
+		return $this->db->get_where('pertanyaan', array('id' => $id))->row();
+	}
 	
 }

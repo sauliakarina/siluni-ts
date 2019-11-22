@@ -57,6 +57,22 @@ class Kuesioner extends CI_Controller {
 		$this->load->view('element/footer');
 	}
 
+	public function editPertanyaan($pertanyaanID)
+	{
+		$data = array(
+			'role' => $this->session->userdata('role'),
+			'userID' => $this->session->userdata('userID'),
+			'prodiID' => $this->session->userdata('prodiID'),
+			'pr' => $this->m_kuesioner->getPertanyaanByID($pertanyaanID),
+			'pilihan_jawaban' => $this->m_kuesioner->getPilihanJawabanByPertanyaanID($pertanyaanID)
+		);
+		$this->load->view('element/head');
+		$this->load->view('element/header');
+		$this->load->view('element/navbar', $data);
+		$this->load->view('admin/v_editPertanyaan', $data);
+		$this->load->view('element/footer');
+	}
+
 	public function addKuesionerAlumni()
 	{
 		
@@ -240,5 +256,48 @@ class Kuesioner extends CI_Controller {
 			$this->m_master->updateData($where,$data,'pertanyaan');
 		}
 		redirect('admin/Kuesioner/kuesionerAlumni');
+	}
+
+	public function getPertanyaan($id)
+	{
+		$data = $this->m_kuesioner->getPertanyaanByID($id);
+		echo json_encode($data);
+	}
+
+	function exeEditIsian()
+	{
+		$data = array(
+			'pertanyaan' => $this->input->post('pertanyaan')
+		);
+		
+		$where = array('id' => $this->input->post('id'));
+		$this->m_master->updateData($where,$data,'pertanyaan');
+
+		$kuesionerID = $this->input->post('kuesionerID');
+		redirect('admin/Kuesioner/buatPertanyaan/'.$kuesionerID);
+	}
+
+	function exeEditPertanyaan()
+	{
+		$data = array(
+			'pertanyaan' => $this->input->post('pertanyaan')
+		);
+		$where = array('id' => $this->input->post('pertanyaanID'));
+		$this->m_master->updateData($where,$data,'pertanyaan');
+
+		$pilihan = $this->input->post('pilihan');
+		$pilihanID = $this->input->post('pilihanID');
+		$length = count($pilihan);
+
+		for ($i = 0; $i <= $length; $i++)  {
+			$data = array(
+			'pilihan' => $pilihan[$i]
+			);
+			$where = array('id' => $pilihanID[$i]);
+			$this->m_master->updateData($where,$data,'pilihan_jawaban');
+        }
+
+		$kuesionerID = $this->input->post('kuesionerID');
+		redirect('admin/Kuesioner/buatPertanyaan/'.$kuesionerID);
 	}
 }

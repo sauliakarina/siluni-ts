@@ -4,7 +4,7 @@
           <!-- Page Header-->
            <header class="page-header" style="background-color: #EFE037">
             <div class="container-fluid">
-              <h2 class="no-margin-bottom">Buat Form Kuesioner</h2>
+              <h2 class="no-margin-bottom">Buat Form Kuesioner <?php echo $kuesioner->nama_kuesioner ?></h2>
             </div>
           </header>
            <!-- Breadcrumb-->
@@ -22,9 +22,9 @@
                 <!-- Basic Form-->
                 <div class="col-lg-12">
                   <div class="card">
+                    <form method="post" action="<?php echo base_url(); ?>admin/Kuesioner/simpanPertanyaan">
                     <div class="card-header d-flex align-items-center">
-                      <h3 class="h4">Form Kuesioner <?php echo $kuesioner->nama_kuesioner ?></h3>
-                      <div class="dropdown ml-auto">
+                      <div class="dropdown">
                         <button class="btn btn-info dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           Tambah Pertanyaan
                         </button>
@@ -34,11 +34,13 @@
                           <a class="dropdown-item" href="#" data-toggle="modal" data-target="#gandaModal">Ganda</a>
                         </div>
                       </div>
+                       <div class="form-group ml-auto">
+                            <button type="submit" class="btn btn-primary ml-auto">Simpan</button>
+                        </div>
                     </div>
                     <div class="card-body">
                       <div class="table-responsive">  
                         <table class="table table-striped table-bordered">
-                           <form method="post" action="<?php echo base_url(); ?>admin/Kuesioner/simpanPertanyaan">
                           <thead>
                             <tr>
                               <th width="10px">No</th>
@@ -101,11 +103,16 @@
                                   </div>
                                 </div>
                               <?php } ?>
+                              </form>
                               </td>
                               <td>
                                 <div class="btn-group btn-group-toggle">
-                                  <button class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="Sunting"><i class="far fa-edit"></i></button>
-                                  <label class="btn btn-danger btn-sm" data-toggle="modal" data-target="#ModalHapus" onclick="set_id(<?php ?>)">
+                                  <?php if ($p->jenis != 'isian') { ?>
+                                    <form method='post' action="<?php echo base_url('admin/Kuesioner/editPertanyaan/'.$p->id) ?>"><button type="submit" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="Sunting"><i class="far fa-edit"></i></button></form>
+                                  <?php } else { ?>
+                                  <button onclick='editPertanyaan(<?php echo $p->id ?>)' id="btn-edit" class="btn-warning btn-sm" data-toggle="modal" data-target="#ModalEdit"><i class="fa fa-edit"></i></button>
+                                  <?php } ?>
+                                  <label class="btn btn-danger btn-sm" data-toggle="modal" data-target="#ModalHapus" onclick="set_id(<?php echo $p->id ?>)">
                                     <input type="radio" name="options"><i class="fas fa-trash-alt"></i>
                                   </label>
                                 </div>
@@ -115,12 +122,7 @@
                           </tbody>
                         </table>
                       </div>
-                        <div class="line"></div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary ml-auto">Simpan</button>
-                        </div>
                     </div>
-                    </form>
                   </div>
                 </div>
               </div>
@@ -222,6 +224,34 @@
                         </div>
                       </div>
 
+   <!-- Modal Edit-->
+                      <div id="ModalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+                        <div role="document" class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h4 id="exampleModalLabel" class="modal-title">Sunting Pertanyaan</h4>
+                              <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                            </div>
+                            <div class="modal-body">
+                              <p></p>
+                              <?php echo form_open_multipart('admin/Kuesioner/exeEditIsian'); ?>
+                                <div class="form-group">
+                                  <label>Pertanyaan</label>
+                                  <input type="text" id="pertanyaan" value="<?php echo $p->pertanyaan ?>" class="form-control" name="pertanyaan">
+                                  <input type="hidden" id="id" value="<?php echo $p->id ?>" class="form-control" name="id">
+                                   <input type="hidden" id="kuesionerID" value="<?php echo $p->kuesionerID ?>" class="form-control" name="kuesionerID">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" data-dismiss="modal" class="btn btn-secondary">Tutup</button>
+                              <button type="submit" class="btn btn-primary">Simpan</button>
+                            </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+
+
 </html>
 
 <script type="text/javascript">
@@ -294,12 +324,22 @@
         j++;
       }
 
-      $('#addInput').on('change', function(){
-        var val = this.value;
-        if(val == "ya"){
-          $('#inputBox').attr('style','display:block !important');
-        }else if(val =="tidak"){
-          $('#inputBox').attr('style','display:none !important');
-           }
+      function editPertanyaan(id) {
+
+      $.ajax({
+        url: "<?php echo base_url('admin/Kuesioner/getPertanyaan/') ?>/" + id,
+        type: "GET",
+        dataType: "JSON",
+        success: function(data) {
+          $('[name="id"]').val(data.id);
+          $('[name="pertanyaan"]').val(data.pertanyaan);
+          $('[name="kuesionerID"]').val(data.kuesionerID);
+          
+          $('#ModalEdit').modal('show');
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          console.log('gagal mengambil data');
+        }
       });
+    }
 </script>
