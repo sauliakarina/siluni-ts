@@ -53,10 +53,9 @@
                               <?php } ?>
                               </td>
                               <td>
-                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn btn-warning btn-sm">
-                                    <input type="radio" name="options"><i class="far fa-edit"></i>
-                                  </label>
+                                <div class="btn-group btn-group-toggle">
+                                  <form method='post' action="<?php echo base_url('admin/Kuesioner/buatPertanyaan/'.$k->id) ?>">
+                                    <button type="submit" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="Sunting"><i class="far fa-edit"></i></button></form>
                                   <button onclick="set_id(<?php echo $k->id ?>)" name="options" class="btn btn-danger btn-sm" data-toggle="modal" data-placement="top" title="Hapus" data-target="#ModalHapus"><i class="fas fa-trash-alt"></i></button>
                                 </div>
                               </td>

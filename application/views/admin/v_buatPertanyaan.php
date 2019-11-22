@@ -64,7 +64,7 @@
                                   <ul class="list-group list-group-flush">
                                     <?php foreach ($pilihan as $k) { ?>
                                       <li class="list-group-item">
-                                        <input id="radioCustom2" type="radio" checked="" value="option2" name="a" class="radio-template">
+                                        <input id="radioCustom2" type="radio" checked="" disabled="" value="option2" name="a" class="radio-template">
                                         <label for="radioCustom2"><?php echo $k->pilihan ?></label>
                                       </li>
                                     <?php } ?>
@@ -79,7 +79,7 @@
                                <ul class="list-group list-group-flush">
                                     <?php foreach ($pilihan as $k) { ?>
                                       <li class="list-group-item">
-                                        <input id="checkboxCustom2" type="checkbox" class="checkbox-template">
+                                        <input id="checkboxCustom2" type="checkbox" checked="" disabled="" class="checkbox-template">
                                         <label for="checkboxCustom2"><?php echo $k->pilihan ?></label>
                                       </li>
                                     <?php } ?>
@@ -110,7 +110,7 @@
                                   <?php if ($p->jenis != 'isian') { ?>
                                     <form method='post' action="<?php echo base_url('admin/Kuesioner/editPertanyaan/'.$p->id) ?>"><button type="submit" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="Sunting"><i class="far fa-edit"></i></button></form>
                                   <?php } else { ?>
-                                  <button onclick='editPertanyaan(<?php echo $p->id ?>)' id="btn-edit" class="btn-warning btn-sm" data-toggle="modal" data-target="#ModalEdit"><i class="fa fa-edit"></i></button>
+                                  <a onclick='editIsian(<?php echo $p->id ?>)' href="#" class="btn-warning btn-sm" data-toggle="modal" data-target="#ModalEdit"><i class="fa fa-edit"></i></a>
                                   <?php } ?>
                                   <label class="btn btn-danger btn-sm" data-toggle="modal" data-target="#ModalHapus" onclick="set_id(<?php echo $p->id ?>)">
                                     <input type="radio" name="options"><i class="fas fa-trash-alt"></i>
@@ -135,7 +135,7 @@
           <div role="document" class="modal-dialog modal-dialog-centered">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h4 id="exampleModalLabel" class="modal-title">Pertanyaan Isian</h4>
+                              <h4 id="exampleModalLabel" class="modal-title">Buat Pertanyaan Jawaban Isian</h4>
                               <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
                             </div>
                             <div class="modal-body">
@@ -161,7 +161,7 @@
                         <div role="document" class="modal-dialog modal-dialog-centered">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h4 id="exampleModalLabel" class="modal-title">Pertanyaan Pilihan</h4>
+                              <h4 id="exampleModalLabel" class="modal-title">Buat Pertanyaan Jawaban Pilihan</h4>
                               <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
                             </div>
                             <div class="modal-body">
@@ -195,7 +195,7 @@
                         <div role="document" class="modal-dialog modal-dialog-centered">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h4 id="exampleModalLabel" class="modal-title">Pertanyaan Pilihan Ganda</h4>
+                              <h4 id="exampleModalLabel" class="modal-title">Buat Pertanyaan Jawaban Pilihan Ganda</h4>
                               <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
                             </div>
                             <div class="modal-body">
@@ -224,8 +224,30 @@
                         </div>
                       </div>
 
-   <!-- Modal Edit-->
-                      <div id="ModalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+  <!-- Modal Hapus-->
+        <div id="ModalHapus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+            <div role="document" class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 id="exampleModalLabel" class="modal-title">Hapus Pertanyaan</h4>
+                              <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                            </div>
+                            <div class="modal-body">
+                              <p>Apakah anda yakin ingin menghapus pertanyaan ini?</p>
+                              <div class="text-center">
+                              <i class="far fa-times-circle fa-4x mb-3 animated bounce" style="color: #D60C0C"></i>
+                            </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" data-dismiss="modal" class="btn btn-secondary">Tutup</button>
+                              <button type="submit" class="btn btn-danger" onclick='deletep()'>Hapus</button>
+                            </div>
+                          </div>
+              </div>
+         </div>
+
+  <!-- Modal Edit-->
+  <div id="ModalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
                         <div role="document" class="modal-dialog">
                           <div class="modal-content">
                             <div class="modal-header">
@@ -237,7 +259,7 @@
                               <?php echo form_open_multipart('admin/Kuesioner/exeEditIsian'); ?>
                                 <div class="form-group">
                                   <label>Pertanyaan</label>
-                                  <input type="text" id="pertanyaan" value="<?php echo $p->pertanyaan ?>" class="form-control" name="pertanyaan">
+                                  <input type="text" id="pertanyaanIsian" value="<?php echo $p->pertanyaan ?>" class="form-control" name="pertanyaanIsian">
                                   <input type="hidden" id="id" value="<?php echo $p->id ?>" class="form-control" name="id">
                                    <input type="hidden" id="kuesionerID" value="<?php echo $p->kuesionerID ?>" class="form-control" name="kuesionerID">
                                 </div>
@@ -249,7 +271,7 @@
                             </form>
                           </div>
                         </div>
-                      </div>
+   </div>
 
 
 </html>
@@ -324,7 +346,7 @@
         j++;
       }
 
-      function editPertanyaan(id) {
+      function editIsian(id) {
 
       $.ajax({
         url: "<?php echo base_url('admin/Kuesioner/getPertanyaan/') ?>/" + id,
@@ -332,7 +354,7 @@
         dataType: "JSON",
         success: function(data) {
           $('[name="id"]').val(data.id);
-          $('[name="pertanyaan"]').val(data.pertanyaan);
+          $('[name="pertanyaanIsian"]').val(data.pertanyaan);
           $('[name="kuesionerID"]').val(data.kuesionerID);
           
           $('#ModalEdit').modal('show');
@@ -341,5 +363,15 @@
           console.log('gagal mengambil data');
         }
       });
+    }
+
+     var p_id;
+    function set_id(id) {
+        p_id = id;
+
+    }
+
+   function deletep(){
+        window.location.href =  "<?php echo base_url();?>admin/Kuesioner/deletePertanyaan/"+p_id;
     }
 </script>

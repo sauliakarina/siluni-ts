@@ -28,6 +28,7 @@ class M_kuesioner extends CI_Model{
 	{
 		$this->db->select('*');
 		$this->db->where('customID',$customID);
+		$this->db->where('isDelete','no');
 		$query = $this->db->get('pertanyaan');
 		return $query->row();
 
@@ -49,6 +50,7 @@ class M_kuesioner extends CI_Model{
 	{
 		$this->db->select('*');
 		$this->db->where('kuesionerID',$id);
+		$this->db->where('isDelete','no');
 		$query = $this->db->get('pertanyaan');
 		if($query->num_rows()>0)
 		{
@@ -76,9 +78,23 @@ class M_kuesioner extends CI_Model{
 		return $this->db->delete('pilihan_jawaban', array('pertanyaanID' => $id));
 	}
 
+	function deletePilihanByID($id)
+	{
+		return $this->db->delete('pilihan_jawaban', array('id' => $id));
+	}
+
 	function getPertanyaanByID($id)
 	{
 		return $this->db->get_where('pertanyaan', array('id' => $id))->row();
+	}
+
+	function getKuesionerIDFromPertanyaanID($id)
+	{
+		$this->db->select('kuesionerID');
+		$this->db->where('id',$id);
+		$query = $this->db->get('pertanyaan');
+		return $query->row();
+
 	}
 	
 }

@@ -45,7 +45,7 @@
                                 $i = 0;
                                  foreach ($pilihan_jawaban as $k) { ?>
                                   <li class="list-group-item">
-                                    <input type="text" class="form-control" name="pilihan[<?php echo $i++; ?>]" value="<?php echo $k->pilihan ?>">
+                                    <input type="text" class="form-control" name="pilihan<?php echo $k->id ?>" value="<?php echo $k->pilihan ?>">
                                       </li>
                                       <input type="hidden" class="form-control" name="pilihanID[<?php echo $i++; ?>]" value="<?php echo $k->id ?>">
                                     <?php } ?>

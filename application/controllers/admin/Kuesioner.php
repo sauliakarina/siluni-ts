@@ -222,6 +222,26 @@ class Kuesioner extends CI_Controller {
 		redirect('admin/Kuesioner/kuesionerAlumni');
 	}
 
+	function deletePertanyaan($pertanyaanID){
+		$kuesionerID = $this->m_kuesioner->getPertanyaanByID($pertanyaanID)->kuesionerID;
+		//get id pilihan
+		$pilihan = $this->m_kuesioner->getPilihanJawabanByPertanyaanID($pertanyaanID);
+		//delete pilihan jawaban
+		foreach ($pilihan as $p) {
+			$pilihanID = $p->id;
+			$this->m_kuesioner->deletePilihanByID($pilihanID);
+		}
+		//delete pertanyaan
+		$where = array(
+			'id' => $pertanyaanID
+		);
+		$data = array(
+			'isDelete' => 'yes'
+		);
+		$this->m_master->updateData($where,$data,'pertanyaan');
+		redirect('admin/Kuesioner/buatPertanyaan/'.$kuesionerID);
+	}
+
 	function nonaktifKuesioner($id)
 	{
 		$data = array(
@@ -267,7 +287,7 @@ class Kuesioner extends CI_Controller {
 	function exeEditIsian()
 	{
 		$data = array(
-			'pertanyaan' => $this->input->post('pertanyaan')
+			'pertanyaan' => $this->input->post('pertanyaanIsian')
 		);
 		
 		$where = array('id' => $this->input->post('id'));
@@ -285,17 +305,15 @@ class Kuesioner extends CI_Controller {
 		$where = array('id' => $this->input->post('pertanyaanID'));
 		$this->m_master->updateData($where,$data,'pertanyaan');
 
-		$pilihan = $this->input->post('pilihan');
 		$pilihanID = $this->input->post('pilihanID');
-		$length = count($pilihan);
 
-		for ($i = 0; $i <= $length; $i++)  {
+        foreach ($pilihanID as $p) {
 			$data = array(
-			'pilihan' => $pilihan[$i]
+			'pilihan' => $this->input->post('pilihan'.$p)
 			);
-			$where = array('id' => $pilihanID[$i]);
+			$where = array('id' => $p);
 			$this->m_master->updateData($where,$data,'pilihan_jawaban');
-        }
+		}
 
 		$kuesionerID = $this->input->post('kuesionerID');
 		redirect('admin/Kuesioner/buatPertanyaan/'.$kuesionerID);
