@@ -43,6 +43,23 @@ class Kuesioner extends CI_Controller {
 		$this->load->view('element/footer');
 	}
 
+	public function editKuesioner($kuesionerID)
+	{
+		$data = array(
+			'role' => $this->session->userdata('role'),
+			'userID' => $this->session->userdata('userID'),
+			'prodiID' => $this->session->userdata('prodiID'),
+			'kuesioner' => $this->m_kuesioner->getKuesionerByID($kuesionerID),
+			'pertanyaan' => $this->m_kuesioner->getPertanyaanByKuesionerID($kuesionerID)
+
+		);
+		$this->load->view('element/head');
+		$this->load->view('element/header');
+		$this->load->view('element/navbar', $data);
+		$this->load->view('admin/v_editKuesioner', $data);
+		$this->load->view('element/footer');
+	}
+
 	public function cobaBuatKuesioner()
 	{
 		$data = array(
