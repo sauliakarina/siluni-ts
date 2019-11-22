@@ -17,7 +17,7 @@ class Kuesioner extends CI_Controller {
 			'role' => $this->session->userdata('role'),
 			'userID' => $this->session->userdata('userID'),
 			'prodiID' => $this->session->userdata('prodiID'),
-			'kuesioner' => $this->m_kuesioner->getKuesioner()
+			'kuesioner' => $this->m_kuesioner->getKuesionerAlumni($this->session->userdata('prodiID'))
 		);
 		$this->load->view('element/head');
 		$this->load->view('element/header');
@@ -253,7 +253,8 @@ class Kuesioner extends CI_Controller {
 			'id' => $pertanyaanID
 		);
 		$data = array(
-			'isDelete' => 'yes'
+			'isDelete' => 'yes',
+			'customID' => ''
 		);
 		$this->m_master->updateData($where,$data,'pertanyaan');
 		redirect('admin/Kuesioner/buatPertanyaan/'.$kuesionerID);

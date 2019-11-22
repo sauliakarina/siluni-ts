@@ -27,114 +27,52 @@
                     </div> -->
                     <div class="card-body">
                       <p></p>
+                      <?php foreach ($kuesioner as $k) { ?>
                       <table class="table table-striped mb-4">
-                        <h6>Pekerjaan</h6>
-                        <tr>
-                          <td>Masa tunggu dari kelulusan hingga mendapat pekerjaan pertama</td>
-                          <td>:</td>
-                          <td width="500px">
-                               <div class="i-checks">
-                                <input id="" type="radio" value="option2" name="a" class="radio-template">
-                                <label for="">1-3 bln</label>
-                              </div> 
-                              <div class="i-checks">
-                                <input id="" type="radio" value="option2" name="a" class="radio-template">
-                                <label for="">4-6 bln</label>
-                              </div>
-                              <div class="i-checks">
-                                <input id="" type="radio" value="option2" name="a" class="radio-template">
-                                <label for="">7-9 bln</label>
-                              </div> 
-                              <div class="i-checks">
-                                <input id="" type="radio" value="option2" name="a" class="radio-template">
-                                <label for="">10-12 bln</label>
-                              </div> 
-                              <div class="i-checks">
-                                <input id="" type="radio" value="option2" name="a" class="radio-template">
-                                <label for=""> > 12 bln</label>
-                              </div> 
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Bagaimana anda mencari pekerjaan tersebut? </td>
-                          <td>:</td>
-                          <td width="500px">
-                            <div class="i-checks">
-                              <input id="checkboxCustom1" type="checkbox" value="" class="checkbox-template">
-                              <label for="checkboxCustom1">Melalui iklan di koran/majalah, brosur</label>
-                            </div>
-                            <div class="i-checks">
-                              <input id="checkboxCustom1" type="checkbox" value="" class="checkbox-template">
-                              <label for="checkboxCustom1">Melamar ke perusahaan tanpa tahu lowongan yang ada</label>
-                            </div>
-                            <div class="i-checks">
-                              <input id="checkboxCustom1" type="checkbox" value="" class="checkbox-template">
-                              <label for="checkboxCustom1">Pergi ke bursa/pameran kerja</label>
-                            </div>
-                          </td>
-                        </tr>
-                         <tr>
-                          <td>Apakah pekerjaan Saudara ini berhubungan dengan bidang ilmu yang Saudara pelajari di Perguruan Tinggi?</td>
-                          <td>:</td>
-                          <td width="500px">
-                              <div class="i-checks">
-                                <input id="radioCustom1" type="radio" value="" name="a" class="radio-template">
-                                <label for="radioCustom1">Ya</label>
-                              </div> 
-                              <div class="i-checks">
-                                <input id="radioCustom1" type="radio" value="" name="a" class="radio-template">
-                                <label for="radioCustom1">Tidak</label>
-                              </div> 
-                              <div class="form-group">
-                              <textarea placeholder="Tuliskan Alasan" class="form-control" rows="3"></textarea>
-                            </div>
-                          </td>
-                        </tr>
+                        <h4><?php echo $k->nama_kuesioner ?></h4>
+                        <?php $pertanyaan = $this->m_kuesioner->getPertanyaanByKuesionerID($k->id);
+                          foreach ($pertanyaan as $p) {
+                         ?>
+                          <tr>
+                            <td><?php echo $p->pertanyaan ?></td>
+                            <td>:</td>
+                            <td width="500px">
+                              <?php if ($p->jenis == 'isian') { ?>
+                                <div class="form-group">
+                                  <input type="text" placeholder="tulis jawaban" class="form-control">
+                                </div>
+                              <?php } elseif ($p->jenis == 'pilihan') { 
+                                  $pilihanJawaban = $this->m_kuesioner->getPilihanJawabanByPertanyaanID($p->id);
+                                  foreach ($pilihanJawaban as $pj) { ?> 
+                                  <div class="i-checks">
+                                    <input id="option1" type="radio" value="<?php echo $pj->pilihan ?>" name="a" class="radio-template">
+                                    <label for="option1"><?php echo $pj->pilihan ?></label>
+                                  </div> 
+                                <?php } //loop pilihanJawaban
+                                if ($p->inputBox == 'ya') { ?>
+                                    <div class="form-group">
+                                      <textarea placeholder="" class="form-control" rows="3"></textarea>
+                                    </div>
+                                  <?php } //input box ?>
+                              <?php } elseif ($p->jenis == 'ganda') { 
+                                $pilihanJawaban = $this->m_kuesioner->getPilihanJawabanByPertanyaanID($p->id);
+                                  foreach ($pilihanJawaban as $pj) {?>
+                                <div class="i-checks">
+                                  <input id="checkbox1" type="checkbox" value="<?php echo $pj->pilihan ?>" class="checkbox-template">
+                                  <label for="checkbox1"><?php echo $pj->pilihan ?></label>
+                                </div>
+                                <?php } //loop jawaban ganda 
+                                if ($p->inputBox == 'ya') {?>
+                                  <div class="form-group">
+                                      <textarea placeholder="" class="form-control" rows="3"></textarea>
+                                  </div>
+                                  <?php } //input box ?>
+                              <?php } //loop jenis ganda ?>
+                            </td>
+                          </tr>
+                      <?php } //loop pertanyaan ?>
                       </table>
-                      <table class="table table-striped">
-                        <h6>Melanjutkan Pendidikan</h6>
-                        <tr>
-                          <td>Dimana anda melanjutkan pendidikan</td>
-                          <td>:</td>
-                          <td width="500px">
-                            <div class="form-group">
-                              <input type="text" placeholder="" class="form-control">
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Alamat Universitas</td>
-                          <td>:</td>
-                          <td width="500px">
-                            <div class="form-group">
-                              <input type="text" placeholder="" class="form-control">
-                            </div>
-                          </td>
-                        </tr>
-                         <tr>
-                          <td>Program Studi</td>
-                          <td>:</td>
-                          <td width="500px">
-                            <div class="form-group">
-                              <input type="text" placeholder="" class="form-control">
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                           <td>Apakah program studi S1 anda linear dengan S2?</td>
-                          <td>:</td>
-                          <td width="500px">
-                              <div class="i-checks">
-                                <input id="" type="radio" value="option1" name="a" class="radio-template">
-                                <label for="">Ya</label>
-                              </div> 
-                              <div class="i-checks">
-                                <input id="" type="radio" value="option1" name="a" class="radio-template">
-                                <label for="">Tidak</label>
-                              </div>
-                          </td>
-                        </tr>
-                      </table>
+                    <?php }//loop kuesioner ?>
                     </div>
                       <div class="form-group row">
                           <div class="col-sm-4 offset-sm-5 mb-3">
