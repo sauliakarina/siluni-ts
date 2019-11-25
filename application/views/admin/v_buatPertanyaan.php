@@ -182,7 +182,7 @@
     </div>
 
  <!-- Modal Pilihan-->
-                      <div id="pilihanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+ <div id="pilihanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
                         <div role="document" class="modal-dialog modal-dialog-centered">
                           <div class="modal-content">
                             <div class="modal-header">
@@ -193,7 +193,7 @@
                               <p>Responden hanya bisa memilih salah satu jawaban</p>
                               <form method="post" action="<?php echo base_url();?>admin/Kuesioner/addPilihan">
                                 <div class="form-group">
-                                  <label>Pertanyaan</label>
+                                  <label></label>
                                   <input type="text" placeholder="Masukkan pertanyaan" class="form-control" name="pertanyaan">
                                   <input type="hidden" class="form-control" name="kuesionerID" value="<?php echo $kuesioner->id ?>">
                                 </div>

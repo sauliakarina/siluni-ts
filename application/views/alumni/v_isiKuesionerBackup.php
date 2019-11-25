@@ -10,8 +10,7 @@
            <!-- Breadcrumb-->
           <div class="breadcrumb-holder container-fluid">
             <ul class="breadcrumb">
-              <li class="breadcrumb-item"><a href="<?php echo site_url('alumni/Profil') ?>">Biodata</a></li>
-              <li class="breadcrumb-item"><a href="<?php echo site_url('alumni/Profil/riwayatPekerjaan') ?>">Riwayat Pekerjaan</a></li>
+              <li class="breadcrumb-item"><a href="<?php echo site_url('alumni/Profil') ?>">Beranda</a></li>
             </ul>
           </div>
 
@@ -86,7 +85,7 @@
                                 <label for="radioCustom1">Tidak</label>
                               </div> 
                               <div class="form-group">
-                              <textarea placeholder="Tuliskan Alasan" class="form-control" rows="3"></textarea>
+                              <textarea placeholder="" class="form-control" rows="3"></textarea>
                             </div>
                           </td>
                         </tr>

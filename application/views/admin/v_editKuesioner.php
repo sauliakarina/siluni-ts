@@ -108,7 +108,7 @@
                               <td>
                                 <div class="btn-group btn-group-toggle">
                                   <?php if ($p->jenis != 'isian') { ?>
-                                    <form method='post' action="<?php echo base_url('admin/Kuesioner/editPertanyaan/'.$p->id) ?>"><button type="submit" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="Sunting"><i class="far fa-edit"></i></button></form>
+                                    <form method='post' action="<?php echo base_url('admin/Kuesioner/editPertanyaanKuesioner/'.$p->id) ?>"><button type="submit" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="Sunting"><i class="far fa-edit"></i></button></form>
                                   <?php } else { ?>
                                   <a onclick='editIsian(<?php echo $p->id ?>)' href="#" class="btn-warning btn-sm" data-toggle="modal" data-target="#ModalEdit"><i class="fa fa-edit"></i></a>
                                   <?php } ?>

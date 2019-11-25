@@ -170,7 +170,7 @@
                             <div class="modal-body">
                               <p>Apakah anda yakin ingin mengaktifkan kuesioner ini?</p>
                               <div class="text-center">
-                              <i class="far fa-times-circle fa-4x mb-3 animated bounce" style="color: #D60C0C"></i>
+                              <i class="far fa-lightbulb fa-4x mb-3 animated bounce" style="color: #15DACE"></i>
                             </div>
                             </div>
                             <div class="modal-footer">

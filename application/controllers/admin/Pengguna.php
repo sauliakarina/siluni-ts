@@ -16,7 +16,7 @@ class Pengguna extends CI_Controller {
 			'role' => $this->session->userdata('role'),
 			'userID' => $this->session->userdata('userID'),
 			'prodiID' => $prodiID,
-			'pengguna'=> $this->m_pengguna->getPengguna($prodiID)
+			'pengguna'=> $this->m_pengguna->getPenggunaAdmin($prodiID)
 		);
 		$this->load->view('element/head');
 		$this->load->view('element/header');

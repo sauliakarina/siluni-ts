@@ -40,7 +40,7 @@ class Kuesioner extends CI_Controller {
 		$this->load->view('element/footer');
 	}
 
-	public function isiKuesioner()
+	/*public function isiKuesioner()
 	{
 		$data = array(
 			'role' => $this->session->userdata('role'),
@@ -52,5 +52,5 @@ class Kuesioner extends CI_Controller {
 		$this->load->view('element/navbar', $data);
 		$this->load->view('alumni/v_isiKuesioner', $data);
 		$this->load->view('element/footer');
-	}
+	}*/
 }

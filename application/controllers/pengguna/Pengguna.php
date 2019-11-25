@@ -18,7 +18,7 @@ class Pengguna extends CI_Controller {
             'active_beranda'=>'active',
             'status' => $this->session->userdata('role'),
             'nama' => $this->session->userdata('nama'),
-            'pengguna' => $this->m_pengguna->getPengguna($prodiID),
+            'pengguna' => $this->m_pengguna->getPenggunaGuest($prodiID),
             'prodi' => $this->m_master->getProdi(),
             'prodiID'=> $prodiID
         );

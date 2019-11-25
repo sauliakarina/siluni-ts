@@ -90,6 +90,22 @@ class Kuesioner extends CI_Controller {
 		$this->load->view('element/footer');
 	}
 
+	public function editPertanyaanKuesioner($pertanyaanID)
+	{
+		$data = array(
+			'role' => $this->session->userdata('role'),
+			'userID' => $this->session->userdata('userID'),
+			'prodiID' => $this->session->userdata('prodiID'),
+			'pr' => $this->m_kuesioner->getPertanyaanByID($pertanyaanID),
+			'pilihan_jawaban' => $this->m_kuesioner->getPilihanJawabanByPertanyaanID($pertanyaanID)
+		);
+		$this->load->view('element/head');
+		$this->load->view('element/header');
+		$this->load->view('element/navbar', $data);
+		$this->load->view('admin/v_editPertanyaanKuesioner', $data);
+		$this->load->view('element/footer');
+	}
+
 	public function addKuesionerAlumni()
 	{
 		
@@ -335,5 +351,27 @@ class Kuesioner extends CI_Controller {
 
 		$kuesionerID = $this->input->post('kuesionerID');
 		redirect('admin/Kuesioner/buatPertanyaan/'.$kuesionerID);
+	}
+
+	function exeEditPertanyaanKuesioner()
+	{
+		$data = array(
+			'pertanyaan' => $this->input->post('pertanyaan')
+		);
+		$where = array('id' => $this->input->post('pertanyaanID'));
+		$this->m_master->updateData($where,$data,'pertanyaan');
+
+		$pilihanID = $this->input->post('pilihanID');
+
+        foreach ($pilihanID as $p) {
+			$data = array(
+			'pilihan' => $this->input->post('pilihan'.$p)
+			);
+			$where = array('id' => $p);
+			$this->m_master->updateData($where,$data,'pilihan_jawaban');
+		}
+
+		$kuesionerID = $this->input->post('kuesionerID');
+		redirect('admin/Kuesioner/editKuesioner/'.$kuesionerID);
 	}
 }

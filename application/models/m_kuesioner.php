@@ -39,6 +39,7 @@ class M_kuesioner extends CI_Model{
 		$this->db->select('*');
 		$this->db->where('prodiID',$prodiID);
 		$this->db->where('responden','alumni');
+		$this->db->where('status','aktif');
 		$query = $this->db->get('kuesioner');
 		if($query->num_rows()>0)
 		{
