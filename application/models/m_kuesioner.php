@@ -49,6 +49,21 @@ class M_kuesioner extends CI_Model{
 		}
 	}
 
+	function getKuesionerPengguna($prodiID)
+	{
+		$this->db->select('*');
+		$this->db->where('prodiID',$prodiID);
+		$this->db->where('responden','pengguna');
+		$this->db->where('status','aktif');
+		$query = $this->db->get('kuesioner');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
+	}
+
 	function getPertanyaanByKuesionerID($id)
 	{
 		$this->db->select('*');
@@ -75,6 +90,33 @@ class M_kuesioner extends CI_Model{
 			return $query->result();
 		}
 	}
+
+	function getSkalaByPertanyaanID($id)
+	{
+		$this->db->select('*');
+		$this->db->where('pertanyaanID',$id);
+		$query = $this->db->get('skala_nilai');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
+	}
+
+	function getPertanyaanSkalaByPertanyaanID($id)
+	{
+		$this->db->select('*');
+		$this->db->where('pertanyaanID',$id);
+		$query = $this->db->get('pertanyaan_skala');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
+	}
+
 
 	function deletePilihan($id)
 	{

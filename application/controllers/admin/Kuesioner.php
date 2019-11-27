@@ -26,6 +26,38 @@ class Kuesioner extends CI_Controller {
 		$this->load->view('element/footer');
 	}
 
+	public function kuesionerPengguna()
+	{
+		$data = array(
+			'role' => $this->session->userdata('role'),
+			'userID' => $this->session->userdata('userID'),
+			'prodiID' => $this->session->userdata('prodiID'),
+			'kuesioner' => $this->m_kuesioner->getKuesionerPengguna($this->session->userdata('prodiID'))
+		);
+		$this->load->view('element/head');
+		$this->load->view('element/header');
+		$this->load->view('element/navbar', $data);
+		$this->load->view('admin/v_kuesionerPenggunaAlumni', $data);
+		$this->load->view('element/footer');
+	}
+
+	public function buatPertanyaanPengguna($kuesionerID)
+	{
+		$data = array(
+			'role' => $this->session->userdata('role'),
+			'userID' => $this->session->userdata('userID'),
+			'prodiID' => $this->session->userdata('prodiID'),
+			'kuesioner' => $this->m_kuesioner->getKuesionerByID($kuesionerID),
+			'pertanyaan' => $this->m_kuesioner->getPertanyaanByKuesionerID($kuesionerID)
+
+		);
+		$this->load->view('element/head');
+		$this->load->view('element/header');
+		$this->load->view('element/navbar', $data);
+		$this->load->view('admin/v_buatPertanyaanPengguna', $data);
+		$this->load->view('element/footer');
+	}
+
 	public function buatPertanyaan($kuesionerID)
 	{
 		$data = array(
@@ -139,6 +171,39 @@ class Kuesioner extends CI_Controller {
 		redirect('admin/Kuesioner/buatPertanyaan/'.$kuesionerID);
 	}
 
+	public function addKuesionerPengguna()
+	{
+		
+		//generate customID kuesioner
+			$id_length = 8;
+			$id_found = false;
+			$possible_chars = "23456789BCDFGHJKMNPQRSTVWXYZ"; 
+			while (!$id_found) {  
+			    $customID = "";  
+			    $i = 0;  
+			    while ($i < $id_length) {  
+			        $char = substr($possible_chars, mt_rand(0, strlen($possible_chars)-1), 1);  
+			        $customID .= $char;   
+			        $i++;   
+			    }  
+			    $where = array( 'customID' => $customID);
+			    $cek = $this->m_master->cekData("kuesioner",$where)->num_rows();
+			    if ($cek == 0) {
+			    	$id_found = true;
+			    }
+			}  //tutup while
+
+		$data = array(
+			'nama_kuesioner' => $this->input->post('nama_kuesioner'),
+			'responden' => 'pengguna',
+			'prodiID' => $this->session->userdata('prodiID'),
+			'customID' => $customID
+		);	
+		$this->m_master->inputData($data,'kuesioner');
+		$kuesionerID = $this->m_kuesioner->getKuesionerByCustomID($customID)->id;
+		redirect('admin/Kuesioner/buatPertanyaanPengguna/'.$kuesionerID);
+	}
+
 	public function addIsian() {
 		//generate customID pertanyaan
 			$id_found = false;
@@ -232,6 +297,89 @@ class Kuesioner extends CI_Controller {
         $kuesionerID = $this->input->post('kuesionerID');
 		redirect('admin/Kuesioner/buatPertanyaan/'.$kuesionerID);
 
+	}
+
+/*	public function addSkala() {
+		
+		$skalaPertanyaan = $this->input->post('skalaPertanyaan');
+		foreach ($skalaPertanyaan as $s) {
+			//generate customID pertanyaan
+			$id_found = false;
+			while (!$id_found) {  
+				$customIDPR = 'PR'.time();
+				$where = array( 'customID' => $customIDPR);
+				$cek = $this->m_master->cekData("pertanyaan",$where)->num_rows();
+				if ($cek == 0) {
+					$id_found = true;
+				 }
+			}  //tutup while
+			$data = array(
+				'pertanyaan' => $s,
+				'kuesionerID' => $this->input->post('kuesionerID'),
+				'jenis' => 'skala',
+				'customID' => $customIDPR,
+				'pertanyaan_skala' => $this->input->post('pertanyaan_skala')
+			);
+			$this->m_master->inputData($data,'pertanyaan');
+
+			$pertanyaanID = $this->m_kuesioner->getPertanyaanByCustomID($customIDPR)->id;
+			$pilihan_jawaban = $this->input->post('skalaNilai');
+			foreach ($pilihan_jawaban as $list_pilihan_jawaban) {
+		        $data = array(
+		          'pilihan'=> $list_pilihan_jawaban,
+		          'pertanyaanID' =>$pertanyaanID,
+		        );
+		        $this->m_master->inputData($data,'pilihan_jawaban');
+			}
+		} // foreach pertanyaan
+		//href
+	    $kuesionerID = $this->input->post('kuesionerID');
+		redirect('admin/Kuesioner/buatPertanyaanPengguna/'.$kuesionerID);
+	}*/
+
+	public function addSkala() {
+		//generate customID pertanyaan
+		//input pertanyaan
+		$id_found = false;
+		while (!$id_found) {  
+				$customIDPR = 'PR'.time();
+				$where = array( 'customID' => $customIDPR);
+				$cek = $this->m_master->cekData("pertanyaan",$where)->num_rows();
+				if ($cek == 0) {
+					$id_found = true;
+				 }
+		}  //tutup while
+		$data = array(
+				'pertanyaan' => $this->input->post('pertanyaan_skala'),
+				'kuesionerID' => $this->input->post('kuesionerID'),
+				'jenis' => 'skala',
+				'customID' => $customIDPR
+		);
+		$this->m_master->inputData($data,'pertanyaan');
+		$pertanyaanID = $this->m_kuesioner->getPertanyaanByCustomID($customIDPR)->id;
+		
+		//input daftar pertanyaan skala
+		$skalaPertanyaan = $this->input->post('skalaPertanyaan');
+		foreach ($skalaPertanyaan as $s) {
+			$data = array(
+				'pertanyaan' => $s,
+				'pertanyaanID' => $pertanyaanID
+			);
+			$this->m_master->inputData($data,'pertanyaan_skala');
+		} // foreach pertanyaan skala
+
+		//input daftar pertanyaan skala
+		$skalaNilai = $this->input->post('skalaNilai');
+		foreach ($skalaNilai as $s) {
+			$data = array(
+				'nilai' => $s,
+				'pertanyaanID' => $pertanyaanID
+			);
+			$this->m_master->inputData($data,'skala_nilai');
+		} // foreach skala penilaian
+		//href
+	    $kuesionerID = $this->input->post('kuesionerID');
+		redirect('admin/Kuesioner/buatPertanyaanPengguna/'.$kuesionerID);
 	}
 
 	function deleteKuesioner($id){
