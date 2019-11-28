@@ -227,6 +227,31 @@ class Kuesioner extends CI_Controller {
 		redirect('admin/Kuesioner/buatPertanyaan/'.$kuesionerID);
 	}
 
+	public function addIsianPengguna() {
+		//generate customID pertanyaan
+			$id_found = false;
+			while (!$id_found) {  
+			    $customID = 'PR'.time();
+			    $where = array( 'customID' => $customID);
+			    $cek = $this->m_master->cekData("pertanyaan",$where)->num_rows();
+			    if ($cek == 0) {
+			    	$id_found = true;
+			    }
+			}  //tutup while
+
+		$data = array(
+			'pertanyaan' => $this->input->post('pertanyaan'),
+			'kuesionerID' => $this->input->post('kuesionerID'),
+			'jenis' => 'isian',
+			'customID' => $customID,
+			'textarea' => $this->input->post('textarea')
+		);	
+		$kuesionerID = $this->input->post('kuesionerID');
+		$this->m_master->inputData($data,'pertanyaan');
+		redirect('admin/Kuesioner/buatPertanyaanPengguna/'.$kuesionerID);
+	}
+
+
 	public function addPilihan() {
 		//set pertanyaan
 		//generate customID pertanyaan
@@ -263,7 +288,44 @@ class Kuesioner extends CI_Controller {
 
 	}
 
-	public function addGanda() {
+	public function addPilihanPengguna() {
+		//set pertanyaan
+		//generate customID pertanyaan
+		$id_found = false;
+		while (!$id_found) {  
+			$customIDPR = 'PR'.time();
+			$where = array( 'customID' => $customIDPR);
+			$cek = $this->m_master->cekData("pertanyaan",$where)->num_rows();
+			if ($cek == 0) {
+				$id_found = true;
+			 }
+		}  //tutup while
+		$data = array(
+			'pertanyaan' => $this->input->post('pertanyaan'),
+			'kuesionerID' => $this->input->post('kuesionerID'),
+			'jenis' => 'pilihan',
+			'customID' => $customIDPR 
+		);	
+		$this->m_master->inputData($data,'pertanyaan');
+
+		$pertanyaanID = $this->m_kuesioner->getPertanyaanByCustomID($customIDPR)->id;
+		//set pilihan jawaban
+		$pilihan_jawaban = $this->input->post('jawaban');
+		foreach ($pilihan_jawaban as $list_pilihan_jawaban) {
+        $data = array(
+          'pilihan'=> $list_pilihan_jawaban,
+          'pertanyaanID' =>$pertanyaanID,
+        );
+        $this->m_master->inputData($data,'pilihan_jawaban');
+		}
+		//href
+        $kuesionerID = $this->input->post('kuesionerID');
+		redirect('admin/Kuesioner/buatPertanyaanPengguna/'.$kuesionerID);
+
+	}
+
+
+	public function addGandaPengguna() {
 		//set pertanyaan
 		//generate customID pertanyaan
 		$id_found = false;
@@ -295,7 +357,7 @@ class Kuesioner extends CI_Controller {
 		}
 		//href
         $kuesionerID = $this->input->post('kuesionerID');
-		redirect('admin/Kuesioner/buatPertanyaan/'.$kuesionerID);
+		redirect('admin/Kuesioner/buatPertanyaanPengguna/'.$kuesionerID);
 
 	}
 
@@ -424,6 +486,60 @@ class Kuesioner extends CI_Controller {
 		redirect('admin/Kuesioner/buatPertanyaan/'.$kuesionerID);
 	}
 
+	function deletePertanyaanPengguna($pertanyaanID){
+		$kuesionerID = $this->m_kuesioner->getPertanyaanByID($pertanyaanID)->kuesionerID;
+		//get id pilihan
+		$pilihan = $this->m_kuesioner->getPilihanJawabanByPertanyaanID($pertanyaanID);
+		//delete pilihan jawaban
+		foreach ($pilihan as $p) {
+			$pilihanID = $p->id;
+			$this->m_kuesioner->deletePilihanByID($pilihanID);
+		}
+		//delete pertanyaan
+		$where = array(
+			'id' => $pertanyaanID
+		);
+		$data = array(
+			'isDelete' => 'yes',
+			'customID' => ''
+		);
+		$this->m_master->updateData($where,$data,'pertanyaan');
+		redirect('admin/Kuesioner/buatPertanyaanPengguna/'.$kuesionerID);
+	}
+
+	function deletePertanyaanSkala($pertanyaanID){
+		$kuesionerID = $this->m_kuesioner->getPertanyaanByID($pertanyaanID)->kuesionerID;
+		//get id pilihan
+		$skalaNilai = $this->m_kuesioner->getSkalaByPertanyaanID($pertanyaanID);
+		//delete skala nilai
+		foreach ($skalaNilai as $p) {
+			$skalaID = $p->id;
+			$where = array(
+			'id' => $skalaID
+			);
+			$this->m_master->deleteData($where,'skala_nilai');
+		}
+		//delete pertanyaan skala
+		$skalaPertanyaan = $this->m_kuesioner->getPertanyaanSkalaByPertanyaanID($pertanyaanID);
+		foreach ($skalaPertanyaan as $p) {
+			$id = $p->id;
+			$where = array(
+			'id' => $id
+			);
+			$this->m_master->deleteData($where,'pertanyaan_skala');
+		}
+		//delete pertanyaan
+		$where = array(
+			'id' => $pertanyaanID
+		);
+		$data = array(
+			'isDelete' => 'yes',
+			'customID' => ''
+		);
+		$this->m_master->updateData($where,$data,'pertanyaan');
+		redirect('admin/Kuesioner/buatPertanyaanPengguna/'.$kuesionerID);
+	}
+
 	function nonaktifKuesioner($id)
 	{
 		$data = array(
@@ -459,6 +575,8 @@ class Kuesioner extends CI_Controller {
 		}
 		redirect('admin/Kuesioner/kuesionerAlumni');
 	}
+
+	
 
 	public function getPertanyaan($id)
 	{

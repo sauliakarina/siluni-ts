@@ -6,15 +6,17 @@ class Kuesioner extends CI_Controller {
 		parent::__construct();		
 		$this->load->model('m_alumni');
 		$this->load->model('m_master');
+		$this->load->model('m_kuesioner');
  
 	}
 
-	public function index()
+	public function isiKuesioner($kuesionerID)
 	{
 		$data = array(
 			'role' => $this->session->userdata('role'),
 			'userID' => $this->session->userdata('userID'),
-			'prodiID' => $this->session->userdata('prodiID')
+			'prodiID' => $this->session->userdata('prodiID'),
+			'pertanyaan' => $this->m_kuesioner->getPertanyaanByKuesionerID($kuesionerID)
 		);
 		$this->load->view('element/head');
 		$this->load->view('element/header');

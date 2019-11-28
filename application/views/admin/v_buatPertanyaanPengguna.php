@@ -22,7 +22,7 @@
                 <!-- Basic Form-->
                 <div class="col-lg-12">
                   <div class="card">
-                    <form method="post" action="<?php echo base_url(); ?>admin/Kuesioner/simpanPertanyaan">
+                    <form method="post" action="<?php echo base_url(); ?>admin/Kuesioner/kuesionerPengguna">
                     <div class="card-header d-flex align-items-center">
                       <div class="dropdown">
                         <button class="btn btn-info dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -42,6 +42,7 @@
                     <div class="card-body">
                       <?php foreach ($pertanyaan as $p) { 
                           if ($p->jenis == 'skala') { ?>
+                             <small class="help-block-none"><a href="#" onclick="set_id(<?php echo $p->id ?>)" data-toggle="modal" data-target="#ModalHapusSkala" style="color: red">Hapus Pertanyaan Skala?</a></small>
                             <table class="table table-striped table-hover">
                               <thead>
                                 <tr>
@@ -71,21 +72,44 @@
                               <?php } //foreach pertanyaan skala ?>
                               </tbody>
                             </table>
-                          <?php } // if skala ?>
-                          
-                        <div class="line" style="margin-top: 50px"></div>
-                        <div class="form-group">
-                          <label class="form-control-label">Saran Bapak/Ibu untuk perbaikan lulusan Program Studi Ilmu Komputer UNJ:</label>
-                           <div class="i-checks">
-                              <input id="checkboxCustom1" type="checkbox" value="" class="checkbox-template">
-                              <label for="checkboxCustom1">Option one</label>
-                            </div>
-                             <div class="i-checks">
-                              <input id="checkboxCustom1" type="checkbox" value="" class="checkbox-template">
-                              <label for="checkboxCustom1">Option one</label>
-                            </div>
+                          <?php } // if skala 
+                            if ($p->jenis == 'isian' && $p->textarea == 'tidak') {
+                          ?>
+                          <div class="form-group">
+                          <small class="help-block-none"><a href="#" onclick="set_id(<?php echo $p->id ?>)" data-toggle="modal" data-target="#ModalHapus"><i class="far fa-trash-alt" style="color: red"></i></a></small>
+                          <label class="form-control-label"><b><?php echo $p->pertanyaan ?>:</b></label>
+                           <input type="text" placeholder="" class="form-control">
                         </div>
-                      <?php } // foreach pertanyaan ?>
+                      <?php } elseif ($p->jenis == 'isian' && $p->textarea == 'ya') { ?>
+                          <div class="form-group">
+                          <small class="help-block-none"><a href="#" onclick="set_id(<?php echo $p->id ?>)" data-toggle="modal" data-target="#ModalHapus"><i class="far fa-trash-alt" style="color: red"></i></a></small>
+                          <label class="form-control-label"><b><?php echo $p->pertanyaan ?>:</b></label>
+                           <textarea class="form-control" rows="5"></textarea>
+                        </div>
+                        <?php } elseif ($p->jenis == 'pilihan') { ?>
+                          <small class="help-block-none"><a href="#" onclick="set_id(<?php echo $p->id ?>)" data-toggle="modal" data-target="#ModalHapus"><i class="far fa-trash-alt" style="color: red"></i></a></small>
+                          <label class="form-control-label"><b><?php echo $p->pertanyaan ?>:</b></label>
+                           <?php  
+                           $pilihan = $this->m_kuesioner->getPilihanJawabanByPertanyaanID($p->id);
+                           foreach ($pilihan as $k) { ?>
+                             <div class="i-checks">
+                              <input id="radioCustom1" type="radio" checked="" disabled="" name="a" class="radio-template">
+                              <label for="radioCustom1"><?php echo $k->pilihan ?></label>
+                            </div>
+                        <?php } // foreach pilihan ?>
+                          <?php } elseif ($p->jenis == 'ganda') { ?>
+                            <small class="help-block-none"><a href="#" onclick="set_id(<?php echo $p->id ?>)" data-toggle="modal" data-target="#ModalHapus"><i class="far fa-trash-alt" style="color: red"></i></a></small>
+                            <label class="form-control-label"><b><?php echo $p->pertanyaan ?>:</b></label>
+                          <?php  
+                           $pilihan = $this->m_kuesioner->getPilihanJawabanByPertanyaanID($p->id);
+                           foreach ($pilihan as $k) { ?>
+                          <div class="i-checks">
+                              <input id="checkboxCustom1" checked="" disabled="" type="checkbox" value="" class="checkbox-template">
+                              <label for="checkboxCustom1"><?php echo $k->pilihan ?></label>
+                          </div>
+                      <?php }// foreach pilihan
+                        } //else ganda
+                       } // foreach pertanyaan ?>
                     </div>
                   </div>
                 </div>
@@ -129,11 +153,22 @@
                             </div>
                             <div class="modal-body">
                               <p></p>
-                              <form method="post" action="<?php echo base_url();?>admin/Kuesioner/addIsian">
+                              <form method="post" action="<?php echo base_url();?>admin/Kuesioner/addIsianPengguna">
                                 <div class="form-group">
                                   <label>Pertanyaan</label>
                                   <input type="text" placeholder="Masukkan pertanyaan" class="form-control" name="pertanyaan">
                                   <input type="hidden" class="form-control" name="kuesionerID" value="<?php echo $kuesioner->id ?>">
+                                </div>
+                                <div class="form-group">
+                                  <label>Perlu input box berukuran besar?</label>
+                                  <div class="i-checks">
+                                      <input type="radio" value="ya" name="textarea" class="radio-template">
+                                      <label>Ya</label>
+                                    </div>
+                                    <div class="i-checks">
+                                      <input type="radio" value="tidak" name="textarea" class="radio-template">
+                                      <label>Tidak</label>
+                                    </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -155,7 +190,7 @@
                             </div>
                             <div class="modal-body">
                               <p>Responden hanya bisa memilih salah satu jawaban</p>
-                              <form method="post" action="<?php echo base_url();?>admin/Kuesioner/addPilihan">
+                              <form method="post" action="<?php echo base_url();?>admin/Kuesioner/addPilihanPengguna">
                                 <div class="form-group">
                                   <label></label>
                                   <input type="text" placeholder="Masukkan pertanyaan" class="form-control" name="pertanyaan">
@@ -189,7 +224,7 @@
                             </div>
                             <div class="modal-body">
                               <p>Responden dapat memilih lebih dari satu jawaban</p>
-                              <form method="post" action="<?php echo base_url();?>admin/Kuesioner/addGanda">
+                              <form method="post" action="<?php echo base_url();?>admin/Kuesioner/addGandaPengguna">
                                 <div class="form-group">
                                   <label></label>
                                   <input type="text" placeholder="Masukkan pertanyaan" class="form-control" name="pertanyaan">
@@ -272,6 +307,28 @@
                             <div class="modal-footer">
                               <button type="button" data-dismiss="modal" class="btn btn-secondary">Tutup</button>
                               <button type="submit" class="btn btn-danger" onclick='deletep()'>Hapus</button>
+                            </div>
+                          </div>
+              </div>
+         </div>
+
+           <!-- Modal Hapus-->
+        <div id="ModalHapusSkala" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+            <div role="document" class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 id="exampleModalLabel" class="modal-title">Hapus Pertanyaan</h4>
+                              <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                            </div>
+                            <div class="modal-body">
+                              <p>Apakah anda yakin ingin menghapus pertanyaan skala?</p>
+                              <div class="text-center">
+                              <i class="far fa-times-circle fa-4x mb-3 animated bounce" style="color: #D60C0C"></i>
+                            </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" data-dismiss="modal" class="btn btn-secondary">Tutup</button>
+                              <button type="submit" class="btn btn-danger" onclick='deleteSkala()'>Hapus</button>
                             </div>
                           </div>
               </div>
@@ -443,6 +500,10 @@
     }
 
    function deletep(){
-        window.location.href =  "<?php echo base_url();?>admin/Kuesioner/deletePertanyaan/"+p_id;
+        window.location.href =  "<?php echo base_url();?>admin/Kuesioner/deletePertanyaanPengguna/"+p_id;
+    }
+
+    function deleteSkala(){
+        window.location.href =  "<?php echo base_url();?>admin/Kuesioner/deletePertanyaanSkala/"+p_id;
     }
 </script>
