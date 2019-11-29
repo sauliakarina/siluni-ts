@@ -65,8 +65,12 @@
                       <button type="submit" class="btn btn-primary ml-auto btn-sm">Simpan</button>
                     </div>
                     <div class="card-body">
+                         <div class="form-group">
+                            <center><img width="30%" src="<?php echo base_url();?>/assets/siluni/images/beranda/<?php echo $beranda->foto ?>"></center>
+                        </div>
+                        <div class="line"></div>
                         <div class="form-group">
-                          <label for="fileInput"  class="form-control-label">Foto</label>
+                          <label for="fileInput"  class="form-control-label">Ganti Foto</label>
                             <input id="fileInput" name="userfile" type="file" class="form-control-file" value="<?php echo $beranda->foto ?>">
                         </div>
                       <textarea name="isi" rows="100" style="height: 500px"><?php echo $beranda->isi ?></textarea>

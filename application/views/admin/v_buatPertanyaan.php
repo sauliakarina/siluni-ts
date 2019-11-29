@@ -93,11 +93,11 @@
                                   <label class="col-sm-6 form-control-label"><small class="text-primary">Perlu tambahan input teks?</small></label>
                                   <div class="col-sm-6">
                                     <div class="i-checks">
-                                      <input type="radio" value="ya" name="inputBox<?php echo $p->id ?>" class="radio-template">
+                                      <input type="radio"  <?php if ($p->inputBox == 'ya') { echo 'checked=""';} ?> value="ya" name="inputBox<?php echo $p->id ?>" class="radio-template">
                                       <label>Ya</label>
                                     </div>
                                     <div class="i-checks">
-                                      <input type="radio" value="tidak" name="inputBox<?php echo $p->id ?>" class="radio-template">
+                                      <input type="radio"  <?php if ($p->inputBox == 'tidak') { echo 'checked=""';} ?> value="tidak" name="inputBox<?php echo $p->id ?>" class="radio-template">
                                       <label>Tidak</label>
                                     </div>
                                   </div>

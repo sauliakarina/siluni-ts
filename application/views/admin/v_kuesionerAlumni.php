@@ -28,7 +28,6 @@
                             <tr>
                               <th>No</th>
                               <th>Kuesioner</th>
-                              <th>Tanggal Dibuat</th>
                               <th>Status</th>
                               <th></th>
                               <th></th>
@@ -41,9 +40,9 @@
                             <tr>
                               <th scope="row"><?php echo $no++ ?></th>
                               <td><a href="form.html"><?php echo $k->nama_kuesioner ?></a></td>
-                              <td><?php $d=strtotime($k->tanggal_dibuat);
-                                        echo date("d M Y", $d); ?>
-                              </td>
+                              <!-- <td><?php //$d=strtotime($k->tanggal_dibuat);
+                                        //echo date("d M Y", $d); ?>
+                              </td> -->
                               <td><b><?php echo $k->status ?></b></td>
                               <td> 
                                 <?php if ($k->status == 'aktif') { ?>

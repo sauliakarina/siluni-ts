@@ -14,7 +14,11 @@
               <li class="breadcrumb-item active"><a href="<?php echo site_url('alumni/Profil/riwayatPekerjaan') ?>">Riwayat Pekerjaan</a></li>
             </ul>
           </div>
-         
+          <!-- marquee -->
+          <div class="alert alert-success alert-dismissible" role="alert" style="height: 60px">
+            <button type="button" onclick="this.parentNode.parentNode.removeChild(this.parentNode);" class="close" data-dismiss="alert"><span aria-hidden="true">×</span></button><marquee><p style="font-family:; font-size: 18pt">Harap lengkapi data riwayat pekerjaan anda</p></marquee>
+            <!-- marquee -->
+        </div>
          <section class="tables">   
             <div class="container-fluid">
               <div class="row">
@@ -53,7 +57,11 @@
                               <td><?php echo $r->periode_kerja ?></td>
                               <td>
                                 <div class="btn-group btn-group-toggle">
+                                <?php if ($r->pengguna_nama == Null) { ?>
+                                   <form  action="<?php echo base_url('alumni/Profil/editPekerjaan/'.$r->id_pekerjaan) ?>"><button type="submit" class="btn btn-outline-success btn-sm" data-toggle="tooltip">Lengkapi Data</button></form>
+                                <?php } else { ?>
                                  <form method='' action="<?php echo base_url('alumni/Profil/editPekerjaan/'.$r->id_pekerjaan) ?>"><button type="submit" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="Sunting"><i class="far fa-edit"></i></button></form>
+                               <?php } ?>
                                   <label class="btn btn-danger btn-sm" data-toggle="modal" data-target="#ModalHapus" onclick="set_id(<?php echo $r->id_pekerjaan ?>)">
                                     <input type="radio" name="options"><i class="fas fa-trash-alt"></i>
                                   </label>

@@ -53,12 +53,13 @@
                 <li><a href="<?php echo site_url('admin/Kuesioner/kuesionerPengguna') ?>">Kuesioner Pengguna</a></li>
               </ul>
             </li>
-            <li class="<?php if($this->uri->segment(2)=="Beranda" && ($this->uri->segment(3)=="kelolaBerandaAlumni" || $this->uri->segment(3)=="kelolaBerandaPengguna")){echo "active";} ?>"><a href="#dropdownKelolaBeranda" aria-expanded="false" data-toggle="collapse"> <i class="icon-bars"></i>Kelola Beranda</a>
+            <!-- <li class="<?php if($this->uri->segment(2)=="Beranda" && ($this->uri->segment(3)=="kelolaBerandaAlumni" || $this->uri->segment(3)=="kelolaBerandaPengguna")){echo "active";} ?>"><a href="#dropdownKelolaBeranda" aria-expanded="false" data-toggle="collapse"> <i class="icon-bars"></i>Kelola Beranda</a>
               <ul id="dropdownKelolaBeranda" class="collapse list-unstyled ">
                 <li><a href="<?php echo site_url('admin/Beranda/kelolaBerandaAlumni') ?>">Beranda Alumni</a></li>
                 <li><a href="<?php echo site_url('admin/Beranda/kelolaBerandaPengguna') ?>">Beranda Pengguna</a></li>
               </ul>
-            </li>
+            </li> -->
+             <li class="<?php if($this->uri->segment(2)=="Beranda" && ($this->uri->segment(3)=="kelolaBerandaAlumni" || $this->uri->segment(3)=="kelolaBerandaPengguna")){echo "active";} ?>"><a href="<?php echo site_url('admin/Beranda/kelolaBerandaAlumni') ?>"> <i class="icon-bars"></i>Kelola Beranda </a></li> 
              <li class="<?php if($this->uri->segment(1)=="Laporan" ){echo "active";} ?>"><a href="#dropdownLaporan" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-bar-chart"></i>Laporan</a>
               <ul id="dropdownLaporan" class="collapse list-unstyled ">
                 <li><a href="<?php echo site_url('Laporan') ?>">Alumni</a></li>
