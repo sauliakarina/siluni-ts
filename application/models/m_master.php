@@ -40,8 +40,8 @@ class M_master extends CI_Model{
 
 	function getInstansi() {
 		$this->db->select('*');
-		$this->db->order_by('nama_instansi', 'ASC');
 		$this->db->group_by('nama_instansi');
+		$this->db->order_by('nama_instansi', 'ASC');
 		$query = $this->db->get('instansi');
 		if($query->num_rows()>0)
 		{
@@ -178,6 +178,20 @@ class M_master extends CI_Model{
 		$this->db->where('nama_instansi',$nama);
 		$query = $this->db->get('instansi');
 		return $query->row();
+
+	}
+
+	function getInstansiByProdiID($id)
+	{
+		$this->db->select('*');
+		$this->db->where('prodiID',$id);
+		$query = $this->db->get('instansi');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
 
 	}
 

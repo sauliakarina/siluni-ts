@@ -51,7 +51,7 @@
                                 <input type="text" class="form-control" name="tempat_lahir" value="<?php echo $profil->tempat_lahir ?>">
                               </div>
                               <div class="col-md-6">
-                                <input type="text" name="tanggal_lahir" value="<?php echo $profil->tanggal_lahir ?>" class="form-control">
+                                <input type="date" name="tanggal_lahir" value="<?php echo $profil->tanggal_lahir ?>" class="form-control">
                               </div>
                             </div>
                           </div>

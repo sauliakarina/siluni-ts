@@ -180,6 +180,7 @@ class Profil extends CI_Controller {
 			//data riwayat pekerjaan
 			'posisi' => $this->input->post('posisi'),
 			'gaji' => $this->input->post('gaji'),
+			'profil' => $this->input->post('profil'),
 			'periode_kerja' => $periode,
 			'id_alumni' => $id_alumni
 		);
@@ -211,6 +212,7 @@ class Profil extends CI_Controller {
 			//data pengguna lama
 			$data_pekerjaan = array(
 				'posisi' => $this->input->post('posisi'),
+				'profil' => $this->input->post('profil'),
 				'gaji' => $this->input->post('gaji'),
 				'periode_kerja' => $this->input->post('periode'),
 				'id_alumni' => $this->m_alumni->getAlumniByUserID($this->session->userdata('userID'))->id,
@@ -253,6 +255,7 @@ class Profil extends CI_Controller {
 			//data tabel pekerjaan
 			$data_pekerjaan = array(
 				'posisi' => $this->input->post('posisi'),
+				'profil' => $this->input->post('profil'),
 				'gaji' => $this->input->post('gaji'),
 				'periode_kerja' => $this->input->post('periode'),
 				'id_alumni' => $this->m_alumni->getAlumniByUserID($this->session->userdata('userID'))->id,
@@ -384,6 +387,7 @@ class Profil extends CI_Controller {
 		$data = array(
 			'gaji' => $this->input->post('gaji'),
 			'posisi' => $this->input->post('posisi'),
+			'profil' => $this->input->post('profil'),
 			'periode_kerja' => $this->input->post('p1')."-".$this->input->post('p2')
 		);
 		$where = array('id' => $this->input->post('id_pekerjaan'));

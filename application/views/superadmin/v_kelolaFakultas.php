@@ -4,16 +4,9 @@
           <!-- Page Header-->
            <header class="page-header" style="background-color: #EFE037">
             <div class="container-fluid">
-              <h2 class="no-margin-bottom">Riwayat Pekerjaan</h2>
+              <h2 class="no-margin-bottom"></h2>
             </div>
           </header>
-           <!-- Breadcrumb-->
-          <div class="breadcrumb-holder container-fluid">
-            <ul class="breadcrumb">
-              <li class="breadcrumb-item"><a href="<?php echo site_url('alumni/Profil/biodata') ?>">Data Diri</a></li>
-              <li class="breadcrumb-item active"><a href="<?php echo site_url('alumni/Profil/riwayatPekerjaan') ?>">Riwayat Pekerjaan</a></li>
-            </ul>
-          </div>
          
          <section class="tables">   
             <div class="container-fluid">
@@ -21,7 +14,7 @@
                 <div class="col-lg-12">
                   <div class="card">
                     <div class="card-header d-flex align-items-center">
-                      <h3 class="h4">Program Studi UNJ</h3>
+                      <h3 class="h4">Daftar Fakultas UNJ</h3>
                       <button type="button" class="btn btn-primary ml-auto btn-sm" data-toggle="modal" data-target="#modalTambah"><i class="fas fa-user-plus"></i> Tambah Data</button>
                     </div>
                     <div class="card-body">
@@ -30,25 +23,23 @@
                            <thead>
                             <tr>
                               <th>No</th>
-                              <th>Kode Prodi</th>
-                              <th>Prodi</th>
-                              <th>Fakultas</th>
+                              <th>Kode Fakultas</th>
+                              <th>Nama Fakultas</th>
                               <th></th>
                             </tr>
                           </thead>
                           <tbody>
                             <?php 
                               $no = 1;
-                              foreach($prodi as $d){ 
+                              foreach($fakultas as $d){ 
                               ?>
                             <tr>
                               <th scope="row"><?php echo $no++ ?></th>
-                              <td><?php echo $d->kode_prodi ?></td>
-                              <td><?php echo $d->nama_prodi ?></td>
-                              <td><?php echo $this->m_master->getFakultasByID($d->fakultasID)->nama_fakultas ?></td>
+                              <td><?php echo $d->kode_fakultas ?></td>
+                              <td><?php echo $d->nama_fakultas ?></td>
                               <td>
                                 <div class="btn-group btn-group-toggle">
-                                 <button onclick='editProdi(<?php echo $d->id ?>)' id="btn-edit" class="btn-warning btn-sm" data-toggle="modal" data-target="#ModalEdit"><i class="fas fa-user-edit"></i></button>
+                                 <button onclick='editFakultas(<?php echo $d->id ?>)' id="btn-edit" class="btn-warning btn-sm" data-toggle="modal" data-target="#ModalEdit"><i class="fas fa-user-edit"></i></button>
                                   <label class="btn btn-danger btn-sm" data-toggle="modal" data-target="#ModalHapus" onclick="set_id(<?php echo $d->id ?>)">
                                     <input type="radio" name="options"><i class="fas fa-trash-alt"></i>
                                   </label>
@@ -71,28 +62,19 @@
                         <div role="document" class="modal-dialog">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h4 id="exampleModalLabel" class="modal-title">Tambah Prodi</h4>
+                              <h4 id="exampleModalLabel" class="modal-title">Tambah Fakultas</h4>
                               <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
                             </div>
                             <div class="modal-body">
                               <p></p>
-                              <?php echo form_open_multipart('superadmin/Master/exeAddProdi'); ?>
+                              <?php echo form_open_multipart('superadmin/Master/exeAddFakultas'); ?>
                                 <div class="form-group">
-                                  <label>Nama Prodi</label>
-                                  <input type="text" placeholder="" class="form-control" name="nama_prodi">
+                                  <label>Nama Fakultas</label>
+                                  <input type="text" placeholder="" class="form-control" name="nama_fakultas">
                                 </div>
                                 <div class="form-group">       
-                                  <label>Kode Prodi</label>
-                                  <input type="text" placeholder="" class="form-control" name="kode_prodi">
-                                </div>
-                                <div class="form-group">
-                                  <label>Fakultas</label>
-                                    <select name="fakultasID" class="form-control">
-                                      <option></option>
-                                      <?php foreach ($fakultas as $f) { ?>
-                                      <option value="<?php echo $f->id ?>"><?php echo $f->nama_fakultas ?></option>
-                                    <?php } ?>
-                                    </select>
+                                  <label>Kode Fakultas</label>
+                                  <input type="text" placeholder="" class="form-control" name="kode_fakultas">
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -110,29 +92,20 @@
                         <div role="document" class="modal-dialog">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h4 id="exampleModalLabel" class="modal-title">Sunting Prodi</h4>
+                              <h4 id="exampleModalLabel" class="modal-title">Sunting Fakultas</h4>
                               <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
                             </div>
                             <div class="modal-body">
                               <p></p>
-                              <?php echo form_open_multipart('superadmin/Master/exeEditProdi'); ?>
+                              <?php echo form_open_multipart('superadmin/Master/exeEditFakultas'); ?>
                                 <div class="form-group">
-                                  <label>Nama Prodi</label>
-                                  <input type="text" id="nama_prodi" value="<?php echo $d->nama_prodi ?>" class="form-control" name="nama_prodi">
+                                  <label>Nama Fakultas</label>
+                                  <input type="text" id="nama_fakultas" value="<?php echo $d->nama_fakultas ?>" class="form-control" name="nama_fakultas">
                                   <input type="hidden" id="id" value="<?php echo $d->id ?>" class="form-control" name="id">
                                 </div>
                                 <div class="form-group">       
-                                  <label>Kode Prodi</label>
-                                  <input type="text" placeholder="" class="form-control"  name="kode_prodi" id="kode_prodi" value="<?php echo $d->kode_prodi ?>">
-                                </div>
-                                <div class="form-group">
-                                  <label>Fakultas</label>
-                                    <select  id="fakultasID" name="fakultasID" class="form-control">
-                                      <option value="<?php echo $d->fakultasID ?>"><?php echo $d->fakultasID ?></option>
-                                      <?php foreach ($fakultas as $f) { ?>
-                                      <option value="<?php echo $f->id ?>"><?php echo $f->nama_fakultas ?></option>
-                                      <?php } ?>
-                                    </select>
+                                  <label>Kode Fakultas</label>
+                                  <input type="text" placeholder="" class="form-control"  name="kode_fakultas" id="kode_fakultas" value="<?php echo $d->kode_fakultas ?>">
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -175,20 +148,19 @@
   }
 
   function deletep(){
-    window.location.href =  "<?php echo base_url();?>superadmin/Master/deleteProdi/"+p_id;
+    window.location.href =  "<?php echo base_url();?>superadmin/Master/deleteFakultas/"+p_id;
   }
 
-  function editProdi(id) {
+  function editFakultas(id) {
 
       $.ajax({
-        url: "<?php echo base_url('superadmin/Master/getProdi/') ?>/" + id,
+        url: "<?php echo base_url('superadmin/Master/getFakultas/') ?>/" + id,
         type: "GET",
         dataType: "JSON",
         success: function(data) {
           $('[name="id"]').val(data.id);
-          $('[name="nama_prodi"]').val(data.nama_prodi);
-          $('[name="kode_prodi"]').val(data.kode_prodi);
-          $('[name="fakultasID"]').val(data.fakultasID);
+          $('[name="nama_fakultas"]').val(data.nama_fakultas);
+          $('[name="kode_fakultas"]').val(data.kode_fakultas);
           
           $('#ModalEdit').modal('show');
         },

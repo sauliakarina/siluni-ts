@@ -372,6 +372,6 @@
     }
 
    function deletep(){
-        window.location.href =  "<?php echo base_url();?>admin/Kuesioner/deletePertanyaan/"+p_id;
+        window.location.href =  "<?php echo base_url();?>admin/Kuesioner/deletePertanyaan2/"+p_id;
     }
 </script>

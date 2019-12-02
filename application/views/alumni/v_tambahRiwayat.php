@@ -56,6 +56,19 @@
                         </div>
                          <div class="line"></div>
                         <div class="form-group row">
+                          <label class="col-sm-3 form-control-label">Profil Pekerjaan</label>
+                          <div class="col-sm-9">
+                            <select name="profil" class="form-control mb-3">
+                              <option></option>
+                              <option value="Programmer"> Programmer </option>
+                              <option value="Penanggung Jawab Jaringan"> Penanggung Jawab Jaringan </option>
+                              <option value="Wirausahawan"> Wirausahawan </option>
+                              <option value="Peneliti"> Peneliti </option>
+                            </select>
+                          </div>
+                        </div>
+                         <div class="line"></div>
+                        <div class="form-group row">
                           <label class="col-sm-3 form-control-label">Pendapatan Tiap Bulan</label>
                           <div class="col-sm-9">
                             <select name="gaji" class="form-control mb-3">

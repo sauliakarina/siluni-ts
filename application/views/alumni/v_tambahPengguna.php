@@ -63,6 +63,7 @@
                             <input type="text" placeholder="" class="form-control" name="nama">
                             <input type="hidden" value="<?php echo $id_instansi ?>" name="id_instansi">
                                <input type="hidden" value="<?php echo $posisi ?>" name="posisi">
+                               <input type="hidden" value="<?php echo $profil ?>" name="profil">
                                <input type="hidden" value="<?php echo $gaji ?>" name="gaji">
                                <input type="hidden" value="<?php echo $periode_kerja ?>" name="periode">
                           </div>

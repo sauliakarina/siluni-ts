@@ -25,6 +25,21 @@ class Pengguna extends CI_Controller {
 		$this->load->view('element/footer');
 	}
 
+	public function editPengguna($id)
+	{
+		$data = array(
+			'role' => $this->session->userdata('role'),
+			'userID' => $this->session->userdata('userID'),
+			'prodiID' => $this->session->userdata('prodiID'),
+			'pr'=> $this->m_pengguna->getPenggunaByID($id)
+		);
+		$this->load->view('element/head');
+		$this->load->view('element/header');
+		$this->load->view('element/navbar', $data);
+		$this->load->view('admin/v_editPenggunaAlumni', $data);
+		$this->load->view('element/footer');
+	}
+
 	function deletePengguna($id){
 		$data = array(
 		'isDelete' => 'yes',
@@ -61,8 +76,21 @@ class Pengguna extends CI_Controller {
 			'pengguna_telepon' => $this->input->post('pengguna_telepon'),
 		);
 		
-		$where = array('id' => $this->input->post('id'));
+		$where = array('id' => $this->input->post('penggunaID'));
 		$this->m_master->updateData($where,$data,'pengguna');
+		redirect('admin/Pengguna');
+	}
+
+	function updateTandai()
+	{
+		$penggunaID = $this->input->post('penggunaID');
+		foreach ($penggunaID as $p) {
+			$data = array(
+			'tandai' => $this->input->post('tandai'.$p)
+			);
+			$where = array('id' => $p);
+			$this->m_master->updateData($where,$data,'pengguna');
+		}
 		redirect('admin/Pengguna');
 	}
 

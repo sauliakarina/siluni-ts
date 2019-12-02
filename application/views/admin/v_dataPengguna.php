@@ -17,9 +17,11 @@
               <div class="row">
                 <div class="col-lg-12">
                   <div class="card">
+                    <form method="post" action="<?php echo base_url(); ?>admin/Pengguna/updateTandai">
                     <div class="card-header d-flex align-items-center">
                       <h3 class="h4">Pengguna Alumni Ilmu Komputer</h3>
                       <!-- <button type="button" class="btn btn-primary ml-auto btn-sm"><i class="fas fa-user-plus"></i> Tambah Data</button> -->
+                        <button type="submit" class="btn btn-primary btn-sm ml-auto">Simpan</button>
                     </div>
                     <div class="card-body">
                       <div class="table-responsive">                       
@@ -33,11 +35,13 @@
                               <th>Email</th>
                               <th>No Telepon</th>
                               <th></th>
+                              <th>Tandai</th>
                             </tr>
                           </thead>
                           <tbody>
                             <?php 
-                            $no = 1; 
+                            $no = 1;
+                            $i = 0; 
                             foreach($pengguna as $p){ ?>
                             <tr>
                               <th scope="row"><?php echo $no++ ?></th>
@@ -47,15 +51,22 @@
                               <td><?php echo $p->pengguna_email ?></td>
                               <td><?php echo $p->pengguna_telepon ?></td>
                               <td>
-                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                  <button onclick='editPengguna(<?php echo $p->id ?>)' id="btn-edit" class="btn-warning btn-sm" data-toggle="modal" data-target="#ModalEdit"><i class="fas fa-user-edit"></i></button>
+                                <div class="btn-group btn-group-toggle">
+                                  <!-- <button onclick='editPengguna(<?php echo $p->id ?>)' id="btn-edit" class="btn-warning btn-sm" data-toggle="modal" data-target="#ModalEdit"><i class="fas fa-user-edit"></i></button> -->
+                                   <form method='post' action="<?php echo base_url('admin/Pengguna/editPengguna/'.$p->id) ?>">
+                                    <button type="submit" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="Sunting"><i class="far fa-edit"></i></button></form>
                                    <button onclick="set_id(<?php echo $p->id ?>)" class="btn btn-danger btn-sm" data-toggle="modal" data-placement="top" title="Hapus" data-target="#ModalHapus"><i class="fas fa-trash-alt"></i></button>
                                 </div>
                               </td>
+                              <td><div class="i-checks">
+                              <input name="tandai<?php echo $p->id ?>" type="checkbox" <?php if ($p->tandai == 'checked') { echo 'checked=""'; } ?> value="checked" class="checkbox-template">
+                              <input type="hidden" value="<?php echo $p->id ?>" name="penggunaID[<?php echo $i++; ?>]">
+                            </div></td>
                             </tr>
                           <?php } ?>
                           </tbody>
                         </table>
+                      </form>
                       </div>
                     </div>
                   </div>

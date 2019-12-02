@@ -484,6 +484,27 @@ public function addGanda() {
 		redirect('admin/Kuesioner/buatPertanyaan/'.$kuesionerID);
 	}
 
+	function deletePertanyaan2($pertanyaanID){
+		$kuesionerID = $this->m_kuesioner->getPertanyaanByID($pertanyaanID)->kuesionerID;
+		//get id pilihan
+		$pilihan = $this->m_kuesioner->getPilihanJawabanByPertanyaanID($pertanyaanID);
+		//delete pilihan jawaban
+		foreach ($pilihan as $p) {
+			$pilihanID = $p->id;
+			$this->m_kuesioner->deletePilihanByID($pilihanID);
+		}
+		//delete pertanyaan
+		$where = array(
+			'id' => $pertanyaanID
+		);
+		$data = array(
+			'isDelete' => 'yes',
+			'customID' => ''
+		);
+		$this->m_master->updateData($where,$data,'pertanyaan');
+		redirect('admin/Kuesioner/editKuesioner/'.$kuesionerID);
+	}
+
 	function deletePertanyaanPengguna($pertanyaanID){
 		$kuesionerID = $this->m_kuesioner->getPertanyaanByID($pertanyaanID)->kuesionerID;
 		//get id pilihan

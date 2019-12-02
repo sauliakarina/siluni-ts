@@ -172,7 +172,10 @@ class Alumni extends CI_Controller {
 					$where = array( 'nama_instansi' => $rowData[0][7]);
 				    $cek = $this->m_master->cekData("instansi",$where)->num_rows();
 				    if ($cek == 0) {
-				    	$data = array("nama_instansi" => $rowData[0][7]);
+				    	$data = array(
+				    		"nama_instansi" => $rowData[0][7],
+				    		"jenis_instansi" => $rowData[0][8],
+				    	);
 				    	$insert = $this->db->insert("instansi",$data);
 				    	$id_instansi = $this->m_master->getInstansiByName($rowData[0][7])->id;
 				    } else {
@@ -204,7 +207,7 @@ class Alumni extends CI_Controller {
 				    );
 				    $insert = $this->db->insert("pengguna",$data);
 				    //tabel pekerjaan
-				    $gajiawal = str_replace(".","",$rowData[0][9]);
+				    $gajiawal = str_replace(".","",$rowData[0][10]);
 				    if ($gajiawal < "1000000") {
 				    	$gaji = "< 1jt";
 				    } elseif ($gajiawal >= "1000000" && $gajiawal <= "2000000" ) {
@@ -215,7 +218,7 @@ class Alumni extends CI_Controller {
 				    	$gaji = "> 4jt";
 				    }
 				    $data = array(
-				    	"posisi" => $rowData[0][8],
+				    	"posisi" => $rowData[0][9],
 				    	"gaji" => $gaji,
 				    	"id_pengguna" => $this->m_pengguna->getPenggunaByPenggunaID($penggunaID)->id,
 				    	"id_alumni" => $this->m_alumni->getAlumniByUserID("ALU".$rowData[0][1])->id

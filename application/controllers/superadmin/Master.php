@@ -14,7 +14,8 @@ class Master extends CI_Controller {
 		$data = array(
 			'role' => $this->session->userdata('role'),
 			'userID' => $this->session->userdata('userID'),
-			'prodiID' => $this->session->userdata('prodiID')
+			'prodiID' => $this->session->userdata('prodiID'),
+			'fakultas' => $this->m_master->getFakultas()
 		);
 		$this->load->view('element/head');
 		$this->load->view('element/header');
@@ -50,7 +51,50 @@ class Master extends CI_Controller {
 			redirect('superadmin/Master/kelolaProdi');
 	}
 
+	function exeAddFakultas()
+	{
+		$data = array(
+			'kode_fakultas' => $this->input->post('kode_fakultas'),
+			'nama_fakultas' => $this->input->post('nama_fakultas')
+			);
+			$this->m_master->inputData($data,'fakultas');
+			redirect('superadmin/Master/kelolaFakultas');
+	}
+
+
+	function exeEditProdi()
+	{
+		$data = array(
+			'nama_prodi' => $this->input->post('nama_prodi'),
+			'kode_prodi' => $this->input->post('kode_prodi'),
+			'fakultasID' => $this->input->post('fakultasID'),
+		);
+		
+		$where = array('id' => $this->input->post('id'));
+		$this->m_master->updateData($where,$data,'prodi');
+		redirect('superadmin/Master/kelolaProdi');
+	}
+
+	function exeEditFakultas()
+	{
+		$data = array(
+			'nama_fakultas' => $this->input->post('nama_fakultas'),
+			'kode_fakultas' => $this->input->post('kode_fakultas')
+		);
+		
+		$where = array('id' => $this->input->post('id'));
+		$this->m_master->updateData($where,$data,'fakultas');
+		redirect('superadmin/Master/kelolaFakultas');
+	}
+
+
 	function deleteProdi($id){
+		$where = array('id' => $id);
+		$this->m_master->deleteData($where,'prodi');
+		redirect('superadmin/Master/kelolaProdi');
+	}
+
+	function deleteFakultas($id){
 		$where = array('id' => $id);
 		$this->m_master->deleteData($where,'prodi');
 		redirect('superadmin/Master/kelolaProdi');
@@ -59,6 +103,12 @@ class Master extends CI_Controller {
 	public function getProdi($id)
 	{
 		$data = $this->m_master->getProdiByID($id);
+		echo json_encode($data);
+	}
+
+	public function getFakultas($id)
+	{
+		$data = $this->m_master->getFakultasByID($id);
 		echo json_encode($data);
 	}
 

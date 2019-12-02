@@ -15,7 +15,7 @@
             </ul>
           </div>
 
-                   <!-- Forms Section-->
+          <!-- Forms Section-->
           <section class="forms"> 
             <div class="container-fluid">
               <div class="row">
@@ -58,6 +58,18 @@
                             <input type="text" name="posisi" class="form-control" value="<?php echo $p->posisi ?>">
                              <input type="hidden" name="id_pekerjaan" class="form-control" value="<?php echo $p->id_pekerjaan ?>">
                              <input type="hidden" name="id_pengguna" class="form-control" value="<?php echo $p->id_pengguna ?>">
+                          </div>
+                        </div>
+                         <div class="line"></div>
+                        <div class="form-group row">
+                          <label class="col-sm-3 form-control-label">Profil Pekerjaan</label>
+                          <div class="col-sm-9">
+                            <select name="profil" class="form-control mb-3">
+                              <option value="<?php echo $p->profil ?>"><b><?php echo $p->profil ?></b></option>
+                              <option value="Programmer">Programmer</option>
+                              <option value="Penangungg Jawab Jaringan">Penangungg Jawab Jaringan</option>
+                              <option value="Wirausahawan">Wirausahawan</option>
+                            </select>
                           </div>
                         </div>
                         <div class="line"></div>
