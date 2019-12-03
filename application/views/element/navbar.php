@@ -74,7 +74,7 @@
                <li class="<?php if($this->uri->segment(2)=="Profil"){echo "active";} ?>"><a href="#dropdownKelolaData" aria-expanded="false" data-toggle="collapse"><i class="icon-user"></i>Profil</a>
               <ul id="dropdownKelolaData" class="collapse list-unstyled ">
                 <li><a href="<?php echo site_url('alumni/Profil/biodata') ?>">Data Diri</a></li>
-                <li><a href="<?php echo site_url('alumni/Profil/riwayatPekerjaan') ?>">Riwayat Pekerjaan</a></li>
+                <li><a href="<?php echo site_url('alumni/Profil/riwayatPekerjaan') ?>">Data Pekerjaan</a></li>
               </ul>
             </li>
               <li class="<?php if($this->uri->segment(2)=="Berita"){echo "active";} ?>"><a href="<?php echo site_url('alumni/Berita') ?>"> <i class="far fa-newspaper"></i>Berita Saya </a></li>

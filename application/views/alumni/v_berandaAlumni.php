@@ -18,11 +18,13 @@
                     <div class="card-header"><h5 class="card-title">Tracer Study Ilmu Komputer UNJ</h5>
                     </div>
                     <div class="card-body">
-                     <div class="col-sm-12">
-                        <center><img class="img-fluid" src="<?php echo base_url();?>/assets/siluni/images/beranda/<?php echo $beranda->foto ?>" alt="Card image cap" style="height: :270px;width:340px;margin-bottom: 15px"></center>
-                      </div>
-                      <p class="card-text" align="justify"><?php echo $beranda->isi ?></p>
-                    </div>
+                      <div class="row">
+                          <div class="col-sm-12">
+                          <center><img class="img-fluid rounded" src="<?php echo base_url();?>/assets/siluni/images/beranda/<?php echo $beranda->foto ?> ?>" alt="Card image cap" style="height: :350px;width:600px;margin-bottom: 30px"></center>
+                          </div>
+                          <p class="card-text" align="justify"><?php echo $beranda->isi ?></p>
+                      </div> <!-- row -->
+                    </div> <!-- card body -->
                   </div>
                 </div>
                 </div>
