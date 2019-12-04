@@ -398,6 +398,51 @@ public function addGanda() {
 
 	}
 
+	public function addSkalaAlumni() {
+		//generate customID pertanyaan
+		//input pertanyaan
+		$id_found = false;
+		while (!$id_found) {  
+				$customIDPR = 'PR'.time();
+				$where = array( 'customID' => $customIDPR);
+				$cek = $this->m_master->cekData("pertanyaan",$where)->num_rows();
+				if ($cek == 0) {
+					$id_found = true;
+				 }
+		}  //tutup while
+		$data = array(
+				'pertanyaan' => $this->input->post('pertanyaan_skala'),
+				'kuesionerID' => $this->input->post('kuesionerID'),
+				'jenis' => 'skala',
+				'customID' => $customIDPR
+		);
+		$this->m_master->inputData($data,'pertanyaan');
+		$pertanyaanID = $this->m_kuesioner->getPertanyaanByCustomID($customIDPR)->id;
+		
+		//input daftar pertanyaan skala
+		$skalaPertanyaan = $this->input->post('skalaPertanyaan');
+		foreach ($skalaPertanyaan as $s) {
+			$data = array(
+				'pertanyaan' => $s,
+				'pertanyaanID' => $pertanyaanID
+			);
+			$this->m_master->inputData($data,'pertanyaan_skala');
+		} // foreach pertanyaan skala
+
+		//input daftar pertanyaan skala
+		$skalaNilai = $this->input->post('skalaNilai');
+		foreach ($skalaNilai as $s) {
+			$data = array(
+				'nilai' => $s,
+				'pertanyaanID' => $pertanyaanID
+			);
+			$this->m_master->inputData($data,'skala_nilai');
+		} // foreach skala penilaian
+		//href
+	    $kuesionerID = $this->input->post('kuesionerID');
+		redirect('admin/Kuesioner/kelolaKuesionerAlumni/'.$kuesionerID);
+	}
+
 
 	public function addSkala() {
 		//generate customID pertanyaan
@@ -538,6 +583,39 @@ public function addGanda() {
 		);
 		$this->m_master->updateData($where,$data,'pertanyaan');
 		redirect('admin/Kuesioner/buatPertanyaanPengguna/'.$kuesionerID);
+	}
+
+		function deletePertanyaanSkalaAlumni($pertanyaanID){
+		$kuesionerID = $this->m_kuesioner->getPertanyaanByID($pertanyaanID)->kuesionerID;
+		//get id pilihan
+		$skalaNilai = $this->m_kuesioner->getSkalaByPertanyaanID($pertanyaanID);
+		//delete skala nilai
+		foreach ($skalaNilai as $p) {
+			$skalaID = $p->id;
+			$where = array(
+			'id' => $skalaID
+			);
+			$this->m_master->deleteData($where,'skala_nilai');
+		}
+		//delete pertanyaan skala
+		$skalaPertanyaan = $this->m_kuesioner->getPertanyaanSkalaByPertanyaanID($pertanyaanID);
+		foreach ($skalaPertanyaan as $p) {
+			$id = $p->id;
+			$where = array(
+			'id' => $id
+			);
+			$this->m_master->deleteData($where,'pertanyaan_skala');
+		}
+		//delete pertanyaan
+		$where = array(
+			'id' => $pertanyaanID
+		);
+		$data = array(
+			'isDelete' => 'yes',
+			'customID' => ''
+		);
+		$this->m_master->updateData($where,$data,'pertanyaan');
+		redirect('admin/Kuesioner/kelolaKuesionerAlumni/'.$kuesionerID);
 	}
 
 	function nonaktifKuesioner($id)

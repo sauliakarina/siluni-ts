@@ -39,7 +39,7 @@
                              ?>
                             <tr>
                               <th scope="row"><?php echo $no++ ?></th>
-                              <td><a href="form.html"><?php echo $k->nama_kuesioner ?></a></td>
+                              <td><a href="<?php echo base_url('admin/Kuesioner/kelolaKuesionerAlumni/'.$k->id) ?>"><?php echo $k->nama_kuesioner ?></a></td>
                               <!-- <td><?php //$d=strtotime($k->tanggal_dibuat);
                                         //echo date("d M Y", $d); ?>
                               </td> -->

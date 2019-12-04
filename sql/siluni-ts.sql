@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 04, 2019 at 03:53 AM
+-- Generation Time: Dec 04, 2019 at 09:36 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.1.32
 
@@ -255,8 +255,7 @@ CREATE TABLE `kuesioner` (
 INSERT INTO `kuesioner` (`id`, `customID`, `nama_kuesioner`, `responden`, `tanggal_dibuat`, `status`, `prodiID`) VALUES
 (10, 'RFGNCSQG', 'Kompetensi', 'pengguna', '2019-11-27 01:14:59', 'aktif', 1),
 (12, 'CB32B98M', 'Pekerjaan', 'alumni', '2019-12-04 01:17:24', 'aktif', 1),
-(13, '5B7C2P3D', 'Pendidikan', 'alumni', '2019-12-04 01:46:24', 'aktif', 1),
-(15, '9XJ3DKJK', 'Kompetensi', 'alumni', '2019-12-04 02:28:42', 'aktif', 1);
+(13, '5B7C2P3D', 'Pendidikan', 'alumni', '2019-12-04 01:46:24', 'aktif', 1);
 
 -- --------------------------------------------------------
 
@@ -358,7 +357,14 @@ INSERT INTO `pertanyaan` (`id`, `pertanyaan`, `jenis`, `inputBox`, `textarea`, `
 (63, 'Berapa banyak perusahaan/instansi/institusi yang merespons lamaran anda?', 'isian', 'tidak', 'tidak', 'PR1575423401', 12, 'no'),
 (64, 'Berapa banyak perusahaan/instansi/institusi yang mengundang anda untuk wawancara?', 'isian', 'tidak', 'tidak', 'PR1575423418', 12, 'no'),
 (65, 'Adakah hambatan/kendala yang Saudara alami dalam menyesuaikan diri dengan pekerjaan?   Jelaskan alasan anda', 'pilihan', 'ya', 'tidak', 'PR1575423501', 12, 'no'),
-(66, 'Test pertanyaan', 'pilihan', 'ya', 'tidak', '', 13, 'yes');
+(66, 'Test pertanyaan', 'pilihan', 'ya', 'tidak', '', 13, 'yes'),
+(77, 'Seberapa besar penekanan pada metode pembelajaran di bawah ini dilaksanakan di prodi anda?', 'skala', 'tidak', 'tidak', '', 13, 'yes'),
+(78, 'Seberapa besar penekanan pada metode pembelajaran di bawah ini dilaksanakan di prodi anda?', 'skala', 'tidak', 'tidak', 'PR1575447057', 13, 'no'),
+(79, 'Setelah Saudara lulus dari UNJ, apakah Saudara melanjutkan pendidikan lagi?  ', 'pilihan', 'tidak', 'tidak', 'PR1575447158', 13, 'no'),
+(80, 'Dimana Saudara melanjutkan pendidikan?', 'isian', 'tidak', 'tidak', 'PR1575447232', 13, 'no'),
+(81, 'Apa nama program studi dimana anda melanjutkan pendidikan?', 'isian', 'tidak', 'tidak', 'PR1575447405', 13, 'no'),
+(83, 'Apakah S1 anda linear dengan S2 ?', 'pilihan', 'tidak', 'tidak', 'PR1575447916', 13, 'no'),
+(84, 'Setelah Saudara lulus dari UNJ, apakah Saudara meningkatkan kompetensi diri melalui : Sebutkan nama dan lamanya', 'pilihan', 'ya', 'tidak', 'PR1575448012', 13, 'no');
 
 -- --------------------------------------------------------
 
@@ -383,7 +389,14 @@ INSERT INTO `pertanyaan_skala` (`id`, `pertanyaan`, `pertanyaanID`) VALUES
 (8, 'Kemampuan penggunaan Teknologi Informasi lulusan Program Studi Ilmu Komputer UNJ', 53),
 (9, 'Kemampuan Komunikasi lulusan Program Studi Ilmu Komputer UNJ', 53),
 (10, 'Kemampuan Kerjasama tim lulusan Program Studi Ilmu Komputer UNJ', 53),
-(11, 'Pengembangan diri lulusan Program Studi Ilmu Komputer UNJ', 53);
+(11, 'Pengembangan diri lulusan Program Studi Ilmu Komputer UNJ', 53),
+(18, 'Perkuliahan', 78),
+(19, 'Demonstrasi', 78),
+(20, 'Partisipasi dalam proyek riset ', 78),
+(21, 'Magang', 78),
+(22, 'Praktikum ', 78),
+(23, 'Kerja Lapangan', 78),
+(24, 'Diskusi', 78);
 
 -- --------------------------------------------------------
 
@@ -422,7 +435,14 @@ INSERT INTO `pilihan_jawaban` (`id`, `pertanyaanID`, `pilihan`) VALUES
 (100, 61, ' Bekerja di tempat yang sama dengan tempat kerja semasa kuliah'),
 (101, 61, 'Lainnya : '),
 (102, 65, 'Ada'),
-(103, 65, 'Tidak');
+(103, 65, 'Tidak'),
+(119, 79, 'Ya'),
+(120, 79, 'Tidak'),
+(121, 83, 'Ya'),
+(122, 83, 'Tidak'),
+(123, 84, 'Penataran/Pelatihan'),
+(124, 84, 'Short Course'),
+(125, 84, 'Belum Ada');
 
 -- --------------------------------------------------------
 
@@ -467,7 +487,12 @@ INSERT INTO `skala_nilai` (`id`, `nilai`, `pertanyaanID`) VALUES
 (7, 'Sangat Baik', 53),
 (8, 'Baik', 53),
 (9, 'Cukup', 53),
-(10, 'Kurang', 53);
+(10, 'Kurang', 53),
+(17, 'Sangat Besar', 78),
+(18, 'Besar', 78),
+(19, 'Cukup Besar', 78),
+(20, 'Kurang', 78),
+(21, 'Tidak Sama Sekali', 78);
 
 -- --------------------------------------------------------
 
@@ -697,19 +722,19 @@ ALTER TABLE `pengguna`
 -- AUTO_INCREMENT for table `pertanyaan`
 --
 ALTER TABLE `pertanyaan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- AUTO_INCREMENT for table `pertanyaan_skala`
 --
 ALTER TABLE `pertanyaan_skala`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `pilihan_jawaban`
 --
 ALTER TABLE `pilihan_jawaban`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
 
 --
 -- AUTO_INCREMENT for table `prodi`
@@ -721,7 +746,7 @@ ALTER TABLE `prodi`
 -- AUTO_INCREMENT for table `skala_nilai`
 --
 ALTER TABLE `skala_nilai`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `user`
