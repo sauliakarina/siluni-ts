@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 29, 2019 at 05:06 AM
+-- Generation Time: Dec 04, 2019 at 03:53 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.1.32
 
@@ -35,7 +35,7 @@ CREATE TABLE `alumni` (
   `nama` varchar(225) NOT NULL,
   `jenis_kelamin` varchar(50) NOT NULL,
   `tempat_lahir` varchar(100) NOT NULL,
-  `tanggal_lahir` date NOT NULL,
+  `tanggal_lahir` varchar(50) NOT NULL,
   `alamat` varchar(225) NOT NULL,
   `avatar` varchar(225) NOT NULL,
   `tahun_masuk` varchar(50) NOT NULL,
@@ -60,7 +60,7 @@ CREATE TABLE `alumni` (
 --
 
 INSERT INTO `alumni` (`id`, `userID`, `nim`, `nama`, `jenis_kelamin`, `tempat_lahir`, `tanggal_lahir`, `alamat`, `avatar`, `tahun_masuk`, `tahun_lulus`, `tanggal_lulus`, `ipk`, `toefl`, `pekerjaan`, `email`, `kuesioner`, `no_telepon`, `waktu_skripsi`, `tampil_ipk`, `tampil_pekerjaan`, `tampil_waktu_skripsi`, `status`, `prodiID`) VALUES
-(28, 'ALU3145136217', '3145136217', 'M. Reyhan Fahlevi', 'Laki-laki', '', '0000-00-00', '', '', '2013', '2017', '0000-00-00', '3.84', NULL, '', 'reysdesign@hotmail.com', '', '0877 8528 2705', '', 'yes', 'yes', 'yes', 'aktif', 1),
+(28, 'ALU3145136217', '3145136217', 'M. Reyhan Fahlevi', 'Laki-laki', 'Jakarta', '2019-08-08', '', '', '2013', '2017', '0000-00-00', '3.84', '', '', 'reysdesign@hotmail.com', '', '0877 8528 2705', '', 'yes', 'yes', 'yes', 'aktif', 1),
 (29, 'ALU3145136218', '3145136218', 'Gregorius Andito H', 'Laki-laki', '', '0000-00-00', '', '', '2013', '2017', '0000-00-00', '3.72', NULL, '', '', '', '0878 8112 3212', '', 'yes', 'yes', 'yes', 'aktif', 1),
 (30, 'ALU3145136208', '3145136208', 'Alitinia Prastiantari', 'Perempuan', '', '0000-00-00', '', '', '2013', '2017', '0000-00-00', '3.72', NULL, '', '', '', '08129142949', '', 'yes', 'yes', 'yes', 'aktif', 1),
 (31, 'ALU3145136211', '3145136211', 'Tiara Amelia', 'Perempuan', '', '0000-00-00', '', '', '2013', '2017', '0000-00-00', '3.77', NULL, '', '', '', '081282003420', '', 'yes', 'yes', 'yes', 'aktif', 1),
@@ -185,7 +185,8 @@ CREATE TABLE `fakultas` (
 --
 
 INSERT INTO `fakultas` (`id`, `kode_fakultas`, `nama_fakultas`) VALUES
-(1, '', 'FMIPA');
+(1, '', 'FMIPA'),
+(2, '', 'FBS');
 
 -- --------------------------------------------------------
 
@@ -197,25 +198,26 @@ CREATE TABLE `instansi` (
   `id` int(11) NOT NULL,
   `nama_instansi` varchar(225) NOT NULL,
   `jenis_instansi` enum('Lokal','Nasional','Internasional','') DEFAULT NULL,
-  `alamat` text DEFAULT NULL
+  `alamat` text DEFAULT NULL,
+  `prodiID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `instansi`
 --
 
-INSERT INTO `instansi` (`id`, `nama_instansi`, `jenis_instansi`, `alamat`) VALUES
-(2, 'PT. Harmoni Solusi Bisnis', 'Nasional', 'Jl. Dempo I No.51, RT.4/RW.3, Gunung, Kec. Kby. Baru, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12120'),
-(3, 'PT Kompas Media Nusantara', 'Nasional', 'Jl. Palmerah Sel. No.26-28, RT.4/RW.2, Gelora, Tanahabang, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10270'),
-(7, 'PT Sinar Mas', 'Nasional', 'Sinar Mas Land Plaza, Tower I Lt. 9, Jl. MH Thamrin No. 51, RT.9/RW.5, Gondangdia, Kec. Menteng, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10350'),
-(9, 'PT Docotel Teknologi', 'Lokal', 'Jl. KH. Hasyim Ashari No.26, RT.1/RW.7, Petojo Utara, Kecamatan Gambir, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10130'),
-(10, 'PT Tokopedia', 'Nasional', ' lantai 52 Tokopedia Tower Ciputra World 2, Jl. Prof. DR. Satrio No.Kav. 11, RT.3/RW.3, Karet Semanggi, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12950'),
-(11, 'PT Manulife Indonesia', 'Nasional', 'Menara Batavia Lantai 19, JL KH Mas Mansyur, Kav. 126, 10220, RT.3/RW.2, Karet Tengsin, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10240'),
-(12, 'PT Digital Mind System', NULL, NULL),
-(13, 'DPD RI', NULL, NULL),
-(14, 'PT Harmoni Solusi Bisnis ', NULL, NULL),
-(15, 'PT Imkahfa ', NULL, NULL),
-(16, 'PT GSI (United Tractor )', NULL, NULL);
+INSERT INTO `instansi` (`id`, `nama_instansi`, `jenis_instansi`, `alamat`, `prodiID`) VALUES
+(2, 'PT Harmoni Solusi Bisnis', 'Nasional', 'Jl. Dempo I No.51, RT.4/RW.3, Gunung, Kec. Kby. Baru, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12120', 1),
+(3, 'PT Kompas Media Nusantara', 'Nasional', 'Jl. Palmerah Sel. No.26-28, RT.4/RW.2, Gelora, Tanahabang, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10270', 1),
+(7, 'PT Sinar Mas', 'Nasional', 'Sinar Mas Land Plaza, Tower I Lt. 9, Jl. MH Thamrin No. 51, RT.9/RW.5, Gondangdia, Kec. Menteng, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10350', 1),
+(9, 'PT Docotel Teknologi', 'Lokal', 'Jl. KH. Hasyim Ashari No.26, RT.1/RW.7, Petojo Utara, Kecamatan Gambir, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10130', 1),
+(10, 'PT Tokopedia', 'Nasional', ' lantai 52 Tokopedia Tower Ciputra World 2, Jl. Prof. DR. Satrio No.Kav. 11, RT.3/RW.3, Karet Semanggi, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12950', 1),
+(11, 'PT Manulife Indonesia', 'Nasional', 'Menara Batavia Lantai 19, JL KH Mas Mansyur, Kav. 126, 10220, RT.3/RW.2, Karet Tengsin, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10240', 1),
+(12, 'PT Digital Mind System', NULL, NULL, 1),
+(13, 'DPD RI', NULL, NULL, 1),
+(14, 'PT Harmoni Solusi Bisnis ', NULL, NULL, 1),
+(15, 'PT Imkahfa ', NULL, NULL, 1),
+(16, 'PT GSI (United Tractor )', NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -251,11 +253,10 @@ CREATE TABLE `kuesioner` (
 --
 
 INSERT INTO `kuesioner` (`id`, `customID`, `nama_kuesioner`, `responden`, `tanggal_dibuat`, `status`, `prodiID`) VALUES
-(4, 'Q5WR7BG9', 'Kurikulum', 'alumni', '2019-11-29 00:43:19', 'aktif', 1),
-(5, '6HZMHS9Q', 'Pekerjaan', 'alumni', '2019-11-23 07:11:13', 'aktif', 1),
-(9, '4PSHN89F', 'Pendidikan', 'alumni', '2019-11-29 00:42:12', 'nonaktif', 1),
 (10, 'RFGNCSQG', 'Kompetensi', 'pengguna', '2019-11-27 01:14:59', 'aktif', 1),
-(11, 'HKN8KD6K', 'Kompetensi', 'alumni', '2019-11-29 00:43:33', 'aktif', 1);
+(12, 'CB32B98M', 'Pekerjaan', 'alumni', '2019-12-04 01:17:24', 'aktif', 1),
+(13, '5B7C2P3D', 'Pendidikan', 'alumni', '2019-12-04 01:46:24', 'aktif', 1),
+(15, '9XJ3DKJK', 'Kompetensi', 'alumni', '2019-12-04 02:28:42', 'aktif', 1);
 
 -- --------------------------------------------------------
 
@@ -268,6 +269,7 @@ CREATE TABLE `pekerjaan` (
   `posisi` varchar(225) DEFAULT NULL,
   `gaji` varchar(225) DEFAULT NULL,
   `periode_kerja` varchar(100) NOT NULL,
+  `profil` varchar(255) NOT NULL,
   `id_alumni` int(11) NOT NULL,
   `id_pengguna` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -276,17 +278,18 @@ CREATE TABLE `pekerjaan` (
 -- Dumping data for table `pekerjaan`
 --
 
-INSERT INTO `pekerjaan` (`id`, `posisi`, `gaji`, `periode_kerja`, `id_alumni`, `id_pengguna`) VALUES
-(36, 'PHP Engineer', '3jt - 4jt', '2017-2018', 28, 49),
-(37, 'Software Engineer', '< 1jt', '2018-Sekarang', 28, 50),
-(38, 'Front End Developer', '> 4jt', '', 29, 51),
-(39, 'Asisten Wakil 1 DPD R1', '> 4jt', '', 30, 52),
-(40, 'Front End Developer', '< 1jt', '', 31, 53),
-(41, 'Java Pega Programmer', '< 1jt', '', 32, 54),
-(42, 'Web Developer', '> 4jt', '', 33, 55),
-(43, 'IT Developer', '< 1jt', '', 34, 56),
-(44, 'Front End Developer', '> 4jt', '2017-Sekarang', 35, 57),
-(45, 'IT Bisnis', '> 4jt', '', 36, 58);
+INSERT INTO `pekerjaan` (`id`, `posisi`, `gaji`, `periode_kerja`, `profil`, `id_alumni`, `id_pengguna`) VALUES
+(36, 'PHP Engineer', '3jt - 4jt', '2017-2018', '', 28, 49),
+(37, 'Software Engineer', '< 1jt', '2018-Sekarang', '', 28, 50),
+(38, 'Front End Developer', '> 4jt', '', '', 29, 51),
+(39, 'Asisten Wakil 1 DPD R1', '> 4jt', '', '', 30, 52),
+(40, 'Front End Developer', '< 1jt', '', '', 31, 53),
+(41, 'Java Pega Programmer', '< 1jt', '', '', 32, 54),
+(42, 'Web Developer', '> 4jt', '', '', 33, 55),
+(43, 'IT Developer', '< 1jt', '', '', 34, 56),
+(44, 'Front End Developer', '> 4jt', '2017-Sekarang', '', 35, 57),
+(45, 'IT Bisnis', '> 4jt', '', '', 36, 58),
+(46, 'Web Designer – Front End', '> 4jt', '2019-Sekarang', 'Programmer', 35, 59);
 
 -- --------------------------------------------------------
 
@@ -303,24 +306,26 @@ CREATE TABLE `pengguna` (
   `id_instansi` int(11) NOT NULL,
   `divisi` varchar(255) DEFAULT NULL,
   `prodiID` int(11) NOT NULL,
-  `isDelete` enum('yes','no') DEFAULT 'no'
+  `isDelete` enum('yes','no') DEFAULT 'no',
+  `tandai` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pengguna`
 --
 
-INSERT INTO `pengguna` (`id`, `penggunaID`, `pengguna_nama`, `pengguna_email`, `pengguna_telepon`, `id_instansi`, `divisi`, `prodiID`, `isDelete`) VALUES
-(49, '58B6DQWF', '', '', '', 9, '', 1, 'no'),
-(50, 'SSS8DFVT', '', '', '', 10, '', 1, 'no'),
-(51, 'M4TMY9XX', NULL, NULL, NULL, 3, NULL, 1, 'no'),
-(52, 'V2V8PBRN', NULL, NULL, NULL, 13, NULL, 1, 'no'),
-(53, 'R8VC6G6K', NULL, NULL, NULL, 14, NULL, 1, 'no'),
-(54, '89MDXBFV', NULL, NULL, NULL, 7, NULL, 1, 'no'),
-(55, 'FKSDPPFT', NULL, NULL, NULL, 15, NULL, 1, 'no'),
-(56, '3JXDSMXD', NULL, NULL, NULL, 16, NULL, 1, 'no'),
-(57, '2B4ZKQRZ', 'Pengguna harmoni', 'pengguna@harmoni.com', '0812345667', 14, 'Teknologi Informasi', 1, 'no'),
-(58, 'NFCWZH7G', NULL, NULL, NULL, 11, NULL, 1, 'no');
+INSERT INTO `pengguna` (`id`, `penggunaID`, `pengguna_nama`, `pengguna_email`, `pengguna_telepon`, `id_instansi`, `divisi`, `prodiID`, `isDelete`, `tandai`) VALUES
+(49, '58B6DQWF', '', '', '', 9, '', 1, 'no', 'checked'),
+(50, 'SSS8DFVT', '', '', '', 10, '', 1, 'no', 'checked'),
+(51, 'M4TMY9XX', NULL, NULL, NULL, 3, NULL, 1, 'no', 'checked'),
+(52, 'V2V8PBRN', NULL, NULL, NULL, 13, NULL, 1, 'no', ''),
+(53, 'R8VC6G6K', NULL, NULL, NULL, 14, NULL, 1, 'no', ''),
+(54, '89MDXBFV', NULL, 'penggunasinarmas@mail.com', '', 7, '', 1, 'no', 'checked'),
+(55, 'FKSDPPFT', NULL, NULL, NULL, 15, NULL, 1, 'no', ''),
+(56, '3JXDSMXD', NULL, NULL, NULL, 16, NULL, 1, 'no', ''),
+(57, '2B4ZKQRZ', 'Pengguna harmoni', 'pengguna@harmoni.com', '0812345667', 14, 'Teknologi Informasi', 1, 'no', ''),
+(58, 'NFCWZH7G', NULL, NULL, NULL, 11, NULL, 1, 'no', ''),
+(59, '8V7P66WJ', 'Test', 'pengguna1@gmail.com', '0812345667', 12, 'Teknologi Informasi', 1, 'no', '');
 
 -- --------------------------------------------------------
 
@@ -344,19 +349,16 @@ CREATE TABLE `pertanyaan` (
 --
 
 INSERT INTO `pertanyaan` (`id`, `pertanyaan`, `jenis`, `inputBox`, `textarea`, `customID`, `kuesionerID`, `isDelete`) VALUES
-(35, 'Test pertanyaan', 'pilihan', 'ya', 'tidak', '', 5, 'yes'),
-(38, 'Test pertanyaan', 'ganda', 'tidak', 'tidak', '', 5, 'yes'),
-(39, 'Pertanyaan isian edit', 'isian', 'tidak', 'tidak', 'PR1574418710', 9, 'no'),
-(40, 'Pertanyaan pilihan edit', 'pilihan', 'tidak', 'tidak', 'PR1574418997', 9, 'no'),
-(41, 'Pertanyaan ganda', 'ganda', 'ya', 'tidak', 'PR1574419019', 9, 'no'),
-(42, 'Pertanyaan isian ', 'isian', 'tidak', 'tidak', 'PR1574419567', 4, 'no'),
-(43, 'Masa tunggu kelulusan hingga mendapat pekerjaan pertama', 'pilihan', 'tidak', 'tidak', 'PR1574511639', 5, 'no'),
-(44, 'Bagaimana anda mencari pekerjaan pertama?', 'ganda', 'tidak', 'tidak', 'PR1574511751', 5, 'no'),
 (53, 'Jenis Kemampuan', 'skala', 'tidak', 'tidak', 'PR1574911254', 10, 'no'),
 (54, 'Saran Bapak/Ibu untuk perbaikan lulusan Program Studi Ilmu Komputer UNJ', 'isian', 'tidak', 'ya', 'PR1574911269', 10, 'no'),
-(55, 'Pertanyaan isian 1', 'isian', 'tidak', 'tidak', 'PR1574988227', 11, 'no'),
-(56, 'Pertanyaan pilihan', 'pilihan', 'ya', 'tidak', 'PR1574988256', 11, 'no'),
-(57, 'Pertanyaan ganda ', 'ganda', 'tidak', 'tidak', 'PR1574988381', 11, 'no');
+(59, 'Masa tunggu Saudara dari kelulusan hingga mendapat pekerjaan pertama kali', 'pilihan', 'tidak', 'tidak', 'PR1575422613', 12, 'no'),
+(60, 'Apakah pekerjaan Saudara ini berhubungan dengan bidang ilmu yang Saudara pelajari di Perguruan Tinggi?  Jelaskan jawaban anda', 'pilihan', 'ya', 'tidak', 'PR1575422692', 12, 'no'),
+(61, 'Bagaimana anda mencari pekerjaan?', 'ganda', 'ya', 'tidak', 'PR1575422991', 12, 'no'),
+(62, 'Berapa perusahaan/instansi/institusi yang sudah anda lamar (lewat surat atau e-mail) sebelum anda memeroleh pekerjaan pertama?', 'isian', 'tidak', 'tidak', 'PR1575423351', 12, 'no'),
+(63, 'Berapa banyak perusahaan/instansi/institusi yang merespons lamaran anda?', 'isian', 'tidak', 'tidak', 'PR1575423401', 12, 'no'),
+(64, 'Berapa banyak perusahaan/instansi/institusi yang mengundang anda untuk wawancara?', 'isian', 'tidak', 'tidak', 'PR1575423418', 12, 'no'),
+(65, 'Adakah hambatan/kendala yang Saudara alami dalam menyesuaikan diri dengan pekerjaan?   Jelaskan alasan anda', 'pilihan', 'ya', 'tidak', 'PR1575423501', 12, 'no'),
+(66, 'Test pertanyaan', 'pilihan', 'ya', 'tidak', '', 13, 'yes');
 
 -- --------------------------------------------------------
 
@@ -400,23 +402,27 @@ CREATE TABLE `pilihan_jawaban` (
 --
 
 INSERT INTO `pilihan_jawaban` (`id`, `pertanyaanID`, `pilihan`) VALUES
-(49, 40, 'pilihan 1'),
-(50, 40, 'pilihan 2'),
-(51, 40, 'pilihan 3'),
-(52, 41, 'ganda 1'),
-(53, 41, 'ganda 2'),
-(54, 43, '1-3 bulan'),
-(55, 43, '4-6 bulan'),
-(56, 43, '7-9 bulan'),
-(57, 43, '10-12 bulan'),
-(58, 43, '> 12 bulan'),
-(59, 44, 'Melalui iklan di koran/majalah, brosur'),
-(60, 44, 'Melamar ke perusahaan tanpa tahu lowongan yang ada'),
-(61, 44, 'Pergi ke bursa/pameran kerja'),
-(76, 56, 'pilihan 1'),
-(77, 56, 'pilihan 3'),
-(78, 57, 'ganda 1'),
-(79, 57, 'ganda 2');
+(83, 59, '1-3 bln'),
+(84, 59, '4-6 bln'),
+(85, 59, '7-9 bln'),
+(86, 59, '10-12 bln'),
+(87, 59, '>12 bln'),
+(88, 60, 'Ya'),
+(89, 60, 'Tidak'),
+(90, 61, 'Melalui iklan di koran/majalah, brosur '),
+(91, 61, 'Melamar ke perusahaan tanpa mengetahui lowongan yang ada '),
+(92, 61, 'Pergi ke bursa/pameran kerja'),
+(93, 61, ' Mencari lewat internet/iklan online/milis '),
+(94, 61, 'Dihubungi oleh perusahaan'),
+(95, 61, 'Memeroleh informasi dari pusat pengembangan karir fakultas/universitas   '),
+(96, 61, ' Menghubungi kantor kemahasiswaan/hubungan alumni '),
+(97, 61, 'Membangun jejaring (network) sejak masih kuliah'),
+(98, 61, 'Melalui relasi (misalnya dosen, orang tua, saudara, teman, dll.)'),
+(99, 61, 'Melalui penempatan kerja atau magang '),
+(100, 61, ' Bekerja di tempat yang sama dengan tempat kerja semasa kuliah'),
+(101, 61, 'Lainnya : '),
+(102, 65, 'Ada'),
+(103, 65, 'Tidak');
 
 -- --------------------------------------------------------
 
@@ -655,7 +661,7 @@ ALTER TABLE `dosen`
 -- AUTO_INCREMENT for table `fakultas`
 --
 ALTER TABLE `fakultas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `instansi`
@@ -673,25 +679,25 @@ ALTER TABLE `koorprodi`
 -- AUTO_INCREMENT for table `kuesioner`
 --
 ALTER TABLE `kuesioner`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `pekerjaan`
 --
 ALTER TABLE `pekerjaan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `pengguna`
 --
 ALTER TABLE `pengguna`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT for table `pertanyaan`
 --
 ALTER TABLE `pertanyaan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT for table `pertanyaan_skala`
@@ -703,7 +709,7 @@ ALTER TABLE `pertanyaan_skala`
 -- AUTO_INCREMENT for table `pilihan_jawaban`
 --
 ALTER TABLE `pilihan_jawaban`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
 
 --
 -- AUTO_INCREMENT for table `prodi`
