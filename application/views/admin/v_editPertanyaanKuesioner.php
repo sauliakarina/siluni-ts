@@ -27,7 +27,7 @@
                     </div>
                     <div class="card-body">
                       <p></p>
-                      <form class="form-horizontal" action="<?php echo base_url();?>admin/Kuesioner/exeEditPertanyaanKuesioner" method="post">
+                      <form class="form-horizontal" action="<?php echo base_url();?>admin/Kuesioner/exeEditPertanyaan" method="post">
                         <div class="form-group row">
                           <label class="col-sm-3 form-control-label">Pertanyaan</label>
                           <div class="col-sm-9">
@@ -50,6 +50,18 @@
                                       <input type="hidden" class="form-control" name="pilihanID[<?php echo $i++; ?>]" value="<?php echo $k->id ?>">
                                     <?php } ?>
                                   </ul>
+                          </div>
+                        </div>
+                         <div class="line"></div>
+                           <div class="form-group row">
+                          <label class="col-sm-3 form-control-label">Tambahan Input Box</label>
+                          <div class="col-sm-9">
+                            <label class="radio-inline" style="margin-right: 8px">
+                              <input type="radio" value="ya" <?php if ($pr->inputBox == 'ya') { echo 'checked=""';} ?> name="inputBox" class="radio-template"> Ya
+                            </label>
+                            <label class="radio-inline">
+                              <input type="radio" value="tidak" <?php if ($pr->inputBox == 'tidak') { echo 'checked=""';} ?> name="inputBox" class="radio-template"> Tidak
+                            </label>
                           </div>
                         </div>
                          <div class="line"></div>

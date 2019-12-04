@@ -145,6 +145,19 @@ class M_master extends CI_Model{
 
 	}
 
+	function getAdminFromUser() {
+		$this->db->select('*');
+		$this->db->where('role', 'admin');
+		$query = $this->db->get('user');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
+
+	}
+
 	function getUserByUserID($userID)
 	{
 		$this->db->select('*');

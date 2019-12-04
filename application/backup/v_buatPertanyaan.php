@@ -22,6 +22,7 @@
                 <!-- Basic Form-->
                 <div class="col-lg-12">
                   <div class="card">
+                    <form method="post" action="<?php echo base_url(); ?>admin/Kuesioner/simpanPertanyaan">
                     <div class="card-header d-flex align-items-center">
                       <div class="dropdown">
                         <button class="btn btn-info dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -45,6 +46,7 @@
                               <th width="10px">No</th>
                               <th>Pertanyaan</th>
                               <th>Pilihan Jawaban</th>
+                              <th>Tambahan Input Box</th>
                               <th></th>
                             </tr>
                           </thead>
@@ -84,10 +86,24 @@
                                   </ul>
                              <?php } ?>
                               </td>
+                              <td> 
+                                <?php if ($p->jenis == 'pilihan' || $p->jenis == 'ganda') { ?>
+                                  <input type="hidden" value="<?php echo $p->id ?>" name="pertanyaanID[<?php echo $i++; ?>]">
+                                    <div class="i-checks">
+                                      <input type="radio"  <?php if ($p->inputBox == 'ya') { echo 'checked=""';} ?> value="ya" name="inputBox<?php echo $p->id ?>" class="radio-template">
+                                      <label>Ya</label>
+                                    </div>
+                                    <div class="i-checks">
+                                      <input type="radio"  <?php if ($p->inputBox == 'tidak') { echo 'checked=""';} ?> value="tidak" name="inputBox<?php echo $p->id ?>" class="radio-template">
+                                      <label>Tidak</label>
+                                    </div>
+                              <?php } ?>
+                              </form>
+                              </td>
                               <td>
                                 <div class="btn-group btn-group-toggle">
                                   <?php if ($p->jenis != 'isian') { ?>
-                                    <form method='post' action="<?php echo base_url('admin/Kuesioner/editPertanyaanKuesioner/'.$p->id) ?>"><button type="submit" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="Sunting"><i class="far fa-edit"></i></button></form>
+                                    <form method='post' action="<?php echo base_url('admin/Kuesioner/editPertanyaan/'.$p->id) ?>"><button type="submit" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="Sunting"><i class="far fa-edit"></i></button></form>
                                   <?php } else { ?>
                                   <a onclick='editIsian(<?php echo $p->id ?>)' href="#" class="btn-warning btn-sm" data-toggle="modal" data-target="#ModalEdit"><i class="fa fa-edit"></i></a>
                                   <?php } ?>
@@ -109,12 +125,37 @@
           </section> 
   </body>
   
+  <!-- Modal Edit-->
+  <div id="ModalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+                        <div role="document" class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h4 id="exampleModalLabel" class="modal-title">Sunting Pertanyaan</h4>
+                              <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                            </div>
+                            <div class="modal-body">
+                              <p></p>
+                              <?php echo form_open_multipart('admin/Kuesioner/exeEditIsian'); ?>
+                                <div class="form-group">
+                                  <label>Pertanyaan</label>
+                                  <input type="text" id="pertanyaanIsian" value="<?php echo $p->pertanyaan ?>" class="form-control" name="pertanyaanIsian">
+                                  <input type="hidden" id="id" value="<?php echo $p->id ?>" class="form-control" name="id">
+                                   <input type="hidden" id="kuesionerID" value="<?php echo $p->kuesionerID ?>" class="form-control" name="kuesionerID">
+                                    <button type="submit" class="btn btn-primary" style="margin-top: 10px;float: right;">Simpan</button>
+                                </div>
+                            </div>
+                            </form>
+                          </div>
+                        </div>
+      </div>
+
+
    <!-- Modal Isian-->
   <div id="isianModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
           <div role="document" class="modal-dialog modal-dialog-centered">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h4 id="exampleModalLabel" class="modal-title">Buat Pertanyaan Jawaban Isian</h4>
+                              <h4 id="exampleModalLabel" class="modal-title">Buat Pertanyaan Isian</h4>
                               <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
                             </div>
                             <div class="modal-body">
@@ -136,18 +177,18 @@
     </div>
 
  <!-- Modal Pilihan-->
-                      <div id="pilihanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+ <div id="pilihanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
                         <div role="document" class="modal-dialog modal-dialog-centered">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h4 id="exampleModalLabel" class="modal-title">Buat Pertanyaan Jawaban Pilihan</h4>
+                              <h4 id="exampleModalLabel" class="modal-title">Pertanyaan Jawaban Pilihan</h4>
                               <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
                             </div>
                             <div class="modal-body">
-                              <p></p>
+                              <p>Responden hanya bisa memilih salah satu jawaban</p>
                               <form method="post" action="<?php echo base_url();?>admin/Kuesioner/addPilihan">
                                 <div class="form-group">
-                                  <label>Pertanyaan</label>
+                                  <label></label>
                                   <input type="text" placeholder="Masukkan pertanyaan" class="form-control" name="pertanyaan">
                                   <input type="hidden" class="form-control" name="kuesionerID" value="<?php echo $kuesioner->id ?>">
                                 </div>
@@ -159,6 +200,17 @@
                                     </tr>
                                   </tbody>
                                 </table>
+                                 <div class="form-group">
+                                  <label>Tambahan Input Box</label>
+                                  <div class="i-checks">
+                                      <input type="radio" value="ya" name="inputBox" class="radio-template">
+                                      <label>Ya</label>
+                                    </div>
+                                    <div class="i-checks">
+                                      <input type="radio" value="tidak" name="inputBox" class="radio-template">
+                                      <label>Tidak</label>
+                                    </div>
+                                </div>
                             </div>
                             <div class="modal-footer">
                               <button type="button" data-dismiss="modal" class="btn btn-secondary">Close</button>
@@ -178,10 +230,10 @@
                               <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
                             </div>
                             <div class="modal-body">
-                              <p></p>
+                              <p>Responden dapat memilih lebih dari satu jawaban</p>
                               <form method="post" action="<?php echo base_url();?>admin/Kuesioner/addGanda">
                                 <div class="form-group">
-                                  <label>Pertanyaan</label>
+                                  <label></label>
                                   <input type="text" placeholder="Masukkan pertanyaan" class="form-control" name="pertanyaan">
                                    <input type="hidden" class="form-control" name="kuesionerID" value="<?php echo $kuesioner->id ?>">
                                 </div>
@@ -224,34 +276,6 @@
                           </div>
               </div>
          </div>
-
-  <!-- Modal Edit-->
-  <div id="ModalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
-                        <div role="document" class="modal-dialog">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h4 id="exampleModalLabel" class="modal-title">Sunting Pertanyaan</h4>
-                              <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
-                            </div>
-                            <div class="modal-body">
-                              <p></p>
-                              <?php echo form_open_multipart('admin/Kuesioner/exeEditIsian'); ?>
-                                <div class="form-group">
-                                  <label>Pertanyaan</label>
-                                  <input type="text" id="pertanyaanIsian" value="<?php echo $p->pertanyaan ?>" class="form-control" name="pertanyaanIsian">
-                                  <input type="hidden" id="id" value="<?php echo $p->id ?>" class="form-control" name="id">
-                                   <input type="hidden" id="kuesionerID" value="<?php echo $p->kuesionerID ?>" class="form-control" name="kuesionerID">
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" data-dismiss="modal" class="btn btn-secondary">Tutup</button>
-                              <button type="submit" class="btn btn-primary">Simpan</button>
-                            </div>
-                            </form>
-                          </div>
-                        </div>
-   </div>
-
 
 </html>
 
@@ -351,6 +375,6 @@
     }
 
    function deletep(){
-        window.location.href =  "<?php echo base_url();?>admin/Kuesioner/deletePertanyaan2/"+p_id;
+        window.location.href =  "<?php echo base_url();?>admin/Kuesioner/deletePertanyaan/"+p_id;
     }
 </script>

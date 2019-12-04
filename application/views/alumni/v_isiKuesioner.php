@@ -36,7 +36,7 @@
                           <tr>
                             <td><?php echo $p->pertanyaan ?></td>
                             <td>:</td>
-                            <td width="500px">
+                            <td width="600px">
                               <?php if ($p->jenis == 'isian') { ?>
                                 <div class="form-group">
                                   <input type="text" placeholder="tulis jawaban" class="form-control">

@@ -58,7 +58,7 @@ class Kuesioner extends CI_Controller {
 		$this->load->view('element/footer');
 	}
 
-	public function buatPertanyaan($kuesionerID)
+	public function kelolaKuesionerAlumni($kuesionerID)
 	{
 		$data = array(
 			'role' => $this->session->userdata('role'),
@@ -71,7 +71,7 @@ class Kuesioner extends CI_Controller {
 		$this->load->view('element/head');
 		$this->load->view('element/header');
 		$this->load->view('element/navbar', $data);
-		$this->load->view('admin/v_buatPertanyaan', $data);
+		$this->load->view('admin/v_kelolaKuesioner', $data);
 		$this->load->view('element/footer');
 	}
 
@@ -118,7 +118,7 @@ class Kuesioner extends CI_Controller {
 		$this->load->view('element/head');
 		$this->load->view('element/header');
 		$this->load->view('element/navbar', $data);
-		$this->load->view('admin/v_editPertanyaan', $data);
+		$this->load->view('admin/v_editPertanyaanKuesioner', $data);
 		$this->load->view('element/footer');
 	}
 
@@ -168,7 +168,7 @@ class Kuesioner extends CI_Controller {
 		);	
 		$this->m_master->inputData($data,'kuesioner');
 		$kuesionerID = $this->m_kuesioner->getKuesionerByCustomID($customID)->id;
-		redirect('admin/Kuesioner/buatPertanyaan/'.$kuesionerID);
+		redirect('admin/Kuesioner/kelolaKuesionerAlumni/'.$kuesionerID);
 	}
 
 	public function addKuesionerPengguna()
@@ -224,7 +224,7 @@ class Kuesioner extends CI_Controller {
 		);	
 		$kuesionerID = $this->input->post('kuesionerID');
 		$this->m_master->inputData($data,'pertanyaan');
-		redirect('admin/Kuesioner/buatPertanyaan/'.$kuesionerID);
+		redirect('admin/Kuesioner/kelolaKuesionerAlumni/'.$kuesionerID);
 	}
 
 	public function addIsianPengguna() {
@@ -268,6 +268,7 @@ class Kuesioner extends CI_Controller {
 			'pertanyaan' => $this->input->post('pertanyaan'),
 			'kuesionerID' => $this->input->post('kuesionerID'),
 			'jenis' => 'pilihan',
+			'inputBox' => $this->input->post('inputBox'),
 			'customID' => $customIDPR 
 		);	
 		$this->m_master->inputData($data,'pertanyaan');
@@ -284,7 +285,7 @@ class Kuesioner extends CI_Controller {
 		}
 		//href
         $kuesionerID = $this->input->post('kuesionerID');
-		redirect('admin/Kuesioner/buatPertanyaan/'.$kuesionerID);
+		redirect('admin/Kuesioner/kelolaKuesionerAlumni/'.$kuesionerID);
 
 	}
 
@@ -340,6 +341,7 @@ public function addGanda() {
 			'pertanyaan' => $this->input->post('pertanyaan'),
 			'kuesionerID' => $this->input->post('kuesionerID'),
 			'jenis' => 'ganda',
+			'inputBox' => $this->input->post('inputBox'),
 			'customID' => $customIDPR 
 		);	
 		$this->m_master->inputData($data,'pertanyaan');
@@ -356,7 +358,7 @@ public function addGanda() {
 		}
 		//href
         $kuesionerID = $this->input->post('kuesionerID');
-		redirect('admin/Kuesioner/buatPertanyaan/'.$kuesionerID);
+		redirect('admin/Kuesioner/kelolaKuesionerAlumni/'.$kuesionerID);
 
 	}
 
@@ -481,28 +483,7 @@ public function addGanda() {
 			'customID' => ''
 		);
 		$this->m_master->updateData($where,$data,'pertanyaan');
-		redirect('admin/Kuesioner/buatPertanyaan/'.$kuesionerID);
-	}
-
-	function deletePertanyaan2($pertanyaanID){
-		$kuesionerID = $this->m_kuesioner->getPertanyaanByID($pertanyaanID)->kuesionerID;
-		//get id pilihan
-		$pilihan = $this->m_kuesioner->getPilihanJawabanByPertanyaanID($pertanyaanID);
-		//delete pilihan jawaban
-		foreach ($pilihan as $p) {
-			$pilihanID = $p->id;
-			$this->m_kuesioner->deletePilihanByID($pilihanID);
-		}
-		//delete pertanyaan
-		$where = array(
-			'id' => $pertanyaanID
-		);
-		$data = array(
-			'isDelete' => 'yes',
-			'customID' => ''
-		);
-		$this->m_master->updateData($where,$data,'pertanyaan');
-		redirect('admin/Kuesioner/editKuesioner/'.$kuesionerID);
+		redirect('admin/Kuesioner/kelolaKuesionerAlumni/'.$kuesionerID);
 	}
 
 	function deletePertanyaanPengguna($pertanyaanID){
@@ -619,7 +600,8 @@ public function addGanda() {
 	function exeEditPertanyaan()
 	{
 		$data = array(
-			'pertanyaan' => $this->input->post('pertanyaan')
+			'pertanyaan' => $this->input->post('pertanyaan'),
+			'inputBox' => $this->input->post('inputBox')
 		);
 		$where = array('id' => $this->input->post('pertanyaanID'));
 		$this->m_master->updateData($where,$data,'pertanyaan');
@@ -635,13 +617,14 @@ public function addGanda() {
 		}
 
 		$kuesionerID = $this->input->post('kuesionerID');
-		redirect('admin/Kuesioner/buatPertanyaan/'.$kuesionerID);
+		redirect('admin/Kuesioner/kelolaKuesionerAlumni/'.$kuesionerID);
 	}
 
 	function exeEditPertanyaanKuesioner()
 	{
 		$data = array(
-			'pertanyaan' => $this->input->post('pertanyaan')
+			'pertanyaan' => $this->input->post('pertanyaan'),
+			'inputBox' => $this->input->post('inputBox')
 		);
 		$where = array('id' => $this->input->post('pertanyaanID'));
 		$this->m_master->updateData($where,$data,'pertanyaan');
