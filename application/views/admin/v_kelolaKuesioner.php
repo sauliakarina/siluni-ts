@@ -77,7 +77,11 @@
                           <label class="form-control-label"><b style="font-size: 15px"><?php echo $p->pertanyaan ?></b></label>
                           <small class="help-block-none"><a href="#" data-toggle="modal" data-target="#ModalEdit" data-placement="top" title="Edit"><i class="far fa-edit" style="color: blue"></i></a></small>
                           <small class="help-block-none"><a href="#" onclick="set_id(<?php echo $p->id ?>)" data-toggle="modal" data-target="#ModalHapus"><i class="far fa-trash-alt" style="color: red"></i></a></small>
+                          <?php if ($p->textarea == 'ya') { ?>
+                             <textarea class="form-control" rows="5"></textarea>
+                          <?php } else { ?>
                            <input type="text" placeholder="" class="form-control">
+                         <?php } ?>
                         </div>
                         <?php } elseif ($p->jenis == 'pilihan') { ?>
                           <label class="form-control-label"><b style="font-size: 15px"><?php echo $p->pertanyaan ?></b></label>
@@ -139,6 +143,17 @@
                                   <label>Pertanyaan</label>
                                   <input type="text" placeholder="Masukkan pertanyaan" class="form-control" name="pertanyaan">
                                   <input type="hidden" class="form-control" name="kuesionerID" value="<?php echo $kuesioner->id ?>">
+                                </div>
+                                <div class="form-group">
+                                  <label>Perlu input box berukuran besar?</label>
+                                  <div class="i-checks">
+                                      <input type="radio" value="ya" name="textarea" class="radio-template">
+                                      <label>Ya</label>
+                                    </div>
+                                    <div class="i-checks">
+                                      <input type="radio" value="tidak" name="textarea" class="radio-template">
+                                      <label>Tidak</label>
+                                    </div>
                                 </div>
                             </div>
                             <div class="modal-footer">

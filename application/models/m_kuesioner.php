@@ -39,7 +39,7 @@ class M_kuesioner extends CI_Model{
 		$this->db->select('*');
 		$this->db->where('prodiID',$prodiID);
 		$this->db->where('responden','alumni');
-		$this->db->order_by('id', 'DESC');
+		$this->db->order_by('id', 'ASC');
 		$query = $this->db->get('kuesioner');
 		if($query->num_rows()>0)
 		{
@@ -55,6 +55,21 @@ class M_kuesioner extends CI_Model{
 		$this->db->where('prodiID',$prodiID);
 		$this->db->where('responden','pengguna');
 		$this->db->where('status','aktif');
+		$query = $this->db->get('kuesioner');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
+	}
+
+	function getKuesionerByResponden($responden, $prodiID)
+	{
+		$this->db->select('*');
+		$this->db->where('responden',$responden);
+		$this->db->where('status','aktif');
+		$this->db->where('prodiID', $prodiID);
 		$query = $this->db->get('kuesioner');
 		if($query->num_rows()>0)
 		{

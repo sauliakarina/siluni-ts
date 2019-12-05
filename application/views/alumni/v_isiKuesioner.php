@@ -21,7 +21,9 @@
               <div class="row">
                 <!-- Basic Form-->
                 <div class="col-lg-12">
-                  <div class="card"><!-- 
+                  <div class="card">
+                <form action="<?php echo site_url('alumni/Kuesioner/addJawaban'); ?>" method="post">
+                  <!-- 
                     <div class="card-header d-flex align-items-center">
                       <h3 class="h4"></h3>
                     </div> -->
@@ -37,15 +39,21 @@
                             <td><?php echo $p->pertanyaan ?></td>
                             <td>:</td>
                             <td width="600px">
+                              <!-- jika pertanyaan isian -->
                               <?php if ($p->jenis == 'isian') { ?>
                                 <div class="form-group">
-                                  <input type="text" placeholder="tulis jawaban" class="form-control">
+                                  <?php if ($p->textarea == 'ya') { ?>
+                                    <textarea class="form-control" name="<?php echo $p->id ?>" rows="5" placeholder="masukkan jawaban"></textarea>
+                                  <?php } else { ?>
+                                   <input type="text" placeholder="masukkan jawaban" name="<?php echo $p->id ?>" class="form-control">
+                                 <?php } ?>
                                 </div>
+                                <!-- jika pertanyaan pilihan -->
                               <?php } elseif ($p->jenis == 'pilihan') { 
                                   $pilihanJawaban = $this->m_kuesioner->getPilihanJawabanByPertanyaanID($p->id);
                                   foreach ($pilihanJawaban as $pj) { ?> 
                                   <div class="i-checks">
-                                    <input id="option1" type="radio" value="<?php echo $pj->pilihan ?>" name="a" class="radio-template">
+                                    <input id="option1" type="radio" value="<?php echo $pj->pilihan ?>" name="<?php echo $p->id ?>" class="radio-template">
                                     <label for="option1"><?php echo $pj->pilihan ?></label>
                                   </div> 
                                 <?php } //loop pilihanJawaban
@@ -54,11 +62,12 @@
                                       <textarea placeholder="" class="form-control" rows="3"></textarea>
                                     </div>
                                   <?php } //input box ?>
+                                  <!-- jika pertanyaan ganda -->
                               <?php } elseif ($p->jenis == 'ganda') { 
                                 $pilihanJawaban = $this->m_kuesioner->getPilihanJawabanByPertanyaanID($p->id);
                                   foreach ($pilihanJawaban as $pj) {?>
                                 <div class="i-checks">
-                                  <input id="checkbox1" type="checkbox" value="<?php echo $pj->pilihan ?>" class="checkbox-template">
+                                  <input id="checkbox1" type="checkbox" value="<?php echo $pj->pilihan ?>" name="<?php echo $p->id; ?>[]" class="checkbox-template">
                                   <label for="checkbox1"><?php echo $pj->pilihan ?></label>
                                 </div>
                                 <?php } //loop jawaban ganda 
@@ -67,7 +76,37 @@
                                       <textarea placeholder="" class="form-control" rows="3"></textarea>
                                   </div>
                                   <?php } //input box ?>
-                              <?php } //loop jenis ganda ?>
+                                  <!-- jika pertanyaan skala -->
+                              <?php } //if jenis ganda 
+                                if ($p->jenis == 'skala') { ?>
+                                   <table class="table table-striped table-hover">
+                                    <thead>
+                                      <tr>
+                                        <th></th>
+                                        <?php 
+                                        $skalaNilai = $this->m_kuesioner->getSkalaByPertanyaanID($p->id);
+                                        foreach ($skalaNilai as $sn) { ?>
+                                          <th><?php echo $sn->nilai ?></th>
+                                        <?php } //foreach skala nilai ?>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <?php
+                                        $pertanyaanSkala = $this->m_kuesioner->getPertanyaanSkalaByPertanyaanID($p->id);
+                                        foreach ($pertanyaanSkala as $ps) {
+                                       ?>
+                                      <tr>
+                                        <th><?php echo $ps->pertanyaan ?></th>
+                                        <?php 
+                                        $skalaNilai = $this->m_kuesioner->getSkalaByPertanyaanID($p->id);
+                                        foreach ($skalaNilai as $sn) { ?>
+                                          <th><input type="radio" value="<?php echo $sn->nilai ?>" name="<?php echo $ps->id ?>" class="radio-template"></th>
+                                        <?php } //foreach skala nilai ?>
+                                      </tr>
+                                    <?php } //foreach pertanyaan skala ?>
+                                    </tbody>
+                                  </table>
+                            <?php } //jenis skala ?>
                             </td>
                           </tr>
                       <?php } //loop pertanyaan ?>
@@ -79,6 +118,7 @@
                             <button type="submit" class="btn btn-primary">Simpan Jawaban</button>
                           </div>
                         </div>
+                      </form>
                   </div>
                 </div>
               </div>

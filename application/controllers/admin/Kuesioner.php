@@ -220,7 +220,8 @@ class Kuesioner extends CI_Controller {
 			'pertanyaan' => $this->input->post('pertanyaan'),
 			'kuesionerID' => $this->input->post('kuesionerID'),
 			'jenis' => 'isian',
-			'customID' => $customID 
+			'customID' => $customID,
+			'textarea' => $this->input->post('textarea')
 		);	
 		$kuesionerID = $this->input->post('kuesionerID');
 		$this->m_master->inputData($data,'pertanyaan');
@@ -672,7 +673,7 @@ public function addGanda() {
 		$this->m_master->updateData($where,$data,'pertanyaan');
 
 		$kuesionerID = $this->input->post('kuesionerID');
-		redirect('admin/Kuesioner/buatPertanyaan/'.$kuesionerID);
+		redirect('admin/Kuesioner/kelolaKuesionerAlumni/'.$kuesionerID);
 	}
 
 	function exeEditPertanyaan()

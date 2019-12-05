@@ -166,7 +166,7 @@
                                       <label>Ya</label>
                                     </div>
                                     <div class="i-checks">
-                                      <input type="radio" value="tidak" name="textarea" class="radio-template">
+                                      <input type="radio" value="tidak" checked="" name="textarea" class="radio-template">
                                       <label>Tidak</label>
                                     </div>
                                 </div>
