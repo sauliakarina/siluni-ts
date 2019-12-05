@@ -58,6 +58,14 @@ class Kuesioner extends CI_Controller {
 				        );				        
 				        $this->m_master->inputData($data,'jawaban_alumni');
 				    } // foreach jawaban ganda
+				    if ($p->inputBox == 'ya' && $this->input->post('inputBox'.$p->id) != Null) {
+				    	$data = array(
+				    		'pertanyaanID' => $p->id,
+				        	'jawaban' => $this->input->post('inputBox'.$p->id),
+				        	'alumniID' => $alumniID
+				    	);
+				    	$this->m_master->inputData($data,'jawaban_alumni');
+				    } // if inputBox
 				} // if ganda 
 				elseif ($p->jenis == 'isian' || $p->jenis == 'pilihan') {
 					if ($this->input->post($p->id) != Null) {
@@ -67,22 +75,34 @@ class Kuesioner extends CI_Controller {
 			            'alumniID' => $alumniID
 			          	);
 						$this->m_master->inputData($data, 'jawaban_alumni');
+
+						if ($p->inputBox == 'ya' && $this->input->post('inputBox'.$p->id) != Null) {
+					    	$data = array(
+					    		'pertanyaanID' => $p->id,
+					        	'jawaban' => $this->input->post('inputBox'.$p->id),
+					        	'alumniID' => $alumniID
+					    	);
+					    	$this->m_master->inputData($data,'jawaban_alumni');
+					    } // if inputBox
 					} //if not null
 				} // if isian dan pilihan
 				elseif ($p->jenis == 'skala') {
 					$pertanyaanSkala = $this->m_kuesioner->getPertanyaanSkalaByPertanyaanID($p->id);
 					foreach ($pertanyaanSkala as $ps) {
-						$data = array(	            
-				        	'pertanyaanID' => $p->id,
-				        	'pertanyaanSkalaID' => $ps->id,
-				        	'jawaban' => $this->input->post($ps->id),
-				        	'alumniID' => $alumniID
-				        );				        
-				        $this->m_master->inputData($data,'jawaban_alumni');
+						if ($this->input->post($ps->id) != Null) {
+							$data = array(	            
+					        	'pertanyaanID' => $p->id,
+					        	'pertanyaanSkalaID' => $ps->id,
+					        	'jawaban' => $this->input->post($ps->id),
+					        	'alumniID' => $alumniID
+					        );				        
+					        $this->m_master->inputData($data,'jawaban_alumni');
+				    	} // if not null
 					}
 				}
 			}//foreach pertanyaan
 		} //foreach kuesionerID
+		$this->session->set_flashdata("pesan", '<div><div class="alert alert-success" id="alert" align="center">Pengisian Kuesioner Sukses! Terimakasih atas partisipasi anda</div></div>');
 		redirect('alumni/Kuesioner');
 	}
 }

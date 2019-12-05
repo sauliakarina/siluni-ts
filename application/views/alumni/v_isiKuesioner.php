@@ -14,6 +14,7 @@
               <li class="breadcrumb-item"><a href="<?php echo site_url('alumni/Profil/riwayatPekerjaan') ?>">Riwayat Pekerjaan</a></li>
             </ul>
           </div>
+           <?php echo $this->session->flashdata('pesan'); ?>
 
          <!-- Forms Section-->
           <section class="forms"> 
@@ -59,7 +60,7 @@
                                 <?php } //loop pilihanJawaban
                                 if ($p->inputBox == 'ya') { ?>
                                     <div class="form-group">
-                                      <textarea placeholder="" class="form-control" rows="3"></textarea>
+                                      <textarea placeholder="" name="inputBox<?php echo $p->id ?>" class="form-control" rows="3"></textarea>
                                     </div>
                                   <?php } //input box ?>
                                   <!-- jika pertanyaan ganda -->
@@ -73,7 +74,7 @@
                                 <?php } //loop jawaban ganda 
                                 if ($p->inputBox == 'ya') {?>
                                   <div class="form-group">
-                                      <textarea placeholder="" class="form-control" rows="3"></textarea>
+                                      <textarea placeholder="" name="inputBox<?php echo $p->id ?>" class="form-control" rows="3"></textarea>
                                   </div>
                                   <?php } //input box ?>
                                   <!-- jika pertanyaan skala -->
