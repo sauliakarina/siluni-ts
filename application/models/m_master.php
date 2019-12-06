@@ -109,6 +109,26 @@ class M_master extends CI_Model{
 
 	}
 
+	function getBerandaAlumniByProdi($prodiID)
+	{
+		$this->db->select('*');
+		$this->db->where('prodiID',$prodiID);
+		$this->db->where('jenis','alumni');
+		$query = $this->db->get('beranda');
+		return $query->row();
+
+	}
+
+	function getBerandaPenggunaByProdi($prodiID)
+	{
+		$this->db->select('*');
+		$this->db->where('prodiID',$prodiID);
+		$this->db->where('jenis','pengguna');
+		$query = $this->db->get('beranda');
+		return $query->row();
+
+	}
+
 	function getProdiByID($id)
 	{
 		$this->db->select('*');

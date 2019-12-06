@@ -51,9 +51,10 @@
           <!-- Page Header-->
           <header class="page-header" style="background-color: #EFE037">
             <div class="container-fluid">
-              <h2 class="no-margin-bottom">Kelola Beranda</h2>
+              <h2 class="no-margin-bottom">Sunting Kata Pengantar</h2>
             </div>
           </header>
+          <?php echo $this->session->flashdata('pesan'); ?>
           <section class="tables">   
             <div class="container-fluid">
               <div class="row">
@@ -74,6 +75,7 @@
                             <input id="fileInput" name="userfile" type="file" class="form-control-file" value="<?php echo $beranda->foto ?>">
                         </div>
                       <textarea name="isi" rows="100" style="height: 500px"><?php echo $beranda->isi ?></textarea>
+                      <input type="hidden" name="berandaID" value="<?php echo $beranda->id ?>">
                     </div>
                   </div>
                 </div>

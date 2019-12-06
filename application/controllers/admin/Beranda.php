@@ -29,7 +29,7 @@ class Beranda extends CI_Controller {
 			'role' => $this->session->userdata('role'),
 			'userID' => $this->session->userdata('userID'),
 			'prodiID' => $this->session->userdata('prodiID'),
-			'beranda' => $this->m_master->getBeranda()
+			'beranda' => $this->m_master->getBerandaAlumniByProdi($this->session->userdata('prodiID'))
 		);
 		$this->load->view('element/head');
 		$this->load->view('element/header');
@@ -43,13 +43,28 @@ class Beranda extends CI_Controller {
 		$data = array(
 			'role' => $this->session->userdata('role'),
 			'userID' => $this->session->userdata('userID'),
-			'prodiID' => $this->session->userdata('prodiID')
+			'prodiID' => $this->session->userdata('prodiID'),
+			'beranda' => $this->m_master->getBerandaPenggunaByProdi($this->session->userdata('prodiID'))
 		);
 		$this->load->view('element/head');
 		$this->load->view('element/header');
 		$this->load->view('element/navbar', $data);
 		$this->load->view('admin/v_kelolaBerandaPengguna', $data);
 		$this->load->view('element/footer');
+	}
+
+	function exeUpdateBerandaPengguna(){
+		$isi = $this->input->post('isi');
+		$data = array(
+		    'isi' => $isi
+		  );
+	  	$where = array(
+	    'id' => $this->input->post('berandaID')
+	  	);
+	  $this->m_master->updateData($where, $data,'beranda');
+	  $this->session->set_flashdata("pesan", '<div><div class="alert alert-success" id="alert" align="center">Kata Pengantar Telah Sukses disunting</div></div>');
+	  redirect(base_url('admin/Beranda/kelolaBerandaPengguna'));
+
 	}
 
 	 function exeUpdateBeranda(){
@@ -62,7 +77,7 @@ class Beranda extends CI_Controller {
 		  );
 
 	  $where = array(
-	    'id' => '1'
+	    'id' => $this->input->post('berandaID')
 	  );
 	  $this->m_master->updateData($where, $data,'beranda');
 
@@ -93,7 +108,7 @@ class Beranda extends CI_Controller {
 				$error = array('error' => $this->upload->display_errors());
 				print_r($error);
 			}	
-		
+	$this->session->set_flashdata("pesan", '<div><div class="alert alert-success" id="alert" align="center">Kata Pengantar Telah Sukses disunting</div></div>');
 	  redirect(base_url('admin/Beranda/kelolaBerandaAlumni'));
 	}
 }

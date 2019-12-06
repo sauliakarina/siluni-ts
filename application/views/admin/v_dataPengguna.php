@@ -34,8 +34,9 @@
                               <th>Instansi</th>
                               <th>Email</th>
                               <th>No Telepon</th>
-                              <th></th>
+                              <th>Link Kuesioner</th>
                               <th>Tandai</th>
+                              <th></th>
                             </tr>
                           </thead>
                           <tbody>
@@ -50,6 +51,13 @@
                               <td><?php echo $this->m_master->getInstansiByID($p->id_instansi)->nama_instansi ?></td>
                               <td><?php echo $p->pengguna_email ?></td>
                               <td><?php echo $p->pengguna_telepon ?></td>
+                              <td><!-- <button type="button" class="btn btn-sm btn-outline-info" onclick="copyFunction()">Copy</button> -->
+                                <input type="text" class="input-sm" value="http://localhost/siluni-ts/pengguna/Kuesioner/kuesionerInstansi/<?php echo $p->id ?>" id="myInput">
+                              </td>
+                              <td><div class="i-checks">
+                              <input name="tandai<?php echo $p->id ?>" type="checkbox" <?php if ($p->tandai == 'checked') { echo 'checked=""'; } ?> value="checked" class="checkbox-template">
+                              <input type="hidden" value="<?php echo $p->id ?>" name="penggunaID[<?php echo $i++; ?>]">
+                            </div></td>
                               <td>
                                 <div class="btn-group btn-group-toggle">
                                   <!-- <button onclick='editPengguna(<?php echo $p->id ?>)' id="btn-edit" class="btn-warning btn-sm" data-toggle="modal" data-target="#ModalEdit"><i class="fas fa-user-edit"></i></button> -->
@@ -58,10 +66,6 @@
                                    <button onclick="set_id(<?php echo $p->id ?>)" class="btn btn-danger btn-sm" data-toggle="modal" data-placement="top" title="Hapus" data-target="#ModalHapus"><i class="fas fa-trash-alt"></i></button>
                                 </div>
                               </td>
-                              <td><div class="i-checks">
-                              <input name="tandai<?php echo $p->id ?>" type="checkbox" <?php if ($p->tandai == 'checked') { echo 'checked=""'; } ?> value="checked" class="checkbox-template">
-                              <input type="hidden" value="<?php echo $p->id ?>" name="penggunaID[<?php echo $i++; ?>]">
-                            </div></td>
                             </tr>
                           <?php } ?>
                           </tbody>
@@ -182,4 +186,12 @@
     }
       );
 } );
+
+    function copyFunction() {
+      var copyText = document.getElementById("myInput");
+      copyText.select();
+      copyText.setSelectionRange(0, 99999)
+      document.execCommand("copy");
+      alert("Copied the text: " + copyText.value);
+}
 </script>

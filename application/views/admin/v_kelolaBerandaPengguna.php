@@ -54,25 +54,24 @@
               <h2 class="no-margin-bottom">Kelola Beranda</h2>
             </div>
           </header>
+          <?php echo $this->session->flashdata('pesan'); ?>
           <section class="tables">   
             <div class="container-fluid">
               <div class="row">
                 <div class="col-lg-12">
                   <div class="card">
+                  <form method="post" action="<?php echo base_url();?>admin/Beranda/exeUpdateBerandaPengguna" enctype="multipart/form-data">
                     <div class="card-header d-flex align-items-center">
                       <h3 class="h4">Beranda Pengguna</h3>
-                      <button type="button" class="btn btn-primary ml-auto btn-sm">Simpan</button>
+                      <button type="submit" class="btn btn-primary ml-auto btn-sm">Simpan</button>
                     </div>
                     <div class="card-body">
                       <div class="form-group">
-                          <label class="form-control-label">Judul</label>
-                          <input type="email" placeholder="Tuliskan Judul" class="form-control">
+                          <label class="form-control-label">Kata Pengantar untuk Pengguna Alumni</label>
+                           <textarea name="isi" rows="100" style="height: 500px"><?php echo $beranda->isi ?></textarea>
+                           <input type="hidden" name="berandaID" value="<?php echo $beranda->id ?>">
                         </div>
-                        <div class="form-group">
-                          <label for="fileInput"  class="form-control-label">Foto</label>
-                            <input id="fileInput" type="file" class="form-control-file">
-                        </div>
-                      <textarea name="isi" rows="100" style="height: 500px"></textarea>
+                      </form>
                     </div>
                   </div>
                 </div>
