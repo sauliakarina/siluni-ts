@@ -23,8 +23,10 @@
               <!-- Navbar Menu -->
               <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
                 
+                <?php if ($this->session->userdata('logged_in')) { ?>
                 <!-- Logout    -->
                 <li class="nav-item"><a href="<?php echo site_url('Login/logout') ?>" class="nav-link logout"> <span class="d-none d-sm-inline" >Keluar</span><i class="fas fa-sign-out-alt"></i></a></li>
+              <?php } ?>
               </ul>
             </div>
           </div>
