@@ -33,8 +33,6 @@
                               <th>Nama</th>
                               <th>Kode Prodi</th>
                               <th>Username</th>
-                              <th>Password</th>
-                              <th>Fakultas</th>
                               <th></th>
                             </tr>
                           </thead>
@@ -48,7 +46,6 @@
                               <td>Admin <?php echo $this->m_master->getProdiByID($d->prodiID)->nama_prodi ?></td>
                               <td><?php echo $this->m_master->getProdiByID($d->prodiID)->kode_prodi ?></td>
                               <td><?php echo $d->username ?></td>
-                              <td><?php echo $this->m_master->getFakultasByID($this->m_master->getProdiByID($d->prodiID)->fakultasID)->nama_fakultas ?></td>
                               <td>
                                 <div class="btn-group btn-group-toggle">
                                  <button onclick='editProdi(<?php echo $d->id ?>)' id="btn-edit" class="btn-warning btn-sm" data-toggle="modal" data-target="#ModalEdit"><i class="fas fa-user-edit"></i></button>
@@ -74,26 +71,26 @@
                         <div role="document" class="modal-dialog">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h4 id="exampleModalLabel" class="modal-title">Tambah Prodi</h4>
+                              <h4 id="exampleModalLabel" class="modal-title">Tambah Akun Prodi</h4>
                               <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
                             </div>
                             <div class="modal-body">
                               <p></p>
-                              <?php echo form_open_multipart('superadmin/Master/exeAddProdi'); ?>
+                              <?php echo form_open_multipart('superadmin/Master/exeAddAkunProdi'); ?>
                                 <div class="form-group">
-                                  <label>Nama Prodi</label>
-                                  <input type="text" placeholder="" class="form-control" name="nama_prodi">
+                                  <label>Username</label>
+                                  <input type="text" placeholder="" class="form-control" name="username">
                                 </div>
                                 <div class="form-group">       
-                                  <label>Kode Prodi</label>
-                                  <input type="text" placeholder="" class="form-control" name="kode_prodi">
+                                  <label>Password</label>
+                                  <input type="password" placeholder="" class="form-control" name="password">
                                 </div>
                                 <div class="form-group">
-                                  <label>Fakultas</label>
-                                    <select name="fakultasID" class="form-control">
+                                  <label>Prodi</label>
+                                    <select name="prodiID" class="form-control">
                                       <option></option>
-                                      <?php foreach ($fakultas as $f) { ?>
-                                      <option value="<?php echo $f->id ?>"><?php echo $f->nama_fakultas ?></option>
+                                      <?php foreach ($prodi as $f) { ?>
+                                      <option value="<?php echo $f->id ?>"><?php echo $f->nama_prodi ?></option>
                                     <?php } ?>
                                     </select>
                                 </div>

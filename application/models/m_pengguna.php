@@ -41,6 +41,22 @@ class M_pengguna extends CI_Model{
 
 	}
 
+	function getPenggunaVer2($prodiID)
+	{
+		$this->db->select('*');
+		$this->db->where('isDelete', 'no');
+		$this->db->where('prodiID', $prodiID);
+		$this->db->order_by('id','DESC');
+		$query = $this->db->get('pengguna');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
+
+	}
+
 	 function getPenggunaGuest($prodiID)
 	{
 		$this->db->select('*');
@@ -72,9 +88,24 @@ class M_pengguna extends CI_Model{
 
 	}
 
-	/*function getPenggunaByInstansiID($id_instansi)
+	 function getPenggunaBySeen($seen, $prodiID)
 	{
-		$this->db->select('id');
+		$this->db->select('*');
+		$this->db->where('seen', '0');
+		$this->db->where('prodiID', $prodiID);
+		$query = $this->db->get('pengguna');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
+
+	}
+
+	function getPenggunaByInstansiIDKoor($id_instansi)
+	{
+		$this->db->select('*');
 		$this->db->where('id_instansi', $id_instansi);
 		$query = $this->db->get('pengguna');
 		if($query->num_rows()>0)
@@ -84,7 +115,7 @@ class M_pengguna extends CI_Model{
 			return $query->result();
 		}
 
-	}*/
+	}
 
 	function getPenggunaByInstansiID($id_instansi)
 	{
@@ -176,6 +207,18 @@ class M_pengguna extends CI_Model{
   	public function getPekerjaanByPenggunaID($id_pengguna){
 		$this->db->select('*');
 		$this->db->where('id_pengguna', $id_pengguna);
+		$query = $this->db->get('pekerjaan');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
+  	}
+
+  	public function getPekerjaanByInstansiID($id_instansi){
+		$this->db->select('*');
+		$this->db->where('id_instansi', $id_instansi);
 		$query = $this->db->get('pekerjaan');
 		if($query->num_rows()>0)
 		{

@@ -16,10 +16,13 @@
                 <div class="col-xl-4 col-sm-6">
                   <div class="item d-flex align-items-center">
                     <div class="icon bg-violet"><i class="icon-user"></i></div>
-                    <a href="#">
                     <div class="title"><span>Pengguna<br> Alumni</span>
-                    </div> </a>
-                    <div class="number" style="color: green;"><strong>4</strong></div>
+                    </div>
+                    <?php 
+                    $where = array('seen' => '0');
+                    $newPengguna = $this->m_master->cekData("pengguna",$where)->num_rows(); ?>
+                    <a <?php if ($newPengguna == 0) { ?> href="#" <?php } else {?> href="<?php echo site_url('admin/Pengguna/getNewPengguna/'.$newPengguna) ?>" <?php } ?>><div class="number" style="color: green;"><strong><?php echo $newPengguna ?></strong>
+                  </div></a>
                   </div>
                 </div>
                 <!-- Item -->
@@ -29,7 +32,7 @@
                     <a href="#">
                     <div class="title"><span>Kuesioner<br>Alumni</span>
                     </div></a>
-                    <div class="number" style="color: green;"><strong>7</strong></div>
+                    <div class="number" style="color: green;"><strong><?php echo $this->m_hasil->getCountKuesioner('alumni'); ?></strong></div>
                   </div>
                 </div>
                 <!-- Item -->
@@ -39,7 +42,7 @@
                     <a href="#">
                     <div class="title"><span>Kuesioner<br>Pengguna Alumni</span>
                     </div></a>
-                    <div class="number" style="color: green;"><strong>5</strong></div>
+                    <div class="number" style="color: green;"><strong><?php echo $this->m_hasil->getCountKuesioner('pengguna'); ?></strong></div>
                   </div>
                 </div>
               </div>
@@ -50,18 +53,21 @@
             <div class="container-fluid">
               <div class="row">
 
+                <?php if ($this->session->userdata('prodiID') == '1') { ?>
                 <div class="chart col-lg-12 col-12">
                   <!-- Bar Chart   -->
                    <div  class="bar-chart has-shadow bg-white">
                     <canvas id="myChart"></canvas>
                   </div>
                 </div>
-
+              <?php } ?>
                 <!-- Statistics -->
                 <div class="statistics col-lg-3 col-12">
                   <div class="statistic d-flex align-items-center bg-white has-shadow">
                     <div class="icon bg-red"><div class="icon bg-green"><i class="icon-user"></i></div></div>
-                    <div class="text"><strong>100</strong><br><small>Jumlah Alumni</small></div>
+                    <div class="text"><strong><?php 
+                    $where = array($prodiID => $this->session->userdata('prodiID'));
+                    echo $this->m_hasil->get_where("alumni",$where)->num_rows(); ?></strong><br><small>Jumlah Alumni</small></div>
                   </div>
                 </div>
               </div>
@@ -80,17 +86,18 @@
     var myChart = new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: ["2017", "2018", "2019"],
+        labels: ["Selaras", "Tidak Selaras"],
         datasets: [{
-          label: 'Statistik Lulusan Ilmu Komputer',
-          data: [2, 15, 10],
+          label: 'Keselarasan Horizontal',
+          data: [
+          <?php echo $selarasHorizontal  ?>,
+          <?php echo $tidakSelarasHorizontal ?>
+          ],
           backgroundColor: [
-          'rgba(55, 181, 94, 1)',
           'rgba(55, 181, 94, 1)',
           'rgba(55, 181, 94, 1)',
           ],
           borderColor: [
-          'rgba(55, 181, 94, 1)',
           'rgba(55, 181, 94, 1)',
           'rgba(55, 181, 94, 1)',
           ],

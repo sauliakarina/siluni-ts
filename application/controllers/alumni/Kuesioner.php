@@ -102,6 +102,14 @@ class Kuesioner extends CI_Controller {
 				}
 			}//foreach pertanyaan
 		} //foreach kuesionerID
+
+		$data = array(
+			'respondenID' => $alumniID,
+			'jenis_kuesioner' => 'alumni',
+			'timestamp' => date("d-m-Y")
+		);
+		$this->m_master->inputData($data,'notif_kuesioner');
+
 		$this->session->set_flashdata("pesan", '<div><div class="alert alert-success" id="alert" align="center">Pengisian Kuesioner Sukses! Terimakasih atas partisipasi anda</div></div>');
 		redirect('alumni/Kuesioner');
 	}

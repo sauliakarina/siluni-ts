@@ -39,10 +39,7 @@
                              ?>
                             <tr>
                               <th scope="row"><?php echo $no++ ?></th>
-                              <td><a href="<?php echo base_url('admin/Kuesioner/kelolaKuesionerAlumni/'.$k->id) ?>"><?php echo $k->nama_kuesioner ?></a></td>
-                              <!-- <td><?php //$d=strtotime($k->tanggal_dibuat);
-                                        //echo date("d M Y", $d); ?>
-                              </td> -->
+                              <td><a href="<?php echo base_url('admin/Kuesioner/buatPertanyaanPengguna/'.$k->id) ?>"><?php echo $k->nama_kuesioner ?></a></td>
                               <td><b><?php echo $k->status ?></b></td>
                               <td> 
                                 <?php if ($k->status == 'aktif') { ?>
@@ -69,8 +66,9 @@
               </div> <!-- row -->
             </div>
           </section>
- 
-                <!-- Modal Retracer-->
+
+
+    <!-- Modal Retracer-->
                     <div id="ModalRetracer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
                         <div role="document" class="modal-dialog">
                           <div class="modal-content">

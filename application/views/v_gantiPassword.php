@@ -27,17 +27,17 @@
                       <form action="<?php echo base_url();?>GantiPassword/exeEditPass" method="post">
                         <div class="form-group">       
                           <label class="form-control-label">Password Lama</label>
-                          <input type="password" name="oldpass" id="oldpass" placeholder="Password" class="form-control">
+                          <input type="password" name="oldpass" id="oldpass" placeholder="Password" class="form-control" required>
                           <?php echo form_error('oldpass'); ?>
                         </div>
                         <div class="form-group">       
                           <label class="form-control-label">Password Baru</label>
-                          <input type="password" name="newpass" id="newpass" placeholder="Password" class="form-control">
+                          <input type="password" name="newpass" id="newpass" placeholder="Password" class="form-control" required>
                           <?php echo form_error('newpass'); ?>
                         </div>
                         <div class="form-group">       
                           <label class="form-control-label">Konfirmasi Password</label>
-                          <input type="password" name="confirm" id="confirm" placeholder="Password" class="form-control">
+                          <input type="password" name="confirm" id="confirm" placeholder="Password" class="form-control" required>
                           <?php echo form_error('confirm'); ?>
                         </div>
                          <div class="line"></div>

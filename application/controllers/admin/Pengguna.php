@@ -16,13 +16,40 @@ class Pengguna extends CI_Controller {
 			'role' => $this->session->userdata('role'),
 			'userID' => $this->session->userdata('userID'),
 			'prodiID' => $prodiID,
-			'pengguna'=> $this->m_pengguna->getPenggunaAdmin($prodiID)
+			'pengguna'=> $this->m_pengguna->getPenggunaVer2($prodiID)
 		);
 		$this->load->view('element/head');
 		$this->load->view('element/header');
 		$this->load->view('element/navbar', $data);
 		$this->load->view('admin/v_dataPengguna', $data);
 		$this->load->view('element/footer');
+	}
+
+	public function getNewPengguna($num) {
+		
+		//update data seen
+		$prodiID = $this->session->userdata('prodiID');
+		$pengguna = $this->m_pengguna->getPenggunaBySeen('0',$prodiID);
+		foreach ($pengguna as $p) {
+			$data = array('seen' => '1');
+			$where = array('id' => $p->id);
+			$this->m_master->updateData($where,$data,'pengguna');
+		}
+
+		$data = array(
+			'role' => $this->session->userdata('role'),
+			'userID' => $this->session->userdata('userID'),
+			'prodiID' => $prodiID,
+			'num' => $num,
+			'pengguna' => $this->m_pengguna->getPenggunaVer2($prodiID)
+		);
+
+		$this->load->view('element/head');
+		$this->load->view('element/header');
+		$this->load->view('element/navbar', $data);
+		$this->load->view('admin/v_newPengguna', $data);
+		$this->load->view('element/footer');
+
 	}
 
 	public function editPengguna($id)

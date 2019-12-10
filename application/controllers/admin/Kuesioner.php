@@ -23,7 +23,7 @@ class Kuesioner extends CI_Controller {
 		$this->load->view('element/header');
 		$this->load->view('element/navbar', $data);
 		$this->load->view('admin/v_kuesionerAlumni', $data);
-		$this->load->view('element/footer');
+		$this->load->view('element/footerVer2');
 	}
 
 	public function kuesionerPengguna()
@@ -38,7 +38,7 @@ class Kuesioner extends CI_Controller {
 		$this->load->view('element/header');
 		$this->load->view('element/navbar', $data);
 		$this->load->view('admin/v_kuesionerPenggunaAlumni', $data);
-		$this->load->view('element/footer');
+		$this->load->view('element/footerVer2');
 	}
 
 	public function buatPertanyaanPengguna($kuesionerID)

@@ -18,7 +18,6 @@
                 <div class="col-lg-12">
                   <div class="card">
                     <div class="card-header d-flex align-items-center">
-                      <?php $id_instansi = $this->m_pengguna->getPenggunaByID($id_pengguna)->id_instansi ?>
                       <h3 class="h4">Alumni yang Bekerja pada <?php echo $this->m_master->getInstansiByID($id_instansi)->nama_instansi ?></h3>
                     </div>
                     <div class="card-body">
@@ -35,7 +34,9 @@
                           </thead>
                           <tbody>
                             <?php $no = 1;
-                            foreach($pekerjaan as $a) { ?>
+                            foreach ($id_pengguna as $ip) {
+                              $pekerjaan = $this->m_pengguna->getPekerjaanByPenggunaID($ip->id);
+                              foreach($pekerjaan as $a) { ?>
                           <tr>
                               <th scope="row"><?php echo $no++ ?></th>
                               <td><?php echo $this->m_alumni->getAlumniByID($a->id_alumni)->nama ?></td>
@@ -43,7 +44,8 @@
                               <td><?php echo $this->m_alumni->getAlumniByID($a->id_alumni)->email ?></td>
                               <td><?php echo $a->periode_kerja ?></td>
                             </tr>
-                          <?php } ?>
+                          <?php } 
+                        }?>
                           </tbody>
                         </table>
                       </div>

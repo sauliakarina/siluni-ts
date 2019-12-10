@@ -31,7 +31,7 @@
                          <div class="form-group row">
                           <label class="col-sm-3 form-control-label">Pilih Instansi</label>
                           <div class="col-sm-9">
-                            <select name="id_instansi" class="form-control mb-3">
+                            <select name="id_instansi" class="form-control mb-3" required>
                             <?php if ($nama_instansi != "") { ?>
                               <option value="<?php echo $this->m_master->getInstansiByName($nama_instansi)->id ?>"><?php echo $nama_instansi ?></option>
                               <?php foreach($instansi as $i){ ?> 
@@ -51,14 +51,14 @@
                         <div class="form-group row">
                           <label class="col-sm-3 form-control-label">Posisi</label>
                           <div class="col-sm-9">
-                            <input type="text" class="form-control" name="posisi">
+                            <input type="text" class="form-control" name="posisi" required>
                           </div>
                         </div>
                          <div class="line"></div>
                         <div class="form-group row">
                           <label class="col-sm-3 form-control-label">Profil Pekerjaan</label>
                           <div class="col-sm-9">
-                            <select name="profil" class="form-control mb-3">
+                            <select name="profil" class="form-control mb-3" required>
                               <option></option>
                               <option value="Programmer"> Programmer </option>
                               <option value="Penanggung Jawab Jaringan"> Penanggung Jawab Jaringan </option>
@@ -71,7 +71,7 @@
                         <div class="form-group row">
                           <label class="col-sm-3 form-control-label">Pendapatan Tiap Bulan</label>
                           <div class="col-sm-9">
-                            <select name="gaji" class="form-control mb-3">
+                            <select name="gaji" class="form-control mb-3" required>
                               <option></option>
                               <option value="< 1jt"> < Rp 1jt </option>
                               <option value="1jt - 2jt"> Rp 1jt - 2 jt </option>

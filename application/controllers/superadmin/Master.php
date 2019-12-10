@@ -40,7 +40,7 @@ class Master extends CI_Controller {
 		$this->load->view('element/footer');
 	}
 
-		public function kelolaAkun()
+		public function kelolaAkunProdi()
 	{
 		$data = array(
 			'role' => $this->session->userdata('role'),
@@ -91,6 +91,33 @@ class Master extends CI_Controller {
 		$this->m_master->updateData($where,$data,'prodi');
 		redirect('superadmin/Master/kelolaProdi');
 	}
+
+	function exeAddAkunProdi()
+	{
+		$data = array(
+			'username' => $this->input->post('username'),
+			'password' => md5($this->input->post('password')),
+			'prodiID' => $this->input->post('prodiID'),
+			'role' => 'admin',
+			'prodi' => $this->m_master->getProdi(),
+			);
+			$this->m_master->inputData($data,'user');
+
+		$berandaAlumni = array(
+			'jenis' => 'alumni',
+			'prodiID' => $this->input->post('prodiID')
+			);
+		$this->m_master->inputData($berandaAlumni,'beranda');
+
+		$berandaPengguna = array(
+			'jenis' => 'pengguna',
+			'prodiID' => $this->input->post('prodiID')
+			);
+		$this->m_master->inputData($berandaPengguna,'beranda');
+
+			redirect('superadmin/Master/kelolaAkunProdi');
+	}
+
 
 	function exeEditFakultas()
 	{

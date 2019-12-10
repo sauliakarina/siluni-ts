@@ -48,7 +48,7 @@
                               <td><?php echo $d->pengguna_telepon ?></td>
                               <td><?php echo $this->m_master->getInstansiByID($d->id_instansi)->alamat ?></td>
                               <td>
-                                 <a type="button" href="<?php echo site_url('koorprodi/Pengguna/daftarAlumni/'.$d->id) ?>" class="btn btn-info btn-sm">Lihat</a>
+                                 <a type="button" href="<?php echo site_url('koorprodi/Pengguna/daftarAlumniVer2/'.$d->id_instansi) ?>" class="btn btn-info btn-sm">Lihat</a>
                               </td>
                             </tr>
                           <?php } ?>

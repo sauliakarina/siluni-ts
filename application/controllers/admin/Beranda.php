@@ -6,6 +6,7 @@ class Beranda extends CI_Controller {
 		parent::__construct();		
 		$this->load->model('m_alumni');
 		$this->load->model('m_master');
+		$this->load->model('m_hasil');
  
 	}
 
@@ -14,7 +15,9 @@ class Beranda extends CI_Controller {
 		$data = array(
 			'role' => $this->session->userdata('role'),
 			'userID' => $this->session->userdata('userID'),
-			'prodiID' => $this->session->userdata('prodiID')
+			'prodiID' => $this->session->userdata('prodiID'),
+			'selarasHorizontal' => $this->m_hasil->getHorizontal('ya'),
+			'tidakSelarasHorizontal' => $this->m_hasil->getHorizontal('tidak')
 		);
 		$this->load->view('element/head');
 		$this->load->view('element/header');

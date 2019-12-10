@@ -12,11 +12,12 @@
               <li class="breadcrumb-item active">Data</li>
             </ul>
           </div>
-        <!-- alert box -->
+
+           <!-- alert box -->
           <div class="alert alert-info alert-dismissible" role="alert">
-          <button type="button" onclick="this.parentNode.parentNode.removeChild(this.parentNode);" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-          <strong><i class="fa fa-warning"></i> Perhatian!</strong> <p style="font-family: verdana; font-size: 11pt">Pengisian kuesioner untuk pengguna alumni dilakukan melalui link pada tabel dibawah ini, copy link tersebut kemudian kirimkan melalui email masing-masing pengguna dan untuk pengisian kuesioner bagi pengguna alumni yang belum terdaftar dilakukan melalui link berikut: http://localhost/siluni-ts/pengguna/Kuesioner/kuesionerPenggunaAlumni/<?php echo $prodiID ?></p>
-        </div>
+            <button type="button" onclick="this.parentNode.parentNode.removeChild(this.parentNode);" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            <strong><i class="fa fa-warning"></i> Perhatian!</strong> <p style="font-family: verdana; font-size: 11pt">Pengisian kuesioner untuk pengguna alumni dilakukan melalui link pada tabel dibawah ini, copy link tersebut kemudian kirimkan melalui email masing-masing pengguna dan untuk pengisian kuesioner bagi pengguna alumni yang belum terdaftar dilakukan melalui link berikut: http://localhost/siluni-ts/pengguna/Kuesioner/kuesionerPenggunaAlumni/<?php echo $prodiID ?></p>
+          </div>
 
           <section class="tables">   
             <div class="container-fluid">
@@ -49,7 +50,7 @@
                             <?php 
                             $no = 1;
                             $i = 0; 
-                            foreach($pengguna as $p){ ?>
+                            foreach (array_slice($pengguna, 0,$num) as $p) { ?>
                             <tr>
                               <th scope="row"><?php echo $no++ ?></th>
                               <td><?php echo $p->pengguna_nama ?></td>

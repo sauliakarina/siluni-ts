@@ -2,7 +2,7 @@
           <!-- Page Header-->
           <header class="page-header" style="background-color: #EFE037">
             <div class="container-fluid">
-              <h2 class="no-margin-bottom">Kelola Kuesioner Alumni</h2>
+              <h2 class="no-margin-bottom">Kelola Kuesioner Pengguna Alumni</h2>
             </div>
           </header>
           <!-- Breadcrumb-->

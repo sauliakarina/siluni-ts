@@ -20,6 +20,8 @@
               <li class="breadcrumb-item active">Data</li>
             </ul>
           </div>
+          <?php echo $this->session->flashdata('suksesImpor'); ?>
+           <?php echo $this->session->flashdata('gagalImpor'); ?>
           <section class="tables">   
             <div class="container-fluid">
               <div class="row">

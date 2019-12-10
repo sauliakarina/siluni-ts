@@ -12,6 +12,7 @@
               <li class="breadcrumb-item active">Data</li>
             </ul>
           </div>
+            <?php echo $this->session->flashdata('pesan'); ?>
           <section class="tables">   
             <div class="container-fluid">
               <div class="row">

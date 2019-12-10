@@ -101,6 +101,8 @@ class Alumni extends CI_Controller {
 		
 		$where = array('id' => $this->input->post('id'));
 		$this->m_master->updateData($where,$data_alumni,'alumni');
+
+		$this->session->set_flashdata("pesan", '<div><div class="alert alert-success" id="alert" align="center">Edit data alumni sukses!</div></div>');
 		redirect('admin/Alumni/editProfil/'.$id);
 	}
 
@@ -226,10 +228,10 @@ class Alumni extends CI_Controller {
 				    $insert = $this->db->insert("pekerjaan",$data);
 				
 			}
-			$this->session->set_flashdata("pesan", '<div><div class="alert alert-info" id="alert" align="center">Date telah diimpor</div></div>');
+			$this->session->set_flashdata("suksesImpor", '<div><div class="alert alert-info" id="alert" align="center">Data alumni berhasil diimpor</div></div>');
 			redirect('admin/Alumni');
 		} else {
-			$this->session->set_flashdata("pesan", '<div><div class="alert alert-danger" id="alert" align="center">File belum dimasukkan</div></div>');
+			$this->session->set_flashdata("gagalImpor", '<div><div class="alert alert-danger" id="alert" align="center">File belum dimasukkan</div></div>');
 			redirect('admin/Alumni');
 		}
 	}
