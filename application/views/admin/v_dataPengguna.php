@@ -49,7 +49,8 @@
                             <?php 
                             $no = 1;
                             $i = 0; 
-                            foreach($pengguna as $p){ ?>
+                            foreach($pengguna as $p){
+                             ?>
                             <tr>
                               <th scope="row"><?php echo $no++ ?></th>
                               <td><?php echo $p->pengguna_nama ?></td>
@@ -57,9 +58,11 @@
                               <td><?php echo $this->m_master->getInstansiByID($p->id_instansi)->nama_instansi ?></td>
                               <td><?php echo $p->pengguna_email ?></td>
                               <td><?php echo $p->pengguna_telepon ?></td>
-                              <td><!-- <button type="button" class="btn btn-sm btn-outline-info" onclick="copyFunction()">Copy</button> -->
-                                <small>copy link di bawah ini</small>
-                                <input type="text" class="input-sm" value="http://localhost/siluni-ts/pengguna/Kuesioner/kuesionerInstansi/<?php echo $p->id ?>" id="myInput">
+                              <td>
+
+                                <button type="button" class="btn btn-sm btn-outline-info" onclick="copyFunction(<?php echo $no ?>)">Copy</button>
+                                <input style="position: absolute; left: -1000px" type="text" class="input-sm" value="http://localhost/siluni-ts/pengguna/Kuesioner/kuesionerInstansi/<?php echo $p->id ?>" id="myInput[<?php echo $no ?>]">
+                            
                               </td>
                               <td><div class="i-checks">
                               <input name="tandai<?php echo $p->id ?>" type="checkbox" <?php if ($p->tandai == 'checked') { echo 'checked=""'; } ?> value="checked" class="checkbox-template">
@@ -194,8 +197,10 @@
       );
 } );
 
-    function copyFunction() {
-      var copyText = document.getElementById("myInput");
+
+    function copyFunction(i) {
+
+      var copyText = document.getElementById("myInput["+i+"]");
       copyText.select();
       copyText.setSelectionRange(0, 99999)
       document.execCommand("copy");

@@ -48,7 +48,7 @@ class Login extends CI_Controller {
                 }elseif($this->session->userdata('role')=='koorprodi') {
                    redirect(base_url("koorprodi/Beranda"), 'refresh');
                 }elseif($this->session->userdata('role')=='superadmin') {
-                   redirect(base_url("superadmin/Beranda"), 'refresh');
+                   redirect(base_url("superadmin/Master/kelolaFakultas"), 'refresh');
                 }elseif($this->session->userdata('role')=='dosen') {
                    redirect(base_url("dosen/Profil"), 'refresh');
                 }

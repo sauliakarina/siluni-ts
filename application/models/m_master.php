@@ -138,6 +138,7 @@ class M_master extends CI_Model{
 
 	}
 
+
 	function getDivisiByPenggunaID($id)
 	{
 		$this->db->select('*');

@@ -50,7 +50,7 @@
                                  <?php } ?>
                                 </div>
                                 <!-- jika pertanyaan pilihan -->
-                              <?php } elseif ($p->jenis == 'pilihan') { 
+                              <?php } elseif ($p->jenis == 'pilihan' && $p->id !='59') { 
                                   $pilihanJawaban = $this->m_kuesioner->getPilihanJawabanByPertanyaanID($p->id);
                                   foreach ($pilihanJawaban as $pj) { ?> 
                                   <div class="i-checks">
@@ -107,7 +107,20 @@
                                     <?php } //foreach pertanyaan skala ?>
                                     </tbody>
                                   </table>
-                            <?php } //jenis skala ?>
+                            <?php } //jenis skala 
+                              if ($p->id == '59') {
+                            ?>
+                            <div class="col-sm-9">
+                            <select name="<?php echo $p->id ?>" class="form-control mb-3">
+                              <option></option>
+                              <?php 
+                              $pilihanJawaban = $this->m_kuesioner->getPilihanJawabanByPertanyaanID($p->id);
+                              foreach ($pilihanJawaban as $pj) {  ?>
+                              <option value="<?php echo $pj->pilihan ?>"><?php echo $pj->pilihan ?></option>
+                            <?php } ?>
+                            </select>
+                          </div>
+                            <?php } ?>
                             </td>
                           </tr>
                       <?php } //loop pertanyaan ?>

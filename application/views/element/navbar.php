@@ -118,10 +118,9 @@
             <?php } ?>
             <!-- menu superadmin -->
             <?php if ($role == 'superadmin') { ?>
-              <li class="<?php if($this->uri->segment(2)=="Profil"){echo "active";} ?>"><a href="<?php echo site_url('superadmin/Beranda') ?>"> <i class="icon-home"></i>Beranda</a></li> 
               <li class="<?php if($this->uri->segment(2)=="Master" && $this->uri->segment(3)=="kelolaFakultas"){echo "active";} ?>"><a href="<?php echo site_url('superadmin/Master/kelolaFakultas') ?>"> <i class="fas fa-university"></i>Fakultas</a></li> 
               <li class="<?php if($this->uri->segment(2)=="Master" && $this->uri->segment(3)=="kelolaProdi"){echo "active";} ?>"><a href="<?php echo site_url('superadmin/Master/kelolaProdi') ?>"> <i class="icon-grid"></i>Program Studi</a></li> 
-             <li class="<?php if($this->uri->segment(2)=="Master" && $this->uri->segment(3)=="kelolaAkun" ){echo "active";} ?>"><a href="<?php echo site_url('superadmin/Master/kelolaAkunProdi') ?>"><i class="fas fa-user-alt"></i>Akun Prodi</a></li>
+             <li class="<?php if($this->uri->segment(2)=="Master" && $this->uri->segment(3)=="kelolaAkunProdi" ){echo "active";} ?>"><a href="<?php echo site_url('superadmin/Master/kelolaAkunProdi') ?>"><i class="fas fa-user-alt"></i>Akun Prodi</a></li>
              <li class="<?php if($this->uri->segment(2)=="Profil" && $this->uri->segment(3)=="gantiPassword"){echo "active";} ?>"><a href="<?php echo site_url('dosen/Profil/gantiPassword') ?>"> <i class="fas fa-unlock-alt"></i>Ganti Password </a></li>
           </ul>
             <?php } ?>

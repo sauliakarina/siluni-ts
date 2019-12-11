@@ -54,7 +54,7 @@ class Master extends CI_Controller {
 		$this->load->view('element/header');
 		$this->load->view('element/navbar', $data);
 		$this->load->view('superadmin/v_kelolaAkun', $data);
-		$this->load->view('element/footer');
+		$this->load->view('element/footerVer2');
 	}
 
 	function exeAddProdi()
@@ -92,6 +92,25 @@ class Master extends CI_Controller {
 		redirect('superadmin/Master/kelolaProdi');
 	}
 
+	function exeEditAkunProdi()
+	{
+		$data = array(
+			'username' => $this->input->post('username'),
+			'prodiID' => $this->input->post('prodiID'),
+		);
+
+		$where = array('id' => $this->input->post('id'));
+		$this->m_master->updateData($where,$data,'user');
+
+		if ($this->input->post('password') != "") {
+			$data = array('password' => md5($this->input->post('password')));
+			$where = array('id' => $this->input->post('id'));
+			$this->m_master->updateData($where,$data,'user');
+		}
+		
+		redirect('superadmin/Master/kelolaAkunProdi');
+	}
+
 	function exeAddAkunProdi()
 	{
 		$data = array(
@@ -99,7 +118,6 @@ class Master extends CI_Controller {
 			'password' => md5($this->input->post('password')),
 			'prodiID' => $this->input->post('prodiID'),
 			'role' => 'admin',
-			'prodi' => $this->m_master->getProdi(),
 			);
 			$this->m_master->inputData($data,'user');
 
@@ -147,6 +165,12 @@ class Master extends CI_Controller {
 	public function getProdi($id)
 	{
 		$data = $this->m_master->getProdiByID($id);
+		echo json_encode($data);
+	}
+
+	public function getAkunProdi($id)
+	{
+		$data = $this->m_master->getUserByID($id);
 		echo json_encode($data);
 	}
 
