@@ -6,21 +6,24 @@ class Laporan extends CI_Controller {
 		parent::__construct();		
 		$this->load->model('m_alumni');
 		$this->load->model('m_master');
+		$this->load->model('m_kuesioner');
+		$this->load->model('m_hasil');
 
  
 	}
 
-	public function index()
+	public function kuesionerAlumni($kuesionerID)
 	{
 		$data = array(
 			'role' => $this->session->userdata('role'),
 			'userID' => $this->session->userdata('userID'),
-			'prodiID' => $this->session->userdata('prodiID')
+			'prodiID' => $this->session->userdata('prodiID'),
+			'pertanyaan' => $this->m_kuesioner->getPertanyaanByKuesionerID($kuesionerID)
 		);
 		$this->load->view('element/head');
 		$this->load->view('element/header');
 		$this->load->view('element/navbar', $data);
-		$this->load->view('v_laporan', $data);
+		$this->load->view('v_laporanAlumni', $data);
 		$this->load->view('element/footer');
 	}
 
@@ -38,12 +41,18 @@ class Laporan extends CI_Controller {
 		$this->load->view('element/footer');
 	}
 
-	public function hasilLaporanAlumni()
+	public function laporanAlumni()
 	{
+		$pertanyaanID = $this->input->post('pertanyaanID');
+		$tahun_lulus = $this->input->post('tahun_lulus');
+		$prodiID = $this->session->userdata('prodiID');
 		$data = array(
 			'role' => $this->session->userdata('role'),
 			'userID' => $this->session->userdata('userID'),
-			'prodiID' => $this->session->userdata('prodiID')
+			'prodiID' => $prodiID,
+			'hasil' => $this->m_hasil->getHasilAlumni($pertanyaanID, $prodiID),
+			'pertanyaan' => $this->m_kuesioner->getPertanyaanByPertanyaanID($pertanyaanID),
+			'tabel' => $this->m_hasil->getJawabanByPertanyaanID($pertanyaanID)
 		);
 		$this->load->view('element/head');
 		$this->load->view('element/header');

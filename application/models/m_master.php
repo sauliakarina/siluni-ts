@@ -243,6 +243,20 @@ class M_master extends CI_Model{
 		$this->db->delete($table);
 	}
 
+	function getKuesionerByResponden($responden, $prodiID)
+	{
+		$this->db->select('*');
+		$this->db->where('responden',$responden);
+		$this->db->where('status','aktif');
+		$this->db->where('prodiID', $prodiID);
+		$query = $this->db->get('kuesioner');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
+	}
 
 	
 }

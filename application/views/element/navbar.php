@@ -59,10 +59,22 @@
                 <li><a href="<?php echo site_url('admin/Beranda/kelolaBerandaPengguna') ?>">Beranda Pengguna</a></li>
               </ul>
             </li>
-             <li class="<?php if($this->uri->segment(1)=="Laporan" ){echo "active";} ?>"><a href="#dropdownLaporan" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-bar-chart"></i>Laporan</a>
-              <ul id="dropdownLaporan" class="collapse list-unstyled ">
-                <li><a href="<?php echo site_url('Laporan') ?>">Alumni</a></li>
-                <li><a href="<?php echo site_url('Laporan/laporanPengguna') ?>">Pengguna Alumni</a></li>
+             <li class="<?php if($this->uri->segment(1)=="Laporan" && ($this->uri->segment(2)=="kuesionerAlumni" || $this->uri->segment(2)=="laporanAlumni") ){echo "active";} ?>"><a href="#dropdownLaporanAlumni" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-bar-chart"></i>Laporan Alumni</a>
+              <ul id="dropdownLaporanAlumni" class="collapse list-unstyled ">
+                <?php $kuesioner = $this->m_master->getKuesionerByResponden('alumni', $prodiID);
+                  foreach ($kuesioner as $k) {
+                 ?>
+                <li><a href="<?php echo site_url('Laporan/kuesionerAlumni/'.$k->id) ?>"><?php echo $k->nama_kuesioner ?></a></li>
+               <?php } ?>
+              </ul>
+            </li>
+            <li class="<?php if($this->uri->segment(1)=="Laporan" && ($this->uri->segment(2)=="kuesionerPengguna" || $this->uri->segment(2)=="laporanPengguna")){echo "active";} ?>"><a href="#dropdownLaporanPengguna" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-bar-chart"></i>Pengguna Alumni</a>
+              <ul id="dropdownLaporanPengguna" class="collapse list-unstyled ">
+                <?php $kuesioner = $this->m_master->getKuesionerByResponden('pengguna', $prodiID);
+                  foreach ($kuesioner as $k) {
+                 ?>
+                <li><a href="<?php echo site_url('Laporan/kuesioner/'.$k->id) ?>"><?php echo $k->nama_kuesioner ?></a></li>
+               <?php } ?>
               </ul>
             </li>
           </ul>

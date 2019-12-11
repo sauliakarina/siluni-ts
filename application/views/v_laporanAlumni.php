@@ -15,6 +15,11 @@
             </ul>
           </div>
 
+            <!-- alert box -->
+          <div class="alert alert-info alert-dismissible" role="alert">
+            <button type="button" onclick="this.parentNode.parentNode.removeChild(this.parentNode);" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            <strong><i class="fa fa-warning"></i> Perhatian!</strong> <p style="font-family: verdana; font-size: 11pt">Grafik tidak ditampilkan untuk pertanyaan jenis isian</p>
+          </div>
                    <!-- Forms Section-->
           <section class="forms"> 
             <div class="container-fluid">
@@ -27,27 +32,16 @@
                     </div>
                     <div class="card-body">
                       <p></p>
-                      <form class="form-horizontal" action="<?php echo site_url("Laporan/hasilLaporanAlumni") ?>">
-                         <div class="line"></div>
-                        <div class="form-group row">
-                          <label class="col-sm-3 form-control-label">Jenis Kuesioner</label>
-                          <div class="col-sm-9">
-                            <select name="kuesioner" class="form-control mb-3">
-                              <option>Pekerjaan</option>
-                              <option>Kompetensi</option>
-                              <option>Melanjutkan Pendidikan</option>
-                            </select>
-                          </div>
-                        </div>
+                      <form class="form-horizontal" method="post" action="<?php echo site_url("Laporan/laporanAlumni") ?>">
                         <div class="line"></div>
                         <div class="form-group row">
                           <label class="col-sm-3 form-control-label">Pertanyaan</label>
                           <div class="col-sm-9">
-                            <select class="js-example-basic-single dropdown" id="" name="pertanyaan" style="width: 100%;">
+                            <select class="js-example-basic-single dropdown" id="" name="pertanyaanID" style="width: 100%;">
                             <option value="">Pilih Pertanyaan</option>
-                             <option>Lama masa tunggu</option>
-                             <option>Cara nemperoleh pekerjaan</option>
-                             <option>Bidang ilmu selaras dengan pekerjaan</option>
+                            <?php foreach ($pertanyaan as $p) { ?>
+                              <option value="<?php echo $p->id ?>"><?php echo $p->pertanyaan ?></option>
+                            <?php } ?>
                              </select>
                           </div>
 
@@ -56,7 +50,7 @@
                         <div class="form-group row">
                           <label class="col-sm-3 form-control-label">Tahun Lulus</label>
                           <div class="col-sm-3">
-                            <input type="text" class="form-control" value="">
+                            <input type="text" class="form-control" value="" name="tahun_lulus">
                           </div>
                         </div>
 

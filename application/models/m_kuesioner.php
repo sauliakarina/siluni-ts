@@ -148,6 +148,16 @@ class M_kuesioner extends CI_Model{
 		return $this->db->get_where('pertanyaan', array('id' => $id))->row();
 	}
 
+
+	function getPertanyaanByPertanyaanID($id)
+	{
+		$this->db->select('*');
+		$this->db->where('id',$id);
+		$query = $this->db->get('pertanyaan');
+		return $query->row();
+
+	}
+
 	function getKuesionerIDFromPertanyaanID($id)
 	{
 		$this->db->select('kuesionerID');

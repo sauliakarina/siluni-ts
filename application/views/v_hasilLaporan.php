@@ -16,16 +16,33 @@
             </ul>
           </div>
 
+           <?php if($pertanyaan->jenis == 'pilihan' || $pertanyaan->jenis == 'ganda'){  
+                          if(count($hasil)>0){
+                            foreach ($hasil as $h) {
+                              $label[] = $h->pilihan;
+                              $jumlah[] = (float) $h->num;
+                            }
+                          }else{
+          ?>
+           <!-- alert box -->
+          <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" onclick="this.parentNode.parentNode.removeChild(this.parentNode);" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            <strong><i class="fa fa-warning"></i> Perhatian!</strong> <p style="font-family: verdana; font-size: 11pt">Belum ada data yang masuk</p>
+        </div>
+        <?php }
+        } ?>
+
            <section class="tables">   
             <div class="container-fluid">
               <div class="row">
                 <div class="col-lg-12">
                   <div class="card">
                     <div class="card-header d-flex align-items-center">
-                      <h3 class="h4">Cara Memperoleh Pekerjaan</h3>
+                      <h3 class="h4"><?php echo $pertanyaan->pertanyaan ?></h3>
                       <button type="button" class="btn btn-success btn-sm ml-auto" style="float: right;"><i class="fas fa-cloud-download-alt"></i> Export</button>
                     </div>
                     <div class="card-body">
+                      <?php if ($pertanyaan->jenis == 'pilihan' || $pertanyaan->jenis == 'ganda') {?>
                       <div class="row">
                       <div class="chart col-lg-6 col-sm-12">
                         <!-- Bar Chart   -->
@@ -40,6 +57,7 @@
                         </div>
                       </div>
                       </div>
+                    <?php } ?>
                       <div class="row" style="margin-top: 20px" >
                         <div class="table-responsive col-lg-12" >                       
                         <table class="table table-striped table-hover">
@@ -52,13 +70,14 @@
                             </tr>
                           </thead>
                           <tbody>
+                            <?php foreach ($tabel as $t) { ?>
                             <tr>
-                              <td>Saulia Karina</td>
-                              <td>31451538511</td>
-                              <td>2018</td>
-                              <td></td>
-                              
+                              <td><?php echo $t->nama; ?></td>
+                              <td><?php echo $t->nim; ?></td>
+                              <td><?php echo $t->tahun_lulus; ?></td>
+                              <td><?php echo $t->jawaban ?></td>
                             </tr>
+                          <?php } ?>
                           </tbody>
                         </table>
                       </div>
@@ -84,10 +103,10 @@
     var chartBar = new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: ["2017", "2018", "2019"],
+        labels: ["<?php echo json_encode($label);?>"],
         datasets: [{
-          label: 'Statistik Lulusan Ilmu Komputer',
-          data: [2, 15, 10],
+          label: '',
+          data: [<?php echo json_encode($jumlah);?>],
           backgroundColor: [
           'rgba(153, 102, 255, 1)',
           'rgba(255, 99, 132, 1)',
