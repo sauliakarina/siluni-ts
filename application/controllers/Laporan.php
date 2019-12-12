@@ -46,13 +46,19 @@ class Laporan extends CI_Controller {
 		$pertanyaanID = $this->input->post('pertanyaanID');
 		$tahun_lulus = $this->input->post('tahun_lulus');
 		$prodiID = $this->session->userdata('prodiID');
+		if ($tahun_lulus == "") {
+			$tabel = $this->m_hasil->getJawabanByPertanyaanID($pertanyaanID);
+		} else {
+			$tabel = $this->m_hasil->getJawabanByPertanyaanTahun($pertanyaanID, $tahun_lulus);
+		}
 		$data = array(
 			'role' => $this->session->userdata('role'),
 			'userID' => $this->session->userdata('userID'),
 			'prodiID' => $prodiID,
-			'hasil' => $this->m_hasil->getHasilAlumni($pertanyaanID, $prodiID),
+			'grafik' => $this->m_hasil->getHasilAlumni($pertanyaanID, $prodiID),
+			'label' => $this->m_hasil->getPilihanJawabanByPertanyaanID($pertanyaanID),
 			'pertanyaan' => $this->m_kuesioner->getPertanyaanByPertanyaanID($pertanyaanID),
-			'tabel' => $this->m_hasil->getJawabanByPertanyaanID($pertanyaanID)
+			'tabel' => $tabel
 		);
 		$this->load->view('element/head');
 		$this->load->view('element/header');
