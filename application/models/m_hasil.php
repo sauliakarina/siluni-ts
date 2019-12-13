@@ -46,17 +46,25 @@ class M_hasil extends CI_Model{
         };
 	}
 
-	public function get_info($id, $prodi=FALSE)
+	public function getHasilAlumniTahun($pertanyaanID, $prodiID, $tahun_lulus)
 	{
-		$this->db->select('jawaban, pilihan_jawaban, COUNT(*) AS "num" ');
-		$this->db->where('hasil.id_pertanyaan', $id);
-		$this->db->where('alumni.prodi', $prodi);
-		$this->db->join('pilihan', 'hasil.jawaban = pilihan.id', 'left');
-		$this->db->join('alumni', 'hasil.id_alumni = alumni.id_user', 'left');
+		$this->db->select('jawaban, pilihan, COUNT(*) AS "num"');
+		$this->db->where('jawaban_alumni.pertanyaanID', $pertanyaanID);
+		$this->db->where('alumni.prodiID', $prodiID);
+		$this->db->where('jawaban_alumni.jawaban !=', "");
+		$this->db->where('alumni.tahun_lulus', $tahun_lulus);
+		$this->db->join('pilihan_jawaban', 'jawaban_alumni.jawaban = pilihan_jawaban.pilihan', 'left');
+		$this->db->join('alumni', 'jawaban_alumni.alumniID = alumni.id', 'left');
 		$this->db->group_by('jawaban');
-		$query = $this->db->get('hasil');
-		return $query->result();
+		$query = $this->db->get('jawaban_alumni');
+		if($query->num_rows() > 0){
+            foreach($query->result() as $data){
+                $hasil[] = $data;
+            }
+            return $hasil;
+        };
 	}
+
 
 	public function getJawabanByPertanyaanTahun($pertanyaanID, $tahun_lulus){
       $this->db->select('

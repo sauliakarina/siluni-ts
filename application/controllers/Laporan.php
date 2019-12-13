@@ -18,12 +18,29 @@ class Laporan extends CI_Controller {
 			'role' => $this->session->userdata('role'),
 			'userID' => $this->session->userdata('userID'),
 			'prodiID' => $this->session->userdata('prodiID'),
-			'pertanyaan' => $this->m_kuesioner->getPertanyaanByKuesionerID($kuesionerID)
+			'pertanyaan' => $this->m_kuesioner->getPertanyaanByKuesionerID($kuesionerID),
+			'kuesionerID' => $kuesionerID
 		);
 		$this->load->view('element/head');
 		$this->load->view('element/header');
 		$this->load->view('element/navbar', $data);
 		$this->load->view('v_laporanAlumni', $data);
+		$this->load->view('element/footer');
+	}
+
+	public function kuesionerPengguna($kuesionerID)
+	{
+		$data = array(
+			'role' => $this->session->userdata('role'),
+			'userID' => $this->session->userdata('userID'),
+			'prodiID' => $this->session->userdata('prodiID'),
+			'pertanyaan' => $this->m_kuesioner->getPertanyaanByKuesionerID($kuesionerID),
+			'kuesionerID' => $kuesionerID
+		);
+		$this->load->view('element/head');
+		$this->load->view('element/header');
+		$this->load->view('element/navbar', $data);
+		$this->load->view('v_laporanPengguna', $data);
 		$this->load->view('element/footer');
 	}
 
@@ -48,22 +65,25 @@ class Laporan extends CI_Controller {
 		$prodiID = $this->session->userdata('prodiID');
 		if ($tahun_lulus == "") {
 			$tabel = $this->m_hasil->getJawabanByPertanyaanID($pertanyaanID);
+			$grafik = $this->m_hasil->getHasilAlumni($pertanyaanID, $prodiID);
 		} else {
 			$tabel = $this->m_hasil->getJawabanByPertanyaanTahun($pertanyaanID, $tahun_lulus);
+			$grafik = $this->m_hasil->getHasilAlumniTahun($pertanyaanID, $prodiID, $tahun_lulus);
 		}
 		$data = array(
 			'role' => $this->session->userdata('role'),
 			'userID' => $this->session->userdata('userID'),
 			'prodiID' => $prodiID,
-			'grafik' => $this->m_hasil->getHasilAlumni($pertanyaanID, $prodiID),
+			'grafik' => $grafik,
 			'label' => $this->m_hasil->getPilihanJawabanByPertanyaanID($pertanyaanID),
 			'pertanyaan' => $this->m_kuesioner->getPertanyaanByPertanyaanID($pertanyaanID),
-			'tabel' => $tabel
+			'tabel' => $tabel,
+			'getPertanyaan' => $this->m_kuesioner->getPertanyaanByKuesionerID($this->input->post('kuesionerID'))
 		);
 		$this->load->view('element/head');
 		$this->load->view('element/header');
 		$this->load->view('element/navbar', $data);
-		$this->load->view('v_hasilLaporan', $data);
+		$this->load->view('v_hasilLaporanAlumni', $data);
 		$this->load->view('element/footer');
 	}
 }

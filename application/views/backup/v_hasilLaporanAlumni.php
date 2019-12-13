@@ -1,4 +1,10 @@
-  <script src="<?php echo base_url('assets/template/vendor') ?>/chart.js/Chart.js"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/DataTables/buttons.dataTables.min.css">
+<script src="<?php echo base_url(); ?>assets/DataTables/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/DataTables/buttons.flash.min.js" ></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/DataTables/jszip.min.js" ></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/DataTables/buttons.html5.min.js" ></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/DataTables/buttons.print.min.js" ></script>
+<script src="<?php echo base_url('assets/template/vendor') ?>/chart.js/Chart.js"></script>
   <!-- head -->
          <!-- Side Navbar -->
         <div class="content-inner">
@@ -8,13 +14,6 @@
               <h2 class="no-margin-bottom">Laporan</h2>
             </div>
           </header>
-           <!-- Breadcrumb-->
-          <div class="breadcrumb-holder container-fluid">
-            <ul class="breadcrumb">
-              <li class="breadcrumb-item"><a href="<?php echo site_url('Laporan') ?>">Laporan</a></li>
-              <li class="breadcrumb-item">Hasil</li>
-            </ul>
-          </div>
 
           <?php if($pertanyaan->jenis == 'pilihan' || $pertanyaan->jenis == 'ganda'){ ?>
                     <?php 
@@ -32,14 +31,13 @@
                   <?php }
                 } ?>
 
-           <section class="tables">   
+  <section class="tables">   
             <div class="container-fluid">
               <div class="row">
                 <div class="col-lg-12">
                   <div class="card">
                     <div class="card-header d-flex align-items-center">
                       <h3 class="h4"><?php echo $pertanyaan->pertanyaan ?></h3>
-                      <button type="button" class="btn btn-success btn-sm ml-auto" style="float: right;"><i class="fas fa-cloud-download-alt"></i> Export</button>
                     </div>
                     <div class="card-body">
                       <?php if ($pertanyaan->jenis == 'pilihan' || $pertanyaan->jenis == 'ganda') {?>
@@ -54,9 +52,34 @@
                       </div>
                       </div>
                     <?php } ?>
+                    <div class="row">
+                      <?php 
+                      echo "<br>";
+                      $jumlahPilihan = $this->m_kuesioner->getPilihanJawabanByPertanyaanID($pertanyaan->id);
+                      echo count($jumlahPilihan); echo "<br>";
+                      $json = json_encode($label);
+                      ?>
+                      <?php
+                      echo $json; echo "<br>";
+                      $json = json_decode($json , true);
+                      echo count($json);
+                      echo $json[4]; echo "<br>";
+                       ?>
+                       <?php echo "coba real bismillah <br>";
+                          $json = json_encode($label);
+                          $json = json_decode($json , true);
+                          $countPilihan = count($jumlahPilihan);
+                          for ($i=$countPilihan; $i <count($json); $i++) { 
+                            $labelVer2[] = $json[$i];
+                          }
+                          foreach ($labelVer2 as $k) {
+                            echo $k;
+                          }
+                        ?>
+                    </div>
                       <div class="row" style="margin-top: 20px" >
                         <div class="table-responsive col-lg-12" >                       
-                        <table class="table table-striped table-hover">
+                        <table id="myTable" class="table table-striped table-hover">
                           <thead>
                             <tr>
                               <th>Nama</th>
@@ -104,11 +127,16 @@
     <script type="text/javascript" src="<?php echo base_url('assets/highcharts/themes/skies.js'); ?>"></script>
 
     <script>
-       $(document).ready(function() {
-         $('#example').DataTable({
-         "ordering":true,
-       });
-     } );
+         $(document).ready( function () {
+          $('#myTable').DataTable({
+              "ordering": false,
+              "select": true,
+              dom: 'Bfrtip',
+              buttons: [
+                  'copy', 'excel', 'print'
+              ]
+            }); //input fungsi
+        });
      </script>
 
     <script type="text/javascript">
