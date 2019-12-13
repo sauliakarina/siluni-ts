@@ -176,6 +176,14 @@ class M_kuesioner extends CI_Model{
 		}
 	}
 
+	function getPertanyaanSkalaByID($id)
+	{
+		$this->db->select('*');
+		$this->db->where('id',$id);
+		$query = $this->db->get('pertanyaan_skala');
+		return $query->row();
+	}
+
 
 	function deletePilihan($id)
 	{

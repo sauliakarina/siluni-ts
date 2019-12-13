@@ -74,7 +74,7 @@
                 <?php $kuesioner = $this->m_master->getKuesionerByResponden('pengguna', $prodiID);
                   foreach ($kuesioner as $k) {
                  ?>
-                <li><a href="<?php echo site_url('Laporan/kuesioner/'.$k->id) ?>"><?php echo $k->nama_kuesioner ?></a></li>
+                <li><a href="<?php echo site_url('Laporan/kuesionerPengguna/'.$k->id) ?>"><?php echo $k->nama_kuesioner ?></a></li>
                <?php } ?>
               </ul>
             </li>

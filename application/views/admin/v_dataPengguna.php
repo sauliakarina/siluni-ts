@@ -70,10 +70,9 @@
                             </div></td>
                               <td>
                                 <div class="btn-group btn-group-toggle">
-                                  <!-- <button onclick='editPengguna(<?php echo $p->id ?>)' id="btn-edit" class="btn-warning btn-sm" data-toggle="modal" data-target="#ModalEdit"><i class="fas fa-user-edit"></i></button> -->
                                    <form method='post' action="<?php echo base_url('admin/Pengguna/editPengguna/'.$p->id) ?>">
                                     <button type="submit" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="Sunting"><i class="far fa-edit"></i></button></form>
-                                   <button onclick="set_id(<?php echo $p->id ?>)" class="btn btn-danger btn-sm" data-toggle="modal" data-placement="top" title="Hapus" data-target="#ModalHapus"><i class="fas fa-trash-alt"></i></button>
+                                   <button onclick="return set_id(<?php echo $p->id ?>)" class="btn btn-danger btn-sm" data-toggle="modal" data-placement="top" title="Hapus" data-target="#ModalHapus"><i class="fas fa-trash-alt"></i></button>
                                 </div>
                               </td>
                             </tr>
@@ -160,11 +159,12 @@
    var p_id;
     function set_id(id) {
         p_id = id;
-
+        return false;
     }
 
     function deletep(){
         window.location.href =  "<?php echo base_url();?>admin/Pengguna/deletePengguna/"+p_id;
+         return false;
     }
 
     function editPengguna(id) {

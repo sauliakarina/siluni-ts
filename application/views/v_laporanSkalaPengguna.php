@@ -25,7 +25,7 @@
                     </div>
                     <div class="card-body">
                       <p></p>
-                      <form class="form-horizontal" method="post" action="<?php echo site_url("Laporan/laporanAlumniSkala") ?>">
+                      <form class="form-horizontal" method="post" action="<?php echo site_url("Laporan/laporanPenggunaSkala") ?>">
                         <div class="line"></div>
                         <div class="form-group row">
                           <label class="col-sm-3 form-control-label">Pertanyaan</label>
@@ -49,13 +49,6 @@
                             <select class="js-example-basic-single dropdown" id="pertanyaanSkala" name="pertanyaanSkalaID" style="width: 100%;">
                               <option value="">Pilih Pertanyaan</option>
                             </select>
-                          </div>
-                        </div>
-                        <div class="line"></div>
-                        <div class="form-group row">
-                          <label class="col-sm-3 form-control-label">Tahun Lulus</label>
-                          <div class="col-sm-3">
-                            <input type="text" class="form-control" value="" name="tahun_lulus">
                           </div>
                         </div>
 
