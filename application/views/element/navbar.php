@@ -66,6 +66,7 @@
                  ?>
                 <li><a href="<?php echo site_url('Laporan/kuesionerAlumni/'.$k->id) ?>"><?php echo $k->nama_kuesioner ?></a></li>
                <?php } ?>
+               <li><a href="<?php echo site_url('Laporan/laporanSkala/') ?>">Pertanyaan Skala</a></li>
               </ul>
             </li>
             <li class="<?php if($this->uri->segment(1)=="Laporan" && ($this->uri->segment(2)=="kuesionerPengguna" || $this->uri->segment(2)=="laporanPengguna")){echo "active";} ?>"><a href="#dropdownLaporanPengguna" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-bar-chart"></i>Pengguna Alumni</a>

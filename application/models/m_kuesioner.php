@@ -93,6 +93,50 @@ class M_kuesioner extends CI_Model{
 		}
 	}
 
+	function getPertanyaanAlumniByJenis($jenis)
+	{
+		$this->db->select('*');
+		$this->db->where('jenis',$jenis);
+		$this->db->where('isDelete','no');
+		$query = $this->db->get('pertanyaan');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
+	}
+
+	function getPertanyaanByKuesionerIDNonSkala($id)
+	{
+		$this->db->select('*');
+		$this->db->where('kuesionerID',$id);
+		$this->db->where('isDelete','no');
+		$this->db->where('jenis !=','skala');
+		$query = $this->db->get('pertanyaan');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
+	}
+
+	function getPertanyaanByKuesionerIDSkala($id)
+	{
+		$this->db->select('*');
+		$this->db->where('kuesionerID',$id);
+		$this->db->where('isDelete','no');
+		$this->db->where('jenis','skala');
+		$query = $this->db->get('pertanyaan');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
+	}
+
 	function getPilihanJawabanByPertanyaanID($id)
 	{
 		$this->db->select('*');
