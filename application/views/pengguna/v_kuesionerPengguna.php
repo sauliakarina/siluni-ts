@@ -14,7 +14,9 @@
               <div class="row bg-white has-shadow">
                 <p align="justify" style="margin: 5px;font-size: 17px">
                   <font face="cambria">
-                  Bapak/Ibu yang terhormat, saat ini kami sedang melakukan <i><b>Tracer Study</b></i> (penelusuran alumni) <b>Program Studi <?php echo $this->m_master->getProdiByID($prodiID)->nama_prodi ?></b> FMIPA-UNJ. Adapun tujuan dari kegiatan ini adalah untuk mendapatkan basis data yang diperlukan dalam penyusunan Evaluasi Diri dalam rangka Akreditasi Program Studi. Berkaitan dengan hal tersebut,  kami mohon Bapak/Ibu dapat mengisi kuesioner ini, data yang Bapak/Ibu isi dijamin kerahasiaannya. Untuk kerjasama dan bantuannya, kami mengucapkan banyak terima kasih.  </font>
+                  Bapak/Ibu <?php $instansiID = $this->m_pengguna->getPenggunaByID($penggunaID)->id_instansi;
+                  echo $this->m_master->getInstansiByID($instansiID)->nama_instansi;
+                   ?> yang terhormat, saat ini kami sedang melakukan <i><b>Tracer Study</b></i> (penelusuran alumni) <b>Program Studi <?php echo $this->m_master->getProdiByID($prodiID)->nama_prodi ?></b> FMIPA-UNJ. Adapun tujuan dari kegiatan ini adalah untuk mendapatkan basis data yang diperlukan dalam penyusunan Evaluasi Diri dalam rangka Akreditasi Program Studi. Berkaitan dengan hal tersebut,  kami mohon Bapak/Ibu dapat mengisi kuesioner ini, data yang Bapak/Ibu isi dijamin kerahasiaannya. Untuk kerjasama dan bantuannya, kami mengucapkan banyak terima kasih.  </font>
                    <?php //echo $this->m_master->getBerandaPenggunaByProdi($prodiID)->isi ?>
                 </p>
               </div>

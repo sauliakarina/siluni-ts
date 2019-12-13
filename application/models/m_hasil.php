@@ -20,9 +20,10 @@ class M_hasil extends CI_Model{
 		return $this->db->get_where($table,$where);
 	}
 
-	 function getCountKuesioner($jenis_kuesioner) {
+	 function getCountKuesioner($jenis_kuesioner, $prodiID) {
 		$this->db->select('*');
 		$this->db->where('jenis_kuesioner', $jenis_kuesioner);
+		$this->db->where('prodiID', $prodiID);
 		$this->db->where('new', '0');
 		$query = $this->db->get('notif_kuesioner');
 		return $query->num_rows();

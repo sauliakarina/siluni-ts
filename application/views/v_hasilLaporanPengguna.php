@@ -84,7 +84,7 @@
                               <td><?php echo $t->divisi; ?></td>
                               <td><?php echo $this->m_master->getInstansiByID($t->id_instansi)->nama_instansi ?></td>
                               <td><?php 
-                                $jawaban = $this->m_hasil->getJawabanByPenggunaPertanyaan($t->penggunaID, $t->pertanyaanID);
+                                $jawaban = $this->m_hasil->getJawabanByPenggunaPertanyaan($t->id, $t->pertanyaanID);
                                 foreach ($jawaban as $j) {
                                    echo $j->jawaban.",<br>";
                                  }

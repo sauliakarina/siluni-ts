@@ -92,7 +92,8 @@ class Kuesioner extends CI_Controller {
 		$data = array(
 			'respondenID' => $penggunaID,
 			'jenis_kuesioner' => 'pengguna',
-			'timestamp' => date("d-m-Y")
+			'timestamp' => date("d-m-Y"),
+			'prodiID' => $prodiID
 		);
 		$this->m_master->inputData($data,'notif_kuesioner');
 
@@ -141,6 +142,13 @@ public function addJawabanVer2()
 				}
 			}//foreach pertanyaan
 		} //foreach kuesionerID
+
+		$data = array(
+			'jenis_kuesioner' => 'pengguna',
+			'timestamp' => date("d-m-Y"),
+			'prodiID' => $prodiID
+		);
+		$this->m_master->inputData($data,'notif_kuesioner');
 		$this->session->set_flashdata("pesan", '<div><div class="alert alert-success" id="alert" align="center">Pengisian Kuesioner Sukses! Terimakasih atas partisipasi anda</div></div>');
 		redirect('pengguna/Kuesioner/kuesionerPenggunaAlumni/'.$prodiID);
 	}

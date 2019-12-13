@@ -4,15 +4,9 @@
           <!-- Page Header-->
            <header class="page-header" style="background-color: #EFE037">
             <div class="container-fluid">
-              <h2 class="no-margin-bottom">Laporan Hasil Kuesioner Alumni</h2>
+              <h2 class="no-margin-bottom">Laporan Hasil Kuesioner Pengguna</h2>
             </div>
           </header>
-
-            <!-- alert box -->
-          <div class="alert alert-info alert-dismissible" role="alert">
-            <button type="button" onclick="this.parentNode.parentNode.removeChild(this.parentNode);" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-            <strong><i class="fa fa-warning"></i> Perhatian!</strong> <p style="font-family: verdana; font-size: 11pt">Grafik dapat ditampilkan untuk pertanyaan jenis pilihan dan ganda</p>
-          </div>
                    <!-- Forms Section-->
           <section class="forms"> 
             <div class="container-fluid">
@@ -21,7 +15,7 @@
                 <div class="col-lg-12">
                   <div class="card">
                     <div class="card-header d-flex align-items-center">
-                      <h3 class="h4">Pertanyaan Jawaban dengan Skala Penilaian</h3>
+                      <h3 class="h4">Kuesioner <?php echo $this->m_kuesioner->getKuesionerByID($kuesionerID)->nama_kuesioner ?></h3>
                     </div>
                     <div class="card-body">
                       <p></p>

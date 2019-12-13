@@ -106,7 +106,8 @@ class Kuesioner extends CI_Controller {
 		$data = array(
 			'respondenID' => $alumniID,
 			'jenis_kuesioner' => 'alumni',
-			'timestamp' => date("d-m-Y")
+			'timestamp' => date("d-m-Y"),
+			'prodiID' =>$this->session->userdata('prodiID')
 		);
 		$this->m_master->inputData($data,'notif_kuesioner');
 

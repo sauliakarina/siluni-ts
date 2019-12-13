@@ -19,8 +19,7 @@
                     <div class="title"><span>Pengguna<br> Alumni</span>
                     </div>
                     <?php 
-                    $where = array('seen' => '0');
-                    $newPengguna = $this->m_master->cekData("pengguna",$where)->num_rows(); ?>
+                    $newPengguna = count($this->m_master->getPenggunaByProdiSeen('0',$this->session->userdata('prodiID'))); ?>
                     <a <?php if ($newPengguna == 0) { ?> href="#" <?php } else {?> href="<?php echo site_url('admin/Pengguna/getNewPengguna/'.$newPengguna) ?>" <?php } ?>><div class="number" style="color: green;"><strong><?php echo $newPengguna ?></strong>
                   </div></a>
                   </div>
@@ -32,7 +31,7 @@
                     <a href="#">
                     <div class="title"><span>Kuesioner<br>Alumni</span>
                     </div></a>
-                    <div class="number" style="color: green;"><strong><?php echo $this->m_hasil->getCountKuesioner('alumni'); ?></strong></div>
+                    <div class="number" style="color: green;"><strong><?php echo $this->m_hasil->getCountKuesioner('alumni',$this->session->userdata('prodiID')); ?></strong></div>
                   </div>
                 </div>
                 <!-- Item -->
@@ -42,7 +41,7 @@
                     <a href="#">
                     <div class="title"><span>Kuesioner<br>Pengguna Alumni</span>
                     </div></a>
-                    <div class="number" style="color: green;"><strong><?php echo $this->m_hasil->getCountKuesioner('pengguna'); ?></strong></div>
+                    <div class="number" style="color: green;"><strong><?php echo $this->m_hasil->getCountKuesioner('pengguna', $this->session->userdata('prodiID')); ?></strong></div>
                   </div>
                 </div>
               </div>
@@ -66,8 +65,8 @@
                   <div class="statistic d-flex align-items-center bg-white has-shadow">
                     <div class="icon bg-red"><div class="icon bg-green"><i class="icon-user"></i></div></div>
                     <div class="text"><strong><?php 
-                    $where = array($prodiID => $this->session->userdata('prodiID'));
-                    echo $this->m_hasil->get_where("alumni",$where)->num_rows(); ?></strong><br><small>Jumlah Alumni</small></div>
+                    echo count($this->m_master->getAlumniByProdiID($this->session->userdata('prodiID')));
+                     ?></strong><br><small>Jumlah Alumni</small></div>
                   </div>
                 </div>
               </div>

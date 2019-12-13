@@ -119,6 +119,38 @@ class M_master extends CI_Model{
 
 	}
 
+	function getAlumniByProdiID($prodiID)
+	{
+		$this->db->select('*');
+		$this->db->where('status', 'aktif');
+		$this->db->where('prodiID', $prodiID);
+		$this->db->order_by('nama', 'ASC');
+		$query = $this->db->get('alumni');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
+
+	}
+
+	function getPenggunaByProdiSeen($prodiID, $seen)
+	{
+		$this->db->select('*');
+		$this->db->where('isDelete', 'no');
+		$this->db->where('prodiID', $prodiID);
+		$this->db->where('seen', $seen);
+		$query = $this->db->get('pengguna');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
+
+	}
+
 	function getBerandaPenggunaByProdi($prodiID)
 	{
 		$this->db->select('*');
