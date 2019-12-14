@@ -3,33 +3,35 @@
     <div class="container">
       <div class="row" style="margin-top: 30px">
         <div class="col-md-12">
-               <h4>Data Tracer Study Ilmu Komputer</h4>
+               <h4>Data Tracer Study <?php echo $this->m_master->getProdiByID($prodiID)->nama_prodi; ?></h4>
       </div><!-- col-12 -->
     </div> <!-- row -->
-<!--       <div class="row" style="margin-top: 40px">
-  <div class="col-md-12">
-    <div class="card">
-      <center><h4 style="margin-top: 20px">Statistik Alumni</h4></center>
-    <div class="card-body">
-      <div class="row">
-        
-      jenis instansi
-      <div class="col-md-6"> <div  class="bar-chart has-shadow bg-white">
-              <canvas id="myChart"></canvas>
-            </div></div>
+<?php
+//grafik skala instansi 
+$instansiLokal =  $this->m_hasil->getSkalaInstansi('Lokal', $prodiID);
+$instansiNasional = $this->m_hasil->getSkalaInstansi('Nasional', $prodiID);
+$instansiInternasional = $this->m_hasil->getSkalaInstansi('Internasional', $prodiID);
 
-        <div class="col-md-6">
-             Bar Chart Gaji
-        <div  class="bar-chart has-shadow bg-white">
-              <canvas id="chartPie"></canvas>
-                  </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  </div>col-12
+//grafik first gaji
+/*$alumni = $this->m_alumni->getAlumniByProdi($prodiID);
+$jumTipe1 = 0; //< 1jt
+foreach ($alumni as $a) {
+  $gaji = $this->m_hasil->getGajiAlumni($a->id);
+  if ($gaji[0] == "3jt - 4jt") {
+    $jumTipe1++;
+  }
+}*/
 
-</div> row -->
+//grafik profil lulusan
+$praktisi = $this->m_hasil->getProfilLulusan('Praktisi',$prodiID);
+$konsultan = $this->m_hasil->getProfilLulusan('Konsultan',$prodiID);
+$si = $this->m_hasil->getProfilLulusan('Perencana SI',$prodiID);
+$jaringan = $this->m_hasil->getProfilLulusan('Penanggung Jawab Jaringan',$prodiID);
+$programmer = $this->m_hasil->getProfilLulusan('Programmer',$prodiID);
+$wirausahawan = $this->m_hasil->getProfilLulusan('Wirausahawan',$prodiID);
+$peneliti = $this->m_hasil->getProfilLulusan('Peneliti',$prodiID);
+
+ ?>
       <div class="row" style="margin-top: 40px">
         <div class="col-md-12">
           <div class="card">
@@ -38,7 +40,7 @@
             <div class="row">
               <div class="col-md-2"></div>
               <div class="col-md-8"> 
-                <center><h5><b>Jenis Instansi</b></h5></center>
+                <center><h5><b>Skala Instansi</b></h5></center>
                 <div  class="bar-chart has-shadow bg-white">
                       <canvas id="myChart"></canvas>
                     </div>
@@ -85,7 +87,7 @@
         labels: ["Lokal", "Nasional", "Internasional"],
         datasets: [{
           label: '',
-          data: [8, 15, 12],
+          data: [<?php echo $instansiLokal ?>, <?php echo $instansiNasional ?>, <?php echo $instansiInternasional?>],
           backgroundColor: [
           'rgba(55, 181, 94, 1)',
           'rgba(55, 181, 94, 1)',
@@ -151,7 +153,7 @@
         labels: ["Praktisi", "Konsultan", "Perencana SI", "Penanggung Jawab Jaringan", "Programmer", "Wirausahawan", "Peneliti"],
         datasets: [{
           label: '',
-          data: [5, 7, 8, 10, 20, 3, 2],
+          data: [<?php echo $praktisi ?>, <?php echo $konsultan ?>, <?php echo $si ?>, <?php echo $jaringan ?>, <?php echo $programmer ?>, <?php echo $wirausahawan ?>, <?php echo $peneliti ?>],
           backgroundColor: [
           'rgba(55, 181, 94, 1)',
           'rgba(55, 181, 94, 1)',

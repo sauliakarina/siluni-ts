@@ -75,6 +75,7 @@
                               <option></option>
                               <option value="< 1jt"> < Rp 1jt </option>
                               <option value="1jt - 2jt"> Rp 1jt - 2 jt </option>
+                               <option value="2jt - 3jt"> Rp 2jt - 3 jt </option>
                               <option value="3jt - 4jt"> Rp 3jt - 4 jt </option>
                               <option value="> 4jt"> > Rp 4jt </option>
                             </select>

@@ -214,7 +214,9 @@ class Alumni extends CI_Controller {
 				    	$gaji = "< 1jt";
 				    } elseif ($gajiawal >= "1000000" && $gajiawal <= "2000000" ) {
 				    	$gaji = "1jt - 2jt";
-				    } elseif ($gajiawal >= "3000000" && $gajiawal <= "4000000" ) {
+				    } elseif ($gajiawal >= "2000000" && $gajiawal <= "3000000" ) {
+				    	$gaji = "2jt - 3jt";
+				    }elseif ($gajiawal >= "3000000" && $gajiawal <= "4000000" ) {
 				    	$gaji = "3jt - 4jt";
 				    } elseif ($gajiawal > "4000000" ) {
 				    	$gaji = "> 4jt";

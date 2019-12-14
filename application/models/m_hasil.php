@@ -16,6 +16,39 @@ class M_hasil extends CI_Model{
 
 	}
 
+	function getGajiAlumni($alumniID)
+	{
+		$this->db->select('gaji');
+		$this->db->order_by('id', 'ASC');
+		$this->db->where('id_alumni', $alumniID);
+		$query = $this->db->get('pekerjaan');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
+
+	}
+
+	public function getProfilLulusan($profil, $prodiID)
+	{
+		$this->db->select('*');
+		$this->db->where('pekerjaan.profil', $profil);
+		$this->db->where('alumni.prodiID', $prodiID);
+		$this->db->join('alumni', 'pekerjaan.id_alumni = alumni.id', 'left');
+		$query = $this->db->get('pekerjaan');
+		return $query->num_rows();
+	}
+
+	 function getSkalaInstansi($jawaban, $prodiID) {
+		$this->db->select('*');
+		$this->db->where('prodiID', $prodiID);
+		$this->db->where('jenis_instansi', $jawaban);
+		$query = $this->db->get('instansi');
+		return $query->num_rows();
+	}
+
 	function get_where($table,$where){		
 		return $this->db->get_where($table,$where);
 	}

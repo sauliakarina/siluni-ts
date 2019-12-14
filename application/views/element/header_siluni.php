@@ -212,7 +212,9 @@
                         <b>Statistik Alumni</b>
                         </a>
                         <div class=' dropdown-content' >
-                            <a class='dropdown-item dropdown-submenu' href="<?php echo base_url('Statistik') ?>">Ilmu Komputer</a>
+                            <?php foreach ($prodi as $p ) { ?>
+                            <a class='dropdown-item' href="<?php echo base_url('Statistik/alumni/'.$p->id) ?>"><?php echo $p->nama_prodi ?></a>
+                            <?php } ?>
                         </div>
                     </li>
                     <li class='nav-item dropdown'>
