@@ -21,6 +21,8 @@
             </div>
           </section>
 
+
+
          <!-- Forms Section-->
           <section class="forms"> 
             <div class="container-fluid">
@@ -31,6 +33,51 @@
                     <form action="<?php echo site_url('pengguna/Kuesioner/addJawabanVer2'); ?>" method="post">
                       <input type="hidden" name="prodiID" value="<?php echo $prodiID ?>" class="form-control">
                     <div class="card-body">
+                      <h4>Data Pribadi</h4>
+                      <div class="form-group row">
+                          <label class="col-sm-3 form-control-label">Nama</label>
+                          <div class="col-sm-9">
+                            <input id="inputHorizontalSuccess" type="text" name="pengguna_nama" placeholder="" class="form-control form-control-success">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label class="col-sm-3 form-control-label">Email</label>
+                          <div class="col-sm-9">
+                            <input id="inputHorizontalSuccess" type="text" name="pengguna_email" placeholder="" class="form-control form-control-success">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label class="col-sm-3 form-control-label">No Hp/Telepon</label>
+                          <div class="col-sm-9">
+                            <input id="inputHorizontalSuccess" type="text" name="pengguna_telepon" placeholder="" class="form-control form-control-success">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label class="col-sm-3 form-control-label">Pilih Instansi</label>
+                          <div class="col-sm-9">
+                            <select name="id_instansi" class="form-control mb-3" required>
+                            <?php if ($nama_instansi != "") { ?>
+                              <option value="<?php echo $this->m_master->getInstansiByName($nama_instansi)->id ?>"><?php echo $nama_instansi ?></option>
+                              <?php foreach($instansi as $i){ ?> 
+                                <option value="<?php echo $i->id ?>"><?php echo $i->nama_instansi ?></option>
+                            <?php } //end foreach
+                              } else { ?>
+                                <option></option>
+                                <?php foreach($instansi as $i){ ?>
+                                  <option value="<?php echo $i->id ?>"><?php echo $i->nama_instansi ?></option>
+                            <?php } //end foreach
+                                 }  ?>
+                            </select>
+                          <small class="form-text">Jika pilihan instansi tidak ada <a href="" data-toggle="modal" data-target="#ModalTambah">klik disini</a></small>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label class="col-sm-3 form-control-label">Divisi</label>
+                          <div class="col-sm-9">
+                            <input id="inputHorizontalSuccess" type="text" name="divisi" placeholder="" class="form-control form-control-success">
+                          </div>
+                        </div>
+                        <h4>Daftar Pertanyaan</h4>
                       <?php 
                       foreach ($kuesioner as $k) { 
                         $pertanyaan = $this->m_kuesioner->getPertanyaanByKuesionerID($k->id);
@@ -115,4 +162,42 @@
          
 
   </body>
+
+   <!-- Modal Tambah Instansi-->
+                      <div id="ModalTambah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+                        <div role="document" class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h4 id="exampleModalLabel" class="modal-title">Tambah Instansi</h4>
+                              <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                            </div>
+                            <div class="modal-body">
+                              <p></p>
+                               <form action="<?php echo base_url();?>pengguna/Kuesioner/exeAddInstansi" method="post">
+                                <div class="form-group">
+                                  <label>Nama Instansi</label>
+                                  <input type="text" placeholder="" class="form-control" name="nama_instansi">
+                                </div>
+                                <div class="form-group">
+                                  <label>Alamat</label>
+                                    <textarea class="form-control" rows="5" id="" name="alamat"></textarea>
+                              </div>
+                                <div class="form-group">
+                                  <label>Skala Instansi</label>
+                                    <select name="jenis_instansi" class="form-control mb-3">
+                                      <option></option>
+                                      <option value="Lokal">Lokal</option>
+                                      <option value="Nasional">Nasional</option>
+                                      <option value="Internasional">Internasional</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" data-dismiss="modal" class="btn btn-secondary">Tutup</button>
+                              <button type="submit" class="btn btn-primary">Tambah</button>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
 </html>
