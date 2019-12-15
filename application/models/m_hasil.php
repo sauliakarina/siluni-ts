@@ -16,18 +16,12 @@ class M_hasil extends CI_Model{
 
 	}
 
-	function getGajiAlumni($alumniID)
-	{
+	function getFirstGaji($gaji) {
 		$this->db->select('gaji');
-		$this->db->order_by('id', 'ASC');
-		$this->db->where('id_alumni', $alumniID);
+		$this->db->where('gaji', $gaji);
+		$this->db->where('firstPekerjaan', 'yes');
 		$query = $this->db->get('pekerjaan');
-		if($query->num_rows()>0)
-		{
-			return $query->result();
-		} else{
-			return $query->result();
-		}
+		return $query->num_rows();
 
 	}
 

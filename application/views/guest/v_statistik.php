@@ -13,6 +13,12 @@ $instansiNasional = $this->m_hasil->getSkalaInstansi('Nasional', $prodiID);
 $instansiInternasional = $this->m_hasil->getSkalaInstansi('Internasional', $prodiID);
 
 //grafik first gaji
+$tipe1 = $this->m_hasil->getFirstGaji('< 1jt');//< 1jt
+$tipe2 = $this->m_hasil->getFirstGaji('1jt - 2jt');//1jt - 2jt
+$tipe3 = $this->m_hasil->getFirstGaji('2jt - 3jt');//2jt - 3jt
+$tipe4 = $this->m_hasil->getFirstGaji('3jt - 4jt');//3jt - 4jt
+$tipe5 = $this->m_hasil->getFirstGaji('> 4jt');//> 4jt
+
 /*$alumni = $this->m_alumni->getAlumniByProdi($prodiID);
 $jumTipe1 = 0; //< 1jt
 foreach ($alumni as $a) {
@@ -116,20 +122,22 @@ $peneliti = $this->m_hasil->getProfilLulusan('Peneliti',$prodiID);
     var chartPie = new Chart(ctx, {
       type: 'pie',
       data: {
-        labels: ["1-3 jt", "4-7 jt", "8-12 jt", "12 jt"],
+        labels: ["< 1jt", "1jt - 2jt", "2jt - 3jt", "3jt - 4jt", "> 4jt"],
         datasets: [{
           label: 'Rata-rata Penghasilan Alumni',
-          data: [4, 15, 8, 5],
+          data: [<?php echo $tipe1 ?>, <?php echo $tipe2 ?>, <?php echo $tipe3 ?>, <?php echo $tipe4 ?>,<?php echo $tipe5 ?>],
           backgroundColor: [
           'rgba(153, 102, 255, 1)',
           'rgba(255, 99, 132, 1)',
           'rgba(54, 162, 235, 1)',
+          'rgba(55, 181, 94, 1)',
           'rgba(55, 181, 94, 1)',
           ],
           borderColor: [
           'rgba(153, 102, 255, 1)',
           'rgba(255, 99, 132, 1)',
           'rgba(54, 162, 235, 1)',
+          'rgba(55, 181, 94, 1)',
           'rgba(55, 181, 94, 1)',
           ],
           borderWidth: 1

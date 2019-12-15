@@ -208,6 +208,15 @@ class Profil extends CI_Controller {
 
 	public function exeAddPengguna()
 	{
+		$alumniID = $this->m_alumni->getAlumniByUserID($this->session->userdata('userID'))->id;
+		$where = array( 'id_alumni' => $alumniID);
+		$cek = $this->m_master->cekData("pekerjaan",$where)->num_rows();
+		if ($cek == 0) {
+			$firstPekerjaan = 'yes';
+		} else {
+			$firstPekerjaan = 'no';
+		}
+
 		if ($this->input->post('nama') == "") {
 			//data pengguna lama
 			$data_pekerjaan = array(
@@ -215,9 +224,9 @@ class Profil extends CI_Controller {
 				'profil' => $this->input->post('profil'),
 				'gaji' => $this->input->post('gaji'),
 				'periode_kerja' => $this->input->post('periode'),
-				'id_alumni' => $this->m_alumni->getAlumniByUserID($this->session->userdata('userID'))->id,
+				'id_alumni' => $alumniID,
 				'id_pengguna' => $this->input->post('id_pengguna'),
-				/*'pekerjaanID' => $this->input->post('id_pekerjaan')*/
+				'firstPekerjaan' => $firstPekerjaan
 			);
 			$this->m_master->inputData($data_pekerjaan,'pekerjaan');
 		} else{
@@ -260,6 +269,7 @@ class Profil extends CI_Controller {
 				'periode_kerja' => $this->input->post('periode'),
 				'id_alumni' => $this->m_alumni->getAlumniByUserID($this->session->userdata('userID'))->id,
 				'id_pengguna' => $this->m_pengguna->getPenggunaByPenggunaID($penggunaID)->id,
+				'firstPekerjaan' => $firstPekerjaan
 			);
 			$this->m_master->inputData($data_pekerjaan,'pekerjaan');
 		}

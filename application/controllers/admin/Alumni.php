@@ -208,7 +208,17 @@ class Alumni extends CI_Controller {
 				    	"penggunaID" => $penggunaID
 				    );
 				    $insert = $this->db->insert("pengguna",$data);
+
 				    //tabel pekerjaan
+				    $alumniID = $this->m_alumni->getAlumniByUserID("ALU".$rowData[0][1])->id;
+					$where = array( 'id_alumni' => $alumniID);
+					$cek = $this->m_master->cekData("pekerjaan",$where)->num_rows();
+					if ($cek == 0) {
+						$firstPekerjaan = 'yes';
+					} else {
+						$firstPekerjaan = 'no';
+					}
+
 				    $gajiawal = str_replace(".","",$rowData[0][10]);
 				    if ($gajiawal < "1000000") {
 				    	$gaji = "< 1jt";
@@ -225,7 +235,8 @@ class Alumni extends CI_Controller {
 				    	"posisi" => $rowData[0][9],
 				    	"gaji" => $gaji,
 				    	"id_pengguna" => $this->m_pengguna->getPenggunaByPenggunaID($penggunaID)->id,
-				    	"id_alumni" => $this->m_alumni->getAlumniByUserID("ALU".$rowData[0][1])->id
+				    	"id_alumni" => $this->m_alumni->getAlumniByUserID("ALU".$rowData[0][1])->id,
+				    	'firstPekerjaan' => $firstPekerjaan
 				    );
 				    $insert = $this->db->insert("pekerjaan",$data);
 				

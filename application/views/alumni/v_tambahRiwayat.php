@@ -63,6 +63,9 @@
                               <option value="Programmer"> Programmer </option>
                               <option value="Penanggung Jawab Jaringan"> Penanggung Jawab Jaringan </option>
                               <option value="Wirausahawan"> Wirausahawan </option>
+                              <option value="Praktisi"> Praktisi </option>
+                              <option value="Konsultan"> Konsultan </option>
+                              <option value="Perencana SI"> Perencana SI </option>
                               <option value="Peneliti"> Peneliti </option>
                             </select>
                           </div>
