@@ -33,6 +33,7 @@
                     <form action="<?php echo site_url('pengguna/Kuesioner/addJawaban'); ?>" method="post">
                       <input type="hidden" name="penggunaID" value="<?php echo $penggunaID ?>" class="form-control">
                     <div class="card-body">
+                      <h4>Daftar Pertanyaan</h4>
                       <?php 
                       foreach ($kuesioner as $k) { 
                         $pertanyaan = $this->m_kuesioner->getPertanyaanByKuesionerID($k->id);

@@ -83,6 +83,14 @@
                                   <label>Nama Kuesioner</label>
                                   <input type="text" class="form-control" name="nama_kuesioner">
                                 </div>
+                                <div class="form-group">
+                                <label>Jenis Kuesioner</label>
+                                  <select name="jenisKuesionerPengguna" class="form-control">
+                                    <option>Pilih</option>
+                                    <option value="skala">Kuesioner dengan Skala Penilaian</option>
+                                    <option value="lainnya">Kuesioner dengan pertanyaan isian/pilihan/ganda</option>
+                                  </select>
+                              </div>
                             </div>
                             <div class="modal-footer">
                               <button type="button" data-dismiss="modal" class="btn btn-secondary">Close</button>

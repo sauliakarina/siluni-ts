@@ -155,9 +155,12 @@ public function addJawabanVer2()
 			'pengguna_nama' => $this->input->post('pengguna_nama'),
 			'pengguna_email' => $this->input->post('pengguna_email'),
 			'pengguna_telepon' => $this->input->post('pengguna_telepon'),
+			'id_instansi' => $this->input->post('id_instansi'),
+			'divisi' => $this->input->post('divisi'),
+			'prodiID' => $this->input->post('prodiID'),
 			'penggunaID' => $penggunaID
 		);
-		$this->m_master->inputData($data,'jawaban_pengguna');
+		$this->m_master->inputData($data,'pengguna');
 		$id_pengguna = $this->m_pengguna->getPenggunaByPenggunaID($penggunaID)->id;
 
 		$kuesionerID = $this->m_kuesioner->getKuesionerByResponden('pengguna', $prodiID);

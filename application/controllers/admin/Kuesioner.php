@@ -48,7 +48,8 @@ class Kuesioner extends CI_Controller {
 			'userID' => $this->session->userdata('userID'),
 			'prodiID' => $this->session->userdata('prodiID'),
 			'kuesioner' => $this->m_kuesioner->getKuesionerByID($kuesionerID),
-			'pertanyaan' => $this->m_kuesioner->getPertanyaanByKuesionerID($kuesionerID)
+			'pertanyaan' => $this->m_kuesioner->getPertanyaanByKuesionerID($kuesionerID),
+			'kuesionerID' => $kuesionerID
 
 		);
 		$this->load->view('element/head');
@@ -197,7 +198,8 @@ class Kuesioner extends CI_Controller {
 			'nama_kuesioner' => $this->input->post('nama_kuesioner'),
 			'responden' => 'pengguna',
 			'prodiID' => $this->session->userdata('prodiID'),
-			'customID' => $customID
+			'customID' => $customID,
+			'jenisKuesionerPengguna' => $this->input->post('jenisKuesionerPengguna'),
 		);	
 		$this->m_master->inputData($data,'kuesioner');
 		$kuesionerID = $this->m_kuesioner->getKuesionerByCustomID($customID)->id;

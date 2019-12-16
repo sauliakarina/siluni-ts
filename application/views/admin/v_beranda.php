@@ -19,7 +19,7 @@
                     <div class="title"><span>Pengguna<br> Alumni</span>
                     </div>
                     <?php 
-                    $newPengguna = count($this->m_master->getPenggunaByProdiSeen('0',$this->session->userdata('prodiID'))); ?>
+                    $newPengguna = $this->m_master->getPenggunaByProdiSeen('0',$this->session->userdata('prodiID')); ?>
                     <a <?php if ($newPengguna == 0) { ?> href="#" <?php } else {?> href="<?php echo site_url('admin/Pengguna/getNewPengguna/'.$newPengguna) ?>" <?php } ?>><div class="number" style="color: green;"><strong><?php echo $newPengguna ?></strong>
                   </div></a>
                   </div>

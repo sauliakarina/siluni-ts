@@ -29,10 +29,14 @@
                           Tambah Pertanyaan
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <?php $jenisKuesionerPengguna = $this->m_kuesioner->getKuesionerByID($kuesionerID)->jenisKuesionerPengguna;
+                            if ($jenisKuesionerPengguna == 'skala') { ?>
+                          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#skalaModal">Skala</a>
+                         <?php } else { ?>
                           <a class="dropdown-item" href="#" data-toggle="modal" data-target="#isianModal">Isian</a>
                           <a class="dropdown-item" href="#" data-toggle="modal" data-target="#pilihanModal">Pilihan</a>
                           <a class="dropdown-item" href="#" data-toggle="modal" data-target="#gandaModal">Ganda</a>
-                          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#skalaModal">Skala</a>
+                        <?php } ?>
                         </div>
                       </div>
                        <div class="form-group ml-auto">

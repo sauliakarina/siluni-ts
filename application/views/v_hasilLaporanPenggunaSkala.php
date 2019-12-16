@@ -78,7 +78,12 @@
                               <td><?php echo $no++; ?></td>
                               <td><?php echo $t->pengguna_nama; ?></td>
                               <td><?php echo $t->divisi; ?></td>
-                              <td><?php echo $this->m_master->getInstansiByID($t->id_instansi)->nama_instansi ?></td>
+                              <td>
+                                <?php if ($t->id_instansi == '0') {
+                                echo "Non Instansi";
+                                } else {echo $this->m_master->getInstansiByID($t->id_instansi)->nama_instansi;
+                                } ?>
+                              </td>
                               <td><?php 
                                 $jawaban = $this->m_hasil->getJawabanByPenggunaPertanyaanSkala($t->id, $t->pertanyaanSkalaID);
                                 foreach ($jawaban as $j) {
@@ -118,7 +123,7 @@
               "select": true,
               dom: 'Bfrtip',
               buttons: [
-                  'copy', 'excel', 'print'
+                  'copy', 'excel'
               ]
             }); //input fungsi
         });

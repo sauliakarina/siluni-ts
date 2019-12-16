@@ -67,6 +67,7 @@
                                   <option value="<?php echo $i->id ?>"><?php echo $i->nama_instansi ?></option>
                             <?php } //end foreach
                                  }  ?>
+                                 <option value="Null">Non Instansi</option>
                             </select>
                           <small class="form-text">Jika pilihan instansi tidak ada <a href="" data-toggle="modal" data-target="#ModalTambah">klik disini</a></small>
                           </div>
@@ -75,6 +76,7 @@
                           <label class="col-sm-3 form-control-label">Divisi</label>
                           <div class="col-sm-9">
                             <input id="inputHorizontalSuccess" type="text" name="divisi" placeholder="" class="form-control form-control-success">
+                             <!-- <small class="form-text">Jika anda tidak berasal dari suatu instansi tidak perlu mengisi form divisi</small> -->
                           </div>
                         </div>
                         <h4>Daftar Pertanyaan</h4>

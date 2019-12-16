@@ -56,7 +56,12 @@
                               <th scope="row"><?php echo $no++ ?></th>
                               <td><?php echo $p->pengguna_nama ?></td>
                               <td><?php echo $p->divisi ?></td>
-                              <td><?php echo $this->m_master->getInstansiByID($p->id_instansi)->nama_instansi ?></td>
+                              <td>
+                                <?php if ($p->id_instansi == '0') {
+                                echo "Non Instansi";
+                                } else {echo $this->m_master->getInstansiByID($p->id_instansi)->nama_instansi;
+                                } ?>
+                              </td>
                               <td><?php echo $p->pengguna_email ?></td>
                               <td><?php echo $p->pengguna_telepon ?></td>
                               <td>
@@ -199,7 +204,7 @@
 } );
 
 
-    function copyFunction(i) {
+function copyFunction(i) {
 
       var copyText = document.getElementById("myInput["+i+"]");
       copyText.select();
