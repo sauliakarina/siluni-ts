@@ -94,11 +94,85 @@ class Laporan extends CI_Controller {
 		$pertanyaanID = $this->input->post('pertanyaanID');
 		$tahun_lulus = $this->input->post('tahun_lulus');
 		$prodiID = $this->session->userdata('prodiID');
-		if ($tahun_lulus == "") {
+
+		if ($pertanyaanID == 'toefl' || $pertanyaanID == 'ipk') {
+			if ($tahun_lulus == "") {
+				$tabel = $this->m_hasil->getDataDiri($prodiID);
+			} else {
+				$tabel = $this->m_hasil->getDataDiriTahun($prodiID, $tahun_lulus);
+			}
+			$data = array(
+				'role' => $this->session->userdata('role'),
+				'userID' => $this->session->userdata('userID'),
+				'prodiID' => $prodiID,
+				'pertanyaan' => $pertanyaanID,
+				'tabel' => $tabel
+			);
+			$this->load->view('element/head');
+			$this->load->view('element/header');
+			$this->load->view('element/navbar', $data);
+			$this->load->view('v_LaporanDataDiri', $data);
+			$this->load->view('element/footer');
+		} else {
+			if ($tahun_lulus == "") {
 			$tabel = $this->m_hasil->getJawabanByPertanyaanID($pertanyaanID);
 			$grafik = $this->m_hasil->getHasilAlumni($pertanyaanID, $prodiID);
+			} else {
+				$tabel = $this->m_hasil->getJawabanByPertanyaanTahun($pertanyaanID, $tahun_lulus);
+				$grafik = $this->m_hasil->getHasilAlumniTahun($pertanyaanID, $prodiID, $tahun_lulus);
+			}
+			$data = array(
+				'role' => $this->session->userdata('role'),
+				'userID' => $this->session->userdata('userID'),
+				'prodiID' => $prodiID,
+				'grafik' => $grafik,
+				'label' => $this->m_hasil->getPilihanJawabanByPertanyaanID($pertanyaanID),
+				'pertanyaan' => $this->m_kuesioner->getPertanyaanByPertanyaanID($pertanyaanID),
+				'tabel' => $tabel,
+				'getPertanyaan' => $this->m_kuesioner->getPertanyaanByKuesionerID($this->input->post('kuesionerID'))
+			);
+			$this->load->view('element/head');
+			$this->load->view('element/header');
+			$this->load->view('element/navbar', $data);
+			$this->load->view('v_hasilLaporanAlumni', $data);
+			$this->load->view('element/footer');
+		}
+		
+	}
+
+	/*public function laporanAlumni()
+	{
+		$prodiID = $this->session->userdata('prodiID');
+		$pertanyaanID = $this->input->post('pertanyaanID');
+		$tahun_lulus = $this->input->post('tahun_lulus');
+		//pertanyaan toefl dan ipk
+		if ($pertanyaanID == 'toefl') {
+			$tabel2 = $this->m_hasil->getToeflByProdi($prodiID);
+		} elseif ($pertanyaanID == 'ipk') {
+			$tabel2 = $this->m_hasil->getIPKByProdi($prodiID);
+		}
+
+		if ($tahun_lulus == "") {
+			if ($pertanyaanID == 'toefl') {
+				$tabel = $this->m_hasil->getToefl($prodiID);
+				$pertanyaan = '0'
+			} elseif ($pertanyaanID == 'ipk') {
+				$tabel = $this->m_hasil->getIPK($prodiID);
+				$pertanyaan = '0'
+			} else {
+				$tabel = $this->m_hasil->getJawabanByPertanyaanID($pertanyaanID);
+				$pertanyaan = $this->m_kuesioner->getPertanyaanByPertanyaanID($pertanyaanID);
+			}
+			$grafik = $this->m_hasil->getHasilAlumni($pertanyaanID, $prodiID);
 		} else {
-			$tabel = $this->m_hasil->getJawabanByPertanyaanTahun($pertanyaanID, $tahun_lulus);
+			if ($pertanyaanID == 'toefl') {
+				$tabel = $this->m_hasil->getToeflTahun($prodiID, $tahun_lulus);
+			} elseif ($pertanyaanID == 'ipk') {
+				$tabel = $this->m_hasil->getIPKTahun($prodiID, $tahun_lulus);
+			} else {
+				$tabel = $this->m_hasil->getJawabanByPertanyaanTahun($pertanyaanID, $tahun_lulus);
+				$pertanyaan = $this->m_kuesioner->getPertanyaanByPertanyaanID($pertanyaanID);
+			}
 			$grafik = $this->m_hasil->getHasilAlumniTahun($pertanyaanID, $prodiID, $tahun_lulus);
 		}
 		$data = array(
@@ -107,7 +181,7 @@ class Laporan extends CI_Controller {
 			'prodiID' => $prodiID,
 			'grafik' => $grafik,
 			'label' => $this->m_hasil->getPilihanJawabanByPertanyaanID($pertanyaanID),
-			'pertanyaan' => $this->m_kuesioner->getPertanyaanByPertanyaanID($pertanyaanID),
+			'pertanyaan' => $pertanyaan,
 			'tabel' => $tabel,
 			'getPertanyaan' => $this->m_kuesioner->getPertanyaanByKuesionerID($this->input->post('kuesionerID'))
 		);
@@ -147,7 +221,7 @@ class Laporan extends CI_Controller {
 		$this->load->view('element/navbar', $data);
 		$this->load->view('v_hasilLaporanAlumniSkala', $data);
 		$this->load->view('element/footer');
-	}
+	}*/
 
 public function laporanPenggunaSkala()
 	{

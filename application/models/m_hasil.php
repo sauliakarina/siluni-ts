@@ -325,5 +325,32 @@ class M_hasil extends CI_Model{
         }
 	}
 
+	public function getDataDiri($prodiID){
+  		$this->db->select('*');
+		$this->db->where('prodiID',$prodiID);
+		$query = $this->db->get('alumni');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
+  	}
+
+ public function getDataDiriTahun($prodiID, $tahun_lulus){
+  		$this->db->select('*');
+		$this->db->where('prodiID',$prodiID);
+		$this->db->where('tahun_lulus',$tahun_lulus);
+		$query = $this->db->get('alumni');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
+  	}
+
+
+
 
 }

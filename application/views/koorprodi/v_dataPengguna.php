@@ -43,10 +43,20 @@
                               <th scope="row"><?php echo $no++ ?></th>
                               <td><?php echo $d->pengguna_nama ?></td>
                               <td><?php echo $d->divisi ?></td>
-                              <td><?php echo $this->m_master->getInstansiByID($d->id_instansi)->nama_instansi ?></td>
+                              <td>
+                                <?php if ($d->id_instansi == '0') {
+                                echo "Non Instansi";
+                                } else {echo $this->m_master->getInstansiByID($d->id_instansi)->nama_instansi;
+                                } ?>
+                              </td>
                               <td><?php echo $d->pengguna_email ?></td>
                               <td><?php echo $d->pengguna_telepon ?></td>
-                              <td><?php echo $this->m_master->getInstansiByID($d->id_instansi)->alamat ?></td>
+                              <td>
+                                <?php if ($d->id_instansi == '0') {
+                                echo "";
+                                } else {echo $this->m_master->getInstansiByID($d->id_instansi)->nama_instansi;
+                                } ?>
+                              </td>
                               <td>
                                  <a type="button" href="<?php echo site_url('koorprodi/Pengguna/daftarAlumniVer2/'.$d->id_instansi) ?>" class="btn btn-info btn-sm">Lihat</a>
                               </td>

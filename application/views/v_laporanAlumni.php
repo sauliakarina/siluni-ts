@@ -34,7 +34,12 @@
                             <option value="">Pilih Pertanyaan</option>
                             <?php foreach ($pertanyaan as $p) { ?>
                               <option value="<?php echo $p->id ?>"><?php echo $p->pertanyaan ?></option>
-                            <?php } ?>
+                            <?php }
+                              if ($this->m_kuesioner->getKuesionerByID($kuesionerID)->nama_kuesioner == 'Pendidikan') {
+                             ?>
+                             <option value="toefl">Toefl Kelulusan</option>
+                             <option value="ipk">IPK Kelulusan</option>
+                           <?php } ?>
                              </select>
                           </div>
                         </div>
