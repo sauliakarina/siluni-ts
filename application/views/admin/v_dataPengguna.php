@@ -117,7 +117,7 @@
                       </div>
 
           <!-- Modal Edit Pengguna-->
-                      <div id="ModalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+                     <!--  <div id="ModalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
                         <div role="document" class="modal-dialog">
                           <div class="modal-content">
                             <div class="modal-header">
@@ -134,9 +134,6 @@
                                 </div>
                                 <div class="form-group">
                                   <label>Instansi</label>
-                                   <!--  <select  id="id_instansi" name="id_instansi" class="form-control" value="<?php //echo $p->id_instansi ?>">
-                                      <option><?php //echo $p->id_instansi ?></option>
-                                    </select> -->
                                   <input type="text" placeholder="" class="form-control"  name="id_instansi" id="id_instansi" value="<?php echo $this->m_master->getInstansiByID($p->id_instansi)->nama_instansi ?>">
                                 </div>
                                 <div class="form-group">
@@ -159,7 +156,7 @@
                             </form>
                           </div>
                         </div>
-                      </div>
+                      </div> -->
 
 <script type="text/javascript">
    var p_id;

@@ -18,7 +18,6 @@
                 <div class="col-lg-12">
                   <div class="card">
                     <div class="card-header d-flex align-items-center">
-                      <?php $id_instansi = $this->m_pengguna->getPenggunaByID($id_pengguna)->id_instansi ?>
                       <h3 class="h4">Alumni yang Bekerja pada <?php echo $this->m_master->getInstansiByID($id_instansi)->nama_instansi ?></h3>
                     </div>
                     <div class="card-body">
@@ -30,7 +29,6 @@
                               <th>Nama</th>
                               <th>Posisi</th>
                               <th>Email</th>
-                              <th>Periode Kerja</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -41,7 +39,6 @@
                               <td><?php echo $this->m_alumni->getAlumniByID($a->id_alumni)->nama ?></td>
                               <td><?php echo $a->posisi ?></td>
                               <td><?php echo $this->m_alumni->getAlumniByID($a->id_alumni)->email ?></td>
-                              <td><?php echo $a->periode_kerja ?></td>
                             </tr>
                           <?php } ?>
                           </tbody>

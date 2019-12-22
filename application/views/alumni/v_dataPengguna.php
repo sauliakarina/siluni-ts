@@ -27,18 +27,16 @@
                             <tr>
                               <th>No</th>
                               <th>Instansi</th>
-                              <th>Alamat</th>
                               <th>Daftar Alumni</th>
                             </tr>
                           </thead>
                           <tbody>
                             <?php $no = 1;
-                              foreach($pengguna as $d){ 
+                              foreach($instansi as $d){ 
                              ?>
                             <tr>
                               <th scope="row"><?php echo $no++ ?></th>
-                              <td><?php echo $this->m_master->getInstansiByID($d->id_instansi)->nama_instansi ?></td>
-                              <td><?php echo $this->m_master->getInstansiByID($d->id_instansi)->alamat ?></td>
+                              <td><?php echo $d->nama_instansi ?></td>
                               <td>
                                  <a type="button" href="<?php echo site_url('alumni/Pengguna/daftarAlumni/'.$d->id) ?>" class="btn btn-info btn-sm">Lihat</a>
                               </td>

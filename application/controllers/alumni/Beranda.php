@@ -6,15 +6,26 @@ class Beranda extends CI_Controller {
 		parent::__construct();		
 		$this->load->model('m_alumni');
 		$this->load->model('m_master');
+ 		$this->load->model('m_kuesioner');
+ 		$this->load->model('m_pengguna');
  
 	}
 
 	public function index()
 	{
+		$userID = $this->session->userdata('userID'); 
+		$prodiID = $this->session->userdata('prodiID');
+		$id_alumni = $this->m_alumni->getAlumniByUserID($this->session->userdata('userID'))->id;
 		$data = array(
 			'role' => $this->session->userdata('role'),
 			'userID' => $this->session->userdata('userID'),
-			'beranda' => $this->m_master->getBeranda()
+			'prodiID' => $prodiID,
+			'kuesioner' => $this->m_kuesioner->getKuesionerAlumni($this->session->userdata('prodiID')),
+			'profil' => $this->m_alumni->getAlumniByUserID($userID),
+			'instansi' => $this->m_master->getInstansi($prodiID),
+			'nama_instansi' => '',
+			'riwayat' => $this->m_pengguna->joinPekerjaanByPenggunaID($id_alumni),
+			'beranda' => $this->m_master->getBerandaAlumniByProdi($this->session->userdata('prodiID'))
 		);
 		$this->load->view('element/head');
 		$this->load->view('element/header');

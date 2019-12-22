@@ -154,6 +154,7 @@ class Alumni extends CI_Controller {
 
 					$insert = $this->db->insert("user",$data);
 					//tabel alumni
+					$tanggal_lulus = strtotime($rowData[0][6]);
 					$data = array(
 						"nim"=> $rowData[0][1],
 						"nama"=> $rowData[0][0],
@@ -170,26 +171,46 @@ class Alumni extends CI_Controller {
 					unlink($inputFileName);
 				}
 					//data instansi
-					$where = array('nama_instansi' => $rowData[0][7]);
+					$where = array( 'nama_instansi' => $rowData[0][7]);
 				    $cek = $this->m_master->cekData("instansi",$where)->num_rows();
 				    if ($cek == 0) {
 				    	$data = array(
 				    		"nama_instansi" => $rowData[0][7],
+				    		"jenis_instansi" => $rowData[0][8],
 				    	);
 				    	$insert = $this->db->insert("instansi",$data);
 				    	$id_instansi = $this->m_master->getInstansiByName($rowData[0][7])->id;
 				    } else {
 				    	$id_instansi = $this->m_master->getInstansiByName($rowData[0][7])->id;
 				    }
-				    //tabel alumni instansi
-				    $alumniID = $this->m_alumni->getAlumniByUserID("ALU".$rowData[0][1])->id;
+				    //generate pengguna id
+				    $id_length = 8;
+					$id_found = false;
+					$possible_chars = "23456789BCDFGHJKMNPQRSTVWXYZ"; 
+					while (!$id_found) {  
+					    $penggunaID = "";  
+					    $i = 0;  
+					    while ($i < $id_length) {  
+					        $char = substr($possible_chars, mt_rand(0, strlen($possible_chars)-1), 1);  
+					        $penggunaID .= $char;   
+					        $i++;   
+					    }  
+					    $where = array( 'penggunaID' => $penggunaID);
+					    $cek = $this->m_master->cekData("pengguna",$where)->num_rows();
+					    if ($cek == 0) {
+					    	$id_found = true;
+					    }
+					}
+				    //tabel pengguna
 				    $data = array(
-				    	"instansiID" => $id_instansi,
-				    	"alumniID" => $alumniID,
+				    	"id_instansi" => $id_instansi,
+				    	"prodiID" => $this->session->userdata('prodiID'),
+				    	"penggunaID" => $penggunaID
 				    );
-				    $insert = $this->db->insert("alumni_instansi",$data);
+				    $insert = $this->db->insert("pengguna",$data);
 
 				    //tabel pekerjaan
+				    $alumniID = $this->m_alumni->getAlumniByUserID("ALU".$rowData[0][1])->id;
 					$where = array( 'id_alumni' => $alumniID);
 					$cek = $this->m_master->cekData("pekerjaan",$where)->num_rows();
 					if ($cek == 0) {
@@ -198,7 +219,7 @@ class Alumni extends CI_Controller {
 						$firstPekerjaan = 'no';
 					}
 
-				    $gajiawal = str_replace(".","",$rowData[0][9]);
+				    $gajiawal = str_replace(".","",$rowData[0][10]);
 				    if ($gajiawal < "1000000") {
 				    	$gaji = "< 1jt";
 				    } elseif ($gajiawal >= "1000000" && $gajiawal <= "2000000" ) {
@@ -211,12 +232,11 @@ class Alumni extends CI_Controller {
 				    	$gaji = "> 4jt";
 				    }
 				    $data = array(
-				    	"posisi" => $rowData[0][8],
+				    	"posisi" => $rowData[0][9],
 				    	"gaji" => $gaji,
-				    	"id_pengguna" => '0',
-				    	"id_alumni" => $alumniID,
-				    	'firstPekerjaan' => $firstPekerjaan,
-				    	'id_instansi'=> $id_instansi
+				    	"id_pengguna" => $this->m_pengguna->getPenggunaByPenggunaID($penggunaID)->id,
+				    	"id_alumni" => $this->m_alumni->getAlumniByUserID("ALU".$rowData[0][1])->id,
+				    	'firstPekerjaan' => $firstPekerjaan
 				    );
 				    $insert = $this->db->insert("pekerjaan",$data);
 				

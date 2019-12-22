@@ -27,15 +27,25 @@
                            <tbody>
                             <tr>
                               <th scope="row">Nama</th>
-                              <td><?php echo $koor->nama ?></td>
+                              <td><?php 
+                                if (isset($koor)) {
+                                  echo $koor->nama ;
+                                } ?></td>
                             </tr>
                             <tr>
                               <th scope="row">NIDN</th>
-                              <td><?php echo $koor->nidn ?></td>
+                              <td><?php 
+                                if (isset($koor)) {
+                                  echo $koor->nidn ;
+                                } ?></td>
                             </tr>
                             <tr>
                               <th scope="row">Username</th>
-                              <td><?php echo $this->m_master->getUserByUserID($koor->userID)->username ?></td>
+                              <td>
+                                <?php 
+                                if (isset($koor)) {
+                                  echo $this->m_master->getUserByUserID($koor->userID)->username;
+                                } ?></td>
                             </tr>
                           </tbody>
                         </table>
@@ -66,7 +76,9 @@
                                         <option value="<?php echo $d->userID ?>"><?php echo $d->nama ?></option>
                                       <?php } ?>
                                     </select>
-                                    <input type="hidden" name="koorlama"  value="<?php echo $koor->userID ?>" class="form-control form-control-sm">
+                                    <?php if (isset($koor)) { ?>
+                                       <input type="hidden" name="koorlama"  value="<?php echo $koor->userID ?>" class="form-control form-control-sm">
+                                    <?php } ?>
                                 </div>
                             <div class="modal-footer">
                               <button type="button" data-dismiss="modal" class="btn btn-secondary">Tutup</button>

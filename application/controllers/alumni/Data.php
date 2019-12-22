@@ -102,4 +102,23 @@ class Data extends CI_Controller {
 	    echo json_encode($callback); // konversi varibael $callback menjadi JSON
   }
 
+  public function getInstansi(){
+	    // Ambil data ID Provinsi yang dikirim via ajax post
+	    $id_instansi = $this->input->post('id_instansi');
+	    
+	    $instansi = $this->m_master->getInstansiByID($id_instansi);
+	    
+	    // Buat variabel untuk menampung tag-tag option nya
+	    // Set defaultnya dengan tag option Pilih
+	    $lists = "<option value=''>Pilih</option>";
+	    $lists .= "<option value='".$instansi->jenis_instansi."'>".$instansi->jenis_instansi."</option>";
+	    
+	    /*foreach($pengguna as $data){
+	      $lists .= "<option value='".$data->id."'>".$data->pengguna_nama."</option>"; // Tambahkan tag option ke variabel $lists
+	    }*/
+	    //list_kota = list_pertanyaanSkala
+	    $callback = array('list_skala_instansi'=>$lists); // Masukan variabel lists tadi ke dalam array $callback dengan index array : list_kota
+	    echo json_encode($callback); // konversi varibael $callback menjadi JSON
+  }
+
 }

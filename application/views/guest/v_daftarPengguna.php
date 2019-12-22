@@ -13,7 +13,6 @@
               <tr>
                 <th>No</th>
                 <th>Instansi</th>
-                <th style="width: 500px">Alamat</th>
                 <th>Posisi Alumni</th>
               </tr>
             </thead>
@@ -24,11 +23,10 @@
                ?>
               <tr>
                 <td><?php echo $no++ ?></td>
-                <td><?php echo $this->m_master->getInstansiByID($p->id_instansi)->nama_instansi ?></td>
-                <td><?php echo $this->m_master->getInstansiByID($p->id_instansi)->alamat ?></td>
+                <td><?php echo $p->nama_instansi ?></td>
                 <td><ul style="list-style-type:circle;">
                   <?php 
-                  $posisi= $this->m_pengguna->joinPenggunaPekerjaanByInstansiID($p->id_instansi);
+                  $posisi= $this->m_pengguna->getPekerjaanByInstansiID($p->id);
                     foreach($posisi as $ps) { ?>
                     <li><?php echo $ps->posisi ?></li>
                   <?php } ?>

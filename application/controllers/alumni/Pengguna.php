@@ -17,7 +17,7 @@ class Pengguna extends CI_Controller {
 			'role' => $this->session->userdata('role'),
 			'userID' => $this->session->userdata('userID'),
 			'prodiID' => $prodiID,
-			'pengguna' => $this->m_pengguna->getPengguna($prodiID)
+			'instansi' => $this->m_master->getInstansiByProdiID($prodiID)
 		);
 		$this->load->view('element/head');
 		$this->load->view('element/header');
@@ -32,14 +32,14 @@ class Pengguna extends CI_Controller {
 		echo(json_encode($data));
 	}
 
-	public function daftarAlumni($id_pengguna)
+	public function daftarAlumni($id_instansi)
 	{
 		$data = array(
 			'role' => $this->session->userdata('role'),
 			'userID' => $this->session->userdata('userID'),
 			'prodiID' => $this->session->userdata('prodiID'),
-			'pekerjaan' => $this->m_pengguna->getPekerjaanByPenggunaID($id_pengguna),
-			'id_pengguna' => $id_pengguna
+			'pekerjaan' => $this->m_pengguna->getPekerjaanByInstansiIDVer2($id_instansi),
+			'id_instansi' => $id_instansi
 		);
 		$this->load->view('element/head');
 		$this->load->view('element/header');

@@ -17,7 +17,7 @@ class Pengguna extends CI_Controller {
 			'role' => $this->session->userdata('role'),
 			'userID' => $this->session->userdata('userID'),
 			'prodiID' => $prodiID,
-			'pengguna' => $this->m_pengguna->getPenggunaVer2($prodiID)
+			'pengguna' => $this->m_pengguna->getPengguna($prodiID)
 		);
 		$this->load->view('element/head');
 		$this->load->view('element/header');
@@ -42,7 +42,7 @@ class Pengguna extends CI_Controller {
 		$this->load->view('element/footer');
 	}
 
-	public function daftarAlumniVer2($id_instansi)
+/*	public function daftarAlumniVer2($id_instansi)
 	{
 		$data = array(
 			'role' => $this->session->userdata('role'),
@@ -56,6 +56,6 @@ class Pengguna extends CI_Controller {
 		$this->load->view('element/navbar', $data);
 		$this->load->view('koorprodi/v_dataAlumniPengguna', $data);
 		$this->load->view('element/footer');
-	}
+	}*/
 
 }

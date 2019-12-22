@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 04, 2019 at 09:36 AM
+-- Generation Time: Dec 22, 2019 at 04:59 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.1.32
 
@@ -64,11 +64,24 @@ INSERT INTO `alumni` (`id`, `userID`, `nim`, `nama`, `jenis_kelamin`, `tempat_la
 (29, 'ALU3145136218', '3145136218', 'Gregorius Andito H', 'Laki-laki', '', '0000-00-00', '', '', '2013', '2017', '0000-00-00', '3.72', NULL, '', '', '', '0878 8112 3212', '', 'yes', 'yes', 'yes', 'aktif', 1),
 (30, 'ALU3145136208', '3145136208', 'Alitinia Prastiantari', 'Perempuan', '', '0000-00-00', '', '', '2013', '2017', '0000-00-00', '3.72', NULL, '', '', '', '08129142949', '', 'yes', 'yes', 'yes', 'aktif', 1),
 (31, 'ALU3145136211', '3145136211', 'Tiara Amelia', 'Perempuan', '', '0000-00-00', '', '', '2013', '2017', '0000-00-00', '3.77', NULL, '', '', '', '081282003420', '', 'yes', 'yes', 'yes', 'aktif', 1),
-(32, 'ALU3145136223', '3145136223', 'Agustinus Pubimbaga', 'Laki-laki', '', '0000-00-00', '', '', '2013', '2017', '0000-00-00', '3.59', NULL, '', '', '', '081281011459', '', 'yes', 'yes', 'yes', 'aktif', 1),
+(32, 'ALU3145136223', '3145136223', 'Agustinus Purimbaga', 'Laki-laki', '', '', '', '', '2013', '2017', '0000-00-00', '3.59', '', '', '', '', '081281011459', '', 'yes', 'yes', 'yes', 'aktif', 1),
 (33, 'ALU3145136197', '3145136197', 'Muhammad Fachrizal', 'Laki-laki', '', '0000-00-00', '', '', '2013', '2017', '0000-00-00', '3.41', NULL, '', '', '', '085711402970', '', 'yes', 'yes', 'yes', 'aktif', 1),
 (34, 'ALU3145136212', '3145136212', 'Anantassa Fitri Andini', 'Perempuan', '', '0000-00-00', '', '', '2013', '2017', '0000-00-00', '3.8', NULL, '', '', '', '081319508117', '', 'yes', 'yes', 'yes', 'aktif', 1),
-(35, 'ALU3145136196', '3145136196', 'Mikael Yurubeli', 'Laki-laki', 'Jakarta', '0000-00-00', ' Jalan Hikmah No 64, Cilangkap, Cipayung, Jakarta Timur', '', '2013', '2017', '0000-00-00', '3.56', '', '', '', '', '087875076738', '', 'yes', 'yes', 'yes', 'aktif', 1),
-(36, 'ALU3145136193', '3145136193', 'Hana Maulinda', 'Perempuan', '', '0000-00-00', '', '', '2013', '2017', '0000-00-00', '3.56', NULL, '', '', '', '081318400299', '', 'yes', 'yes', 'yes', 'aktif', 1);
+(35, 'ALU3145136196', '3145136196', 'Mikael Yurubeli', 'Laki-laki', 'Jakarta', '', ' Jalan Hikmah No 64, Cilangkap, Cipayung, Jakarta Timur', '', '2013', '2017', '0000-00-00', '3.56', '', '', '', '', '087875076738', '', 'yes', 'yes', 'yes', 'aktif', 1),
+(36, 'ALU3145136193', '3145136193', 'Hana Maulinda', 'Perempuan', '', '0000-00-00', '', '', '2013', '2017', '0000-00-00', '3.56', NULL, '', '', '', '081318400299', '', 'yes', 'yes', 'yes', 'aktif', 1),
+(37, 'ALU12345', '12345', 'Test', 'Perempuan', '', '', '', '', '2015', '2020', '0000-00-00', '3.5', NULL, '', '', '', '12345', '', 'yes', 'yes', 'yes', 'aktif', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `alumni_instansi`
+--
+
+CREATE TABLE `alumni_instansi` (
+  `id` int(11) NOT NULL,
+  `alumniID` int(11) NOT NULL,
+  `instansiID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -79,15 +92,20 @@ INSERT INTO `alumni` (`id`, `userID`, `nim`, `nama`, `jenis_kelamin`, `tempat_la
 CREATE TABLE `beranda` (
   `id` int(11) NOT NULL,
   `isi` text NOT NULL,
-  `foto` varchar(150) NOT NULL
+  `foto` varchar(150) NOT NULL,
+  `jenis` enum('alumni','pengguna') NOT NULL,
+  `prodiID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `beranda`
 --
 
-INSERT INTO `beranda` (`id`, `isi`, `foto`) VALUES
-(1, '<p>Yth. Alumni Ilmu Komputer FMIPA UNJ</p>\r\n<p style=\"text-align: justify;\">FMIPA UNJ sedang melakukan Tracer Study (penelusuran alumni) pada Program Studi Ilmu Komputer. Adapun tujuan dari kegiatan ini adalah untuk mendapatkan basis data yang diperlukan dalam penyusunan Evaluasi Diri dalam rangka Akreditasi Program Studi. Berkaitan dengan hal tersebut, Kami mohon kesediaan alumni UNJ yang kami hormati untuk mengisi kuesioner Tracer Study yang dapat diisi pada website ini</p>', '1571833006.png');
+INSERT INTO `beranda` (`id`, `isi`, `foto`, `jenis`, `prodiID`) VALUES
+(1, '<p>Yth. Alumni Ilmu Komputer FMIPA UNJ</p>\r\n<p style=\"text-align: justify;\">FMIPA UNJ sedang melakukan Tracer Study (penelusuran alumni) pada Program Studi Ilmu Komputer. Adapun tujuan dari kegiatan ini adalah untuk mendapatkan basis data yang diperlukan dalam penyusunan Evaluasi Diri dalam rangka Akreditasi Program Studi. Berkaitan dengan hal tersebut, Kami mohon kesediaan alumni UNJ yang kami hormati untuk mengisi kuesioner Tracer Study yang dapat diisi pada website ini</p>', '1575635288.png', 'alumni', 1),
+(2, '<p style=\"text-align: justify;\"><span style=\"color: #212529; font-family: cambria; font-size: 17px; text-align: justify;\">Bapak/Ibu yang terhormat, saat ini kami sedang melakukan&nbsp;</span><strong><em style=\"box-sizing: border-box; display: inline-block; transition: all 0.3s ease 0s; color: #212529; font-family: cambria; font-size: 17px; text-align: justify;\"><span style=\"box-sizing: border-box;\">Tracer Study</span></em></strong><span style=\"color: #212529; font-family: cambria; font-size: 17px; text-align: justify;\">&nbsp;(penelusuran alumni)&nbsp;</span><strong><span style=\"box-sizing: border-box; color: #212529; font-family: cambria; font-size: 17px; text-align: justify;\">Program Studi Ilmu Komputer</span></strong><span style=\"color: #212529; font-family: cambria; font-size: 17px; text-align: justify;\">&nbsp;FMIPA-UNJ. Adapun tujuan dari kegiatan ini adalah untuk mendapatkan basis data yang diperlukan dalam penyusunan Evaluasi Diri dalam rangka Akreditasi Program Studi. Berkaitan dengan hal tersebut, kami mohon Bapak/Ibu dapat mengisi kuesioner ini, data yang Bapak/Ibu isi dijamin kerahasiaannya. Untuk kerjasama dan bantuannya, kami mengucapkan banyak terima kasih.</span></p>', '', 'pengguna', 1),
+(3, '', '', 'alumni', 2),
+(4, '', '', 'pengguna', 2);
 
 -- --------------------------------------------------------
 
@@ -215,9 +233,247 @@ INSERT INTO `instansi` (`id`, `nama_instansi`, `jenis_instansi`, `alamat`, `prod
 (11, 'PT Manulife Indonesia', 'Nasional', 'Menara Batavia Lantai 19, JL KH Mas Mansyur, Kav. 126, 10220, RT.3/RW.2, Karet Tengsin, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10240', 1),
 (12, 'PT Digital Mind System', NULL, NULL, 1),
 (13, 'DPD RI', NULL, NULL, 1),
-(14, 'PT Harmoni Solusi Bisnis ', NULL, NULL, 1),
 (15, 'PT Imkahfa ', NULL, NULL, 1),
-(16, 'PT GSI (United Tractor )', NULL, NULL, 1);
+(16, 'PT GSI (United Tractor )', NULL, NULL, 1),
+(17, 'PT  Sinar Mas', 'Nasional', NULL, 0),
+(20, 'test', 'Nasional', 'test', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jawaban_alumni`
+--
+
+CREATE TABLE `jawaban_alumni` (
+  `id` int(11) NOT NULL,
+  `pertanyaanID` int(11) NOT NULL,
+  `pertanyaanSkalaID` int(11) DEFAULT NULL,
+  `jawaban` text NOT NULL,
+  `alumniID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `jawaban_alumni`
+--
+
+INSERT INTO `jawaban_alumni` (`id`, `pertanyaanID`, `pertanyaanSkalaID`, `jawaban`, `alumniID`) VALUES
+(26, 60, NULL, 'Ya', 35),
+(27, 60, NULL, 'tidak', 35),
+(28, 61, NULL, 'Memeroleh informasi dari pusat pengembangan karir fakultas/universitas   ', 35),
+(29, 61, NULL, ' Menghubungi kantor kemahasiswaan/hubungan alumni ', 35),
+(31, 62, NULL, '5 perusahaan', 35),
+(32, 65, NULL, 'Tidak', 35),
+(33, 65, NULL, '', 35),
+(34, 78, 18, 'Sangat Besar', 35),
+(35, 78, 19, 'Cukup Besar', 35),
+(36, 78, 20, 'Besar', 35),
+(37, 78, 21, 'Kurang', 35),
+(38, 78, 22, 'Cukup Besar', 35),
+(39, 78, 23, 'Besar', 35),
+(40, 78, 24, 'Kurang', 35),
+(41, 84, NULL, 'Belum Ada', 35),
+(42, 84, NULL, '', 35),
+(43, 85, NULL, 'statistik', 35),
+(44, 88, NULL, 'semoga sdmnya meningkat', 35),
+(45, 84, NULL, 'Penataran/Pelatihan', 35),
+(46, 61, NULL, 'Melalui relasi (misalnya dosen, orang tua, saudara, teman, dll.)', 35),
+(47, 60, NULL, 'ya', 35),
+(49, 60, NULL, 'Ya', 35),
+(50, 61, NULL, 'Dihubungi oleh perusahaan', 35),
+(51, 61, NULL, 'Memeroleh informasi dari pusat pengembangan karir fakultas/universitas   ', 35),
+(52, 61, NULL, 'Membangun jejaring (network) sejak masih kuliah', 35),
+(53, 62, NULL, '5 perusahaan', 35),
+(54, 63, NULL, '4 perusahaan', 35),
+(55, 64, NULL, '3 perusahaan', 35),
+(56, 65, NULL, 'Tidak', 35),
+(57, 90, NULL, 'Tingkat yang Sama', 35),
+(58, 78, 18, 'Besar', 35),
+(59, 78, 19, 'Besar', 35),
+(60, 78, 20, 'Cukup Besar', 35),
+(61, 78, 21, 'Sangat Besar', 35),
+(62, 78, 22, 'Sangat Besar', 35),
+(63, 78, 23, 'Sangat Besar', 35),
+(64, 78, 24, 'Besar', 35),
+(65, 79, NULL, 'Ya', 35),
+(66, 84, NULL, 'Belum Ada', 35),
+(67, 85, NULL, 'tes', 35),
+(68, 86, NULL, 'tes', 35),
+(69, 87, NULL, 'tes', 35),
+(70, 88, NULL, 'semoga lebih baik', 35),
+(71, 59, NULL, '3 bulan', 35),
+(72, 59, NULL, '1 bulan', 28),
+(73, 59, NULL, '3 bulan', 37),
+(74, 60, NULL, 'Ya', 37),
+(75, 61, NULL, 'Pergi ke bursa/pameran kerja', 37),
+(76, 61, NULL, ' Mencari lewat internet/iklan online/milis ', 37),
+(77, 62, NULL, '10 perusahaan', 37),
+(78, 63, NULL, '6 perusahaan', 37),
+(79, 64, NULL, '3 perusahaan', 37),
+(80, 65, NULL, 'Tidak', 37),
+(81, 90, NULL, 'Tingkat yang Sama', 37),
+(82, 78, 18, 'Cukup Besar', 37),
+(83, 78, 19, 'Besar', 37),
+(84, 78, 20, 'Besar', 37),
+(85, 78, 21, 'Besar', 37),
+(86, 78, 22, 'Besar', 37),
+(87, 78, 23, 'Besar', 37),
+(88, 78, 24, 'Besar', 37),
+(89, 84, NULL, 'Belum Ada', 37),
+(90, 85, NULL, 'programming', 37),
+(91, 98, 25, '3', 37),
+(92, 98, 26, '3', 37),
+(93, 98, 27, '3', 37),
+(94, 98, 28, '3', 37),
+(95, 98, 29, '4', 37),
+(96, 98, 30, '5', 37),
+(97, 98, 31, '5', 37),
+(98, 98, 32, '5', 37),
+(99, 98, 33, '5', 37),
+(100, 98, 34, '5', 37),
+(101, 98, 35, '5', 37),
+(102, 98, 36, '5', 37),
+(103, 98, 37, '5', 37),
+(104, 98, 38, '5', 37),
+(105, 98, 39, '5', 37),
+(106, 98, 40, '5', 37),
+(107, 98, 41, '5', 37),
+(108, 98, 42, '5', 37),
+(109, 98, 43, '5', 37),
+(110, 98, 44, '5', 37),
+(111, 98, 45, '5', 37),
+(112, 98, 46, '5', 37),
+(113, 98, 47, '5', 37),
+(114, 98, 48, '5', 37),
+(115, 98, 49, '5', 37),
+(116, 98, 50, '5', 37),
+(117, 98, 51, '5', 37),
+(118, 98, 52, '5', 37),
+(119, 98, 53, '5', 37),
+(120, 97, NULL, 'perbanyak praktikum daripada teori', 37),
+(121, 59, NULL, '4 bulan', 37),
+(122, 60, NULL, 'Ya', 37),
+(123, 61, NULL, ' Mencari lewat internet/iklan online/milis ', 37),
+(124, 61, NULL, 'Melalui relasi (misalnya dosen, orang tua, saudara, teman, dll.)', 37),
+(125, 62, NULL, '5 perusahaan', 37),
+(126, 63, NULL, '4 perusahaan', 37),
+(127, 64, NULL, '3 perusahaan', 37),
+(128, 65, NULL, 'Tidak', 37),
+(129, 90, NULL, 'Setingkat Lebih Tinggi', 37),
+(130, 78, 18, 'Cukup Besar', 37),
+(131, 78, 19, 'Besar', 37),
+(132, 78, 20, 'Kurang', 37),
+(133, 78, 21, 'Sangat Besar', 37),
+(134, 78, 22, 'Besar', 37),
+(135, 78, 23, 'Kurang', 37),
+(136, 78, 24, 'Tidak Sama Sekali', 37),
+(137, 85, NULL, 'statistik', 37),
+(138, 86, NULL, 'tes', 37),
+(139, 87, NULL, 'tes', 37),
+(140, 98, 25, '3', 37),
+(141, 98, 26, '2', 37),
+(142, 98, 27, '4', 37),
+(143, 98, 28, '4', 37),
+(144, 98, 29, '3', 37),
+(145, 98, 30, '2', 37),
+(146, 98, 31, '4', 37),
+(147, 98, 32, '3', 37),
+(148, 98, 33, '2', 37),
+(149, 98, 34, '4', 37),
+(150, 98, 35, '2', 37),
+(151, 98, 36, '3', 37),
+(152, 98, 37, '4', 37),
+(153, 98, 38, '3', 37),
+(154, 98, 39, '3', 37),
+(155, 98, 40, '4', 37),
+(156, 98, 41, '5', 37),
+(157, 98, 42, '3', 37),
+(158, 98, 43, '1', 37),
+(159, 98, 44, '1', 37),
+(160, 98, 45, '3', 37),
+(161, 98, 46, '4', 37),
+(162, 98, 47, '2', 37),
+(163, 98, 48, '4', 37),
+(164, 98, 49, '3', 37),
+(165, 98, 50, '2', 37),
+(166, 98, 51, '5', 37),
+(167, 98, 52, '1', 37),
+(168, 98, 53, '4', 37),
+(169, 97, NULL, 'tes saran ', 37);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jawaban_pengguna`
+--
+
+CREATE TABLE `jawaban_pengguna` (
+  `id` int(11) NOT NULL,
+  `penggunaID` int(11) DEFAULT NULL,
+  `pertanyaanID` int(11) NOT NULL,
+  `pertanyaanSkalaID` int(11) DEFAULT NULL,
+  `jawaban` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `jawaban_pengguna`
+--
+
+INSERT INTO `jawaban_pengguna` (`id`, `penggunaID`, `pertanyaanID`, `pertanyaanSkalaID`, `jawaban`) VALUES
+(1, 49, 53, 5, 'Sangat Baik'),
+(2, 49, 53, 6, 'Cukup'),
+(3, 49, 53, 7, 'Baik'),
+(4, 49, 53, 8, 'Kurang'),
+(5, 49, 53, 9, 'Cukup'),
+(6, 49, 53, 10, 'Baik'),
+(7, 49, 53, 11, 'Cukup'),
+(8, 49, 54, NULL, 'saran pengguna'),
+(9, NULL, 53, 5, 'Sangat Baik'),
+(10, NULL, 53, 6, 'Baik'),
+(11, NULL, 53, 7, 'Cukup'),
+(12, NULL, 53, 8, 'Cukup'),
+(13, NULL, 53, 9, 'Cukup'),
+(14, NULL, 53, 10, 'Baik'),
+(15, NULL, 53, 11, 'Cukup'),
+(16, NULL, 54, NULL, 'baik baik aja'),
+(17, 49, 53, 5, 'Sangat Baik'),
+(18, 49, 53, 6, 'Sangat Baik'),
+(19, 49, 53, 7, 'Sangat Baik'),
+(20, 49, 53, 8, 'Sangat Baik'),
+(21, 49, 53, 9, 'Sangat Baik'),
+(22, 49, 53, 11, 'Sangat Baik'),
+(23, 49, 54, NULL, 'semakin di depan'),
+(24, NULL, 53, 5, 'Baik'),
+(25, NULL, 53, 6, 'Cukup'),
+(26, NULL, 53, 7, 'Cukup'),
+(27, NULL, 53, 8, 'Baik'),
+(28, NULL, 53, 9, 'Cukup'),
+(29, NULL, 53, 10, 'Sangat Baik'),
+(30, NULL, 53, 11, 'Kurang'),
+(31, NULL, 99, NULL, 'Semoga proses akademik semakin berkembang'),
+(32, 60, 53, 5, 'Sangat Baik'),
+(33, 60, 53, 6, 'Baik'),
+(34, 60, 53, 7, 'Cukup'),
+(35, 60, 53, 8, 'Baik'),
+(36, 60, 53, 9, 'Cukup'),
+(37, 60, 53, 10, 'Kurang'),
+(38, 60, 53, 11, 'Sangat Baik'),
+(39, 60, 99, NULL, 'Semoga semakin jaya'),
+(40, 65, 53, 5, 'Sangat Baik'),
+(41, 65, 53, 6, 'Baik'),
+(42, 65, 53, 7, 'Cukup'),
+(43, 65, 53, 8, 'Baik'),
+(44, 65, 53, 9, 'Cukup'),
+(45, 65, 53, 10, 'Cukup'),
+(46, 65, 53, 11, 'Baik'),
+(47, 65, 99, NULL, 'semakin jaya'),
+(48, 67, 53, 5, 'Sangat Baik'),
+(49, 67, 53, 6, 'Baik'),
+(50, 67, 53, 7, 'Cukup'),
+(51, 67, 53, 8, 'Baik'),
+(52, 67, 53, 9, 'Baik'),
+(53, 67, 53, 10, 'Baik'),
+(54, 67, 53, 11, 'Sangat Baik'),
+(55, 67, 99, NULL, 'semoga mahasiswanya cepet lulus');
 
 -- --------------------------------------------------------
 
@@ -245,17 +501,53 @@ CREATE TABLE `kuesioner` (
   `responden` enum('alumni','pengguna') NOT NULL,
   `tanggal_dibuat` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `status` enum('aktif','nonaktif') NOT NULL DEFAULT 'aktif',
-  `prodiID` int(11) NOT NULL
+  `prodiID` int(11) NOT NULL,
+  `jenisKuesionerPengguna` enum('isian','ganda','pilihan','skala') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `kuesioner`
 --
 
-INSERT INTO `kuesioner` (`id`, `customID`, `nama_kuesioner`, `responden`, `tanggal_dibuat`, `status`, `prodiID`) VALUES
-(10, 'RFGNCSQG', 'Kompetensi', 'pengguna', '2019-11-27 01:14:59', 'aktif', 1),
-(12, 'CB32B98M', 'Pekerjaan', 'alumni', '2019-12-04 01:17:24', 'aktif', 1),
-(13, '5B7C2P3D', 'Pendidikan', 'alumni', '2019-12-04 01:46:24', 'aktif', 1);
+INSERT INTO `kuesioner` (`id`, `customID`, `nama_kuesioner`, `responden`, `tanggal_dibuat`, `status`, `prodiID`, `jenisKuesionerPengguna`) VALUES
+(10, 'RFGNCSQG', 'Kompetensi', 'pengguna', '2019-12-13 06:52:47', 'aktif', 1, 'skala'),
+(12, 'CB32B98M', 'Pekerjaan', 'alumni', '2019-12-04 01:17:24', 'aktif', 1, NULL),
+(13, '5B7C2P3D', 'Pendidikan', 'alumni', '2019-12-04 01:46:24', 'aktif', 1, NULL),
+(17, 'PTW4VCCS', 'Kompetensi', 'alumni', '2019-12-05 00:37:51', 'aktif', 1, NULL),
+(20, 'RYMD4QC6', 'Wirausaha', 'alumni', '2019-12-11 00:31:16', 'aktif', 1, NULL),
+(21, 'YQJN3ZTK', 'Saran Masukan', 'alumni', '2019-12-11 00:46:18', 'aktif', 1, NULL),
+(22, 'QHSQGBDY', 'Saran Masukan', 'pengguna', '2019-12-13 06:52:40', 'aktif', 1, 'isian');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notif_kuesioner`
+--
+
+CREATE TABLE `notif_kuesioner` (
+  `id` int(11) NOT NULL,
+  `respondenID` int(11) DEFAULT NULL,
+  `jenis_kuesioner` enum('alumni','pengguna') NOT NULL,
+  `new` enum('0','1') NOT NULL DEFAULT '0',
+  `timestamp` varchar(100) NOT NULL,
+  `prodiID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `notif_kuesioner`
+--
+
+INSERT INTO `notif_kuesioner` (`id`, `respondenID`, `jenis_kuesioner`, `new`, `timestamp`, `prodiID`) VALUES
+(1, 35, 'alumni', '0', '10-12-2019', 1),
+(2, 49, 'pengguna', '0', '10-12-2019', 1),
+(3, 35, 'alumni', '0', '11-12-2019', 1),
+(4, 28, 'alumni', '0', '11-12-2019', 1),
+(5, 37, 'alumni', '0', '12-12-2019', 1),
+(6, 37, 'alumni', '0', '13-12-2019', 1),
+(7, 60, 'pengguna', '0', '13-12-2019', 1),
+(8, NULL, 'pengguna', '0', '16-12-2019', 1),
+(9, NULL, 'pengguna', '0', '16-12-2019', 1),
+(10, 35, 'alumni', '0', '16-12-2019', 1);
 
 -- --------------------------------------------------------
 
@@ -270,25 +562,26 @@ CREATE TABLE `pekerjaan` (
   `periode_kerja` varchar(100) NOT NULL,
   `profil` varchar(255) NOT NULL,
   `id_alumni` int(11) NOT NULL,
-  `id_pengguna` int(11) NOT NULL
+  `id_pengguna` int(11) DEFAULT NULL,
+  `firstPekerjaan` enum('yes','no') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pekerjaan`
 --
 
-INSERT INTO `pekerjaan` (`id`, `posisi`, `gaji`, `periode_kerja`, `profil`, `id_alumni`, `id_pengguna`) VALUES
-(36, 'PHP Engineer', '3jt - 4jt', '2017-2018', '', 28, 49),
-(37, 'Software Engineer', '< 1jt', '2018-Sekarang', '', 28, 50),
-(38, 'Front End Developer', '> 4jt', '', '', 29, 51),
-(39, 'Asisten Wakil 1 DPD R1', '> 4jt', '', '', 30, 52),
-(40, 'Front End Developer', '< 1jt', '', '', 31, 53),
-(41, 'Java Pega Programmer', '< 1jt', '', '', 32, 54),
-(42, 'Web Developer', '> 4jt', '', '', 33, 55),
-(43, 'IT Developer', '< 1jt', '', '', 34, 56),
-(44, 'Front End Developer', '> 4jt', '2017-Sekarang', '', 35, 57),
-(45, 'IT Bisnis', '> 4jt', '', '', 36, 58),
-(46, 'Web Designer – Front End', '> 4jt', '2019-Sekarang', 'Programmer', 35, 59);
+INSERT INTO `pekerjaan` (`id`, `posisi`, `gaji`, `periode_kerja`, `profil`, `id_alumni`, `id_pengguna`, `firstPekerjaan`) VALUES
+(36, 'PHP Engineer', '3jt - 4jt', '2017-2018', 'Programmer', 28, 49, 'yes'),
+(37, 'Software Engineer', '< 1jt', '2018-Sekarang', '', 28, 50, 'no'),
+(38, 'Front End Developer', '> 4jt', '', 'Programmer', 29, 51, 'yes'),
+(39, 'Asisten Wakil 1 DPD R1', '> 4jt', '', 'Programmer', 30, 52, 'yes'),
+(40, 'Front End Developer', '< 1jt', '', 'Programmer', 31, 53, 'yes'),
+(41, 'Java Pega Programmer', '< 1jt', '', 'Programmer', 32, 54, 'yes'),
+(42, 'Web Developer', '> 4jt', '', 'Programmer', 33, 55, 'yes'),
+(43, 'IT Developer', '< 1jt', '', 'Programmer', 34, 56, 'yes'),
+(44, 'Front End Developer', '> 4jt', '2017-Sekarang', 'Programmer', 35, 57, 'yes'),
+(45, 'IT Bisnis', '> 4jt', '', 'Programmer', 36, 58, 'yes'),
+(51, 'Web Developer', '2jt - 3jt', '', 'Programmer', 37, 63, 'yes');
 
 -- --------------------------------------------------------
 
@@ -302,29 +595,35 @@ CREATE TABLE `pengguna` (
   `pengguna_nama` varchar(225) DEFAULT NULL,
   `pengguna_email` varchar(150) DEFAULT NULL,
   `pengguna_telepon` varchar(50) DEFAULT NULL,
-  `id_instansi` int(11) NOT NULL,
+  `id_instansi` int(11) DEFAULT NULL,
   `divisi` varchar(255) DEFAULT NULL,
   `prodiID` int(11) NOT NULL,
   `isDelete` enum('yes','no') DEFAULT 'no',
-  `tandai` varchar(50) NOT NULL
+  `tandai` varchar(50) NOT NULL,
+  `seen` enum('0','1') NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pengguna`
 --
 
-INSERT INTO `pengguna` (`id`, `penggunaID`, `pengguna_nama`, `pengguna_email`, `pengguna_telepon`, `id_instansi`, `divisi`, `prodiID`, `isDelete`, `tandai`) VALUES
-(49, '58B6DQWF', '', '', '', 9, '', 1, 'no', 'checked'),
-(50, 'SSS8DFVT', '', '', '', 10, '', 1, 'no', 'checked'),
-(51, 'M4TMY9XX', NULL, NULL, NULL, 3, NULL, 1, 'no', 'checked'),
-(52, 'V2V8PBRN', NULL, NULL, NULL, 13, NULL, 1, 'no', ''),
-(53, 'R8VC6G6K', NULL, NULL, NULL, 14, NULL, 1, 'no', ''),
-(54, '89MDXBFV', NULL, 'penggunasinarmas@mail.com', '', 7, '', 1, 'no', 'checked'),
-(55, 'FKSDPPFT', NULL, NULL, NULL, 15, NULL, 1, 'no', ''),
-(56, '3JXDSMXD', NULL, NULL, NULL, 16, NULL, 1, 'no', ''),
-(57, '2B4ZKQRZ', 'Pengguna harmoni', 'pengguna@harmoni.com', '0812345667', 14, 'Teknologi Informasi', 1, 'no', ''),
-(58, 'NFCWZH7G', NULL, NULL, NULL, 11, NULL, 1, 'no', ''),
-(59, '8V7P66WJ', 'Test', 'pengguna1@gmail.com', '0812345667', 12, 'Teknologi Informasi', 1, 'no', '');
+INSERT INTO `pengguna` (`id`, `penggunaID`, `pengguna_nama`, `pengguna_email`, `pengguna_telepon`, `id_instansi`, `divisi`, `prodiID`, `isDelete`, `tandai`, `seen`) VALUES
+(49, '58B6DQWF', '', '', '', 9, '', 1, 'no', '', '1'),
+(50, 'SSS8DFVT', '', '', '', 10, '', 1, 'no', '', '1'),
+(51, 'M4TMY9XX', NULL, NULL, NULL, 3, NULL, 1, 'no', '', '1'),
+(52, 'V2V8PBRN', NULL, NULL, NULL, 13, NULL, 1, 'no', '', '1'),
+(53, 'R8VC6G6K', NULL, NULL, NULL, 14, NULL, 1, 'no', '', '1'),
+(54, '89MDXBFV', 'pengguna sinarmas', 'penggunasinarmas@mail.com', '', 7, '', 1, 'no', '', '1'),
+(55, 'FKSDPPFT', NULL, NULL, NULL, 15, NULL, 1, 'no', '', '1'),
+(56, '3JXDSMXD', NULL, NULL, NULL, 16, NULL, 1, 'no', '', '1'),
+(57, '2B4ZKQRZ', 'Pengguna harmoni', 'pengguna@harmoni.com', '0812345667', 14, 'Teknologi Informasi', 1, 'no', '', '1'),
+(58, 'NFCWZH7G', NULL, NULL, NULL, 11, NULL, 1, 'no', '', '1'),
+(59, '8V7P66WJ', 'Test', 'pengguna1@gmail.com', '0812345667', 12, 'Teknologi Informasi', 1, 'no', '', '1'),
+(60, 'T6VNJMG5', 'Test', 'pengirim@gmail.com', '0812345667', 7, 'Website', 1, 'no', '', '1'),
+(62, 'QJHQJNCG', 'Test', 'pengirim@gmail.com', '0812345667', 9, 'Website', 1, 'no', '', '1'),
+(63, '4HPF93BY', NULL, NULL, NULL, 2, NULL, 1, 'no', '', '1'),
+(64, 'D7RMX7PH', NULL, NULL, NULL, 17, NULL, 1, 'no', '', '1'),
+(67, '69FSPDXH', 'test kuesioner pengguna', 'pengguna@harmoni.com', '0812345667', 0, '', 1, 'no', '', '1');
 
 -- --------------------------------------------------------
 
@@ -349,7 +648,6 @@ CREATE TABLE `pertanyaan` (
 
 INSERT INTO `pertanyaan` (`id`, `pertanyaan`, `jenis`, `inputBox`, `textarea`, `customID`, `kuesionerID`, `isDelete`) VALUES
 (53, 'Jenis Kemampuan', 'skala', 'tidak', 'tidak', 'PR1574911254', 10, 'no'),
-(54, 'Saran Bapak/Ibu untuk perbaikan lulusan Program Studi Ilmu Komputer UNJ', 'isian', 'tidak', 'ya', 'PR1574911269', 10, 'no'),
 (59, 'Masa tunggu Saudara dari kelulusan hingga mendapat pekerjaan pertama kali', 'pilihan', 'tidak', 'tidak', 'PR1575422613', 12, 'no'),
 (60, 'Apakah pekerjaan Saudara ini berhubungan dengan bidang ilmu yang Saudara pelajari di Perguruan Tinggi?  Jelaskan jawaban anda', 'pilihan', 'ya', 'tidak', 'PR1575422692', 12, 'no'),
 (61, 'Bagaimana anda mencari pekerjaan?', 'ganda', 'ya', 'tidak', 'PR1575422991', 12, 'no'),
@@ -357,14 +655,26 @@ INSERT INTO `pertanyaan` (`id`, `pertanyaan`, `jenis`, `inputBox`, `textarea`, `
 (63, 'Berapa banyak perusahaan/instansi/institusi yang merespons lamaran anda?', 'isian', 'tidak', 'tidak', 'PR1575423401', 12, 'no'),
 (64, 'Berapa banyak perusahaan/instansi/institusi yang mengundang anda untuk wawancara?', 'isian', 'tidak', 'tidak', 'PR1575423418', 12, 'no'),
 (65, 'Adakah hambatan/kendala yang Saudara alami dalam menyesuaikan diri dengan pekerjaan?   Jelaskan alasan anda', 'pilihan', 'ya', 'tidak', 'PR1575423501', 12, 'no'),
-(66, 'Test pertanyaan', 'pilihan', 'ya', 'tidak', '', 13, 'yes'),
-(77, 'Seberapa besar penekanan pada metode pembelajaran di bawah ini dilaksanakan di prodi anda?', 'skala', 'tidak', 'tidak', '', 13, 'yes'),
 (78, 'Seberapa besar penekanan pada metode pembelajaran di bawah ini dilaksanakan di prodi anda?', 'skala', 'tidak', 'tidak', 'PR1575447057', 13, 'no'),
-(79, 'Setelah Saudara lulus dari UNJ, apakah Saudara melanjutkan pendidikan lagi?  ', 'pilihan', 'tidak', 'tidak', 'PR1575447158', 13, 'no'),
+(79, 'Setelah Saudara lulus dari UNJ, apakah Saudara melanjutkan pendidikan lagi? Jika ya di tingkat apa anda melanjutkan pendidikan?', 'pilihan', 'tidak', 'tidak', 'PR1575447158', 13, 'no'),
 (80, 'Dimana Saudara melanjutkan pendidikan?', 'isian', 'tidak', 'tidak', 'PR1575447232', 13, 'no'),
 (81, 'Apa nama program studi dimana anda melanjutkan pendidikan?', 'isian', 'tidak', 'tidak', 'PR1575447405', 13, 'no'),
 (83, 'Apakah S1 anda linear dengan S2 ?', 'pilihan', 'tidak', 'tidak', 'PR1575447916', 13, 'no'),
-(84, 'Setelah Saudara lulus dari UNJ, apakah Saudara meningkatkan kompetensi diri melalui : Sebutkan nama dan lamanya', 'pilihan', 'ya', 'tidak', 'PR1575448012', 13, 'no');
+(84, 'Setelah Saudara lulus dari UNJ, apakah Saudara meningkatkan kompetensi diri melalui : Sebutkan nama dan lamanya', 'pilihan', 'ya', 'tidak', 'PR1575448012', 13, 'no'),
+(85, 'Pengetahuan apa yang Saudara butuhkan dari perkuliahan untuk menunjang pekerjaan Saudara saat ini? ', 'isian', 'tidak', 'tidak', 'PR1575506292', 17, 'no'),
+(86, 'Pernahkah Saudara mengikuti tes Profesi di bidang tertentu yang mendukung pekerjaan Saudara saat ini? Jika pernah mengikuti, sebutkan jenis tesnya!', 'isian', 'tidak', 'tidak', 'PR1575506399', 17, 'no'),
+(87, 'Adakah Organisasi Profesi yang Saudara ikuti? Jika ada sebutkan nama organisasinya dan mulai tahun berapa!', 'isian', 'tidak', 'tidak', 'PR1575506426', 17, 'no'),
+(89, 'Tingkat pendidikan apa yang paling tepat/sesuai untuk pekerjaan anda saat ini?', 'pilihan', 'tidak', 'tidak', '', 13, 'yes'),
+(90, 'Tingkat pendidikan apa yang paling tepat/sesuai untuk pekerjaan anda saat ini?', 'pilihan', 'tidak', 'tidak', 'PR1575939730', 12, 'no'),
+(91, 'Jika anda berwirausaha apa nama usaha yang didirikan?', 'isian', 'tidak', 'tidak', 'PR1576024376', 20, 'no'),
+(92, 'Bergerak di bidang apa usaha anda?', 'isian', 'tidak', 'tidak', 'PR1576024446', 20, 'no'),
+(93, 'Berapa lama usaha anda berdiri?', 'isian', 'tidak', 'tidak', 'PR1576024522', 20, 'no'),
+(94, 'Jumlah karyawan anda?', 'pilihan', 'tidak', 'tidak', 'PR1576024676', 20, 'no'),
+(95, 'Berapa pendapatan dari usaha tersebut?', 'pilihan', 'tidak', 'tidak', 'PR1576025009', 20, 'no'),
+(96, 'tes', 'isian', 'tidak', 'tidak', '', 17, 'yes'),
+(97, 'Saran Saudara untuk perbaikan Program Studi Ilmu Komputer', 'isian', 'tidak', 'ya', 'PR1576025187', 21, 'no'),
+(98, 'Pada saat lulus, pada tingkat mana kompetensi berikut anda kuasai? beri nilai dari 1 (sangat rendah) sampai 5 (sangat tinggi)\r\n*untuk alumni yang sudah lulus lebih dari 2 tahun', 'skala', 'tidak', 'tidak', 'PR1576026220', 17, 'no'),
+(99, 'Saran Bapak/Ibu untuk perbaikan lulusan Program Studi Ilmu Komputer UNJ', 'isian', 'tidak', 'ya', 'PR1576156789', 22, 'no');
 
 -- --------------------------------------------------------
 
@@ -396,7 +706,36 @@ INSERT INTO `pertanyaan_skala` (`id`, `pertanyaan`, `pertanyaanID`) VALUES
 (21, 'Magang', 78),
 (22, 'Praktikum ', 78),
 (23, 'Kerja Lapangan', 78),
-(24, 'Diskusi', 78);
+(24, 'Diskusi', 78),
+(25, 'Pengetahuan di bidang atau disiplin ilmu anda', 98),
+(26, 'Pengetahuan di luar bidang atau disiplin ilmu anda', 98),
+(27, 'Pengetahuan umum', 98),
+(28, 'Bahasa Inggris', 98),
+(29, 'Ketrampilan internet', 98),
+(30, 'Ketrampilan komputer', 98),
+(31, 'Berpikir kritis', 98),
+(32, 'Ketrampilan riset', 98),
+(33, 'Kemampuan belajar', 98),
+(34, 'Kemampuan berkomunikasi', 98),
+(35, 'Bekerja di bawah tekanan', 98),
+(36, 'Manajemen waktu', 98),
+(37, 'Bekerja secara mandiri', 98),
+(38, 'Bekerja dalam tim/bekerjasama dengan orang lain', 98),
+(39, 'Kemampuan dalam memecahkan masalah', 98),
+(40, 'Negosiasi', 98),
+(41, 'Kemampuan analisis', 98),
+(42, 'Toleransi', 98),
+(43, 'Kemampuan adaptasi', 98),
+(44, 'Loyalitas', 98),
+(45, 'Integritas', 98),
+(46, 'Bekerja dengan orang yang berbeda budaya maupun latar belakang', 98),
+(47, 'Kepemimpinan', 98),
+(48, 'Kemampuan dalam memegang tanggungjawab', 98),
+(49, 'Inisiatif', 98),
+(50, 'Manajemen proyek/program', 98),
+(51, 'Kemampuan untuk memresentasikan ide/produk/laporan', 98),
+(52, 'Kemampuan dalam menulis laporan, memo dan dokumen', 98),
+(53, 'Kemampuan untuk terus belajar sepanjang hayat', 98);
 
 -- --------------------------------------------------------
 
@@ -415,11 +754,11 @@ CREATE TABLE `pilihan_jawaban` (
 --
 
 INSERT INTO `pilihan_jawaban` (`id`, `pertanyaanID`, `pilihan`) VALUES
-(83, 59, '1-3 bln'),
-(84, 59, '4-6 bln'),
-(85, 59, '7-9 bln'),
-(86, 59, '10-12 bln'),
-(87, 59, '>12 bln'),
+(83, 59, '1 bulan'),
+(84, 59, '2 bulan'),
+(85, 59, '3 bulan'),
+(86, 59, '4 bulan'),
+(87, 59, '5 bulan'),
 (88, 60, 'Ya'),
 (89, 60, 'Tidak'),
 (90, 61, 'Melalui iklan di koran/majalah, brosur '),
@@ -436,13 +775,33 @@ INSERT INTO `pilihan_jawaban` (`id`, `pertanyaanID`, `pilihan`) VALUES
 (101, 61, 'Lainnya : '),
 (102, 65, 'Ada'),
 (103, 65, 'Tidak'),
-(119, 79, 'Ya'),
-(120, 79, 'Tidak'),
+(119, 79, 'S2'),
+(120, 79, 'S3'),
 (121, 83, 'Ya'),
 (122, 83, 'Tidak'),
 (123, 84, 'Penataran/Pelatihan'),
 (124, 84, 'Short Course'),
-(125, 84, 'Belum Ada');
+(125, 84, 'Belum Ada'),
+(130, 90, 'Setingkat Lebih Tinggi'),
+(131, 90, 'Tingkat yang Sama'),
+(132, 90, ' Setingkat Lebih Rendah'),
+(133, 90, 'Tidak Perlu Pendidikan Tinggi'),
+(134, 59, '6 bulan'),
+(135, 59, '7 bulan'),
+(136, 59, '8 bulan'),
+(137, 59, '9 bulan'),
+(138, 59, '10 bulan'),
+(139, 59, '11 bulan'),
+(140, 59, '12 bulan'),
+(141, 59, '> 12 bulan'),
+(142, 94, '1-10'),
+(143, 94, '10-50'),
+(144, 94, '51-100'),
+(145, 94, '>100'),
+(146, 95, '1-5 juta'),
+(147, 95, '6-10 juta'),
+(148, 95, '11-15 juta'),
+(149, 95, '>15 juta');
 
 -- --------------------------------------------------------
 
@@ -492,7 +851,12 @@ INSERT INTO `skala_nilai` (`id`, `nilai`, `pertanyaanID`) VALUES
 (18, 'Besar', 78),
 (19, 'Cukup Besar', 78),
 (20, 'Kurang', 78),
-(21, 'Tidak Sama Sekali', 78);
+(21, 'Tidak Sama Sekali', 78),
+(22, '1', 98),
+(23, '2', 98),
+(24, '3', 98),
+(25, '4', 98),
+(26, '5', 98);
 
 -- --------------------------------------------------------
 
@@ -530,7 +894,10 @@ INSERT INTO `user` (`id`, `userID`, `username`, `password`, `role`, `prodiID`, `
 (35, 'ALU3145136197', '3145136197', 'c4cb0ca61856d1b09c967de0bac0be56', 'alumni', 1, 'aktif'),
 (36, 'ALU3145136212', '3145136212', 'c1c920fb3af5f905f6cbf3856eb8440f', 'alumni', 1, 'aktif'),
 (37, 'ALU3145136196', '3145136196', 'b9d12d59b5e1656696f8f42dd9fc5e25', 'alumni', 1, 'aktif'),
-(38, 'ALU3145136193', '3145136193', '36f73abbc685c647eaebab77352c9d21', 'alumni', 1, 'aktif');
+(38, 'ALU3145136193', '3145136193', '36f73abbc685c647eaebab77352c9d21', 'alumni', 1, 'aktif'),
+(39, '', 'admin_mtk', 'fbf45fcf8f91f6bf19102b69333739a1', 'admin', 3, 'aktif'),
+(40, '', 'admin_pendmat', '2b3a43903f5240134cb90294ab3e4173', 'admin', 2, 'aktif'),
+(41, 'ALU12345', '12345', '827ccb0eea8a706c4c34a16891f84e7b', 'alumni', 1, 'aktif');
 
 --
 -- Indexes for dumped tables
@@ -542,6 +909,12 @@ INSERT INTO `user` (`id`, `userID`, `username`, `password`, `role`, `prodiID`, `
 ALTER TABLE `alumni`
   ADD PRIMARY KEY (`id`),
   ADD KEY `alumni_fk1` (`userID`);
+
+--
+-- Indexes for table `alumni_instansi`
+--
+ALTER TABLE `alumni_instansi`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `beranda`
@@ -580,6 +953,18 @@ ALTER TABLE `instansi`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `jawaban_alumni`
+--
+ALTER TABLE `jawaban_alumni`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `jawaban_pengguna`
+--
+ALTER TABLE `jawaban_pengguna`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `koorprodi`
 --
 ALTER TABLE `koorprodi`
@@ -591,6 +976,12 @@ ALTER TABLE `koorprodi`
 ALTER TABLE `kuesioner`
   ADD PRIMARY KEY (`id`),
   ADD KEY `kuesioner_fk1` (`prodiID`);
+
+--
+-- Indexes for table `notif_kuesioner`
+--
+ALTER TABLE `notif_kuesioner`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `pekerjaan`
@@ -656,13 +1047,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `alumni`
 --
 ALTER TABLE `alumni`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+
+--
+-- AUTO_INCREMENT for table `alumni_instansi`
+--
+ALTER TABLE `alumni_instansi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `beranda`
 --
 ALTER TABLE `beranda`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `berita_alumni`
@@ -692,7 +1089,19 @@ ALTER TABLE `fakultas`
 -- AUTO_INCREMENT for table `instansi`
 --
 ALTER TABLE `instansi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT for table `jawaban_alumni`
+--
+ALTER TABLE `jawaban_alumni`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=170;
+
+--
+-- AUTO_INCREMENT for table `jawaban_pengguna`
+--
+ALTER TABLE `jawaban_pengguna`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `koorprodi`
@@ -704,37 +1113,43 @@ ALTER TABLE `koorprodi`
 -- AUTO_INCREMENT for table `kuesioner`
 --
 ALTER TABLE `kuesioner`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT for table `notif_kuesioner`
+--
+ALTER TABLE `notif_kuesioner`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `pekerjaan`
 --
 ALTER TABLE `pekerjaan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `pengguna`
 --
 ALTER TABLE `pengguna`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT for table `pertanyaan`
 --
 ALTER TABLE `pertanyaan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
 
 --
 -- AUTO_INCREMENT for table `pertanyaan_skala`
 --
 ALTER TABLE `pertanyaan_skala`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `pilihan_jawaban`
 --
 ALTER TABLE `pilihan_jawaban`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=150;
 
 --
 -- AUTO_INCREMENT for table `prodi`
@@ -746,13 +1161,13 @@ ALTER TABLE `prodi`
 -- AUTO_INCREMENT for table `skala_nilai`
 --
 ALTER TABLE `skala_nilai`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- Constraints for dumped tables
@@ -770,12 +1185,6 @@ ALTER TABLE `kuesioner`
 ALTER TABLE `pekerjaan`
   ADD CONSTRAINT `pekerjaan_fk1` FOREIGN KEY (`id_alumni`) REFERENCES `alumni` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `pekerjaan_fk3` FOREIGN KEY (`id_pengguna`) REFERENCES `pengguna` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
-
---
--- Constraints for table `pengguna`
---
-ALTER TABLE `pengguna`
-  ADD CONSTRAINT `pengguna_fk1` FOREIGN KEY (`id_instansi`) REFERENCES `instansi` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Constraints for table `pertanyaan`

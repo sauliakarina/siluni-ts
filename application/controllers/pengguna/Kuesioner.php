@@ -35,7 +35,7 @@ class Kuesioner extends CI_Controller {
 			'kuesioner' => $this->m_kuesioner->getKuesionerPengguna($prodiID),
 			'penggunaID' => Null,
 			'prodiID' => $prodiID,
-			'instansi' => $this->m_master->getInstansi(),
+			'instansi' => $this->m_master->getInstansi($prodiID),
 			'nama_instansi' => ''
 		);
 		$this->load->view('element/head');
