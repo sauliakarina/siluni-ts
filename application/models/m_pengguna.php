@@ -58,6 +58,32 @@ class M_pengguna extends CI_Model{
 
 	}
 
+	function getAlumniInstansi($alumniID)
+	{
+		$this->db->select('*');
+		$this->db->order_by('id','ASC');
+		$this->db->where('alumniID', $alumniID);
+		$query = $this->db->get('alumni_instansi');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
+
+	}
+
+	function getFirstInstansi($alumniID)
+	{
+		$this->db->select('*');
+		$this->db->where('id_alumni', $alumniID);
+		$this->db->where('firstPekerjaan', 'yes');
+		$query = $this->db->get('pekerjaan');
+		return $query->row();
+
+	}
+
+
 	 function getInstansiGuest($prodiID)
 	{
 		$this->db->select('*');
@@ -206,6 +232,18 @@ class M_pengguna extends CI_Model{
   	public function getPekerjaanByPenggunaID($id_pengguna){
 		$this->db->select('*');
 		$this->db->where('id_pengguna', $id_pengguna);
+		$query = $this->db->get('pekerjaan');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
+  	}
+
+  	public function getPekerjaanByAlumniID($id_alumni){
+		$this->db->select('*');
+		$this->db->where('id_alumni', $id_alumni);
 		$query = $this->db->get('pekerjaan');
 		if($query->num_rows()>0)
 		{

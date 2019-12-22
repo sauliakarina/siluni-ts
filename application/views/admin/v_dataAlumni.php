@@ -106,8 +106,8 @@
                                   <input type="text" placeholder="" class="form-control" name="tahun_masuk">
                                 </div>
                                 <div class="form-group">       
-                                  <label>Tanggal Kelulusan</label>
-                                  <input type="date" placeholder="" class="form-control" name="tanggal_lulus">
+                                  <label>Tahun Lulus</label>
+                                  <input type="text" placeholder="" class="form-control" name="tahun_lulus">
                                 </div>
                             </div>
                             <div class="modal-footer">

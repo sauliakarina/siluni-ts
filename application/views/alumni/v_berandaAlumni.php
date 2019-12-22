@@ -170,12 +170,21 @@
                             <div class="row">
                               <div class="col-md-12">
                               <form class="form-horizontal" method="post" action="<?php echo base_url();?>alumni/Profil/tambahPenggunaAlumni">
-
+                                <?php 
+                                $where = array('id_alumni' => $alumniID);
+                                $cek = $this->m_master->cekData("pekerjaan",$where)->num_rows(); 
+                                $firstPekerjaan = $this->m_pengguna->getFirstInstansi($alumniID);
+                                $pekerjaanAlumni = $this->m_pengguna->getPekerjaanByAlumniID($alumniID);
+                                ?>
                                  <div class="form-group row">
                                   <label class="col-sm-3 form-control-label">Pilih Instansi</label>
                                   <div class="col-sm-9">
                                     <select name="id_instansi" id="id_instansi" class="form-control mb-3">
+                                    <?php if ($cek > 0) { ?>
+                                    <option value="<?php echo $firstPekerjaan->id_instansi ?>"><?php echo $this->m_master->getInstansiByID($firstPekerjaan->id_instansi)->nama_instansi ?></option>
+                                    <?php } else {?>
                                     <option></option>
+                                    <?php } ?>
                                     <?php foreach($instansi as $i){ ?>
                                         <option value="<?php echo $i->id ?>"><?php echo $i->nama_instansi ?></option>
                                     <?php } //end foreach  ?>
@@ -224,7 +233,11 @@
                                   <label  class="col-sm-3 form-control-label">Pendapatan Tiap Bulan</label>
                                   <div class="col-sm-9">
                                     <select name="gaji" class="form-control mb-3" required>
+                                      <?php if ($cek > 0) { ?>
+                                      <option value="<?php echo $firstPekerjaan->gaji ?>"><?php echo $firstPekerjaan->gaji ?></option>
+                                      <?php } else {?>
                                       <option></option>
+                                      <?php } ?>
                                       <option value="< 1jt"> < Rp 1jt </option>
                                       <option value="1jt - 2jt"> Rp 1jt - 2 jt </option>
                                        <option value="2jt - 3jt"> Rp 2jt - 3 jt </option>
@@ -245,6 +258,96 @@
                                   </div>
                                 </div>
 
+                               <?php if ($cek <= 1 ) { ?>
+                                <div class="form-group row" style="float: left;">
+                                   <div class="col-sm-9 offset-sm-3">
+                                    <a href="#">+Tambah Pekerjaan</a>
+                                   </div>
+                                </div>
+                              <?php } ?>
+                              <!-- pekerjaan kedua dst -->
+                              <?php if ($cek > 1) { 
+                                foreach (array_slice($pekerjaanAlumni, 1) as $k) {
+                              ?>
+                                <h5>Pekerjaan Lainnya</h5>
+                                <div class="row">
+                                <div class="col-md-12">
+                                <form class="form-horizontal" method="post" action="<?php echo base_url();?>alumni/Profil/tambahPenggunaAlumni">
+                                   <div class="form-group row">
+                                    <label class="col-sm-3 form-control-label">Pilih Instansi</label>
+                                    <div class="col-sm-9">
+                                      <select name="id_instansi" id="id_instansi" class="form-control mb-3">
+                                      <option><?php echo $this->m_master->getInstansiByID($k->id_instansi)->nama_instansi ?></option>
+                                      <?php foreach($instansi as $i){ ?>
+                                          <option value="<?php echo $i->id ?>"><?php echo $i->nama_instansi ?></option>
+                                      <?php } //end foreach  ?>
+                                      </select>
+                                      <small class="form-text">Lainnya :</small>
+                                      <input type="text" class="form-control" name="new_instansi">
+                                    </div>
+                                  </div>
+
+                                  <div class="form-group row">
+                                    <label class="col-sm-3 form-control-label">Skala Instansi</label>
+                                    <div class="col-sm-9">
+                                      <select name="skala_instansi" id="skala_instansi" class="form-control mb-3" required>
+                                        <option></option>
+                                        <option value="Lokal"> Lokal </option>
+                                        <option value="Nasional"> Nasional </option>
+                                        <option value="Internasional"> Internasional </option>
+                                      </select>
+                                    </div>
+                                  </div>
+
+                                  <div class="form-group row">
+                                    <label class="col-sm-3 form-control-label">Profesi</label>
+                                     <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="posisi" required>
+                                     </div>
+                                  </div>
+
+                                  <div class="form-group row">
+                                    <label class="col-sm-3 form-control-label">Profil Pekerjaan</label>
+                                    <div class="col-sm-9">
+                                      <select name="profil" class="form-control mb-3" required>
+                                        <option></option>
+                                        <option value="Programmer"> Programmer </option>
+                                        <option value="Penanggung Jawab Jaringan"> Penanggung Jawab Jaringan </option>
+                                        <option value="Wirausahawan"> Wirausahawan </option>
+                                        <option value="Praktisi"> Praktisi </option>
+                                        <option value="Konsultan"> Konsultan </option>
+                                        <option value="Perencana SI"> Perencana SI </option>
+                                        <option value="Peneliti"> Peneliti </option>
+                                      </select>
+                                    </div>
+                                  </div>
+
+                                  <div class="form-group row">
+                                    <label  class="col-sm-3 form-control-label">Pendapatan Tiap Bulan</label>
+                                    <div class="col-sm-9">
+                                      <select name="gaji" class="form-control mb-3" required>
+                                        <option value="<?php echo $k->gaji ?>"><?php echo $k->gaji ?></option>
+                                        <option value="< 1jt"> < Rp 1jt </option>
+                                        <option value="1jt - 2jt"> Rp 1jt - 2 jt </option>
+                                         <option value="2jt - 3jt"> Rp 2jt - 3 jt </option>
+                                        <option value="3jt - 4jt"> Rp 3jt - 4 jt </option>
+                                        <option value="> 4jt"> > Rp 4jt </option>
+                                      </select>
+                                    </div>
+                                  </div>
+
+                                  <div class="form-group row">
+                                    <label class="col-sm-3 form-control-label">Pilih Pengguna Alumni</label>
+                                    <div class="col-sm-9">
+                                      <select name="penggunaID" id="penggunaID" class="form-control mb-3">
+                                        <option></option>
+                                      </select>
+                                      <small class="form-text">Pilih pengguna alumni jika data di atas merupakan pekerjaan saat ini</small>
+                                      <small class="form-text">Jika pilihan pengguna alumni tidak ada <a href="" data-toggle="modal" data-target="#ModalTambahPengguna">klik disini</a></small>
+                                    </div>
+                                  </div>
+                              <?php } //foreach
+                              } //if ?>
                                 <div class="form-group row">
                                    <div class="col-sm-9 offset-sm-3">
                                     <button type="submit" class="btn btn-primary ml-auto">Simpan</button>

@@ -25,7 +25,8 @@ class Beranda extends CI_Controller {
 			'instansi' => $this->m_master->getInstansi($prodiID),
 			'nama_instansi' => '',
 			'riwayat' => $this->m_pengguna->joinPekerjaanByPenggunaID($id_alumni),
-			'beranda' => $this->m_master->getBerandaAlumniByProdi($this->session->userdata('prodiID'))
+			'beranda' => $this->m_master->getBerandaAlumniByProdi($this->session->userdata('prodiID')),
+			'alumniID' => $id_alumni
 		);
 		$this->load->view('element/head');
 		$this->load->view('element/header');

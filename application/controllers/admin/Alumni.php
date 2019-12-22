@@ -30,15 +30,15 @@ class Alumni extends CI_Controller {
 	function exeAddAlumni()
 	{
 
-			$d=strtotime($this->input->post('tanggal_lulus')); 
+			/*$d=strtotime($this->input->post('tanggal_lulus')); 
 			$tanggal_lulus = date("d M", $d);
-			$tahun_lulus = date("Y", $d);
+			$tahun_lulus = date("Y", $d);*/
 			$userID = 'ALU'.$this->input->post('nim');
 
 			$data_user = array(
-				'id' => $userID,
+				'userID' => $userID,
 				'username' => $this->input->post('nim'),
-				'password' => $this->input->post('nim'),
+				'password' => md5($this->input->post('nim')),
 				'prodiID' => $this->session->userdata('prodiID'),
 				'role' => 'alumni'
 			);
@@ -50,8 +50,8 @@ class Alumni extends CI_Controller {
 			'userID' => $userID,
 			'jenis_kelamin' => $this->input->post('jenis_kelamin'),
 			'tahun_masuk' => $this->input->post('tahun_masuk'),
-			'tahun_lulus' => $tahun_lulus,
-			'tanggal_lulus' => $tanggal_lulus
+			'tahun_lulus' => $this->input->post('tahun_lulus'),
+			'prodiID' => $this->session->userdata('prodiID'),
 			);
 			
 			$this->m_master->inputData($data_alumni,'alumni');
@@ -199,7 +199,7 @@ class Alumni extends CI_Controller {
 					}
 
 				    $gajiawal = str_replace(".","",$rowData[0][9]);
-				    if ($gajiawal < "1000000") {
+				    if ($gajiawal > "0" && $gajiawal < "1000000") {
 				    	$gaji = "< 1jt";
 				    } elseif ($gajiawal >= "1000000" && $gajiawal <= "2000000" ) {
 				    	$gaji = "1jt - 2jt";
@@ -209,6 +209,8 @@ class Alumni extends CI_Controller {
 				    	$gaji = "3jt - 4jt";
 				    } elseif ($gajiawal > "4000000" ) {
 				    	$gaji = "> 4jt";
+				    } else {
+				    	$gaji = Null;
 				    }
 				    $data = array(
 				    	"posisi" => $rowData[0][8],
