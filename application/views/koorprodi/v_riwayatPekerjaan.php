@@ -31,8 +31,6 @@
                               <th>Instansi</th>
                               <th>Posisi</th>
                               <th>Gaji tiap Bulan</th>
-                              <th>Periode Kerja</th>
-                             <!--  <th>Data Pengguna</th> -->
                             </tr>
                           </thead>
                           <tbody>

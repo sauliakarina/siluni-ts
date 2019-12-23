@@ -35,12 +35,10 @@
                             <tr>
                               <th>No</th>
                               <th>Instansi</th>
-                              <th>Posisi</th>
+                              <th>Profesi</th>
                               <th>Divisi</th>
                               <th>Pendapatan per Bulan</th>
-                              <th>Periode Kerja</th>
                               <th></th>
-                             <!--  <th>Data Pengguna</th> -->
                             </tr>
                           </thead>
                           <tbody>
@@ -54,7 +52,6 @@
                               <td><?php echo $r->posisi ?></td>
                               <td><?php echo $r->divisi ?></td>
                               <td><?php echo $r->gaji ?></td>
-                              <td><?php echo $r->periode_kerja ?></td>
                               <td>
                                 <div class="btn-group btn-group-toggle">
                                 <?php if ($r->pengguna_nama == Null) { ?>

@@ -296,6 +296,7 @@
                                 <table class="table table-condensed">
                                   <tbody id="skalaNilaiForm">
                                     <tr>
+                                      <label>Skala Penilaian</label>
                                       <td><input type="text" placeholder="Masukan Skala Penilaian" class="form-control" name="skalaNilai[0]"></td>
                                       <td><button class="btn btn-small btn-info" onclick="skalaNilaiForm(); return false"><i class="fas fa-plus-circle"></i></button></td>
                                     </tr>
@@ -304,6 +305,7 @@
                                 <table class="table table-condensed">
                                   <tbody id="skalaPertanyaanForm">
                                     <tr>
+                                      <label>Komponen Pertanyaan</label>
                                       <td><input type="text" placeholder="Tuliskan daftar pertanyaan" class="form-control" name="skalaPertanyaan[0]"></td>
                                       <td><button class="btn btn-small btn-info" onclick="skalaPertanyaanForm(); return false"><i class="fas fa-plus-circle"></i></button></td>
                                     </tr>
