@@ -20,19 +20,15 @@
                     <div class="card-body">
                       <p></p>
                       <form class="form-horizontal" method="post" action="<?php echo site_url("Laporan/laporanPenggunaSkala") ?>">
-                        <div class="line"></div>
                         <div class="form-group row">
                           <label class="col-sm-3 form-control-label">Pertanyaan</label>
                           <div class="col-sm-9">
                             <select class="js-example-basic-single dropdown" id="pertanyaan" name="pertanyaanID" style="width: 100%;">
                             <option value="">Pilih Pertanyaan</option>
                             <?php 
-                            foreach ($kuesioner as $k) {
-                              $pertanyaan = $this->m_kuesioner->getPertanyaanByKuesionerIDSkala($k->id);
                               foreach ($pertanyaan as $p) { ?>
                                 <option value="<?php echo $p->id ?>"><?php echo $p->pertanyaan ?></option>
-                              <?php } 
-                            }?>
+                              <?php } ?>
                             </select>
                           </div>
                         </div>

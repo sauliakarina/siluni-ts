@@ -166,9 +166,9 @@ class Alumni extends CI_Controller {
 						"prodiID" => $this->session->userdata('prodiID')
 					);
 					$insert = $this->db->insert("alumni",$data);
-				} else {
+				} /*else {
 					unlink($inputFileName);
-				}
+				}*/
 					//data instansi
 					$where = array('nama_instansi' => $rowData[0][7]);
 				    $cek = $this->m_master->cekData("instansi",$where)->num_rows();
@@ -199,18 +199,16 @@ class Alumni extends CI_Controller {
 					}
 
 				    $gajiawal = str_replace(".","",$rowData[0][9]);
-				    if ($gajiawal > "0" && $gajiawal < "1000000") {
-				    	$gaji = "< 1jt";
-				    } elseif ($gajiawal >= "1000000" && $gajiawal <= "2000000" ) {
-				    	$gaji = "1jt - 2jt";
-				    } elseif ($gajiawal >= "2000000" && $gajiawal <= "3000000" ) {
-				    	$gaji = "2jt - 3jt";
-				    }elseif ($gajiawal >= "3000000" && $gajiawal <= "4000000" ) {
-				    	$gaji = "3jt - 4jt";
-				    } elseif ($gajiawal > "4000000" ) {
-				    	$gaji = "> 4jt";
+				    if ($gajiawal >= "1000000" && $gajiawal <= "5000000" ) {
+				    	$gaji = "1-5 juta";
+				    } elseif ($gajiawal >= "6000000" && $gajiawal <= "10000000" ) {
+				    	$gaji = "6-10 juta";
+				    }elseif ($gajiawal >= "11000000" && $gajiawal <= "15000000" ) {
+				    	$gaji = "11-15 juta";
+				    } elseif ($gajiawal > "15000000" ) {
+				    	$gaji = "> 15 juta";
 				    } else {
-				    	$gaji = Null;
+				    	$gaji = '0';
 				    }
 				    $data = array(
 				    	"posisi" => $rowData[0][8],

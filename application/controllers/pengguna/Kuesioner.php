@@ -32,7 +32,7 @@ class Kuesioner extends CI_Controller {
 		$data = array(
 			'role' => $this->session->userdata('role'),
 			'userID' => $this->session->userdata('userID'),
-			'kuesioner' => $this->m_kuesioner->getKuesionerPengguna($prodiID),
+			'kuesioner' => $this->m_kuesioner->getKuesionerPengguna(),
 			'penggunaID' => Null,
 			'prodiID' => $prodiID,
 			'instansi' => $this->m_master->getInstansi($prodiID),
@@ -49,8 +49,7 @@ class Kuesioner extends CI_Controller {
 	{
 		$data = array(
 			'nama_instansi' => $this->input->post('nama_instansi'),
-			'jenis_instansi' => $this->input->post('jenis_instansi'),
-			'alamat' => $this->input->post('alamat'),
+			'jenis_instansi' => $this->input->post('jenis_instansi')
 		);	
 		$this->m_master->inputData($data,'instansi');
 

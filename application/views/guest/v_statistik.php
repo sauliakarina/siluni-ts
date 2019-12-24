@@ -13,20 +13,11 @@ $instansiNasional = $this->m_hasil->getSkalaInstansi('Nasional', $prodiID);
 $instansiInternasional = $this->m_hasil->getSkalaInstansi('Internasional', $prodiID);
 
 //grafik first gaji
-$tipe1 = $this->m_hasil->getFirstGaji('< 1jt');//< 1jt
-$tipe2 = $this->m_hasil->getFirstGaji('1jt - 2jt');//1jt - 2jt
-$tipe3 = $this->m_hasil->getFirstGaji('2jt - 3jt');//2jt - 3jt
-$tipe4 = $this->m_hasil->getFirstGaji('3jt - 4jt');//3jt - 4jt
-$tipe5 = $this->m_hasil->getFirstGaji('> 4jt');//> 4jt
+$tipe1 = $this->m_hasil->getFirstGaji('1-5 juta', $prodiID);//< 1jt
+$tipe2 = $this->m_hasil->getFirstGaji('6-10 juta', $prodiID);//1jt - 2jt
+$tipe3 = $this->m_hasil->getFirstGaji('11-15 juta', $prodiID);//2jt - 3jt
+$tipe5 = $this->m_hasil->getFirstGaji('> 15 juta', $prodiID);//> 4jt
 
-/*$alumni = $this->m_alumni->getAlumniByProdi($prodiID);
-$jumTipe1 = 0; //< 1jt
-foreach ($alumni as $a) {
-  $gaji = $this->m_hasil->getGajiAlumni($a->id);
-  if ($gaji[0] == "3jt - 4jt") {
-    $jumTipe1++;
-  }
-}*/
 
 //grafik profil lulusan
 $praktisi = $this->m_hasil->getProfilLulusan('Praktisi',$prodiID);
@@ -124,7 +115,7 @@ $pendidik = $this->m_hasil->getProfilLulusan('Pendidik',$prodiID);
     var chartPie = new Chart(ctx, {
       type: 'pie',
       data: {
-        labels: ["< 1jt", "1jt - 2jt", "2jt - 3jt", "3jt - 4jt", "> 4jt"],
+        labels: ["1-5 juta", "6-10 juta", "11-15 juta", "> 15 juta"],
         datasets: [{
           label: 'Rata-rata Penghasilan Alumni',
           data: [<?php echo $tipe1 ?>, <?php echo $tipe2 ?>, <?php echo $tipe3 ?>, <?php echo $tipe4 ?>,<?php echo $tipe5 ?>],
@@ -132,14 +123,14 @@ $pendidik = $this->m_hasil->getProfilLulusan('Pendidik',$prodiID);
           'rgba(153, 102, 255, 1)',
           'rgba(255, 99, 132, 1)',
           'rgba(54, 162, 235, 1)',
-          'rgba(55, 181, 94, 1)',
+          'rgba(218, 218, 21, 1)',
           'rgba(55, 181, 94, 1)',
           ],
           borderColor: [
           'rgba(153, 102, 255, 1)',
           'rgba(255, 99, 132, 1)',
           'rgba(54, 162, 235, 1)',
-          'rgba(55, 181, 94, 1)',
+          'rgba(218, 218, 21, 1)',
           'rgba(55, 181, 94, 1)',
           ],
           borderWidth: 1

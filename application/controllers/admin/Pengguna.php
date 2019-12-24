@@ -41,14 +41,14 @@ class Pengguna extends CI_Controller {
 			'userID' => $this->session->userdata('userID'),
 			'prodiID' => $prodiID,
 			'num' => $num,
-			'pengguna' => $this->m_pengguna->getPenggunaVer2($prodiID)
+			'pengguna' => $this->m_pengguna->getPenggunaInstansi($prodiID)
 		);
 
 		$this->load->view('element/head');
 		$this->load->view('element/header');
 		$this->load->view('element/navbar', $data);
 		$this->load->view('admin/v_newPengguna', $data);
-		$this->load->view('element/footer');
+		$this->load->view('element/footerVer2');
 
 	}
 

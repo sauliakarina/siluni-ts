@@ -58,7 +58,7 @@
                 <li><a href="<?php echo site_url('admin/Beranda/kelolaBerandaPengguna') ?>">Beranda Pengguna</a></li>
               </ul>
             </li>
-             <li class="<?php if($this->uri->segment(1)=="Laporan" && ($this->uri->segment(2)=="kuesionerAlumni" || $this->uri->segment(2)=="laporanAlumni") ){echo "active";} ?>"><a href="#dropdownLaporanAlumni" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-bar-chart"></i>Laporan Alumni</a>
+             <li class="<?php if($this->uri->segment(1)=="Laporan" && ($this->uri->segment(2)=="kuesionerAlumni" || $this->uri->segment(2)=="laporanAlumni" || $this->uri->segment(2)=="laporanAlumniSkala") ){echo "active";} ?>"><a href="#dropdownLaporanAlumni" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-bar-chart"></i>Laporan Alumni</a>
               <ul id="dropdownLaporanAlumni" class="collapse list-unstyled ">
                 <?php $kuesioner = $this->m_master->getKuesionerByResponden('alumni', $prodiID);
                   foreach ($kuesioner as $k) {
@@ -70,11 +70,12 @@
             </li>
             <li class="<?php if($this->uri->segment(1)=="Laporan" && ($this->uri->segment(2)=="kuesionerPengguna" || $this->uri->segment(2)=="laporanPengguna" || $this->uri->segment(2)=="laporanPenggunaSkala")){echo "active";} ?>"><a href="#dropdownLaporanPengguna" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-bar-chart"></i>Pengguna Alumni</a>
               <ul id="dropdownLaporanPengguna" class="collapse list-unstyled ">
-                <?php $kuesioner = $this->m_master->getKuesionerByResponden('pengguna', $prodiID);
-                  foreach ($kuesioner as $k) {
-                 ?>
-                <li><a href="<?php echo site_url('Laporan/kuesionerPengguna/'.$k->id) ?>"><?php echo $k->nama_kuesioner ?></a></li>
-               <?php } ?>
+              <?php  
+               $kuesionerProdi = $this->m_master->getKuesionerPenggunaProdi($prodiID);
+               foreach ($kuesionerProdi as $kp) {            
+               ?>
+               <li><a href="<?php echo site_url('Laporan/kuesionerPengguna/'.$kp->id) ?>"><?php echo $kp->nama_kuesioner ?></a></li>
+             <?php } ?>
               </ul>
             </li>
           </ul>

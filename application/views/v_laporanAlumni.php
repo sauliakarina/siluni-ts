@@ -39,6 +39,8 @@
                              ?>
                              <option value="toefl">Toefl Kelulusan</option>
                              <option value="ipk">IPK Kelulusan</option>
+                           <?php } elseif($this->m_kuesioner->getKuesionerByID($kuesionerID)->nama_kuesioner == 'Pekerjaan') { ?>
+                            <option value="gaji">Penghasilan Pertama</option>
                            <?php } ?>
                              </select>
                           </div>

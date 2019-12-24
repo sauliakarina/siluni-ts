@@ -15,21 +15,29 @@
             </div>
           </header>
 
-          <?php if($pertanyaan->jenis == 'pilihan' || $pertanyaan->jenis == 'ganda'){ ?>
-                    <?php 
-                    if(count($grafik)>0){
-                      foreach ($grafik as $result) {
-                        $label[] = $result->pilihan;
-                        $jumlah[] = (float) $result->num;
-                      }
-                    }else{ ?>
-                         <!-- alert box -->
-                          <div class="alert alert-info alert-dismissible" role="alert">
-                          <button type="button" onclick="this.parentNode.parentNode.removeChild(this.parentNode);" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                          <strong><i class="fa fa-warning"></i> Perhatian!</strong> <p style="font-family: verdana; font-size: 11pt">Belum ada data yang masuk</p>
-                        </div>
-                  <?php }
-                } ?>
+<?php 
+if ($tahun_lulus == "") {
+  $skalaNilai = $this->m_hasil->getJawabanSkala($pertanyaanID, $prodiID);
+  $tabel = $this->m_hasil->getJawabanByPertanyaanSkalaID($pertanyaanSkalaID);
+} else {
+  $skalaNilai = $this->m_hasil->getJawabanSkalaTahun($pertanyaanID, $prodiID, $tahun_lulus);
+  $tabel = $this->m_hasil->getJawabanByPertanyaanSkalaTahun($pertanyaanSkalaID, $tahun_lulus);
+}
+  $rendah = 0;
+  $sedang = 0;
+  $tinggi = 0;
+
+  foreach ($skalaNilai as $s ) {
+    if ($s->jawaban == '1' || $s->jawaban == '2') {
+      $rendah++;
+    } elseif ($s->jawaban == '3') {
+      $sedang++;
+    } elseif ($s->jawaban == '4' || $s->jawaban == '5')  {
+      $tinggi++;
+    }
+  }
+
+ ?>
 
   <section class="tables">   
             <div class="container-fluid">
@@ -40,7 +48,6 @@
                       <h3 class="h4"><?php echo $pertanyaan->pertanyaan ?></h3>
                     </div>
                     <div class="card-body">
-                      <?php if ($pertanyaan->jenis == 'pilihan' || $pertanyaan->jenis == 'ganda') {?>
                       <div class="row">
                       <div class="chart col-lg-6 col-sm-12">
                         <!-- Bar Chart   -->
@@ -51,17 +58,7 @@
                          <div id="chart1"></div>
                       </div>
                       </div>
-                    <?php } ?>
                     <div class="row">
-                      <?php 
-                      $jumlahPilihan = $this->m_kuesioner->getPilihanJawabanByPertanyaanID($pertanyaan->id);
-                      $json = json_encode($label);
-                      $json = json_decode($json , true);
-                      for ($i=count($jumlahPilihan); $i <count($json); $i++) { 
-                        $labelVer2[] = $json[$i];
-                      }
-                       echo json_encode($jumlah);
-                      ?>
                     </div>
                       <div class="row" style="margin-top: 20px" >
                         <div class="table-responsive col-lg-12" >                       
@@ -74,17 +71,23 @@
                               <th>Jawaban</th>
                             </tr>
                           </thead>
-                          <tbody>
+                         <tbody>
                             <?php foreach ($tabel as $t) { ?>
                             <tr>
                               <td><?php echo $t->nama; ?></td>
                               <td><?php echo $t->nim; ?></td>
                               <td><?php echo $t->tahun_lulus; ?></td>
                               <td><?php 
-                                $jawaban = $this->m_hasil->getJawabanByAlumniPertanyaan($t->alumniID, $t->pertanyaanID);
+                                $jawaban = $this->m_hasil->getJawabanByAlumniPertanyaanSkala($t->alumniID, $t->pertanyaanSkalaID);
                                 foreach ($jawaban as $j) {
-                                   echo $j->jawaban.",<br>";
-                                 }
+                                  if ($j->jawaban == '1' || $j->jawaban == '2') {
+                                    echo "Rendah"."<br>";
+                                  }  elseif ($j->jawaban == '3') {
+                                    echo "Sedang/Rata-rata"."<br>";
+                                  } elseif ($j->jawaban == '4' || $j->jawaban == '5')  {
+                                    echo "Tinggi"."<br>";
+                                  }     
+                              }
                                ?></td>
                             </tr>
                           <?php } ?>
@@ -143,12 +146,12 @@
           text: 'Hasil Tracer Study'
          },
          subtitle: {
-          text: '<?php echo $pertanyaan->pertanyaan; ?>'
+          text: '<?php echo $pertanyaanSkala->pertanyaan; ?>'
          },
          xAxis: {
-          categories: <?php echo json_encode($labelVer2);?>,
+          categories: ["Rendah", "Sedang/Rata-rata", "Tinggi"],
           labels: {
-            enabled: false
+            enabled: true
           }
          },
          yAxis: {
@@ -171,7 +174,7 @@
          },
          series: [{
            'name':'Hasil',
-           'data': <?php echo json_encode($jumlah);?>
+           'data': [<?php echo $rendah; ?>, <?php echo $sedang; ?>, <?php echo $tinggi; ?>]
          }]
        });
       });
@@ -192,10 +195,10 @@
         text: 'Hasil Tracer Study'
        },
        subtitle: {
-        text: '<?php echo $pertanyaan->pertanyaan;?>'
+        text: '<?php echo $pertanyaanSkala->pertanyaan;?>'
        },
        xAxis: {
-        categories: <?php echo json_encode($label);?>,
+        categories: ["Rendah", "Sedang/Rata-rata", "Tinggi"],
         labels: {
          style: {
           fontSize: '10px',
@@ -228,16 +231,7 @@
        },
        series: [{
          'name':'Hasil',
-         'data':[
-           <?php 
-            // data yang diambil dari database
-            if(count($grafik)>0)
-            {
-             foreach ($grafik as $informasi) {
-              echo "['" .$informasi->pilihan . "'," . $informasi->num ."],\n";
-             }
-            }
-          ?>
+         'data':[ ["Rendah", <?php echo $rendah; ?>], ["Sedang/Rata-rata", <?php echo $sedang; ?>], ["Tinggi", <?php echo $tinggi; ?>]
          ]
        }]
             });

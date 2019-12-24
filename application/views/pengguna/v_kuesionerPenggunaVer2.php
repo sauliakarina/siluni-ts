@@ -180,10 +180,7 @@
                                   <label>Nama Instansi</label>
                                   <input type="text" placeholder="" class="form-control" name="nama_instansi">
                                 </div>
-                                <div class="form-group">
-                                  <label>Alamat</label>
-                                    <textarea class="form-control" rows="5" id="" name="alamat"></textarea>
-                              </div>
+                               
                                 <div class="form-group">
                                   <label>Skala Instansi</label>
                                     <select name="jenis_instansi" class="form-control mb-3">

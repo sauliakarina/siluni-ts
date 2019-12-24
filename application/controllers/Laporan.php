@@ -28,6 +28,29 @@ class Laporan extends CI_Controller {
 		$this->load->view('element/footer');
 	}
 
+	/*public function kuesionerPengguna($kuesionerID)
+	{
+		if ($this->m_kuesioner->getKuesionerByID($kuesionerID)->jenisKuesionerPengguna == 'skala') {
+			$view = 'v_laporanSkalaPengguna';
+		} else {
+			$view = 'v_laporanPengguna';
+		}
+		$prodiID = $this->session->userdata('prodiID');
+		$data = array(
+			'role' => $this->session->userdata('role'),
+			'userID' => $this->session->userdata('userID'),
+			'prodiID' => $prodiID,
+			'pertanyaan' => $this->m_kuesioner->getPertanyaanByKuesionerID($kuesionerID),
+			'kuesionerID' => $kuesionerID,
+			'kuesioner' =>  $this->m_kuesioner->getKuesionerByResponden('pengguna', $prodiID)
+		);
+		$this->load->view('element/head');
+		$this->load->view('element/header');
+		$this->load->view('element/navbar', $data);
+		$this->load->view($view, $data);
+		$this->load->view('element/footer');
+	}*/
+
 	public function kuesionerPengguna($kuesionerID)
 	{
 		if ($this->m_kuesioner->getKuesionerByID($kuesionerID)->jenisKuesionerPengguna == 'skala') {
@@ -95,18 +118,27 @@ class Laporan extends CI_Controller {
 		$tahun_lulus = $this->input->post('tahun_lulus');
 		$prodiID = $this->session->userdata('prodiID');
 
-		if ($pertanyaanID == 'toefl' || $pertanyaanID == 'ipk') {
+		if ($pertanyaanID == 'toefl' || $pertanyaanID == 'ipk' || $pertanyaanID == 'gaji') {
 			if ($tahun_lulus == "") {
-				$tabel = $this->m_hasil->getDataDiri($prodiID);
+				if ($pertanyaanID == 'gaji') {
+					$tabel = $this->m_hasil->joinPekerjaanAlumni($prodiID);
+				} else {
+					$tabel = $this->m_hasil->getDataDiri($prodiID);
+				}
 			} else {
-				$tabel = $this->m_hasil->getDataDiriTahun($prodiID, $tahun_lulus);
+				if ($pertanyaanID == 'gaji') {
+					$tabel = $this->m_hasil->joinPekerjaanAlumniTahun($prodiID, $tahun_lulus);
+				} else {
+					$tabel = $this->m_hasil->getDataDiriTahun($prodiID, $tahun_lulus);
+				}
 			}
 			$data = array(
 				'role' => $this->session->userdata('role'),
 				'userID' => $this->session->userdata('userID'),
 				'prodiID' => $prodiID,
 				'pertanyaan' => $pertanyaanID,
-				'tabel' => $tabel
+				'tabel' => $tabel,
+				'tahun_lulus' => $tahun_lulus
 			);
 			$this->load->view('element/head');
 			$this->load->view('element/header');
@@ -190,7 +222,7 @@ class Laporan extends CI_Controller {
 		$this->load->view('element/navbar', $data);
 		$this->load->view('v_hasilLaporanAlumni', $data);
 		$this->load->view('element/footer');
-	}
+	}*/
 
 	public function laporanAlumniSkala()
 	{
@@ -198,30 +230,50 @@ class Laporan extends CI_Controller {
 		$pertanyaanSkalaID = $this->input->post('pertanyaanSkalaID');
 		$tahun_lulus = $this->input->post('tahun_lulus');
 		$prodiID = $this->session->userdata('prodiID');
-		if ($tahun_lulus == "") {
-			$tabel = $this->m_hasil->getJawabanByPertanyaanSkalaID($pertanyaanSkalaID);
-			$grafik = $this->m_hasil->getHasilAlumniSkala($pertanyaanSkalaID, $prodiID);
+
+		$cekSkala = $this->m_kuesioner->cekSkalaLikert($pertanyaanID)->nilai;
+		if ($cekSkala == '1') {
+			$data = array(
+				'pertanyaanID' => $pertanyaanID,
+				'role' => $this->session->userdata('role'),
+				'userID' => $this->session->userdata('userID'),
+				'prodiID' => $prodiID,
+				'pertanyaan' => $this->m_kuesioner->getPertanyaanByPertanyaanID($pertanyaanID),
+				'pertanyaanSkala' => $this->m_kuesioner->getPertanyaanSkalaByID($pertanyaanSkalaID),
+				'tahun_lulus' => $tahun_lulus,
+				'pertanyaanSkalaID' => $pertanyaanSkalaID
+			);
+			$this->load->view('element/head');
+			$this->load->view('element/header');
+			$this->load->view('element/navbar', $data);
+			$this->load->view('v_laporanKompetensiAlumni', $data);
+			$this->load->view('element/footer');
 		} else {
-			$tabel = $this->m_hasil->getJawabanByPertanyaanSkalaTahun($pertanyaanSkalaID, $tahun_lulus);
-			$grafik = $this->m_hasil->getHasilAlumniSkalaTahun($pertanyaanSkalaID, $prodiID, $tahun_lulus);
-		}
-		$data = array(
-			'role' => $this->session->userdata('role'),
-			'userID' => $this->session->userdata('userID'),
-			'prodiID' => $prodiID,
-			'grafik' => $grafik,
-			'label' => $this->m_hasil->getSkalaByPertanyaanID($pertanyaanID),
-			'pertanyaan' => $this->m_kuesioner->getPertanyaanByPertanyaanID($pertanyaanID),
-			'pertanyaanSkala' => $this->m_kuesioner->getPertanyaanSkalaByID($pertanyaanSkalaID),
-			'tabel' => $tabel,
-			//'getPertanyaan' => $this->m_kuesioner->getPertanyaanByKuesionerID($this->input->post('kuesionerID'))
-		);
-		$this->load->view('element/head');
-		$this->load->view('element/header');
-		$this->load->view('element/navbar', $data);
-		$this->load->view('v_hasilLaporanAlumniSkala', $data);
-		$this->load->view('element/footer');
-	}*/
+			if ($tahun_lulus == "") {
+				$tabel = $this->m_hasil->getJawabanByPertanyaanSkalaID($pertanyaanSkalaID);
+				$grafik = $this->m_hasil->getHasilAlumniSkala($pertanyaanSkalaID, $prodiID);
+			} else {
+				$tabel = $this->m_hasil->getJawabanByPertanyaanSkalaTahun($pertanyaanSkalaID, $tahun_lulus);
+				$grafik = $this->m_hasil->getHasilAlumniSkalaTahun($pertanyaanSkalaID, $prodiID, $tahun_lulus);
+			}
+			$data = array(
+				'role' => $this->session->userdata('role'),
+				'userID' => $this->session->userdata('userID'),
+				'prodiID' => $prodiID,
+				'grafik' => $grafik,
+				'label' => $this->m_hasil->getSkalaByPertanyaanID($pertanyaanID),
+				'pertanyaan' => $this->m_kuesioner->getPertanyaanByPertanyaanID($pertanyaanID),
+				'pertanyaanSkala' => $this->m_kuesioner->getPertanyaanSkalaByID($pertanyaanSkalaID),
+				'tabel' => $tabel
+			);
+			$this->load->view('element/head');
+			$this->load->view('element/header');
+			$this->load->view('element/navbar', $data);
+			$this->load->view('v_hasilLaporanAlumniSkala', $data);
+			$this->load->view('element/footer');
+		}//bukan pertanyaan skala likert
+		
+	}
 
 public function laporanPenggunaSkala()
 	{

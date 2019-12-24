@@ -16,12 +16,39 @@ class M_hasil extends CI_Model{
 
 	}
 
-	function getFirstGaji($gaji) {
-		$this->db->select('gaji');
-		$this->db->where('gaji', $gaji);
+	
+
+	function getFirstGaji($gaji, $prodiID) {
+		$this->db->select('pekerjaan.id AS id_pekerjaan, pekerjaan.*, alumni.id AS id_alumni, alumni.*');
+		$this->db->join('alumni', 'pekerjaan.id_alumni = alumni.id');
+		$this->db->from('pekerjaan');
+		$this->db->where('alumni.prodiID',$prodiID);
+		$this->db->where('pekerjaan.firstPekerjaan','yes');
+   		$this->db->where('pekerjaan.gaji', $gaji);
+   		$query = $this->db->get();
+		return $query->num_rows();
+	}
+
+	function getFirstGajiTahun($gaji, $prodiID, $tahun_lulus) {
+		$this->db->select('pekerjaan.id AS id_pekerjaan, pekerjaan.*, alumni.id AS id_alumni, alumni.*');
+		$this->db->join('alumni', 'pekerjaan.id_alumni = alumni.id');
+		$this->db->from('pekerjaan');
+		$this->db->where('alumni.prodiID',$prodiID);
+		$this->db->where('alumni.tahun_lulus',$tahun_lulus);
+		$this->db->where('pekerjaan.firstPekerjaan','yes');
+   		$this->db->where('pekerjaan.gaji', $gaji);
+   		$query = $this->db->get();
+		return $query->num_rows();
+	}
+
+
+	function getFirstPekerjaan($alumniID) {
+		$this->db->select('*');
+		$this->db->where('id_alumni', $alumniID);
+		$this->db->where('gaji !=', '0');
 		$this->db->where('firstPekerjaan', 'yes');
 		$query = $this->db->get('pekerjaan');
-		return $query->num_rows();
+		return $query->row();
 
 	}
 
@@ -337,6 +364,35 @@ class M_hasil extends CI_Model{
 		}
   	}
 
+  	//untuk get data gaji pertama not null
+  	public function joinPekerjaanAlumni($prodiID){
+  	$this->db->select('
+          pekerjaan.id AS id_pekerjaan, pekerjaan.*, alumni.id AS id_alumni, alumni.*
+      ');
+      $this->db->join('alumni', 'pekerjaan.id_alumni = alumni.id');
+      $this->db->from('pekerjaan');
+      $this->db->where('alumni.prodiID',$prodiID);
+      $this->db->where('pekerjaan.firstPekerjaan','yes');
+       $this->db->where('pekerjaan.gaji !=','0');
+      $query = $this->db->get();
+      return $query->result();
+  	}
+
+  	//untuk get gaji pertama not null
+  	public function joinPekerjaanAlumniTahun($prodiID, $tahun_lulus){
+  	$this->db->select('
+          pekerjaan.id AS id_pekerjaan, pekerjaan.*, alumni.id AS id_alumni, alumni.*
+      ');
+      $this->db->join('alumni', 'pekerjaan.id_alumni = alumni.id');
+      $this->db->from('pekerjaan');
+      $this->db->where('alumni.prodiID',$prodiID);
+      $this->db->where('alumni.tahun_lulus',$tahun_lulus);
+      $this->db->where('pekerjaan.firstPekerjaan','yes');
+       $this->db->where('pekerjaan.gaji !=','0');
+      $query = $this->db->get();
+      return $query->result();
+  	}
+
  public function getDataDiriTahun($prodiID, $tahun_lulus){
   		$this->db->select('*');
 		$this->db->where('prodiID',$prodiID);
@@ -350,6 +406,38 @@ class M_hasil extends CI_Model{
 		}
   	}
 
+function getJawabanSkala($pertanyaanID, $prodiID)
+	{
+		$this->db->select('jawaban_alumni.*, alumni.id AS id_alumni, alumni.*');
+		$this->db->where('jawaban_alumni.pertanyaanID', $pertanyaanID);
+		$this->db->where('alumni.prodiID', $prodiID);
+		$this->db->where('jawaban_alumni.jawaban !=', "");
+		$this->db->join('alumni', 'jawaban_alumni.alumniID = alumni.id', 'left');
+		$query = $this->db->get('jawaban_alumni');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
+	}
+
+	function getJawabanSkalaTahun($pertanyaanID, $prodiID, $tahun_lulus)
+	{
+		$this->db->select('jawaban_alumni.*, alumni.id AS id_alumni, alumni.*');
+		$this->db->where('jawaban_alumni.pertanyaanID', $pertanyaanID);
+		$this->db->where('alumni.prodiID', $prodiID);
+		$this->db->where('alumni.tahun_lulus', $tahun_lulus);
+		$this->db->where('jawaban_alumni.jawaban !=', "");
+		$this->db->join('alumni', 'jawaban_alumni.alumniID = alumni.id', 'left');
+		$query = $this->db->get('jawaban_alumni');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
+	}
 
 
 

@@ -175,7 +175,7 @@
   }
 
   function deletep(){
-    window.location.href =  "<?php echo base_url();?>superadmin/Master/deleteProdi/"+p_id;
+    window.location.href =  "<?php echo base_url();?>superadmin/Master/deleteAkunProdi/"+p_id;
   }
 
   function editAkunProdi(id) {

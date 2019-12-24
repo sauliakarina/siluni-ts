@@ -39,7 +39,7 @@
                              ?>
                             <tr>
                               <th scope="row"><?php echo $no++ ?></th>
-                              <td><a href="<?php echo base_url('admin/Kuesioner/buatPertanyaanPengguna/'.$k->id) ?>"><?php echo $k->nama_kuesioner ?></a></td>
+                              <td><?php echo $k->nama_kuesioner ?></td>
                               <td><b><?php echo $k->status ?></b></td>
                               <td> 
                                 <?php if ($k->status == 'aktif') { ?>

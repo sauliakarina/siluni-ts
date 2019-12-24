@@ -6,6 +6,7 @@ class Master extends CI_Controller {
 		parent::__construct();		
 		$this->load->model('m_alumni');
 		$this->load->model('m_master');
+		$this->load->model('m_kuesioner');
  
 	}
 
@@ -133,7 +134,93 @@ class Master extends CI_Controller {
 			);
 		$this->m_master->inputData($berandaPengguna,'beranda');
 
-			redirect('superadmin/Master/kelolaAkunProdi');
+		//untuk laporan data diri (ipk toefl gaji)
+		$kuesioner = array(
+			'nama_kuesioner' => 'pekerjaan',
+			 'responden' => 'alumni',
+			 'prodiID' => $this->input->post('prodiID')
+		);
+		$this->m_master->inputData($kuesioner,'kuesioner');
+		$kuesioner = array(
+			'nama_kuesioner' => 'pendidikan',
+			 'responden' => 'alumni',
+			 'prodiID' => $this->input->post('prodiID')
+		);
+		$this->m_master->inputData($kuesioner,'kuesioner');
+
+		//untuk kuesiooner pengguna (kompetensi dan saran)
+		//generate customID kuesioner
+		$id_length = 8;
+		$id_found = false;
+		$possible_chars = "23456789BCDFGHJKMNPQRSTVWXYZ"; 
+		while (!$id_found) {  
+		    $customID = "";  
+		    $i = 0;  
+		    while ($i < $id_length) {  
+		        $char = substr($possible_chars, mt_rand(0, strlen($possible_chars)-1), 1);  
+		        $customID .= $char;   
+		        $i++;   
+		    }  
+		    $where = array( 'customID' => $customID);
+		    $cek = $this->m_master->cekData("kuesioner",$where)->num_rows();
+		    if ($cek == 0) {
+		    	$id_found = true;
+		    }
+		}  //tutup while
+		$kuesioner = array(
+			'nama_kuesioner' => 'kompetensi',
+			'responden' => 'pengguna',
+			'prodiID' => $this->input->post('prodiID'),
+			'customID' => $customID
+		);
+		$this->m_master->inputData($kuesioner,'kuesioner');
+
+		$kuesionerID = $this->m_kuesioner->getKuesionerByCustomID($customID)->id;
+		//generate customID kuesioner
+		$id_length = 8;
+		$id_found = false;
+		$possible_chars = "23456789BCDFGHJKMNPQRSTVWXYZ"; 
+		while (!$id_found) {  
+		    $customID = "";  
+		    $i = 0;  
+		    while ($i < $id_length) {  
+		        $char = substr($possible_chars, mt_rand(0, strlen($possible_chars)-1), 1);  
+		        $customID .= $char;   
+		        $i++;   
+		    }  
+		    $where = array( 'customID' => $customID);
+		    $cek = $this->m_master->cekData("kuesioner",$where)->num_rows();
+		    if ($cek == 0) {
+		    	$id_found = true;
+		    }
+		}  //tutup while
+		$pertanyaan = array(
+			'pertanyaan' => 'Jenis Kemampuan',
+			'jenis' => 'skala',
+			'kuesionerID' => $kuesionerID,
+			'customID' => $customID
+		);
+		$this->m_master->inputData($pertanyaan,'pertanyaan');
+		$pertanyaanID = $this->m_kuesioner->getPertanyaanByCustomID($customID)->id;
+
+		$pertanyaanKompetensi = $this->m_kuesioner->getPertanyaanSkalaByPertanyaanID('101');
+		foreach ($pertanyaanKompetensi as $p) {
+			$pertanyaanSkala = array(
+				'pertanyaan' => $p->pertanyaan,
+				'pertanyaanID' => $pertanyaanID
+			);
+			$this->m_master->inputData($pertanyaanSkala,'pertanyaan_skala');
+		}
+		$skalaNilai = $this->m_kuesioner->getSkalaByPertanyaanID('101');
+		foreach ($skalaNilai as $p) {
+			$skala_nilai = array(
+				'nilai' => $p->nilai,
+				'pertanyaanID' => $pertanyaanID
+			);
+		$this->m_master->inputData($skala_nilai,'skala_nilai');
+		}
+
+	redirect('superadmin/Master/kelolaAkunProdi');
 	}
 
 
@@ -154,6 +241,19 @@ class Master extends CI_Controller {
 		$where = array('id' => $id);
 		$this->m_master->deleteData($where,'prodi');
 		redirect('superadmin/Master/kelolaProdi');
+	}
+
+	function deleteAkunProdi($id){
+		$prodiID = $this->m_master->getUserByID($id)->prodiID;
+		$where = array('prodiID' => $prodiID);
+		$data = array(
+			'isDelete' => 'yes',
+		);
+		$this->m_master->updateData($where,$data,'kuesioner');
+
+		$where = array('id' => $id);
+		$this->m_master->deleteData($where,'user');
+		redirect('superadmin/Master/kelolaAkunProdi');
 	}
 
 	function deleteFakultas($id){

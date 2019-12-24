@@ -11,6 +11,7 @@ class M_master extends CI_Model{
 	function getProdi()
 	{
 		$this->db->select('*');
+		$this->db->where('nama_prodi !=', 'Semua Prodi');
 		$query = $this->db->get('prodi');
 		if($query->num_rows()>0)
 		{
@@ -292,6 +293,39 @@ class M_master extends CI_Model{
 		$this->db->where('responden',$responden);
 		$this->db->where('status','aktif');
 		$this->db->where('prodiID', $prodiID);
+		$query = $this->db->get('kuesioner');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
+	}
+
+	//dinamis yes -> tiap prodi berbeda
+	function getKuesionerPenggunaProdi($prodiID)
+	{
+		$this->db->select('*');
+		$this->db->where('responden','pengguna');
+		$this->db->where('status','aktif');
+		$this->db->where('isDelete','no');
+		$this->db->where('prodiID', $prodiID);
+		$query = $this->db->get('kuesioner');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
+	}
+
+	//kuesioner pengguna untuk semua prodi tidak bisa diedit
+	function getKuesionerPengguna()
+	{
+		$this->db->select('*');
+		$this->db->where('responden','Pengguna');
+		$this->db->where('dinamis','no');
+		$this->db->order_by('id', 'ASC');
 		$query = $this->db->get('kuesioner');
 		if($query->num_rows()>0)
 		{

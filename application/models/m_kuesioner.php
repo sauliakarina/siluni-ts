@@ -24,6 +24,16 @@ class M_kuesioner extends CI_Model{
 
 	}
 
+	function cekSkalaLikert($id)
+	{
+		$this->db->select('*');
+		$this->db->where('pertanyaanID',$id);
+		$this->db->order_by('id','ASC');
+		$query = $this->db->get('skala_nilai');
+		return $query->row();
+
+	}
+
 	function getPertanyaanByCustomID($customID)
 	{
 		$this->db->select('*');
@@ -39,6 +49,7 @@ class M_kuesioner extends CI_Model{
 		$this->db->select('*');
 		$this->db->where('prodiID',$prodiID);
 		$this->db->where('responden','alumni');
+		$this->db->where('isDelete','no');
 		$this->db->order_by('id', 'ASC');
 		$query = $this->db->get('kuesioner');
 		if($query->num_rows()>0)
@@ -49,12 +60,28 @@ class M_kuesioner extends CI_Model{
 		}
 	}
 
-	function getKuesionerPengguna($prodiID)
+	function getKuesionerPenggunaByProdi($prodiID)
 	{
 		$this->db->select('*');
 		$this->db->where('prodiID',$prodiID);
 		$this->db->where('responden','pengguna');
 		$this->db->where('status','aktif');
+		$this->db->where('isDelete','no');
+		$query = $this->db->get('kuesioner');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
+	}
+
+	function getKuesionerPengguna()
+	{
+		$this->db->select('*');
+		$this->db->where('responden','Pengguna');
+		$this->db->where('isDelete','no');
+		$this->db->order_by('id', 'ASC');
 		$query = $this->db->get('kuesioner');
 		if($query->num_rows()>0)
 		{
@@ -69,6 +96,7 @@ class M_kuesioner extends CI_Model{
 		$this->db->select('*');
 		$this->db->where('responden',$responden);
 		$this->db->where('status','aktif');
+		$this->db->where('isDelete','no');
 		$this->db->where('prodiID', $prodiID);
 		$query = $this->db->get('kuesioner');
 		if($query->num_rows()>0)
@@ -168,6 +196,19 @@ class M_kuesioner extends CI_Model{
 		$this->db->select('*');
 		$this->db->where('pertanyaanID',$id);
 		$query = $this->db->get('pertanyaan_skala');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
+	}
+
+	function getPertanyaanSkalaByPertanyaan($pertanyaan)
+	{
+		$this->db->select('*');
+		$this->db->where('pertanyaan',$pertanyaan);
+		$query = $this->db->get('pertanyaan');
 		if($query->num_rows()>0)
 		{
 			return $query->result();
