@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 22, 2019 at 04:59 AM
+-- Generation Time: Dec 25, 2019 at 02:44 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.1.32
 
@@ -46,7 +46,7 @@ CREATE TABLE `alumni` (
   `pekerjaan` varchar(225) NOT NULL,
   `email` varchar(100) NOT NULL,
   `kuesioner` varchar(30) NOT NULL,
-  `no_telepon` varchar(50) NOT NULL,
+  `no_telepon` varchar(50) DEFAULT NULL,
   `waktu_skripsi` varchar(30) NOT NULL,
   `tampil_ipk` enum('yes','no') NOT NULL,
   `tampil_pekerjaan` enum('yes','no') NOT NULL,
@@ -60,16 +60,15 @@ CREATE TABLE `alumni` (
 --
 
 INSERT INTO `alumni` (`id`, `userID`, `nim`, `nama`, `jenis_kelamin`, `tempat_lahir`, `tanggal_lahir`, `alamat`, `avatar`, `tahun_masuk`, `tahun_lulus`, `tanggal_lulus`, `ipk`, `toefl`, `pekerjaan`, `email`, `kuesioner`, `no_telepon`, `waktu_skripsi`, `tampil_ipk`, `tampil_pekerjaan`, `tampil_waktu_skripsi`, `status`, `prodiID`) VALUES
-(28, 'ALU3145136217', '3145136217', 'M. Reyhan Fahlevi', 'Laki-laki', 'Jakarta', '2019-08-08', '', '', '2013', '2017', '0000-00-00', '3.84', '', '', 'reysdesign@hotmail.com', '', '0877 8528 2705', '', 'yes', 'yes', 'yes', 'aktif', 1),
-(29, 'ALU3145136218', '3145136218', 'Gregorius Andito H', 'Laki-laki', '', '0000-00-00', '', '', '2013', '2017', '0000-00-00', '3.72', NULL, '', '', '', '0878 8112 3212', '', 'yes', 'yes', 'yes', 'aktif', 1),
-(30, 'ALU3145136208', '3145136208', 'Alitinia Prastiantari', 'Perempuan', '', '0000-00-00', '', '', '2013', '2017', '0000-00-00', '3.72', NULL, '', '', '', '08129142949', '', 'yes', 'yes', 'yes', 'aktif', 1),
-(31, 'ALU3145136211', '3145136211', 'Tiara Amelia', 'Perempuan', '', '0000-00-00', '', '', '2013', '2017', '0000-00-00', '3.77', NULL, '', '', '', '081282003420', '', 'yes', 'yes', 'yes', 'aktif', 1),
-(32, 'ALU3145136223', '3145136223', 'Agustinus Purimbaga', 'Laki-laki', '', '', '', '', '2013', '2017', '0000-00-00', '3.59', '', '', '', '', '081281011459', '', 'yes', 'yes', 'yes', 'aktif', 1),
-(33, 'ALU3145136197', '3145136197', 'Muhammad Fachrizal', 'Laki-laki', '', '0000-00-00', '', '', '2013', '2017', '0000-00-00', '3.41', NULL, '', '', '', '085711402970', '', 'yes', 'yes', 'yes', 'aktif', 1),
-(34, 'ALU3145136212', '3145136212', 'Anantassa Fitri Andini', 'Perempuan', '', '0000-00-00', '', '', '2013', '2017', '0000-00-00', '3.8', NULL, '', '', '', '081319508117', '', 'yes', 'yes', 'yes', 'aktif', 1),
 (35, 'ALU3145136196', '3145136196', 'Mikael Yurubeli', 'Laki-laki', 'Jakarta', '', ' Jalan Hikmah No 64, Cilangkap, Cipayung, Jakarta Timur', '', '2013', '2017', '0000-00-00', '3.56', '', '', '', '', '087875076738', '', 'yes', 'yes', 'yes', 'aktif', 1),
-(36, 'ALU3145136193', '3145136193', 'Hana Maulinda', 'Perempuan', '', '0000-00-00', '', '', '2013', '2017', '0000-00-00', '3.56', NULL, '', '', '', '081318400299', '', 'yes', 'yes', 'yes', 'aktif', 1),
-(37, 'ALU12345', '12345', 'Test', 'Perempuan', '', '', '', '', '2015', '2020', '0000-00-00', '3.5', NULL, '', '', '', '12345', '', 'yes', 'yes', 'yes', 'aktif', 1);
+(55, 'ALU3145136217', '3145136217', 'M. Reyhan Fahlevi', 'Laki-laki', '', '', '', '', '2013', '2017', '0000-00-00', '3.84', NULL, '', '', '', '0877 8528 2705', '', 'yes', 'yes', 'yes', 'aktif', 1),
+(56, 'ALU3145136218', '3145136218', 'Gregorius Andito H', 'Laki-laki', '', '', '', '', '2013', '2017', '0000-00-00', '3.72', NULL, '', '', '', '0878 8112 3212', '', 'yes', 'yes', 'yes', 'aktif', 1),
+(57, 'ALU3145136208', '3145136208', 'Alitinia Prastiantari', 'Perempuan', '', '', '', '', '2013', '2017', '0000-00-00', '3.72', NULL, '', '', '', '08129142949', '', 'yes', 'yes', 'yes', 'aktif', 1),
+(58, 'ALU3145136211', '3145136211', 'Tiara Amelia', 'Perempuan', '', '', '', '', '2013', '2017', '0000-00-00', '3.77', NULL, '', '', '', '081282003420', '', 'yes', 'yes', 'yes', 'aktif', 1),
+(59, 'ALU3145136223', '3145136223', 'Agustinus Purimbaga', 'Laki-laki', '', '', '', '', '2013', '2017', '0000-00-00', '3.59', NULL, '', '', '', '081281011459', '', 'yes', 'yes', 'yes', 'aktif', 1),
+(60, 'ALU3145136197', '3145136197', 'Muhammad Fachrizal', 'Laki-laki', '', '', '', '', '2013', '2017', '0000-00-00', '3.41', NULL, '', '', '', '085711402970', '', 'yes', 'yes', 'yes', 'aktif', 1),
+(61, 'ALU3145136212', '3145136212', 'Anantassa Fitri Andini', 'Perempuan', '', '', '', '', '2013', '2017', '0000-00-00', '3.8', NULL, '', '', '', '081319508117', '', 'yes', 'yes', 'yes', 'aktif', 1),
+(62, 'ALU3145136193', '3145136193', 'Hana Maulinda', 'Perempuan', '', '', '', '', '2013', '2017', '0000-00-00', '3.56', NULL, '', '', '', '081318400299', '', 'yes', 'yes', 'yes', 'aktif', 1);
 
 -- --------------------------------------------------------
 
@@ -82,6 +81,60 @@ CREATE TABLE `alumni_instansi` (
   `alumniID` int(11) NOT NULL,
   `instansiID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `alumni_instansi`
+--
+
+INSERT INTO `alumni_instansi` (`id`, `alumniID`, `instansiID`) VALUES
+(10, 45, 11),
+(11, 46, 9),
+(12, 46, 10),
+(13, 47, 3),
+(14, 48, 13),
+(16, 50, 7),
+(17, 51, 15),
+(18, 52, 16),
+(20, 53, 11),
+(21, 54, 9),
+(22, 55, 9),
+(23, 55, 10),
+(24, 56, 3),
+(25, 57, 13),
+(26, 58, 2),
+(27, 59, 7),
+(28, 60, 15),
+(29, 61, 16),
+(30, 35, 2),
+(31, 62, 11),
+(32, 64, 22),
+(33, 64, 22),
+(34, 55, 9),
+(35, 55, 10),
+(36, 56, 3),
+(37, 57, 13),
+(38, 58, 2),
+(39, 59, 7),
+(40, 60, 15),
+(41, 61, 16),
+(42, 35, 2),
+(43, 62, 11),
+(44, 55, 9),
+(45, 55, 10),
+(46, 56, 3),
+(47, 57, 13),
+(48, 58, 2),
+(49, 59, 7),
+(50, 60, 15),
+(51, 61, 16),
+(52, 35, 2),
+(53, 62, 11),
+(54, 64, 22),
+(55, 65, 22),
+(56, 65, 22),
+(57, 65, 22),
+(58, 66, 22),
+(59, 67, 22);
 
 -- --------------------------------------------------------
 
@@ -104,8 +157,8 @@ CREATE TABLE `beranda` (
 INSERT INTO `beranda` (`id`, `isi`, `foto`, `jenis`, `prodiID`) VALUES
 (1, '<p>Yth. Alumni Ilmu Komputer FMIPA UNJ</p>\r\n<p style=\"text-align: justify;\">FMIPA UNJ sedang melakukan Tracer Study (penelusuran alumni) pada Program Studi Ilmu Komputer. Adapun tujuan dari kegiatan ini adalah untuk mendapatkan basis data yang diperlukan dalam penyusunan Evaluasi Diri dalam rangka Akreditasi Program Studi. Berkaitan dengan hal tersebut, Kami mohon kesediaan alumni UNJ yang kami hormati untuk mengisi kuesioner Tracer Study yang dapat diisi pada website ini</p>', '1575635288.png', 'alumni', 1),
 (2, '<p style=\"text-align: justify;\"><span style=\"color: #212529; font-family: cambria; font-size: 17px; text-align: justify;\">Bapak/Ibu yang terhormat, saat ini kami sedang melakukan&nbsp;</span><strong><em style=\"box-sizing: border-box; display: inline-block; transition: all 0.3s ease 0s; color: #212529; font-family: cambria; font-size: 17px; text-align: justify;\"><span style=\"box-sizing: border-box;\">Tracer Study</span></em></strong><span style=\"color: #212529; font-family: cambria; font-size: 17px; text-align: justify;\">&nbsp;(penelusuran alumni)&nbsp;</span><strong><span style=\"box-sizing: border-box; color: #212529; font-family: cambria; font-size: 17px; text-align: justify;\">Program Studi Ilmu Komputer</span></strong><span style=\"color: #212529; font-family: cambria; font-size: 17px; text-align: justify;\">&nbsp;FMIPA-UNJ. Adapun tujuan dari kegiatan ini adalah untuk mendapatkan basis data yang diperlukan dalam penyusunan Evaluasi Diri dalam rangka Akreditasi Program Studi. Berkaitan dengan hal tersebut, kami mohon Bapak/Ibu dapat mengisi kuesioner ini, data yang Bapak/Ibu isi dijamin kerahasiaannya. Untuk kerjasama dan bantuannya, kami mengucapkan banyak terima kasih.</span></p>', '', 'pengguna', 1),
-(3, '', '', 'alumni', 2),
-(4, '', '', 'pengguna', 2);
+(11, '<p>Yth. Alumni 3 FMIPA UNJ</p>\r\n							<p style=\"text-align: justify;\">FMIPA UNJ sedang melakukan Tracer Study (penelusuran alumni) pada Program Studi 3 Adapun tujuan dari kegiatan ini adalah untuk mendapatkan basis data yang diperlukan dalam penyusunan Evaluasi Diri dalam rangka Akreditasi Program Studi. Berkaitan dengan hal tersebut, Kami mohon kesediaan alumni 3 UNJ yang kami hormati untuk mengisi kuesioner Tracer Study yang dapat diisi pada website ini</p>', '', 'alumni', 3),
+(12, '<p style=\"text-align: justify;\"><span style=\"color: #212529; font-family: cambria; font-size: 17px; text-align: justify;\">Bapak/Ibu yang terhormat, saat ini kami sedang melakukan&nbsp;</span><strong><em style=\"box-sizing: border-box; display: inline-block; transition: all 0.3s ease 0s; color: #212529; font-family: cambria; font-size: 17px; text-align: justify;\"><span style=\"box-sizing: border-box;\">Tracer Study</span></em></strong><span style=\"color: #212529; font-family: cambria; font-size: 17px; text-align: justify;\">&nbsp;(penelusuran alumni)&nbsp;</span><strong><span style=\"box-sizing: border-box; color: #212529; font-family: cambria; font-size: 17px; text-align: justify;\">Program Studi 3 </span></strong><span style=\"color: #212529; font-family: cambria; font-size: 17px; text-align: justify;\">&nbsp;FMIPA-UNJ. Adapun tujuan dari kegiatan ini adalah untuk mendapatkan basis data yang diperlukan dalam penyusunan Evaluasi Diri dalam rangka Akreditasi Program Studi. Berkaitan dengan hal tersebut, kami mohon Bapak/Ibu dapat mengisi kuesioner ini, data yang Bapak/Ibu isi dijamin kerahasiaannya. Untuk kerjasama dan bantuannya, kami mengucapkan banyak terima kasih.</span></p>', '', 'pengguna', 3);
 
 -- --------------------------------------------------------
 
@@ -184,7 +237,8 @@ CREATE TABLE `dosen` (
 INSERT INTO `dosen` (`id`, `userID`, `nama`, `nidn`, `jenis_kelamin`, `email`, `no_telepon`, `avatar`, `status`, `prodiID`, `jabatan`) VALUES
 (2, 'DOS0021018204', 'Aris Hadiyan Wijaksana', '0021018204', 'Laki-laki', '', '', 'default.png', 'aktif', 2, ''),
 (3, 'DOS0011026006', 'Fariani Hermin Indiyah', '0011026006', 'Perempuan', 'fariani@gmail.com', '', 'default.png', 'aktif', 1, 'koorprodi'),
-(6, 'DOS0015067705', 'Med Irzal', '0015067705', 'Laki-laki', '', '', '', 'aktif', 1, 'dosen');
+(6, 'DOS0015067705', 'Med Irzal', '0015067705', 'Laki-laki', '', '', '', 'aktif', 1, 'dosen'),
+(7, 'DOS0015067706', 'dosen mtk 1', '0015067706', 'Laki-laki', 'test@mail.com', '081234567', '', 'aktif', 3, 'koorprodi');
 
 -- --------------------------------------------------------
 
@@ -236,7 +290,7 @@ INSERT INTO `instansi` (`id`, `nama_instansi`, `jenis_instansi`, `alamat`, `prod
 (15, 'PT Imkahfa ', NULL, NULL, 1),
 (16, 'PT GSI (United Tractor )', NULL, NULL, 1),
 (17, 'PT  Sinar Mas', 'Nasional', NULL, 0),
-(20, 'test', 'Nasional', 'test', 0);
+(22, 'PT PLN Disjaya', NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -257,148 +311,320 @@ CREATE TABLE `jawaban_alumni` (
 --
 
 INSERT INTO `jawaban_alumni` (`id`, `pertanyaanID`, `pertanyaanSkalaID`, `jawaban`, `alumniID`) VALUES
-(26, 60, NULL, 'Ya', 35),
-(27, 60, NULL, 'tidak', 35),
-(28, 61, NULL, 'Memeroleh informasi dari pusat pengembangan karir fakultas/universitas   ', 35),
-(29, 61, NULL, ' Menghubungi kantor kemahasiswaan/hubungan alumni ', 35),
-(31, 62, NULL, '5 perusahaan', 35),
-(32, 65, NULL, 'Tidak', 35),
-(33, 65, NULL, '', 35),
-(34, 78, 18, 'Sangat Besar', 35),
-(35, 78, 19, 'Cukup Besar', 35),
-(36, 78, 20, 'Besar', 35),
-(37, 78, 21, 'Kurang', 35),
-(38, 78, 22, 'Cukup Besar', 35),
-(39, 78, 23, 'Besar', 35),
-(40, 78, 24, 'Kurang', 35),
-(41, 84, NULL, 'Belum Ada', 35),
-(42, 84, NULL, '', 35),
-(43, 85, NULL, 'statistik', 35),
-(44, 88, NULL, 'semoga sdmnya meningkat', 35),
-(45, 84, NULL, 'Penataran/Pelatihan', 35),
-(46, 61, NULL, 'Melalui relasi (misalnya dosen, orang tua, saudara, teman, dll.)', 35),
-(47, 60, NULL, 'ya', 35),
-(49, 60, NULL, 'Ya', 35),
-(50, 61, NULL, 'Dihubungi oleh perusahaan', 35),
-(51, 61, NULL, 'Memeroleh informasi dari pusat pengembangan karir fakultas/universitas   ', 35),
-(52, 61, NULL, 'Membangun jejaring (network) sejak masih kuliah', 35),
-(53, 62, NULL, '5 perusahaan', 35),
-(54, 63, NULL, '4 perusahaan', 35),
-(55, 64, NULL, '3 perusahaan', 35),
-(56, 65, NULL, 'Tidak', 35),
-(57, 90, NULL, 'Tingkat yang Sama', 35),
-(58, 78, 18, 'Besar', 35),
-(59, 78, 19, 'Besar', 35),
-(60, 78, 20, 'Cukup Besar', 35),
-(61, 78, 21, 'Sangat Besar', 35),
-(62, 78, 22, 'Sangat Besar', 35),
-(63, 78, 23, 'Sangat Besar', 35),
-(64, 78, 24, 'Besar', 35),
-(65, 79, NULL, 'Ya', 35),
-(66, 84, NULL, 'Belum Ada', 35),
-(67, 85, NULL, 'tes', 35),
-(68, 86, NULL, 'tes', 35),
-(69, 87, NULL, 'tes', 35),
-(70, 88, NULL, 'semoga lebih baik', 35),
-(71, 59, NULL, '3 bulan', 35),
-(72, 59, NULL, '1 bulan', 28),
-(73, 59, NULL, '3 bulan', 37),
-(74, 60, NULL, 'Ya', 37),
-(75, 61, NULL, 'Pergi ke bursa/pameran kerja', 37),
-(76, 61, NULL, ' Mencari lewat internet/iklan online/milis ', 37),
-(77, 62, NULL, '10 perusahaan', 37),
-(78, 63, NULL, '6 perusahaan', 37),
-(79, 64, NULL, '3 perusahaan', 37),
-(80, 65, NULL, 'Tidak', 37),
-(81, 90, NULL, 'Tingkat yang Sama', 37),
-(82, 78, 18, 'Cukup Besar', 37),
-(83, 78, 19, 'Besar', 37),
-(84, 78, 20, 'Besar', 37),
-(85, 78, 21, 'Besar', 37),
-(86, 78, 22, 'Besar', 37),
-(87, 78, 23, 'Besar', 37),
-(88, 78, 24, 'Besar', 37),
-(89, 84, NULL, 'Belum Ada', 37),
-(90, 85, NULL, 'programming', 37),
-(91, 98, 25, '3', 37),
-(92, 98, 26, '3', 37),
-(93, 98, 27, '3', 37),
-(94, 98, 28, '3', 37),
-(95, 98, 29, '4', 37),
-(96, 98, 30, '5', 37),
-(97, 98, 31, '5', 37),
-(98, 98, 32, '5', 37),
-(99, 98, 33, '5', 37),
-(100, 98, 34, '5', 37),
-(101, 98, 35, '5', 37),
-(102, 98, 36, '5', 37),
-(103, 98, 37, '5', 37),
-(104, 98, 38, '5', 37),
-(105, 98, 39, '5', 37),
-(106, 98, 40, '5', 37),
-(107, 98, 41, '5', 37),
-(108, 98, 42, '5', 37),
-(109, 98, 43, '5', 37),
-(110, 98, 44, '5', 37),
-(111, 98, 45, '5', 37),
-(112, 98, 46, '5', 37),
-(113, 98, 47, '5', 37),
-(114, 98, 48, '5', 37),
-(115, 98, 49, '5', 37),
-(116, 98, 50, '5', 37),
-(117, 98, 51, '5', 37),
-(118, 98, 52, '5', 37),
-(119, 98, 53, '5', 37),
-(120, 97, NULL, 'perbanyak praktikum daripada teori', 37),
-(121, 59, NULL, '4 bulan', 37),
-(122, 60, NULL, 'Ya', 37),
-(123, 61, NULL, ' Mencari lewat internet/iklan online/milis ', 37),
-(124, 61, NULL, 'Melalui relasi (misalnya dosen, orang tua, saudara, teman, dll.)', 37),
-(125, 62, NULL, '5 perusahaan', 37),
-(126, 63, NULL, '4 perusahaan', 37),
-(127, 64, NULL, '3 perusahaan', 37),
-(128, 65, NULL, 'Tidak', 37),
-(129, 90, NULL, 'Setingkat Lebih Tinggi', 37),
-(130, 78, 18, 'Cukup Besar', 37),
-(131, 78, 19, 'Besar', 37),
-(132, 78, 20, 'Kurang', 37),
-(133, 78, 21, 'Sangat Besar', 37),
-(134, 78, 22, 'Besar', 37),
-(135, 78, 23, 'Kurang', 37),
-(136, 78, 24, 'Tidak Sama Sekali', 37),
-(137, 85, NULL, 'statistik', 37),
-(138, 86, NULL, 'tes', 37),
-(139, 87, NULL, 'tes', 37),
-(140, 98, 25, '3', 37),
-(141, 98, 26, '2', 37),
-(142, 98, 27, '4', 37),
-(143, 98, 28, '4', 37),
-(144, 98, 29, '3', 37),
-(145, 98, 30, '2', 37),
-(146, 98, 31, '4', 37),
-(147, 98, 32, '3', 37),
-(148, 98, 33, '2', 37),
-(149, 98, 34, '4', 37),
-(150, 98, 35, '2', 37),
-(151, 98, 36, '3', 37),
-(152, 98, 37, '4', 37),
-(153, 98, 38, '3', 37),
-(154, 98, 39, '3', 37),
-(155, 98, 40, '4', 37),
-(156, 98, 41, '5', 37),
-(157, 98, 42, '3', 37),
-(158, 98, 43, '1', 37),
-(159, 98, 44, '1', 37),
-(160, 98, 45, '3', 37),
-(161, 98, 46, '4', 37),
-(162, 98, 47, '2', 37),
-(163, 98, 48, '4', 37),
-(164, 98, 49, '3', 37),
-(165, 98, 50, '2', 37),
-(166, 98, 51, '5', 37),
-(167, 98, 52, '1', 37),
-(168, 98, 53, '4', 37),
-(169, 97, NULL, 'tes saran ', 37);
+(170, 59, NULL, '2 bulan', 35),
+(171, 60, NULL, 'Ya', 35),
+(172, 61, NULL, ' Mencari lewat internet/iklan online/milis ', 35),
+(173, 62, NULL, '5 perusahaan', 35),
+(174, 63, NULL, '4 perusahaan', 35),
+(175, 64, NULL, '3 perusahaan', 35),
+(176, 65, NULL, 'Tidak', 35),
+(177, 90, NULL, 'Tingkat yang Sama', 35),
+(178, 78, 18, 'Besar', 35),
+(179, 78, 19, 'Sangat Besar', 35),
+(180, 78, 20, 'Cukup Besar', 35),
+(181, 78, 21, 'Cukup Besar', 35),
+(182, 78, 22, 'Kurang', 35),
+(183, 78, 23, 'Cukup Besar', 35),
+(184, 78, 24, 'Tidak Sama Sekali', 35),
+(185, 84, NULL, 'Belum Ada', 35),
+(186, 85, NULL, 'programming', 35),
+(188, 98, 26, '2', 35),
+(189, 98, 27, '4', 35),
+(190, 98, 28, '2', 35),
+(191, 98, 29, '5', 35),
+(192, 98, 30, '3', 35),
+(193, 98, 31, '4', 35),
+(194, 98, 32, '1', 35),
+(195, 98, 33, '4', 35),
+(196, 98, 34, '3', 35),
+(197, 98, 35, '2', 35),
+(198, 98, 36, '4', 35),
+(199, 98, 37, '2', 35),
+(200, 98, 38, '4', 35),
+(201, 98, 39, '2', 35),
+(202, 98, 40, '4', 35),
+(203, 98, 41, '2', 35),
+(204, 98, 42, '4', 35),
+(205, 98, 43, '2', 35),
+(206, 98, 44, '4', 35),
+(207, 98, 45, '2', 35),
+(208, 98, 46, '4', 35),
+(209, 98, 48, '2', 35),
+(210, 98, 49, '5', 35),
+(211, 98, 50, '1', 35),
+(212, 98, 51, '2', 35),
+(213, 98, 52, '3', 35),
+(214, 98, 53, '4', 35),
+(215, 100, 59, '2 bulan', 35),
+(216, 100, 60, 'Ya', 35),
+(217, 78, 18, 'Sangat Besar', 35),
+(218, 78, 19, 'Besar', 35),
+(219, 78, 20, 'Cukup Besar', 35),
+(220, 78, 21, 'Besar', 35),
+(221, 78, 22, 'Kurang', 35),
+(222, 78, 23, 'Tidak Sama Sekali', 35),
+(223, 78, 24, 'Kurang', 35),
+(224, 59, NULL, '3', 35),
+(225, 60, NULL, '4', 35),
+(226, 62, NULL, '3', 35),
+(227, 63, NULL, '4', 35),
+(228, 64, NULL, '2', 35),
+(229, 65, NULL, '4', 35),
+(230, 79, NULL, '4', 35),
+(231, 80, NULL, '3', 35),
+(232, 81, NULL, '4', 35),
+(233, 100, 54, '1 (Sangat Rendah)', 35),
+(234, 100, 55, '2', 35),
+(235, 100, 56, '3', 35),
+(236, 100, 57, '4', 35),
+(237, 100, 58, '2', 35),
+(238, 100, 59, '3', 35),
+(239, 100, 60, '4', 35),
+(240, 100, 61, '4', 35),
+(241, 100, 62, '3', 35),
+(242, 100, 63, '4', 35),
+(243, 100, 64, '2', 35),
+(244, 100, 65, '4', 35),
+(245, 100, 66, '3', 35),
+(246, 100, 67, '3', 35),
+(247, 100, 68, '4', 35),
+(248, 100, 69, '3', 35),
+(249, 100, 70, '4', 35),
+(250, 100, 71, '2', 35),
+(251, 100, 72, '4', 35),
+(252, 100, 73, '4', 35),
+(253, 100, 74, '3', 35),
+(254, 100, 75, '4', 35),
+(255, 100, 76, '3', 35),
+(256, 100, 77, '4', 35),
+(257, 100, 78, '3', 35),
+(258, 100, 79, '4', 35),
+(259, 100, 80, '3', 35),
+(260, 100, 81, '4', 35),
+(261, 100, 82, '4', 35),
+(262, 98, 25, '1', 35),
+(263, 98, 26, '3', 35),
+(264, 98, 27, '2', 35),
+(265, 98, 28, '4', 35),
+(266, 98, 29, '5', 35),
+(267, 98, 30, '2', 35),
+(268, 98, 31, '4', 35),
+(269, 98, 32, '4', 35),
+(270, 98, 33, '2', 35),
+(271, 98, 34, '4', 35),
+(272, 98, 35, '3', 35),
+(273, 98, 36, '2', 35),
+(274, 98, 37, '4', 35),
+(275, 98, 38, '2', 35),
+(276, 98, 39, '3', 35),
+(277, 98, 40, '4', 35),
+(278, 98, 41, '2', 35),
+(279, 98, 42, '3', 35),
+(280, 98, 43, '4', 35),
+(281, 98, 44, '2', 35),
+(282, 98, 45, '4', 35),
+(283, 98, 46, '2', 35),
+(284, 98, 47, '4', 35),
+(285, 98, 48, '2', 35),
+(286, 98, 49, '4', 35),
+(287, 98, 50, '3', 35),
+(288, 98, 51, '3', 35),
+(289, 98, 52, '4', 35),
+(290, 98, 53, '4', 35),
+(291, 90, NULL, 'Tingkat yang Sama', 35),
+(292, 78, 18, 'Sangat Besar', 35),
+(293, 78, 19, 'Cukup Besar', 35),
+(294, 78, 20, 'Besar', 35),
+(295, 78, 21, 'Kurang', 35),
+(296, 78, 22, 'Cukup Besar', 35),
+(297, 78, 23, 'Kurang', 35),
+(298, 78, 24, 'Cukup Besar', 35),
+(299, 98, 25, '1', 35),
+(300, 98, 26, '2', 35),
+(301, 98, 27, '3', 35),
+(302, 98, 28, '4', 35),
+(303, 98, 29, '5', 35),
+(304, 98, 30, '4', 35),
+(305, 98, 31, '3', 35),
+(306, 98, 32, '3', 35),
+(307, 98, 33, '4', 35),
+(308, 98, 34, '3', 35),
+(309, 98, 35, '2', 35),
+(310, 98, 36, '4', 35),
+(311, 98, 37, '2', 35),
+(312, 98, 38, '3', 35),
+(313, 98, 39, '4', 35),
+(314, 98, 40, '2', 35),
+(315, 98, 41, '4', 35),
+(316, 98, 42, '2', 35),
+(317, 98, 43, '4', 35),
+(318, 98, 44, '2', 35),
+(319, 98, 45, '3', 35),
+(320, 98, 46, '4', 35),
+(321, 98, 47, '2', 35),
+(322, 98, 48, '3', 35),
+(323, 98, 49, '4', 35),
+(324, 98, 50, '3', 35),
+(325, 98, 51, '3', 35),
+(326, 98, 52, '2', 35),
+(327, 98, 53, '4', 35),
+(328, 59, NULL, '2 bulan', 57),
+(329, 60, NULL, 'Ya', 57),
+(330, 61, NULL, 'Membangun jejaring (network) sejak masih kuliah', 57),
+(331, 90, NULL, 'Tingkat yang Sama', 57),
+(332, 78, 18, 'Sangat Besar', 57),
+(333, 78, 19, 'Besar', 57),
+(334, 78, 20, 'Cukup Besar', 57),
+(335, 78, 21, 'Kurang', 57),
+(336, 78, 22, 'Tidak Sama Sekali', 57),
+(337, 78, 23, 'Kurang', 57),
+(338, 78, 24, 'Cukup Besar', 57),
+(339, 84, NULL, 'Belum Ada', 57),
+(340, 98, 25, '1', 57),
+(341, 98, 26, '2', 57),
+(342, 98, 27, '3', 57),
+(343, 98, 28, '4', 57),
+(344, 98, 29, '5', 57),
+(345, 98, 30, '4', 57),
+(346, 98, 31, '3', 57),
+(347, 98, 32, '2', 57),
+(348, 98, 33, '4', 57),
+(349, 98, 34, '2', 57),
+(350, 98, 35, '4', 57),
+(351, 98, 36, '2', 57),
+(352, 98, 37, '3', 57),
+(353, 98, 38, '4', 57),
+(354, 98, 39, '3', 57),
+(355, 98, 40, '2', 57),
+(356, 98, 41, '4', 57),
+(357, 98, 42, '4', 57),
+(358, 98, 43, '3', 57),
+(359, 98, 44, '2', 57),
+(360, 98, 45, '3', 57),
+(361, 98, 46, '4', 57),
+(362, 98, 47, '2', 57),
+(363, 98, 48, '3', 57),
+(364, 98, 49, '4', 57),
+(365, 98, 50, '3', 57),
+(366, 98, 51, '2', 57),
+(367, 98, 52, '4', 57),
+(368, 98, 53, '4', 57),
+(369, 100, 59, '2 bulan', 57),
+(370, 100, 60, 'Ya', 57),
+(371, 59, NULL, '4', 57),
+(372, 60, NULL, '2', 57),
+(373, 62, NULL, '2', 57),
+(374, 63, NULL, '4', 57),
+(375, 64, NULL, '3', 57),
+(376, 65, NULL, '2', 57),
+(377, 90, NULL, 'Tingkat yang Sama', 57),
+(378, 78, 18, 'Sangat Besar', 57),
+(379, 78, 19, 'Besar', 57),
+(380, 78, 20, 'Cukup Besar', 57),
+(381, 78, 21, 'Kurang', 57),
+(382, 78, 22, 'Tidak Sama Sekali', 57),
+(383, 78, 23, 'Kurang', 57),
+(384, 78, 24, 'Cukup Besar', 57),
+(385, 79, NULL, '4', 57),
+(386, 80, NULL, '3', 57),
+(387, 81, NULL, '3', 57),
+(388, 84, NULL, 'Belum Ada', 57),
+(389, 98, 25, '1', 57),
+(390, 98, 26, '2', 57),
+(391, 98, 27, '3', 57),
+(392, 98, 28, '4', 57),
+(393, 98, 29, '5', 57),
+(394, 98, 30, '4', 57),
+(395, 98, 31, '3', 57),
+(396, 98, 32, '2', 57),
+(397, 98, 33, '4', 57),
+(398, 98, 34, '2', 57),
+(399, 98, 35, '4', 57),
+(400, 98, 36, '2', 57),
+(401, 98, 37, '3', 57),
+(402, 98, 38, '4', 57),
+(403, 98, 39, '3', 57),
+(404, 98, 40, '2', 57),
+(405, 98, 41, '4', 57),
+(406, 98, 42, '4', 57),
+(407, 98, 43, '3', 57),
+(408, 98, 44, '2', 57),
+(409, 98, 45, '3', 57),
+(410, 98, 46, '4', 57),
+(411, 98, 47, '2', 57),
+(412, 98, 48, '3', 57),
+(413, 98, 49, '4', 57),
+(414, 98, 50, '3', 57),
+(415, 98, 51, '2', 57),
+(416, 98, 52, '4', 57),
+(417, 98, 53, '4', 57),
+(418, 100, 54, '1 (Sangat Rendah)', 57),
+(419, 100, 55, '3', 57),
+(420, 100, 56, '4', 57),
+(421, 100, 57, '3', 57),
+(422, 100, 58, '2', 57),
+(423, 100, 59, '4', 57),
+(424, 100, 60, '2', 57),
+(425, 100, 61, '4', 57),
+(426, 100, 62, '2', 57),
+(427, 100, 63, '4', 57),
+(428, 100, 64, '3', 57),
+(429, 100, 65, '2', 57),
+(430, 100, 66, '4', 57),
+(431, 100, 67, '4', 57),
+(432, 100, 68, '3', 57),
+(433, 100, 69, '2', 57),
+(434, 100, 70, '4', 57),
+(435, 100, 71, '4', 57),
+(436, 100, 72, '2', 57),
+(437, 100, 73, '4', 57),
+(438, 100, 74, '2', 57),
+(439, 100, 75, '4', 57),
+(440, 100, 76, '3', 57),
+(441, 100, 77, '2', 57),
+(442, 100, 78, '4', 57),
+(443, 100, 79, '4', 57),
+(444, 100, 80, '3', 57),
+(445, 100, 81, '3', 57),
+(446, 100, 82, '4', 57),
+(447, 97, NULL, 'semakin suksess', 57),
+(448, 59, NULL, '2', 57),
+(449, 60, NULL, '4', 57),
+(450, 62, NULL, '4', 57),
+(451, 63, NULL, '3', 57),
+(452, 64, NULL, '3', 57),
+(453, 65, NULL, '4', 57),
+(454, 79, NULL, '4', 57),
+(455, 80, NULL, '3', 57),
+(456, 81, NULL, '3', 57),
+(457, 100, 54, '1 (Sangat Rendah)', 57),
+(458, 100, 55, '2', 57),
+(459, 100, 56, '3', 57),
+(460, 100, 57, '4', 57),
+(461, 100, 58, '3', 57),
+(462, 100, 59, '2', 57),
+(463, 100, 60, '4', 57),
+(464, 100, 61, '3', 57),
+(465, 100, 62, '4', 57),
+(466, 100, 63, '3', 57),
+(467, 100, 64, '3', 57),
+(468, 100, 65, '4', 57),
+(469, 100, 66, '5 (Sangat Tinggi)', 57),
+(470, 100, 67, '4', 57),
+(471, 100, 68, '3', 57),
+(472, 100, 69, '4', 57),
+(473, 100, 70, '3', 57),
+(474, 100, 71, '3', 57),
+(475, 100, 72, '4', 57),
+(476, 100, 74, '4', 57),
+(477, 100, 75, '2', 57),
+(478, 100, 76, '1 (Sangat Rendah)', 57),
+(479, 100, 77, '3', 57),
+(480, 100, 78, '2', 57),
+(481, 100, 79, '4', 57),
+(482, 100, 80, '3', 57),
+(483, 100, 81, '3', 57),
+(484, 100, 82, '4', 57);
 
 -- --------------------------------------------------------
 
@@ -419,61 +645,30 @@ CREATE TABLE `jawaban_pengguna` (
 --
 
 INSERT INTO `jawaban_pengguna` (`id`, `penggunaID`, `pertanyaanID`, `pertanyaanSkalaID`, `jawaban`) VALUES
-(1, 49, 53, 5, 'Sangat Baik'),
-(2, 49, 53, 6, 'Cukup'),
-(3, 49, 53, 7, 'Baik'),
-(4, 49, 53, 8, 'Kurang'),
-(5, 49, 53, 9, 'Cukup'),
-(6, 49, 53, 10, 'Baik'),
-(7, 49, 53, 11, 'Cukup'),
-(8, 49, 54, NULL, 'saran pengguna'),
-(9, NULL, 53, 5, 'Sangat Baik'),
-(10, NULL, 53, 6, 'Baik'),
-(11, NULL, 53, 7, 'Cukup'),
-(12, NULL, 53, 8, 'Cukup'),
-(13, NULL, 53, 9, 'Cukup'),
-(14, NULL, 53, 10, 'Baik'),
-(15, NULL, 53, 11, 'Cukup'),
-(16, NULL, 54, NULL, 'baik baik aja'),
-(17, 49, 53, 5, 'Sangat Baik'),
-(18, 49, 53, 6, 'Sangat Baik'),
-(19, 49, 53, 7, 'Sangat Baik'),
-(20, 49, 53, 8, 'Sangat Baik'),
-(21, 49, 53, 9, 'Sangat Baik'),
-(22, 49, 53, 11, 'Sangat Baik'),
-(23, 49, 54, NULL, 'semakin di depan'),
-(24, NULL, 53, 5, 'Baik'),
-(25, NULL, 53, 6, 'Cukup'),
-(26, NULL, 53, 7, 'Cukup'),
-(27, NULL, 53, 8, 'Baik'),
-(28, NULL, 53, 9, 'Cukup'),
-(29, NULL, 53, 10, 'Sangat Baik'),
-(30, NULL, 53, 11, 'Kurang'),
-(31, NULL, 99, NULL, 'Semoga proses akademik semakin berkembang'),
-(32, 60, 53, 5, 'Sangat Baik'),
-(33, 60, 53, 6, 'Baik'),
-(34, 60, 53, 7, 'Cukup'),
-(35, 60, 53, 8, 'Baik'),
-(36, 60, 53, 9, 'Cukup'),
-(37, 60, 53, 10, 'Kurang'),
-(38, 60, 53, 11, 'Sangat Baik'),
-(39, 60, 99, NULL, 'Semoga semakin jaya'),
-(40, 65, 53, 5, 'Sangat Baik'),
-(41, 65, 53, 6, 'Baik'),
-(42, 65, 53, 7, 'Cukup'),
-(43, 65, 53, 8, 'Baik'),
-(44, 65, 53, 9, 'Cukup'),
-(45, 65, 53, 10, 'Cukup'),
-(46, 65, 53, 11, 'Baik'),
-(47, 65, 99, NULL, 'semakin jaya'),
-(48, 67, 53, 5, 'Sangat Baik'),
-(49, 67, 53, 6, 'Baik'),
-(50, 67, 53, 7, 'Cukup'),
-(51, 67, 53, 8, 'Baik'),
-(52, 67, 53, 9, 'Baik'),
-(53, 67, 53, 10, 'Baik'),
-(54, 67, 53, 11, 'Sangat Baik'),
-(55, 67, 99, NULL, 'semoga mahasiswanya cepet lulus');
+(56, 68, 53, 5, 'Sangat Baik'),
+(57, 68, 53, 6, 'Baik'),
+(58, 68, 53, 7, 'Cukup'),
+(59, 68, 53, 8, 'Kurang'),
+(60, 68, 53, 9, 'Cukup'),
+(61, 68, 53, 10, 'Baik'),
+(62, 68, 53, 11, 'Sangat Baik'),
+(63, 68, 99, NULL, 'semakin berkembang'),
+(64, 69, 53, 5, 'Sangat Baik'),
+(65, 69, 53, 6, 'Baik'),
+(66, 69, 53, 7, 'Cukup'),
+(67, 69, 53, 8, 'Cukup'),
+(68, 69, 53, 9, 'Baik'),
+(69, 69, 53, 10, 'Cukup'),
+(70, 69, 53, 11, 'Kurang'),
+(71, 69, 99, NULL, 'semakin majuu'),
+(72, 70, 53, 5, 'Sangat Baik'),
+(73, 70, 53, 6, 'Baik'),
+(74, 70, 53, 7, 'Cukup'),
+(75, 70, 53, 8, 'Kurang'),
+(76, 70, 53, 9, 'Cukup'),
+(77, 70, 53, 10, 'Baik'),
+(78, 70, 53, 11, 'Cukup'),
+(79, 70, 99, NULL, 'aaaa');
 
 -- --------------------------------------------------------
 
@@ -502,21 +697,26 @@ CREATE TABLE `kuesioner` (
   `tanggal_dibuat` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `status` enum('aktif','nonaktif') NOT NULL DEFAULT 'aktif',
   `prodiID` int(11) NOT NULL,
-  `jenisKuesionerPengguna` enum('isian','ganda','pilihan','skala') DEFAULT NULL
+  `jenisKuesionerPengguna` enum('isian','ganda','pilihan','skala') DEFAULT NULL,
+  `isDelete` enum('yes','no') NOT NULL DEFAULT 'no'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `kuesioner`
 --
 
-INSERT INTO `kuesioner` (`id`, `customID`, `nama_kuesioner`, `responden`, `tanggal_dibuat`, `status`, `prodiID`, `jenisKuesionerPengguna`) VALUES
-(10, 'RFGNCSQG', 'Kompetensi', 'pengguna', '2019-12-13 06:52:47', 'aktif', 1, 'skala'),
-(12, 'CB32B98M', 'Pekerjaan', 'alumni', '2019-12-04 01:17:24', 'aktif', 1, NULL),
-(13, '5B7C2P3D', 'Pendidikan', 'alumni', '2019-12-04 01:46:24', 'aktif', 1, NULL),
-(17, 'PTW4VCCS', 'Kompetensi', 'alumni', '2019-12-05 00:37:51', 'aktif', 1, NULL),
-(20, 'RYMD4QC6', 'Wirausaha', 'alumni', '2019-12-11 00:31:16', 'aktif', 1, NULL),
-(21, 'YQJN3ZTK', 'Saran Masukan', 'alumni', '2019-12-11 00:46:18', 'aktif', 1, NULL),
-(22, 'QHSQGBDY', 'Saran Masukan', 'pengguna', '2019-12-13 06:52:40', 'aktif', 1, 'isian');
+INSERT INTO `kuesioner` (`id`, `customID`, `nama_kuesioner`, `responden`, `tanggal_dibuat`, `status`, `prodiID`, `jenisKuesionerPengguna`, `isDelete`) VALUES
+(10, 'RFGNCSQG', 'Kompetensi', 'pengguna', '2019-12-24 13:31:51', 'aktif', 1, 'skala', 'no'),
+(12, 'CB32B98M', 'Pekerjaan', 'alumni', '2019-12-24 13:47:35', 'aktif', 1, NULL, 'no'),
+(13, '5B7C2P3D', 'Pendidikan', 'alumni', '2019-12-24 13:47:36', 'aktif', 1, NULL, 'no'),
+(17, 'PTW4VCCS', 'Kompetensi', 'alumni', '2019-12-24 13:47:36', 'aktif', 1, NULL, 'no'),
+(20, 'RYMD4QC6', 'Wirausaha', 'alumni', '2019-12-24 13:47:36', 'aktif', 1, NULL, 'no'),
+(21, 'YQJN3ZTK', 'Saran Masukan', 'alumni', '2019-12-24 13:47:36', 'aktif', 1, NULL, 'no'),
+(22, 'QHSQGBDY', 'Saran Masukan', 'pengguna', '2019-12-24 13:31:51', 'aktif', 1, 'isian', 'no'),
+(35, '', 'pekerjaan', 'alumni', '2019-12-25 00:31:58', 'aktif', 3, NULL, 'no'),
+(36, '', 'pendidikan', 'alumni', '2019-12-25 00:31:59', 'aktif', 3, NULL, 'no'),
+(37, '869DVM6J', 'Kompetensi', 'pengguna', '2019-12-25 00:49:07', 'aktif', 3, 'skala', 'no'),
+(38, 'RMDW8GT7', 'Saran Masukan', 'pengguna', '2019-12-25 00:49:07', 'aktif', 3, 'isian', 'no');
 
 -- --------------------------------------------------------
 
@@ -547,7 +747,16 @@ INSERT INTO `notif_kuesioner` (`id`, `respondenID`, `jenis_kuesioner`, `new`, `t
 (7, 60, 'pengguna', '0', '13-12-2019', 1),
 (8, NULL, 'pengguna', '0', '16-12-2019', 1),
 (9, NULL, 'pengguna', '0', '16-12-2019', 1),
-(10, 35, 'alumni', '0', '16-12-2019', 1);
+(10, 35, 'alumni', '0', '16-12-2019', 1),
+(11, 35, 'alumni', '0', '23-12-2019', 1),
+(12, 35, 'alumni', '0', '23-12-2019', 1),
+(13, 35, 'alumni', '0', '23-12-2019', 1),
+(14, 35, 'alumni', '0', '23-12-2019', 1),
+(15, 57, 'alumni', '0', '23-12-2019', 1),
+(16, 57, 'alumni', '0', '23-12-2019', 1),
+(17, 68, 'pengguna', '0', '24-12-2019', 1),
+(18, NULL, 'pengguna', '0', '24-12-2019', 1),
+(19, NULL, 'pengguna', '0', '24-12-2019', 1);
 
 -- --------------------------------------------------------
 
@@ -558,11 +767,12 @@ INSERT INTO `notif_kuesioner` (`id`, `respondenID`, `jenis_kuesioner`, `new`, `t
 CREATE TABLE `pekerjaan` (
   `id` int(11) NOT NULL,
   `posisi` varchar(225) DEFAULT NULL,
-  `gaji` varchar(225) DEFAULT NULL,
+  `gaji` varchar(225) DEFAULT '0',
   `periode_kerja` varchar(100) NOT NULL,
   `profil` varchar(255) NOT NULL,
   `id_alumni` int(11) NOT NULL,
   `id_pengguna` int(11) DEFAULT NULL,
+  `id_instansi` int(11) NOT NULL,
   `firstPekerjaan` enum('yes','no') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -570,18 +780,17 @@ CREATE TABLE `pekerjaan` (
 -- Dumping data for table `pekerjaan`
 --
 
-INSERT INTO `pekerjaan` (`id`, `posisi`, `gaji`, `periode_kerja`, `profil`, `id_alumni`, `id_pengguna`, `firstPekerjaan`) VALUES
-(36, 'PHP Engineer', '3jt - 4jt', '2017-2018', 'Programmer', 28, 49, 'yes'),
-(37, 'Software Engineer', '< 1jt', '2018-Sekarang', '', 28, 50, 'no'),
-(38, 'Front End Developer', '> 4jt', '', 'Programmer', 29, 51, 'yes'),
-(39, 'Asisten Wakil 1 DPD R1', '> 4jt', '', 'Programmer', 30, 52, 'yes'),
-(40, 'Front End Developer', '< 1jt', '', 'Programmer', 31, 53, 'yes'),
-(41, 'Java Pega Programmer', '< 1jt', '', 'Programmer', 32, 54, 'yes'),
-(42, 'Web Developer', '> 4jt', '', 'Programmer', 33, 55, 'yes'),
-(43, 'IT Developer', '< 1jt', '', 'Programmer', 34, 56, 'yes'),
-(44, 'Front End Developer', '> 4jt', '2017-Sekarang', 'Programmer', 35, 57, 'yes'),
-(45, 'IT Bisnis', '> 4jt', '', 'Programmer', 36, 58, 'yes'),
-(51, 'Web Developer', '2jt - 3jt', '', 'Programmer', 37, 63, 'yes');
+INSERT INTO `pekerjaan` (`id`, `posisi`, `gaji`, `periode_kerja`, `profil`, `id_alumni`, `id_pengguna`, `id_instansi`, `firstPekerjaan`) VALUES
+(95, 'PHP Engineer', '1-5 juta', '', '', 55, 0, 9, 'yes'),
+(96, 'Software Engineer', '0', '', '', 55, 0, 10, 'no'),
+(97, 'Front End Developer', '6-10 juta', '', '', 56, 0, 3, 'yes'),
+(98, 'Asisten Wakil 1 DPD R1', '1-5 juta', '', '', 57, 0, 13, 'yes'),
+(99, 'Front End Developer', '0', '', '', 58, 0, 2, 'yes'),
+(100, 'Java Pega Programmer', '0', '', '', 59, 0, 7, 'yes'),
+(101, 'Web Developer', '1-5 juta', '', '', 60, 0, 15, 'yes'),
+(102, 'IT Developer', '0', '', '', 61, 0, 16, 'yes'),
+(103, 'Front End Developer', '1-5 juta', '', '', 35, 0, 2, 'yes'),
+(104, 'IT Bisnis', '6-10 juta', '', '', 62, 0, 11, 'yes');
 
 -- --------------------------------------------------------
 
@@ -608,22 +817,9 @@ CREATE TABLE `pengguna` (
 --
 
 INSERT INTO `pengguna` (`id`, `penggunaID`, `pengguna_nama`, `pengguna_email`, `pengguna_telepon`, `id_instansi`, `divisi`, `prodiID`, `isDelete`, `tandai`, `seen`) VALUES
-(49, '58B6DQWF', '', '', '', 9, '', 1, 'no', '', '1'),
-(50, 'SSS8DFVT', '', '', '', 10, '', 1, 'no', '', '1'),
-(51, 'M4TMY9XX', NULL, NULL, NULL, 3, NULL, 1, 'no', '', '1'),
-(52, 'V2V8PBRN', NULL, NULL, NULL, 13, NULL, 1, 'no', '', '1'),
-(53, 'R8VC6G6K', NULL, NULL, NULL, 14, NULL, 1, 'no', '', '1'),
-(54, '89MDXBFV', 'pengguna sinarmas', 'penggunasinarmas@mail.com', '', 7, '', 1, 'no', '', '1'),
-(55, 'FKSDPPFT', NULL, NULL, NULL, 15, NULL, 1, 'no', '', '1'),
-(56, '3JXDSMXD', NULL, NULL, NULL, 16, NULL, 1, 'no', '', '1'),
-(57, '2B4ZKQRZ', 'Pengguna harmoni', 'pengguna@harmoni.com', '0812345667', 14, 'Teknologi Informasi', 1, 'no', '', '1'),
-(58, 'NFCWZH7G', NULL, NULL, NULL, 11, NULL, 1, 'no', '', '1'),
-(59, '8V7P66WJ', 'Test', 'pengguna1@gmail.com', '0812345667', 12, 'Teknologi Informasi', 1, 'no', '', '1'),
-(60, 'T6VNJMG5', 'Test', 'pengirim@gmail.com', '0812345667', 7, 'Website', 1, 'no', '', '1'),
-(62, 'QJHQJNCG', 'Test', 'pengirim@gmail.com', '0812345667', 9, 'Website', 1, 'no', '', '1'),
-(63, '4HPF93BY', NULL, NULL, NULL, 2, NULL, 1, 'no', '', '1'),
-(64, 'D7RMX7PH', NULL, NULL, NULL, 17, NULL, 1, 'no', '', '1'),
-(67, '69FSPDXH', 'test kuesioner pengguna', 'pengguna@harmoni.com', '0812345667', 0, '', 1, 'no', '', '1');
+(68, NULL, 'pengguna docotel', 'test@mail.com', '0812345667', 9, 'TI', 1, 'no', '', '1'),
+(69, 'VVN7X83D', 'Pengguna non instansi', 'test@mail.com', '0812345667', 0, '', 1, 'no', '', '1'),
+(70, 'N77PH29G', 'test kuesioner pengguna', 'test@mail.com', '0812345667', 2, 'Teknologi Informasi', 1, 'no', '', '1');
 
 -- --------------------------------------------------------
 
@@ -637,6 +833,7 @@ CREATE TABLE `pertanyaan` (
   `jenis` enum('isian','pilihan','ganda','skala') NOT NULL,
   `inputBox` enum('ya','tidak') NOT NULL DEFAULT 'tidak',
   `textarea` enum('ya','tidak') NOT NULL DEFAULT 'tidak',
+  `keterangan` varchar(255) DEFAULT NULL,
   `customID` varchar(50) NOT NULL,
   `kuesionerID` int(11) NOT NULL,
   `isDelete` enum('yes','no') NOT NULL DEFAULT 'no'
@@ -646,35 +843,41 @@ CREATE TABLE `pertanyaan` (
 -- Dumping data for table `pertanyaan`
 --
 
-INSERT INTO `pertanyaan` (`id`, `pertanyaan`, `jenis`, `inputBox`, `textarea`, `customID`, `kuesionerID`, `isDelete`) VALUES
-(53, 'Jenis Kemampuan', 'skala', 'tidak', 'tidak', 'PR1574911254', 10, 'no'),
-(59, 'Masa tunggu Saudara dari kelulusan hingga mendapat pekerjaan pertama kali', 'pilihan', 'tidak', 'tidak', 'PR1575422613', 12, 'no'),
-(60, 'Apakah pekerjaan Saudara ini berhubungan dengan bidang ilmu yang Saudara pelajari di Perguruan Tinggi?  Jelaskan jawaban anda', 'pilihan', 'ya', 'tidak', 'PR1575422692', 12, 'no'),
-(61, 'Bagaimana anda mencari pekerjaan?', 'ganda', 'ya', 'tidak', 'PR1575422991', 12, 'no'),
-(62, 'Berapa perusahaan/instansi/institusi yang sudah anda lamar (lewat surat atau e-mail) sebelum anda memeroleh pekerjaan pertama?', 'isian', 'tidak', 'tidak', 'PR1575423351', 12, 'no'),
-(63, 'Berapa banyak perusahaan/instansi/institusi yang merespons lamaran anda?', 'isian', 'tidak', 'tidak', 'PR1575423401', 12, 'no'),
-(64, 'Berapa banyak perusahaan/instansi/institusi yang mengundang anda untuk wawancara?', 'isian', 'tidak', 'tidak', 'PR1575423418', 12, 'no'),
-(65, 'Adakah hambatan/kendala yang Saudara alami dalam menyesuaikan diri dengan pekerjaan?   Jelaskan alasan anda', 'pilihan', 'ya', 'tidak', 'PR1575423501', 12, 'no'),
-(78, 'Seberapa besar penekanan pada metode pembelajaran di bawah ini dilaksanakan di prodi anda?', 'skala', 'tidak', 'tidak', 'PR1575447057', 13, 'no'),
-(79, 'Setelah Saudara lulus dari UNJ, apakah Saudara melanjutkan pendidikan lagi? Jika ya di tingkat apa anda melanjutkan pendidikan?', 'pilihan', 'tidak', 'tidak', 'PR1575447158', 13, 'no'),
-(80, 'Dimana Saudara melanjutkan pendidikan?', 'isian', 'tidak', 'tidak', 'PR1575447232', 13, 'no'),
-(81, 'Apa nama program studi dimana anda melanjutkan pendidikan?', 'isian', 'tidak', 'tidak', 'PR1575447405', 13, 'no'),
-(83, 'Apakah S1 anda linear dengan S2 ?', 'pilihan', 'tidak', 'tidak', 'PR1575447916', 13, 'no'),
-(84, 'Setelah Saudara lulus dari UNJ, apakah Saudara meningkatkan kompetensi diri melalui : Sebutkan nama dan lamanya', 'pilihan', 'ya', 'tidak', 'PR1575448012', 13, 'no'),
-(85, 'Pengetahuan apa yang Saudara butuhkan dari perkuliahan untuk menunjang pekerjaan Saudara saat ini? ', 'isian', 'tidak', 'tidak', 'PR1575506292', 17, 'no'),
-(86, 'Pernahkah Saudara mengikuti tes Profesi di bidang tertentu yang mendukung pekerjaan Saudara saat ini? Jika pernah mengikuti, sebutkan jenis tesnya!', 'isian', 'tidak', 'tidak', 'PR1575506399', 17, 'no'),
-(87, 'Adakah Organisasi Profesi yang Saudara ikuti? Jika ada sebutkan nama organisasinya dan mulai tahun berapa!', 'isian', 'tidak', 'tidak', 'PR1575506426', 17, 'no'),
-(89, 'Tingkat pendidikan apa yang paling tepat/sesuai untuk pekerjaan anda saat ini?', 'pilihan', 'tidak', 'tidak', '', 13, 'yes'),
-(90, 'Tingkat pendidikan apa yang paling tepat/sesuai untuk pekerjaan anda saat ini?', 'pilihan', 'tidak', 'tidak', 'PR1575939730', 12, 'no'),
-(91, 'Jika anda berwirausaha apa nama usaha yang didirikan?', 'isian', 'tidak', 'tidak', 'PR1576024376', 20, 'no'),
-(92, 'Bergerak di bidang apa usaha anda?', 'isian', 'tidak', 'tidak', 'PR1576024446', 20, 'no'),
-(93, 'Berapa lama usaha anda berdiri?', 'isian', 'tidak', 'tidak', 'PR1576024522', 20, 'no'),
-(94, 'Jumlah karyawan anda?', 'pilihan', 'tidak', 'tidak', 'PR1576024676', 20, 'no'),
-(95, 'Berapa pendapatan dari usaha tersebut?', 'pilihan', 'tidak', 'tidak', 'PR1576025009', 20, 'no'),
-(96, 'tes', 'isian', 'tidak', 'tidak', '', 17, 'yes'),
-(97, 'Saran Saudara untuk perbaikan Program Studi Ilmu Komputer', 'isian', 'tidak', 'ya', 'PR1576025187', 21, 'no'),
-(98, 'Pada saat lulus, pada tingkat mana kompetensi berikut anda kuasai? beri nilai dari 1 (sangat rendah) sampai 5 (sangat tinggi)\r\n*untuk alumni yang sudah lulus lebih dari 2 tahun', 'skala', 'tidak', 'tidak', 'PR1576026220', 17, 'no'),
-(99, 'Saran Bapak/Ibu untuk perbaikan lulusan Program Studi Ilmu Komputer UNJ', 'isian', 'tidak', 'ya', 'PR1576156789', 22, 'no');
+INSERT INTO `pertanyaan` (`id`, `pertanyaan`, `jenis`, `inputBox`, `textarea`, `keterangan`, `customID`, `kuesionerID`, `isDelete`) VALUES
+(59, 'Masa tunggu Saudara dari kelulusan hingga mendapat pekerjaan pertama kali', 'pilihan', 'tidak', 'tidak', NULL, 'PR1575422613', 12, 'no'),
+(60, 'Apakah pekerjaan Saudara ini berhubungan dengan bidang ilmu yang Saudara pelajari di Perguruan Tinggi?  Jelaskan jawaban anda', 'pilihan', 'ya', 'tidak', NULL, 'PR1575422692', 12, 'no'),
+(61, 'Bagaimana anda mencari pekerjaan?', 'ganda', 'ya', 'tidak', NULL, 'PR1575422991', 12, 'no'),
+(62, 'Berapa perusahaan/instansi/institusi yang sudah anda lamar (lewat surat atau e-mail) sebelum anda memeroleh pekerjaan pertama?', 'isian', 'tidak', 'tidak', NULL, 'PR1575423351', 12, 'no'),
+(63, 'Berapa banyak perusahaan/instansi/institusi yang merespons lamaran anda?', 'isian', 'tidak', 'tidak', NULL, 'PR1575423401', 12, 'no'),
+(64, 'Berapa banyak perusahaan/instansi/institusi yang mengundang anda untuk wawancara?', 'isian', 'tidak', 'tidak', NULL, 'PR1575423418', 12, 'no'),
+(65, 'Adakah hambatan/kendala yang Saudara alami dalam menyesuaikan diri dengan pekerjaan?   Jelaskan alasan anda', 'pilihan', 'ya', 'tidak', NULL, 'PR1575423501', 12, 'no'),
+(78, 'Seberapa besar penekanan pada metode pembelajaran di bawah ini dilaksanakan di prodi anda?', 'skala', 'tidak', 'tidak', NULL, 'PR1575447057', 13, 'no'),
+(79, 'Setelah Saudara lulus dari UNJ, apakah Saudara melanjutkan pendidikan lagi? Jika ya di tingkat apa anda melanjutkan pendidikan?', 'pilihan', 'tidak', 'tidak', NULL, 'PR1575447158', 13, 'no'),
+(80, 'Dimana Saudara melanjutkan pendidikan?', 'isian', 'tidak', 'tidak', NULL, 'PR1575447232', 13, 'no'),
+(81, 'Apa nama program studi dimana anda melanjutkan pendidikan?', 'isian', 'tidak', 'tidak', NULL, 'PR1575447405', 13, 'no'),
+(83, 'Apakah S1 anda linear dengan S2 ?', 'pilihan', 'tidak', 'tidak', NULL, 'PR1575447916', 13, 'no'),
+(84, 'Setelah Saudara lulus dari UNJ, apakah Saudara meningkatkan kompetensi diri melalui : Sebutkan nama dan lamanya', 'pilihan', 'ya', 'tidak', NULL, 'PR1575448012', 13, 'no'),
+(85, 'Pengetahuan apa yang Saudara butuhkan dari perkuliahan untuk menunjang pekerjaan Saudara saat ini? ', 'isian', 'tidak', 'tidak', NULL, 'PR1575506292', 17, 'no'),
+(86, 'Pernahkah Saudara mengikuti tes Profesi di bidang tertentu yang mendukung pekerjaan Saudara saat ini? Jika pernah mengikuti, sebutkan jenis tesnya!', 'isian', 'tidak', 'tidak', NULL, 'PR1575506399', 17, 'no'),
+(87, 'Adakah Organisasi Profesi yang Saudara ikuti? Jika ada sebutkan nama organisasinya dan mulai tahun berapa!', 'isian', 'tidak', 'tidak', NULL, 'PR1575506426', 17, 'no'),
+(89, 'Tingkat pendidikan apa yang paling tepat/sesuai untuk pekerjaan anda saat ini?', 'pilihan', 'tidak', 'tidak', NULL, '', 13, 'yes'),
+(90, 'Tingkat pendidikan apa yang paling tepat/sesuai untuk pekerjaan anda saat ini?', 'pilihan', 'tidak', 'tidak', NULL, 'PR1575939730', 12, 'no'),
+(91, 'Jika anda berwirausaha apa nama usaha yang didirikan?', 'isian', 'tidak', 'tidak', NULL, 'PR1576024376', 20, 'no'),
+(92, 'Bergerak di bidang apa usaha anda?', 'isian', 'tidak', 'tidak', NULL, 'PR1576024446', 20, 'no'),
+(93, 'Berapa lama usaha anda berdiri?', 'isian', 'tidak', 'tidak', NULL, 'PR1576024522', 20, 'no'),
+(94, 'Jumlah karyawan anda?', 'pilihan', 'tidak', 'tidak', NULL, 'PR1576024676', 20, 'no'),
+(95, 'Berapa pendapatan dari usaha tersebut?', 'pilihan', 'tidak', 'tidak', NULL, 'PR1576025009', 20, 'no'),
+(96, 'tes', 'isian', 'tidak', 'tidak', NULL, '', 17, 'yes'),
+(97, 'Saran Saudara untuk perbaikan Program Studi Ilmu Komputer', 'isian', 'tidak', 'ya', NULL, 'PR1576025187', 21, 'no'),
+(98, 'Pada saat lulus, pada tingkat mana kompetensi berikut anda kuasai? *Pertanyaan hanya untuk alumni yang sudah lulus lebih dari 2 tahun', 'skala', 'tidak', 'tidak', 'Beri nilai dari 1 (sangat rendah) sampai 5 (sangat tinggi)', 'PR1576026220', 17, 'no'),
+(99, 'Saran Bapak/Ibu untuk perbaikan lulusan Program Studi kami', 'isian', 'tidak', 'ya', NULL, 'PR1576156789', 22, 'no'),
+(100, 'Pada saat ini, pada tingkat mana kompetensi di bawah ini diperlukan dalam pekerjaan?', 'skala', 'tidak', 'tidak', NULL, '', 17, 'yes'),
+(101, 'Jenis Kemampuan', 'skala', 'tidak', 'tidak', NULL, 'PR1577153152', 10, 'no'),
+(105, 'Jenis Kemampuan', 'skala', 'tidak', 'tidak', NULL, 'P7P9GNQ6', 37, 'no'),
+(106, 'Saran Bapak/Ibu untuk perbaikan lulusan Program Studi kami', 'isian', 'tidak', 'ya', NULL, '3ZW4WYF5', 38, 'no'),
+(107, 'Berapa lama masa studi/perkuliahan anda?', 'isian', 'tidak', 'tidak', 'Jika s1 jawaban dari 7 sampai 14 semester. ', '', 13, 'yes'),
+(108, 'Berapa lama masa studi/perkuliahan anda?', 'isian', 'tidak', 'tidak', 'Jawaban : S1 (7-14 Semester). Untuk S2 (3-8 semester)', 'PR1577236644', 13, 'no'),
+(109, 'Berapa lama penulisan skripsi anda?', 'pilihan', 'tidak', 'tidak', '', 'PR1577237955', 13, 'no');
 
 -- --------------------------------------------------------
 
@@ -693,13 +896,6 @@ CREATE TABLE `pertanyaan_skala` (
 --
 
 INSERT INTO `pertanyaan_skala` (`id`, `pertanyaan`, `pertanyaanID`) VALUES
-(5, 'Integritas (etika dan moral) lulusan Program Studi Ilmu Komputer UNJ', 53),
-(6, 'Keahlian berdasarkan bidang ilmu (profesionalisme) lulusan Program Studi Ilmu Komputer UNJ', 53),
-(7, 'Kemampuan Bahasa Inggris lulusan Program Studi Ilmu Komputer UNJ', 53),
-(8, 'Kemampuan penggunaan Teknologi Informasi lulusan Program Studi Ilmu Komputer UNJ', 53),
-(9, 'Kemampuan Komunikasi lulusan Program Studi Ilmu Komputer UNJ', 53),
-(10, 'Kemampuan Kerjasama tim lulusan Program Studi Ilmu Komputer UNJ', 53),
-(11, 'Pengembangan diri lulusan Program Studi Ilmu Komputer UNJ', 53),
 (18, 'Perkuliahan', 78),
 (19, 'Demonstrasi', 78),
 (20, 'Partisipasi dalam proyek riset ', 78),
@@ -735,7 +931,21 @@ INSERT INTO `pertanyaan_skala` (`id`, `pertanyaan`, `pertanyaanID`) VALUES
 (50, 'Manajemen proyek/program', 98),
 (51, 'Kemampuan untuk memresentasikan ide/produk/laporan', 98),
 (52, 'Kemampuan dalam menulis laporan, memo dan dokumen', 98),
-(53, 'Kemampuan untuk terus belajar sepanjang hayat', 98);
+(53, 'Kemampuan untuk terus belajar sepanjang hayat', 98),
+(83, 'Integritas (etika dan moral) lulusan Program Studi kami', 101),
+(84, 'Keahlian berdasarkan bidang ilmu (profesionalisme) lulusan Program Studi   kami', 101),
+(85, 'Kemampuan Bahasa Inggris lulusan Program Studi kami', 101),
+(86, 'Kemampuan penggunaan Teknologi Informasi lulusan Program Studi kami', 101),
+(87, 'Kemampuan Komunikasi lulusan Program Studi kami', 101),
+(88, 'Kemampuan Kerjasama tim lulusan Program Studi kami', 101),
+(89, 'Pengembangan diri lulusan Program Studi kami', 101),
+(111, 'Integritas (etika dan moral) lulusan Program Studi kami', 105),
+(112, 'Keahlian berdasarkan bidang ilmu (profesionalisme) lulusan Program Studi   kami', 105),
+(113, 'Kemampuan Bahasa Inggris lulusan Program Studi kami', 105),
+(114, 'Kemampuan penggunaan Teknologi Informasi lulusan Program Studi kami', 105),
+(115, 'Kemampuan Komunikasi lulusan Program Studi kami', 105),
+(116, 'Kemampuan Kerjasama tim lulusan Program Studi kami', 105),
+(117, 'Pengembangan diri lulusan Program Studi kami', 105);
 
 -- --------------------------------------------------------
 
@@ -801,7 +1011,18 @@ INSERT INTO `pilihan_jawaban` (`id`, `pertanyaanID`, `pilihan`) VALUES
 (146, 95, '1-5 juta'),
 (147, 95, '6-10 juta'),
 (148, 95, '11-15 juta'),
-(149, 95, '>15 juta');
+(149, 95, '>15 juta'),
+(150, 109, '3 bulan'),
+(151, 109, '4 bulan'),
+(152, 109, '5 bulan'),
+(153, 109, '6 bulan'),
+(154, 109, '7 bulan'),
+(155, 109, '8 bulan'),
+(156, 109, '9 bulan'),
+(157, 109, '10 bulan'),
+(158, 109, '11 bulan'),
+(159, 109, '12 bulan'),
+(160, 109, '> 12 bulan');
 
 -- --------------------------------------------------------
 
@@ -824,7 +1045,8 @@ INSERT INTO `prodi` (`id`, `nama_prodi`, `kode_prodi`, `fakultasID`) VALUES
 (1, 'Ilmu Komputer', '', 1),
 (2, 'Pendidikan Matematika', '', 1),
 (3, 'Matematika', '', 1),
-(4, 'Statistika', '', 1);
+(4, 'Statistika', '', 1),
+(7, 'Semua Prodi', '', 0);
 
 -- --------------------------------------------------------
 
@@ -843,10 +1065,6 @@ CREATE TABLE `skala_nilai` (
 --
 
 INSERT INTO `skala_nilai` (`id`, `nilai`, `pertanyaanID`) VALUES
-(7, 'Sangat Baik', 53),
-(8, 'Baik', 53),
-(9, 'Cukup', 53),
-(10, 'Kurang', 53),
 (17, 'Sangat Besar', 78),
 (18, 'Besar', 78),
 (19, 'Cukup Besar', 78),
@@ -856,7 +1074,15 @@ INSERT INTO `skala_nilai` (`id`, `nilai`, `pertanyaanID`) VALUES
 (23, '2', 98),
 (24, '3', 98),
 (25, '4', 98),
-(26, '5', 98);
+(26, '5', 98),
+(32, 'Sangat Baik', 101),
+(33, 'Baik', 101),
+(34, 'Cukup', 101),
+(35, 'Kurang', 101),
+(40, 'Sangat Baik', 105),
+(41, 'Baik', 105),
+(42, 'Cukup', 105),
+(43, 'Kurang', 105);
 
 -- --------------------------------------------------------
 
@@ -880,24 +1106,23 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `userID`, `username`, `password`, `role`, `prodiID`, `status`) VALUES
 (1, '', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin', 1, 'aktif'),
-(2, '', '1234567', 'fcea920f7412b5da7be0cf42b8c93759', 'pengguna', 1, 'aktif'),
 (3, 'KOOR13136', 'koor13136', 'fcea920f7412b5da7be0cf42b8c93759', 'koorprodi', 1, 'aktif'),
 (4, '', 'superadmin', '21232f297a57a5a743894a0e4a801fc3', 'superadmin', 1, 'aktif'),
 (12, 'DOS0011026006', '0011026006', '1630f5a8dd4d852f516f8132f0dab31a', 'koorprodi', 1, 'aktif'),
 (13, 'DOS0021018204', '0021018204', 'cb35066d0a18667c7e3e919a3cb8221d', 'dosen', 2, 'aktif'),
 (15, 'DOS0015067705', '0015067705', '0015067705', 'dosen', 1, 'aktif'),
-(30, 'ALU3145136217', '3145136217', '4ec904584dca56889485d63a84919b1a', 'alumni', 1, 'aktif'),
-(31, 'ALU3145136218', '3145136218', '66b3a4cf0b3fd0c56d11f9cf8c8325fa', 'alumni', 1, 'aktif'),
-(32, 'ALU3145136208', '3145136208', 'b4302799821d6bfd9c7097f9a6ad8f6a', 'alumni', 1, 'aktif'),
-(33, 'ALU3145136211', '3145136211', '9a1525e19c013671b54a9456263db863', 'alumni', 1, 'aktif'),
-(34, 'ALU3145136223', '3145136223', '3542c021c7d9a07ba812e7c688fedd0d', 'alumni', 1, 'aktif'),
-(35, 'ALU3145136197', '3145136197', 'c4cb0ca61856d1b09c967de0bac0be56', 'alumni', 1, 'aktif'),
-(36, 'ALU3145136212', '3145136212', 'c1c920fb3af5f905f6cbf3856eb8440f', 'alumni', 1, 'aktif'),
 (37, 'ALU3145136196', '3145136196', 'b9d12d59b5e1656696f8f42dd9fc5e25', 'alumni', 1, 'aktif'),
-(38, 'ALU3145136193', '3145136193', '36f73abbc685c647eaebab77352c9d21', 'alumni', 1, 'aktif'),
-(39, '', 'admin_mtk', 'fbf45fcf8f91f6bf19102b69333739a1', 'admin', 3, 'aktif'),
 (40, '', 'admin_pendmat', '2b3a43903f5240134cb90294ab3e4173', 'admin', 2, 'aktif'),
-(41, 'ALU12345', '12345', '827ccb0eea8a706c4c34a16891f84e7b', 'alumni', 1, 'aktif');
+(59, 'ALU3145136217', '3145136217', '4ec904584dca56889485d63a84919b1a', 'alumni', 1, 'aktif'),
+(60, 'ALU3145136218', '3145136218', '66b3a4cf0b3fd0c56d11f9cf8c8325fa', 'alumni', 1, 'aktif'),
+(61, 'ALU3145136208', '3145136208', 'b4302799821d6bfd9c7097f9a6ad8f6a', 'alumni', 1, 'aktif'),
+(62, 'ALU3145136211', '3145136211', '9a1525e19c013671b54a9456263db863', 'alumni', 1, 'aktif'),
+(63, 'ALU3145136223', '3145136223', '3542c021c7d9a07ba812e7c688fedd0d', 'alumni', 1, 'aktif'),
+(64, 'ALU3145136197', '3145136197', 'c4cb0ca61856d1b09c967de0bac0be56', 'alumni', 1, 'aktif'),
+(65, 'ALU3145136212', '3145136212', 'c1c920fb3af5f905f6cbf3856eb8440f', 'alumni', 1, 'aktif'),
+(66, 'ALU3145136193', '3145136193', '36f73abbc685c647eaebab77352c9d21', 'alumni', 1, 'aktif'),
+(67, 'DOS0015067706', '0015067706', '0015067706', 'koorprodi', 3, 'aktif'),
+(77, '', 'admin_mtk', 'fbf45fcf8f91f6bf19102b69333739a1', 'admin', 3, 'aktif');
 
 --
 -- Indexes for dumped tables
@@ -1047,19 +1272,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `alumni`
 --
 ALTER TABLE `alumni`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT for table `alumni_instansi`
 --
 ALTER TABLE `alumni_instansi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT for table `beranda`
 --
 ALTER TABLE `beranda`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `berita_alumni`
@@ -1077,7 +1302,7 @@ ALTER TABLE `divisi`
 -- AUTO_INCREMENT for table `dosen`
 --
 ALTER TABLE `dosen`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `fakultas`
@@ -1089,19 +1314,19 @@ ALTER TABLE `fakultas`
 -- AUTO_INCREMENT for table `instansi`
 --
 ALTER TABLE `instansi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `jawaban_alumni`
 --
 ALTER TABLE `jawaban_alumni`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=170;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=485;
 
 --
 -- AUTO_INCREMENT for table `jawaban_pengguna`
 --
 ALTER TABLE `jawaban_pengguna`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- AUTO_INCREMENT for table `koorprodi`
@@ -1113,61 +1338,61 @@ ALTER TABLE `koorprodi`
 -- AUTO_INCREMENT for table `kuesioner`
 --
 ALTER TABLE `kuesioner`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `notif_kuesioner`
 --
 ALTER TABLE `notif_kuesioner`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `pekerjaan`
 --
 ALTER TABLE `pekerjaan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
 
 --
 -- AUTO_INCREMENT for table `pengguna`
 --
 ALTER TABLE `pengguna`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT for table `pertanyaan`
 --
 ALTER TABLE `pertanyaan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
 
 --
 -- AUTO_INCREMENT for table `pertanyaan_skala`
 --
 ALTER TABLE `pertanyaan_skala`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
 
 --
 -- AUTO_INCREMENT for table `pilihan_jawaban`
 --
 ALTER TABLE `pilihan_jawaban`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=150;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=161;
 
 --
 -- AUTO_INCREMENT for table `prodi`
 --
 ALTER TABLE `prodi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `skala_nilai`
 --
 ALTER TABLE `skala_nilai`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
 -- Constraints for dumped tables
@@ -1183,8 +1408,7 @@ ALTER TABLE `kuesioner`
 -- Constraints for table `pekerjaan`
 --
 ALTER TABLE `pekerjaan`
-  ADD CONSTRAINT `pekerjaan_fk1` FOREIGN KEY (`id_alumni`) REFERENCES `alumni` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `pekerjaan_fk3` FOREIGN KEY (`id_pengguna`) REFERENCES `pengguna` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+  ADD CONSTRAINT `pekerjaan_fk1` FOREIGN KEY (`id_alumni`) REFERENCES `alumni` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Constraints for table `pertanyaan`
