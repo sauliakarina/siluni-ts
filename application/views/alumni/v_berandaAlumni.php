@@ -402,7 +402,7 @@
                                          <?php } ?>
                                           </div>
                                           <!-- jika pertanyaan pilihan -->
-                                        <?php } elseif ($p->jenis == 'pilihan' && $p->id !='59') { 
+                                        <?php } elseif ($p->jenis == 'pilihan' && $p->id !='59'  && $p->id !='109') { 
                                             $pilihanJawaban = $this->m_kuesioner->getPilihanJawabanByPertanyaanID($p->id);
                                             foreach ($pilihanJawaban as $pj) { ?> 
                                             <div class="i-checks">
@@ -483,6 +483,16 @@
                                       <?php } ?>
                                       </select>
                                     </div>
+                                      <?php } elseif ($p->id == '109') { ?>
+                                        <div class="col-sm-9">
+                                          <select name="<?php echo $p->id ?>" class="form-control mb-3">
+                                            <option></option>
+                                            <?php 
+                                            $pilihanJawaban = $this->m_kuesioner->getPilihanJawabanByPertanyaanID($p->id);
+                                            foreach ($pilihanJawaban as $pj) {  ?>
+                                            <option value="<?php echo $pj->pilihan ?>"><?php echo $pj->pilihan ?></option>
+                                          <?php } ?>
+                                          </select>
                                       <?php } ?>
                                       </td>
                                     </tr>
