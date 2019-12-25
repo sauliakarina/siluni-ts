@@ -91,7 +91,7 @@
                               <td><?php 
                                 $jawaban = $this->m_hasil->getJawabanByPenggunaPertanyaan($t->id, $t->pertanyaanID);
                                 foreach ($jawaban as $j) {
-                                   echo $j->jawaban.",<br>";
+                                   echo $j->jawaban."<br>";
                                  }
                                ?></td>
                             </tr>

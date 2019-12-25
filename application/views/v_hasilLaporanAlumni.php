@@ -60,7 +60,6 @@
                       for ($i=count($jumlahPilihan); $i <count($json); $i++) { 
                         $labelVer2[] = $json[$i];
                       }
-                       echo json_encode($jumlah);
                       ?>
                     </div>
                       <div class="row" style="margin-top: 20px" >
@@ -83,7 +82,7 @@
                               <td><?php 
                                 $jawaban = $this->m_hasil->getJawabanByAlumniPertanyaan($t->alumniID, $t->pertanyaanID);
                                 foreach ($jawaban as $j) {
-                                   echo $j->jawaban.",<br>";
+                                   echo $j->jawaban."<br>";
                                  }
                                ?></td>
                             </tr>

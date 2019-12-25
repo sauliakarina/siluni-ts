@@ -87,7 +87,7 @@
                               <td><?php 
                                 $jawaban = $this->m_hasil->getJawabanByPenggunaPertanyaanSkala($t->id, $t->pertanyaanSkalaID);
                                 foreach ($jawaban as $j) {
-                                   echo $j->jawaban.",<br>";
+                                   echo $j->jawaban."<br>";
                                  }
                                ?></td>
                             </tr>

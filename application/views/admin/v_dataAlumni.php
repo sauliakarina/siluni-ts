@@ -28,7 +28,7 @@
                 <div class="col-lg-12">
                   <div class="card">
                     <div class="card-header d-flex align-items-center">
-                      <h3 class="h4">Alumni Ilmu Komputer</h3>
+                      <h3 class="h4">Alumni <?php echo $this->m_master->getProdiByID($prodiID)->nama_prodi ?></h3>
                       <button type="button" class="btn btn-primary ml-auto btn-sm" data-toggle="modal" data-target="#modalTambah"><i class="fas fa-user-plus"></i> Tambah Data</button>
                       <button type="button" class="btn btn-dark ml-3 btn-sm" data-toggle="modal" data-target="#modalImport"><i class="fas fa-cloud-upload-alt"></i>  Import</button>
                     </div>

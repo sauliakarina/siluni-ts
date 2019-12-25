@@ -26,7 +26,7 @@
                   <div class="card">
                     <form method="post" action="<?php echo base_url(); ?>admin/Pengguna/updateTandai">
                     <div class="card-header d-flex align-items-center">
-                      <h3 class="h4">Pengguna Alumni Ilmu Komputer</h3>
+                      <h3 class="h4">Pengguna Alumni <?php echo $this->m_master->getProdiByID($prodiID)->nama_prodi ?></h3>
                       <!-- <button type="button" class="btn btn-primary ml-auto btn-sm"><i class="fas fa-user-plus"></i> Tambah Data</button> -->
                         <button type="submit" class="btn btn-primary btn-sm ml-auto">Simpan</button>
                     </div>

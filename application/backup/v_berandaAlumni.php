@@ -206,9 +206,9 @@
                                     </select>
                                     <small class="form-text">
                                         <ul>
-                                          <li>Instansi Lokal          : </li>
-                                          <li>Instansi Nasional       : </li>
-                                          <li>Instansi Internasional  : instansi yang memiliki cabang di luar negeri</li>
+                                          <li>Instansi Lokal          : instansi yang diakui di dalam suatu provisi</li>
+                                          <li>Instansi Nasional       : instansi yang diakui di seluruh indonesia </li>
+                                          <li>Instansi Internasional  : instansi yang diakui oleh warga negara asing</li>
                                         </ul>
                                   </small>
                                   </div>
@@ -520,9 +520,9 @@
             </div>
             <small class="form-text">
                   <ul>
-                    <li>Instansi Lokal          : </li>
-                    <li>Instansi Nasional       : </li>
-                    <li>Instansi Internasional  : instansi yang memiliki cabang di luar negeri</li>
+                    <li>Instansi Lokal          : instansi yang diakui di dalam suatu provisi</li>
+                    <li>Instansi Nasional       : instansi yang diakui di seluruh indonesia </li>
+                    <li>Instansi Internasional  : instansi yang diakui oleh warga negara asing</li>
                   </ul>
             </small>
           </div>

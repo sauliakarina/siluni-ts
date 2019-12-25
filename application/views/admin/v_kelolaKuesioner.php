@@ -145,6 +145,10 @@
                                   <input type="hidden" class="form-control" name="kuesionerID" value="<?php echo $kuesioner->id ?>">
                                 </div>
                                 <div class="form-group">
+                                  <label>Keterangan (Optional)</label>
+                                  <input type="text" placeholder="Beri keterangan" class="form-control" name="keterangan">
+                                </div>
+                                <div class="form-group">
                                   <label>Perlu input box berukuran besar?</label>
                                   <div class="i-checks">
                                       <input type="radio" value="ya" name="textarea" class="radio-template">
@@ -180,6 +184,10 @@
                                   <label>Pertanyaan</label>
                                   <input type="text" placeholder="Masukkan pertanyaan" class="form-control" name="pertanyaan">
                                   <input type="hidden" class="form-control" name="kuesionerID" value="<?php echo $kuesioner->id ?>">
+                                </div>
+                                <div class="form-group">
+                                  <label>Keterangan (Optional)</label>
+                                  <input type="text" placeholder="Beri keterangan" class="form-control" name="keterangan">
                                 </div>
                                 <table class="table table-condensed">
                                   <tbody id="isianForm">
@@ -225,6 +233,10 @@
                                   <label>Pertanyaan</label>
                                   <input type="text" placeholder="Masukkan pertanyaan" class="form-control" name="pertanyaan">
                                    <input type="hidden" class="form-control" name="kuesionerID" value="<?php echo $kuesioner->id ?>">
+                                </div>
+                                <div class="form-group">
+                                  <label>Keterangan (Optional)</label>
+                                  <input type="text" placeholder="Beri keterangan" class="form-control" name="keterangan">
                                 </div>
                                 <table class="table table-condensed">
                                   <tbody id="gandaForm">
@@ -292,6 +304,10 @@
                                   <label>Pertanyaan</label>
                                   <input type="text" placeholder="" class="form-control" name="pertanyaan_skala">
                                    <input type="hidden" class="form-control" name="kuesionerID" value="<?php echo $kuesioner->id ?>">
+                                </div>
+                                <div class="form-group">
+                                  <label>Keterangan (Optional)</label>
+                                  <input type="text" placeholder="Beri keterangan" class="form-control" name="keterangan">
                                 </div>
                                 <table class="table table-condensed">
                                   <tbody id="skalaNilaiForm">

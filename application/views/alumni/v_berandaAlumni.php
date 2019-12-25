@@ -209,9 +209,9 @@
                                     </select>
                                     <small class="form-text">
                                         <ul>
-                                          <li>Instansi Lokal          : </li>
-                                          <li>Instansi Nasional       : </li>
-                                          <li>Instansi Internasional  : instansi yang memiliki cabang di luar negeri</li>
+                                          <li>Instansi Lokal          : instansi yang diakui di dalam suatu provinsi</li>
+                                          <li>Instansi Nasional       : instansi yang diakui di seluruh indonesia </li>
+                                          <li>Instansi Internasional  : instansi yang diakui oleh warga negara asing</li>
                                         </ul>
                                   </small>
                                   </div>
@@ -395,7 +395,11 @@
                                               <textarea class="form-control" name="<?php echo $p->id ?>" rows="5" placeholder="masukkan jawaban"></textarea>
                                             <?php } else { ?>
                                              <input type="text" placeholder="masukkan jawaban" name="<?php echo $p->id ?>" class="form-control">
-                                           <?php } ?>
+                                           <?php } 
+                                            if ($p->keterangan != Null) {
+                                           ?>
+                                           <small class="form-text"><?php echo $p->keterangan; ?></small>
+                                         <?php } ?>
                                           </div>
                                           <!-- jika pertanyaan pilihan -->
                                         <?php } elseif ($p->jenis == 'pilihan' && $p->id !='59') { 
@@ -410,7 +414,11 @@
                                               <div class="form-group row">
                                                 <textarea placeholder="" name="inputBox<?php echo $p->id ?>" class="form-control" rows="3"></textarea>
                                               </div>
-                                            <?php } //input box ?>
+                                            <?php } if ($p->keterangan != Null) {
+                                           ?>
+                                           <small class="form-text"><?php echo $p->keterangan; ?></small>
+                                         <?php } ?>
+
                                             <!-- jika pertanyaan ganda -->
                                         <?php } elseif ($p->jenis == 'ganda') { 
                                           $pilihanJawaban = $this->m_kuesioner->getPilihanJawabanByPertanyaanID($p->id);
@@ -424,10 +432,17 @@
                                             <div class="form-group row">
                                                 <textarea placeholder="" name="inputBox<?php echo $p->id ?>" class="form-control" rows="3"></textarea>
                                             </div>
-                                            <?php } //input box ?>
+                                            <?php }  if ($p->keterangan != Null) {
+                                             ?>
+                                             <small class="form-text"><?php echo $p->keterangan; ?></small>
+                                           <?php } ?>
                                             <!-- jika pertanyaan skala -->
                                         <?php } //if jenis ganda 
-                                          if ($p->jenis == 'skala') { ?>
+                                          if ($p->jenis == 'skala') { 
+                                            if ($p->keterangan != Null) { ?>
+                                             <small class="form-text"><?php echo $p->keterangan; ?></small>
+                                           <?php } ?>
+
                                              <table class="table table-striped table-hover">
                                               <thead>
                                                 <tr>
@@ -528,9 +543,9 @@
             </div>
             <small class="form-text">
                   <ul>
-                    <li>Instansi Lokal          : </li>
-                    <li>Instansi Nasional       : </li>
-                    <li>Instansi Internasional  : instansi yang memiliki cabang di luar negeri</li>
+                    <li>Instansi Lokal          : instansi yang diakui di dalam suatu provinsi</li>
+                    <li>Instansi Nasional       : instansi yang diakui di seluruh indonesia </li>
+                    <li>Instansi Internasional  : instansi yang diakui oleh warga negara asing</li>
                   </ul>
             </small>
           </div>

@@ -78,7 +78,7 @@
                               <td><?php 
                                 $jawaban = $this->m_hasil->getJawabanByAlumniPertanyaanSkala($t->alumniID, $t->pertanyaanSkalaID);
                                 foreach ($jawaban as $j) {
-                                   echo $j->jawaban.",<br>";
+                                   echo $j->jawaban."<br>";
                                  }
                                ?></td>
                             </tr>

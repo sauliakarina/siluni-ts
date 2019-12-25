@@ -16,7 +16,7 @@ class Kuesioner extends CI_Controller {
 		$data = array(
 			'role' => $this->session->userdata('role'),
 			'userID' => $this->session->userdata('userID'),
-			'kuesioner' => $this->m_kuesioner->getKuesionerPengguna($prodiID),
+			'kuesioner' => $this->m_kuesioner->getKuesionerPenggunaByProdi($prodiID),
 			'penggunaID' => $penggunaID,
 			'prodiID' => $prodiID
 		);
@@ -32,7 +32,7 @@ class Kuesioner extends CI_Controller {
 		$data = array(
 			'role' => $this->session->userdata('role'),
 			'userID' => $this->session->userdata('userID'),
-			'kuesioner' => $this->m_kuesioner->getKuesionerPengguna(),
+			'kuesioner' => $this->m_kuesioner->getKuesionerPenggunaByProdi($prodiID),
 			'penggunaID' => Null,
 			'prodiID' => $prodiID,
 			'instansi' => $this->m_master->getInstansi($prodiID),

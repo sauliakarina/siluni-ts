@@ -32,7 +32,7 @@ class Kuesioner extends CI_Controller {
 			'role' => $this->session->userdata('role'),
 			'userID' => $this->session->userdata('userID'),
 			'prodiID' => $this->session->userdata('prodiID'),
-			'kuesioner' => $this->m_kuesioner->getKuesionerPengguna($this->session->userdata('prodiID'))
+			'kuesioner' => $this->m_kuesioner->getKuesionerPenggunaByProdi($this->session->userdata('prodiID'))
 		);
 		$this->load->view('element/head');
 		$this->load->view('element/header');
@@ -223,7 +223,8 @@ class Kuesioner extends CI_Controller {
 			'kuesionerID' => $this->input->post('kuesionerID'),
 			'jenis' => 'isian',
 			'customID' => $customID,
-			'textarea' => $this->input->post('textarea')
+			'textarea' => $this->input->post('textarea'),
+			'keterangan' => $this->input->post('keterangan')
 		);	
 		$kuesionerID = $this->input->post('kuesionerID');
 		$this->m_master->inputData($data,'pertanyaan');
@@ -272,7 +273,8 @@ class Kuesioner extends CI_Controller {
 			'kuesionerID' => $this->input->post('kuesionerID'),
 			'jenis' => 'pilihan',
 			'inputBox' => $this->input->post('inputBox'),
-			'customID' => $customIDPR 
+			'customID' => $customIDPR,
+			'keterangan' => $this->input->post('keterangan')
 		);	
 		$this->m_master->inputData($data,'pertanyaan');
 
@@ -308,7 +310,7 @@ class Kuesioner extends CI_Controller {
 			'pertanyaan' => $this->input->post('pertanyaan'),
 			'kuesionerID' => $this->input->post('kuesionerID'),
 			'jenis' => 'pilihan',
-			'customID' => $customIDPR 
+			'customID' => $customIDPR
 		);	
 		$this->m_master->inputData($data,'pertanyaan');
 
@@ -345,7 +347,8 @@ public function addGanda() {
 			'kuesionerID' => $this->input->post('kuesionerID'),
 			'jenis' => 'ganda',
 			'inputBox' => $this->input->post('inputBox'),
-			'customID' => $customIDPR 
+			'customID' => $customIDPR,
+			'keterangan' => $this->input->post('keterangan')
 		);	
 		$this->m_master->inputData($data,'pertanyaan');
 
@@ -417,7 +420,8 @@ public function addGanda() {
 				'pertanyaan' => $this->input->post('pertanyaan_skala'),
 				'kuesionerID' => $this->input->post('kuesionerID'),
 				'jenis' => 'skala',
-				'customID' => $customIDPR
+				'customID' => $customIDPR,
+				'keterangan' => $this->input->post('keterangan')
 		);
 		$this->m_master->inputData($data,'pertanyaan');
 		$pertanyaanID = $this->m_kuesioner->getPertanyaanByCustomID($customIDPR)->id;

@@ -114,22 +114,28 @@ class Master extends CI_Controller {
 
 	function exeAddAkunProdi()
 	{
+		$prodiID = $this->input->post('prodiID');
 		$data = array(
 			'username' => $this->input->post('username'),
 			'password' => md5($this->input->post('password')),
-			'prodiID' => $this->input->post('prodiID'),
+			'prodiID' => $prodiID,
 			'role' => 'admin',
 			);
 			$this->m_master->inputData($data,'user');
 
+		$isiBerandaAlumni = '<p>Yth. Alumni '.echo $this->m_master->getProdiByID($prodiID)->nama_prodi;.' FMIPA UNJ</p>
+							<p style="text-align: justify;">FMIPA UNJ sedang melakukan Tracer Study (penelusuran alumni) pada Program Studi '.$prodiID.' Adapun tujuan dari kegiatan ini adalah untuk mendapatkan basis data yang diperlukan dalam penyusunan Evaluasi Diri dalam rangka Akreditasi Program Studi. Berkaitan dengan hal tersebut, Kami mohon kesediaan alumni '.$prodiID.' UNJ yang kami hormati untuk mengisi kuesioner Tracer Study yang dapat diisi pada website ini</p>';
 		$berandaAlumni = array(
 			'jenis' => 'alumni',
+			'isi' => $isiBerandaAlumni,
 			'prodiID' => $this->input->post('prodiID')
 			);
 		$this->m_master->inputData($berandaAlumni,'beranda');
 
+		$isiBerandaPengguna = '<p style="text-align: justify;"><span style="color: #212529; font-family: cambria; font-size: 17px; text-align: justify;">Bapak/Ibu yang terhormat, saat ini kami sedang melakukan&nbsp;</span><strong><em style="box-sizing: border-box; display: inline-block; transition: all 0.3s ease 0s; color: #212529; font-family: cambria; font-size: 17px; text-align: justify;"><span style="box-sizing: border-box;">Tracer Study</span></em></strong><span style="color: #212529; font-family: cambria; font-size: 17px; text-align: justify;">&nbsp;(penelusuran alumni)&nbsp;</span><strong><span style="box-sizing: border-box; color: #212529; font-family: cambria; font-size: 17px; text-align: justify;">Program Studi '.echo $this->m_master->getProdiByID($prodiID)->nama_prodi;.' </span></strong><span style="color: #212529; font-family: cambria; font-size: 17px; text-align: justify;">&nbsp;FMIPA-UNJ. Adapun tujuan dari kegiatan ini adalah untuk mendapatkan basis data yang diperlukan dalam penyusunan Evaluasi Diri dalam rangka Akreditasi Program Studi. Berkaitan dengan hal tersebut, kami mohon Bapak/Ibu dapat mengisi kuesioner ini, data yang Bapak/Ibu isi dijamin kerahasiaannya. Untuk kerjasama dan bantuannya, kami mengucapkan banyak terima kasih.</span></p>';
 		$berandaPengguna = array(
 			'jenis' => 'pengguna',
+			'isi' => $isiBerandaPengguna,
 			'prodiID' => $this->input->post('prodiID')
 			);
 		$this->m_master->inputData($berandaPengguna,'beranda');
@@ -148,7 +154,7 @@ class Master extends CI_Controller {
 		);
 		$this->m_master->inputData($kuesioner,'kuesioner');
 
-		//untuk kuesiooner pengguna (kompetensi dan saran)
+		//untuk kuesiooner pengguna (kompetensi)
 		//generate customID kuesioner
 		$id_length = 8;
 		$id_found = false;
@@ -168,7 +174,7 @@ class Master extends CI_Controller {
 		    }
 		}  //tutup while
 		$kuesioner = array(
-			'nama_kuesioner' => 'kompetensi',
+			'nama_kuesioner' => 'Kompetensi',
 			'responden' => 'pengguna',
 			'prodiID' => $this->input->post('prodiID'),
 			'customID' => $customID
@@ -198,7 +204,8 @@ class Master extends CI_Controller {
 			'pertanyaan' => 'Jenis Kemampuan',
 			'jenis' => 'skala',
 			'kuesionerID' => $kuesionerID,
-			'customID' => $customID
+			'customID' => $customID,
+			'jenisKuesionerPengguna' => 'skala'
 		);
 		$this->m_master->inputData($pertanyaan,'pertanyaan');
 		$pertanyaanID = $this->m_kuesioner->getPertanyaanByCustomID($customID)->id;
@@ -219,6 +226,61 @@ class Master extends CI_Controller {
 			);
 		$this->m_master->inputData($skala_nilai,'skala_nilai');
 		}
+
+		//buat kuesioner saran
+		$id_length = 8;
+		$id_found = false;
+		$possible_chars = "23456789BCDFGHJKMNPQRSTVWXYZ"; 
+		while (!$id_found) {  
+		    $customID = "";  
+		    $i = 0;  
+		    while ($i < $id_length) {  
+		        $char = substr($possible_chars, mt_rand(0, strlen($possible_chars)-1), 1);  
+		        $customID .= $char;   
+		        $i++;   
+		    }  
+		    $where = array( 'customID' => $customID);
+		    $cek = $this->m_master->cekData("kuesioner",$where)->num_rows();
+		    if ($cek == 0) {
+		    	$id_found = true;
+		    }
+		}  //tutup while
+		$kuesioner = array(
+			'nama_kuesioner' => 'Saran Masukan',
+			'responden' => 'pengguna',
+			'prodiID' => $this->input->post('prodiID'),
+			'customID' => $customID,
+			'jenisKuesionerPengguna' => 'isian'
+		);
+		$this->m_master->inputData($kuesioner,'kuesioner');
+
+		$kuesionerID = $this->m_kuesioner->getKuesionerByCustomID($customID)->id;
+		//custom id for pertanyaan
+		$id_length = 8;
+		$id_found = false;
+		$possible_chars = "23456789BCDFGHJKMNPQRSTVWXYZ"; 
+		while (!$id_found) {  
+		    $customID = "";  
+		    $i = 0;  
+		    while ($i < $id_length) {  
+		        $char = substr($possible_chars, mt_rand(0, strlen($possible_chars)-1), 1);  
+		        $customID .= $char;   
+		        $i++;   
+		    }  
+		    $where = array( 'customID' => $customID);
+		    $cek = $this->m_master->cekData("kuesioner",$where)->num_rows();
+		    if ($cek == 0) {
+		    	$id_found = true;
+		    }
+		}  //tutup while
+		$pertanyaan = array(
+			'pertanyaan' => 'Saran Bapak/Ibu untuk perbaikan lulusan Program Studi kami',
+			'jenis' => 'isian',
+			'kuesionerID' => $kuesionerID,
+			'customID' => $customID,
+			'textarea' => 'ya'
+		);
+		$this->m_master->inputData($pertanyaan,'pertanyaan');
 
 	redirect('superadmin/Master/kelolaAkunProdi');
 	}
