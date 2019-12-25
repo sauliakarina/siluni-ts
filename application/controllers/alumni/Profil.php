@@ -50,7 +50,7 @@ class Profil extends CI_Controller {
 			'role' => $this->session->userdata('role'),
 			'userID' => $this->session->userdata('userID'),
 			'prodiID' => $this->session->userdata('prodiID'),
-			'instansi' => $this->m_master->getInstansi(),
+			'instansi' => $this->m_master->getInstansiByProdiID($this->session->userdata('prodiID')),
 			'divisi' => $this->m_master->getDivisi(),
 			'nama_instansi' => ''
 		);
@@ -299,6 +299,7 @@ class Profil extends CI_Controller {
 		$this->m_master->inputData($data_pekerjaan,'pekerjaan');
 		redirect('alumni/Profil/riwayatPekerjaan');
 	}
+
 
 
 	public function getPengguna($id)

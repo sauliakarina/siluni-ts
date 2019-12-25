@@ -176,6 +176,17 @@ class M_pengguna extends CI_Model{
 
 	}
 
+	function getPenggunaByCustomID($customID)
+	{
+		$this->db->select('*');
+		$this->db->where('penggunaID', $customID);
+		$this->db->where('isDelete', 'no');
+		$query = $this->db->get('pengguna');
+		return $query->row();
+
+	}
+
+
 	function getIDPenggunaFromPekerjaan($id_instansi)
 	{
 		$this->db->distinct();

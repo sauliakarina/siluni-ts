@@ -208,7 +208,7 @@ class Alumni extends CI_Controller {
 				    } elseif ($gajiawal > "15000000" ) {
 				    	$gaji = "> 15 juta";
 				    } else {
-				    	$gaji = '0';
+				    	$gaji = '';
 				    }
 				    $data = array(
 				    	"posisi" => $rowData[0][8],
