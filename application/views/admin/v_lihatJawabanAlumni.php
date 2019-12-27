@@ -22,7 +22,7 @@
             </div>
             <div class="card-body">
               <div class="table-responsive">                       
-                <table class="table  table-hover table-bordered">
+                <table class="table  table-hover">
                   <thead class="thead-dark">
                     <tr>
                       <th>Pertanyaan</th>
@@ -34,11 +34,44 @@
                     <tr>
                       <td colspan="2" scope="row"><b><?php echo $k->nama_kuesioner ?></b></td>
                     </tr>
-                      <?php $pertanyaan = $this->m_kuesioner->getPertanyaanNonSkalaByKuesionerID($k->id);
+                      <?php $pertanyaan = $this->m_kuesioner->getPertanyaanByKuesionerID($k->id);
                       foreach ($pertanyaan as $p) { ?>
                         <tr>
                           <td width="600px"><?php echo $p->pertanyaan ?></td>
-                          <td><?php echo $this->m_kuesioner->getJawabanAlumni($p->id, $alumniID)->jawaban ?></td>
+                          <?php if ($p->jenis == 'skala') {
+                              $pertanyaanSkala = $this->m_kuesioner->getPertanyaanSkalaByPertanyaanID($p->id);
+                           ?>
+                            <td>
+                              <table class="table table-hover">
+                                <tbody>
+                                  <?php foreach ($pertanyaanSkala as $ps ) { ?>
+                                  <tr>
+                                    <th><?php echo $ps->pertanyaan ?></th>
+                                    <td><?php 
+                                    if (isset($this->m_kuesioner->getJawabanSkala($ps->id, $alumniID)->jawaban)) {
+                                      $jawabanSkala = $this->m_kuesioner->getJawabanSkala($ps->id, $alumniID)->jawaban;
+                                      if ($jawabanSkala == '1' || $jawabanSkala == '2') {
+                                        echo "rendah";
+                                      } elseif($jawabanSkala == '3'){
+                                        echo "sedang/rata-rata";
+                                      } elseif ($jawabanSkala == '4' || $jawabanSkala == '5') {
+                                        echo "tinggi";
+                                      } else {
+                                        echo $jawabanSkala;
+                                      }
+                                    }
+                                     ?></td>
+                                  </tr>
+                                  <?php } ?>
+                                </tbody>
+                              </table>
+                            </td>
+                          <?php } else { ?>
+                          <td>
+                              <?php if (isset($this->m_kuesioner->getJawabanAlumni($p->id, $alumniID)->jawaban)) {
+                                echo $this->m_kuesioner->getJawabanAlumni($p->id, $alumniID)->jawaban; } ?>
+                          </td>
+                          <?php } ?>
                         </tr>
                       <?php } ?>
                   <?php } ?>

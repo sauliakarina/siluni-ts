@@ -54,6 +54,17 @@ class M_kuesioner extends CI_Model{
 
 	}
 
+	function getJawabanSkala($pertanyaanSkalaID, $alumniID)
+	{
+		$this->db->select('*');
+		$this->db->where('pertanyaanSkalaID',$pertanyaanSkalaID);
+		$this->db->where('alumniID',$alumniID);
+		$query = $this->db->get('jawaban_alumni');
+		return $query->row();
+
+	}
+
+
 	function getKuesionerAlumni($prodiID)
 	{
 		$this->db->select('*');
