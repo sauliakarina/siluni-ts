@@ -38,10 +38,11 @@
                 <div class="col-xl-4 col-sm-6">
                   <div class="item d-flex align-items-center">
                     <div class="icon bg-green"><i class="icon-bill"></i></div>
-                    <a href="#">
                     <div class="title"><span>Kuesioner<br>Pengguna Alumni</span>
-                    </div></a>
+                    </div>
+                    <a href="<?php echo site_url('admin/Kuesioner/jawabanKuesionerPengguna/') ?>">
                     <div class="number" style="color: green;"><strong><?php echo $this->m_hasil->getCountKuesioner('pengguna', $this->session->userdata('prodiID')); ?></strong></div>
+                  </a>
                   </div>
                 </div>
               </div>

@@ -2,22 +2,23 @@
   <!-- Page Header-->
   <header class="page-header"  style="background-color: #EFE037">
     <div class="container-fluid">
-      <h2 class="no-margin-bottom">Jawaban Kuesioner Alumni</h2>
+      <h2 class="no-margin-bottom">Jawaban Kuesioner Pengguna Alumni</h2>
     </div>
   </header>
   <!-- Breadcrumb-->
   <div class="breadcrumb-holder container-fluid">
     <ul class="breadcrumb">
-      <li class="breadcrumb-item"><a href="<?php echo site_url('admin/Kuesioner/jawabanKuesionerAlumni/') ?>">< Kembali</a></li>
+      <li class="breadcrumb-item"><a href="<?php echo site_url('admin/Kuesioner/jawabanKuesionerPengguna/') ?>">< Kembali</a></li>
     </ul>
   </div>
+
   <section class="tables">   
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-12">
           <div class="card">
             <div class="card-header d-flex align-items-center">
-              <h3 class="h4"><?php echo $this->m_alumni->getAlumniByID($alumniID)->nama ?></h3>
+              <h3 class="h4"><?php echo $this->m_pengguna->getPenggunaByID($penggunaID)->pengguna_nama ?></h3>
             </div>
             <div class="card-body">
               <div class="table-responsive">                       
@@ -47,8 +48,8 @@
                                   <tr>
                                     <th><?php echo $ps->pertanyaan ?></th>
                                     <td><?php 
-                                    if (isset($this->m_kuesioner->getJawabanSkalaAlumni($ps->id, $alumniID)->jawaban)) {
-                                      $jawabanSkala = $this->m_kuesioner->getJawabanSkalaAlumni($ps->id, $alumniID)->jawaban;
+                                    if (isset($this->m_kuesioner->getJawabanSkalaPengguna($ps->id, $penggunaID)->jawaban)) {
+                                      $jawabanSkala = $this->m_kuesioner->getJawabanSkalaPengguna($ps->id, $penggunaID)->jawaban;
                                       if ($jawabanSkala == '1' || $jawabanSkala == '2') {
                                         echo "rendah";
                                       } elseif($jawabanSkala == '3'){
@@ -67,7 +68,7 @@
                             </td>
                           <?php }
                             elseif ($p->jenis == 'ganda') { 
-                              $jawabanGanda = $this->m_kuesioner->getJawabanGandaAlumni($p->id, $alumniID);
+                              $jawabanGanda = $this->m_kuesioner->getJawabanGandaPengguna($p->id, $penggunaID);
                               ?>
                               <td>
                                 <?php 
@@ -78,8 +79,8 @@
                            <?php  
                               } else { ?>
                           <td>
-                              <?php if (isset($this->m_kuesioner->getJawabanAlumni($p->id, $alumniID)->jawaban)) {
-                                echo $this->m_kuesioner->getJawabanAlumni($p->id, $alumniID)->jawaban; } ?>
+                              <?php if (isset($this->m_kuesioner->getJawabanPengguna($p->id, $penggunaID)->jawaban)) {
+                                echo $this->m_kuesioner->getJawabanPengguna($p->id, $penggunaID)->jawaban; } ?>
                           </td>
                           <?php } ?>
                         </tr>

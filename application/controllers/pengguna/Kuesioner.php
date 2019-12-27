@@ -205,6 +205,7 @@ public function addJawabanVer2()
 		} //foreach kuesionerID
 
 		$data = array(
+			'respondenID' => $id_pengguna,
 			'jenis_kuesioner' => 'pengguna',
 			'timestamp' => date("d-m-Y"),
 			'prodiID' => $prodiID

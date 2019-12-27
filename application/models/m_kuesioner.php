@@ -54,7 +54,7 @@ class M_kuesioner extends CI_Model{
 
 	}
 
-	function getJawabanSkala($pertanyaanSkalaID, $alumniID)
+	function getJawabanSkalaAlumni($pertanyaanSkalaID, $alumniID)
 	{
 		$this->db->select('*');
 		$this->db->where('pertanyaanSkalaID',$pertanyaanSkalaID);
@@ -62,6 +62,20 @@ class M_kuesioner extends CI_Model{
 		$query = $this->db->get('jawaban_alumni');
 		return $query->row();
 
+	}
+
+	function getJawabanGandaAlumni($pertanyaanID, $alumniID)
+	{
+		$this->db->select('*');
+		$this->db->where('pertanyaanID',$pertanyaanID);
+		$this->db->where('alumniID',$alumniID);
+		$query = $this->db->get('jawaban_alumni');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
 	}
 
 
@@ -81,6 +95,41 @@ class M_kuesioner extends CI_Model{
 		}
 	}
 
+	function getJawabanPengguna($pertanyaanID, $penggunaID)
+	{
+		$this->db->select('*');
+		$this->db->where('pertanyaanID',$pertanyaanID);
+		$this->db->where('penggunaID',$penggunaID);
+		$query = $this->db->get('jawaban_pengguna');
+		return $query->row();
+
+	}
+
+	function getJawabanSkalaPengguna($pertanyaanSkalaID, $penggunaID)
+	{
+		$this->db->select('*');
+		$this->db->where('pertanyaanSkalaID',$pertanyaanSkalaID);
+		$this->db->where('penggunaID',$penggunaID);
+		$query = $this->db->get('jawaban_pengguna');
+		return $query->row();
+
+	}
+
+	function getJawabanGandaPengguna($pertanyaanID, $penggunaID)
+	{
+		$this->db->select('*');
+		$this->db->where('pertanyaanID',$pertanyaanID);
+		$this->db->where('penggunaID',$penggunaID);
+		$query = $this->db->get('jawaban_pengguna');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
+	}
+
+
 	function getKuesionerPenggunaByProdi($prodiID)
 	{
 		$this->db->select('*');
@@ -97,9 +146,10 @@ class M_kuesioner extends CI_Model{
 		}
 	}
 
-	function getKuesionerPengguna()
+	function getKuesionerPengguna($prodiID)
 	{
 		$this->db->select('*');
+		$this->db->where('prodiID',$prodiID);
 		$this->db->where('responden','Pengguna');
 		$this->db->where('isDelete','no');
 		$this->db->order_by('id', 'ASC');

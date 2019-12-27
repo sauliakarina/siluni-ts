@@ -6,7 +6,7 @@ class Kuesioner extends CI_Controller {
 		parent::__construct();		
 		$this->load->model('m_alumni');
 		$this->load->model('m_master');
-		$this->load->model('m_dosen');
+		$this->load->model('m_pengguna');
 		$this->load->model('m_hasil');
 		$this->load->model('m_kuesioner');
  
@@ -84,7 +84,7 @@ class Kuesioner extends CI_Controller {
 			'role' => $this->session->userdata('role'),
 			'userID' => $this->session->userdata('userID'),
 			'prodiID' => $prodiID,
-			'alumni' => $this->m_hasil->getNotifKuesioner('alumni', $prodiID),
+			'alumni' => $this->m_hasil->getNotifKuesionerAlumni('alumni', $prodiID),
 		);
 		$this->load->view('element/head');
 		$this->load->view('element/header');
@@ -93,7 +93,7 @@ class Kuesioner extends CI_Controller {
 		$this->load->view('element/footer');
 	}
 
-	public function lihatJawaban($alumniID)
+	public function lihatJawabanAlumni($alumniID)
 	{
 		$prodiID = $this->session->userdata('prodiID');
 		$data = array(
@@ -107,6 +107,39 @@ class Kuesioner extends CI_Controller {
 		$this->load->view('element/header');
 		$this->load->view('element/navbar', $data);
 		$this->load->view('admin/v_lihatJawabanAlumni', $data);
+		$this->load->view('element/footer');
+	}
+
+	public function jawabanKuesionerPengguna()
+	{
+		$prodiID = $this->session->userdata('prodiID');
+		$data = array(
+			'role' => $this->session->userdata('role'),
+			'userID' => $this->session->userdata('userID'),
+			'prodiID' => $prodiID,
+			'pengguna' => $this->m_hasil->getNotifKuesionerPengguna('pengguna', $prodiID),
+		);
+		$this->load->view('element/head');
+		$this->load->view('element/header');
+		$this->load->view('element/navbar', $data);
+		$this->load->view('admin/v_jawabanKuesionerPengguna', $data);
+		$this->load->view('element/footer');
+	}
+
+	public function lihatJawabanPengguna($penggunaID)
+	{
+		$prodiID = $this->session->userdata('prodiID');
+		$data = array(
+			'role' => $this->session->userdata('role'),
+			'userID' => $this->session->userdata('userID'),
+			'prodiID' => $prodiID,
+			'kuesioner' => $this->m_kuesioner->getKuesionerPengguna($prodiID),
+			'penggunaID' => $penggunaID
+		);
+		$this->load->view('element/head');
+		$this->load->view('element/header');
+		$this->load->view('element/navbar', $data);
+		$this->load->view('admin/v_lihatJawabanPengguna', $data);
 		$this->load->view('element/footer');
 	}
 
