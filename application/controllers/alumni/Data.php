@@ -130,7 +130,7 @@ class Data extends CI_Controller {
 	    echo json_encode($callback); // konversi varibael $callback menjadi JSON
   }
 
-  public function exeAddPekerjaanPertama() {
+  public function exeAddPekerjaan() {
 
   		//pekerjaan pertama
   		//instansi ID pertama
@@ -151,9 +151,7 @@ class Data extends CI_Controller {
 			$this->m_master->updateData($where, $data, 'instansi');
 		}
   		//pengguna pekerjaan pertama
-		if ($this->input->post('pengguna_nama_1') == "") {
-			$penggunaID = $this->input->post('penggunaID_1');
-		} elseif ($this->input->post('penggunaID_1') == "") {
+		if ($this->input->post('pengguna_nama_1') != "") {
 			//generate customID kuesioner
 			$id_length = 8;
 			$id_found = false;
@@ -183,6 +181,8 @@ class Data extends CI_Controller {
 			);
 			$this->m_master->inputData($data,'pengguna');
 			$penggunaID = $this->m_pengguna->getPenggunaByCustomID($customID)->id;
+		} elseif ($this->input->post('penggunaID_1') != "") {
+			$penggunaID = $this->input->post('penggunaID_1');
 		}
 		//data pekerjaan pertama
 		$data = array(
@@ -193,7 +193,7 @@ class Data extends CI_Controller {
 			'firstPekerjaan' => 'yes',
 			'id_pengguna' => $penggunaID,
 			'id_alumni' => $this->m_alumni->getAlumniByUserID($this->session->userdata('userID'))->id,
-			'isiPekerjaan' => 'sudah'
+			'isiPekerjaan' => 'sudah_1'
 		);
 		//pekerjaan belum ada di db update or add
 		if ($this->input->post('cekDB') == 'ada') {
@@ -202,7 +202,71 @@ class Data extends CI_Controller {
 		} else {
 			$this->m_master->inputData($data,'pekerjaan');
 		}
+
+		//pekerjaan 2 dst 
+		if ($this->input->post('cek_2') == 'ada') {
+			$instansiID_2 = $this->input->post('instansiID_2');
+			$instansiBaru_2 = $this->input->post('instansiBaru_2');
+			$skalaInstansi_2 = $this->input->post('skalaInstansi_2');
+			$posisi_2 = $this->input->post('posisi_2');
+			$profil_2 = $this->input->post('profil_2');
+			$gaji_2 = $this->input->post('gaji_2');
+			$penggunaID_2 = $this->input->post('penggunaID_2');
+			$pengguna_nama_2 = $this->input->post('pengguna_nama_2');
+			$pengguna_email_2 = $this->input->post('pengguna_email_2');
+			$pengguna_telepon_2 = $this->input->post('pengguna_telepon_2');
+			$divisi_2 = $this->input->post('divisi_2');
+			$id_2 = $this->input->post('id_2');
+
+			foreach ($instansiBaru_2 as $a) {
+				foreach ($skalaInstansi_2 as $b) {
+					if ($a != "") {
+					$newInstansi = array(
+						'nama_instansi' => $a,
+						'jenis_instansi' => $b,
+						'prodiID' => $this->session->userdata('prodiID'),
+					);
+					$this->m_master->inputData($newInstansi,'instansi');
+					$instansiID = $this->m_master->getInstansiByName($a)->id;
+					}
+				}
+			}
+
+		} //if pekerjaan 2 dst
+
 		redirect('alumni/Beranda');
 	}
 
+	public function testing (){
+		$instansiID_2 = $this->input->post('instansiID_2');
+		$instansiBaru_2 = $this->input->post('instansiBaru_2');
+		$skalaInstansi_2 = $this->input->post('skalaInstansi_2');
+		$posisi_2 = $this->input->post('posisi_2');
+		$profil_2 = $this->input->post('profil_2');
+		$gaji_2 = $this->input->post('gaji_2');
+		$penggunaID_2 = $this->input->post('penggunaID_2');
+		$pengguna_nama_2 = $this->input->post('pengguna_nama_2');
+		$pengguna_email_2 = $this->input->post('pengguna_email_2');
+		$pengguna_telepon_2 = $this->input->post('pengguna_telepon_2');
+		$divisi_2 = $this->input->post('divisi_2');
+		$id_2 = $this->input->post('id_2');
+
+		$data = array(
+			'role' => $this->session->userdata('role'),
+			'userID' => $this->session->userdata('userID'),
+			'prodiID' => $this->session->userdata('prodiID'),
+			'instansiID_2' => $instansiID_2,
+			'skalaInstansi_2' => $skalaInstansi_2,
+			'posisi_2' => $posisi_2,
+			'profil_2' => $profil_2,
+			'gaji_2' => $gaji_2,
+			'penggunaID_2' => $penggunaID_2,
+			'pengguna_nama_2' => $pengguna_nama_2
+		);
+		$this->load->view('element/head');
+		$this->load->view('element/header');
+		$this->load->view('element/navbar', $data);
+		$this->load->view('alumni/v_testing', $data);
+		$this->load->view('element/footer');
+	}
 }

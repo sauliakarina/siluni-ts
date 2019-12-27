@@ -16,7 +16,7 @@ $instansiInternasional = $this->m_hasil->getSkalaInstansi('Internasional', $prod
 $tipe1 = $this->m_hasil->getFirstGaji('1-5 juta', $prodiID);//< 1jt
 $tipe2 = $this->m_hasil->getFirstGaji('6-10 juta', $prodiID);//1jt - 2jt
 $tipe3 = $this->m_hasil->getFirstGaji('11-15 juta', $prodiID);//2jt - 3jt
-$tipe5 = $this->m_hasil->getFirstGaji('> 15 juta', $prodiID);//> 4jt
+$tipe4 = $this->m_hasil->getFirstGaji('> 15 juta', $prodiID);//> 4jt
 
 
 //grafik profil lulusan
@@ -118,7 +118,7 @@ $pendidik = $this->m_hasil->getProfilLulusan('Pendidik',$prodiID);
         labels: ["1-5 juta", "6-10 juta", "11-15 juta", "> 15 juta"],
         datasets: [{
           label: 'Rata-rata Penghasilan Alumni',
-          data: [<?php echo $tipe1 ?>, <?php echo $tipe2 ?>, <?php echo $tipe3 ?>, <?php echo $tipe4 ?>,<?php echo $tipe5 ?>],
+          data: [<?php echo $tipe1 ?>, <?php echo $tipe2 ?>, <?php echo $tipe3 ?>, <?php echo $tipe4 ?>],
           backgroundColor: [
           'rgba(153, 102, 255, 1)',
           'rgba(255, 99, 132, 1)',

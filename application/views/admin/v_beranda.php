@@ -28,10 +28,10 @@
                 <div class="col-xl-4 col-sm-6">
                   <div class="item d-flex align-items-center">
                     <div class="icon bg-red"><i class="icon-padnote"></i></div>
-                    <a href="#">
                     <div class="title"><span>Kuesioner<br>Alumni</span>
-                    </div></a>
-                    <div class="number" style="color: green;"><strong><?php echo $this->m_hasil->getCountKuesioner('alumni',$this->session->userdata('prodiID')); ?></strong></div>
+                    </div>
+                    <a href="<?php echo site_url('admin/Kuesioner/jawabanKuesionerAlumni/') ?>">
+                    <div class="number" style="color: green;"><strong><?php echo $this->m_hasil->getCountKuesioner('alumni',$this->session->userdata('prodiID')); ?></strong></div></a>
                   </div>
                 </div>
                 <!-- Item -->

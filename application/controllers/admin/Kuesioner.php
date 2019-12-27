@@ -7,6 +7,7 @@ class Kuesioner extends CI_Controller {
 		$this->load->model('m_alumni');
 		$this->load->model('m_master');
 		$this->load->model('m_dosen');
+		$this->load->model('m_hasil');
 		$this->load->model('m_kuesioner');
  
 	}
@@ -73,6 +74,39 @@ class Kuesioner extends CI_Controller {
 		$this->load->view('element/header');
 		$this->load->view('element/navbar', $data);
 		$this->load->view('admin/v_kelolaKuesioner', $data);
+		$this->load->view('element/footer');
+	}
+
+	public function jawabanKuesionerAlumni()
+	{
+		$prodiID = $this->session->userdata('prodiID');
+		$data = array(
+			'role' => $this->session->userdata('role'),
+			'userID' => $this->session->userdata('userID'),
+			'prodiID' => $prodiID,
+			'alumni' => $this->m_hasil->getNotifKuesioner('alumni', $prodiID),
+		);
+		$this->load->view('element/head');
+		$this->load->view('element/header');
+		$this->load->view('element/navbar', $data);
+		$this->load->view('admin/v_jawabanKuesionerAlumni', $data);
+		$this->load->view('element/footer');
+	}
+
+	public function lihatJawaban($alumniID)
+	{
+		$prodiID = $this->session->userdata('prodiID');
+		$data = array(
+			'role' => $this->session->userdata('role'),
+			'userID' => $this->session->userdata('userID'),
+			'prodiID' => $prodiID,
+			'kuesioner' => $this->m_kuesioner->getKuesionerAlumni($prodiID),
+			'alumniID' => $alumniID
+		);
+		$this->load->view('element/head');
+		$this->load->view('element/header');
+		$this->load->view('element/navbar', $data);
+		$this->load->view('admin/v_lihatJawabanAlumni', $data);
 		$this->load->view('element/footer');
 	}
 

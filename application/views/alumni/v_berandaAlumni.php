@@ -167,7 +167,7 @@
                             <h5>Pekerjaan Pertama</h5>
                             <div class="row">
                               <div class="col-md-12">
-                              <form class="form-horizontal" method="post" action="<?php echo base_url();?>alumni/Data/exeAddPekerjaanPertama">
+                              <form class="form-horizontal" method="post" action="<?php echo base_url();?>alumni/Data/testing">
                                 <div class="pekerjaan">
                                 <?php 
                                 $where = array('id_alumni' => $alumniID);
@@ -182,8 +182,9 @@
                                     <?php if ($cek > 0) { ?>
                                     <option value="<?php echo $firstPekerjaan->id_instansi ?>"><?php echo $this->m_master->getInstansiByID($firstPekerjaan->id_instansi)->nama_instansi ?></option>
                                     <?php } else {?>
-                                    <option value=""></option>
+                                    <option value="">-----------------------</option>
                                     <?php } ?>
+                                     <option value=""></option>
                                     <?php foreach($instansi as $i){ ?>
                                         <option value="<?php echo $i->id ?>"><?php echo $i->nama_instansi ?></option>
                                     <?php } //end foreach  ?>
@@ -267,64 +268,66 @@
                                        <?php }
                                        } ?>
                                     </select>
-                                    <small class="form-text">Pilih pengguna alumni jika data di atas merupakan pekerjaan saat ini. Jika pilihan pengguna alumni tidak ada <a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> Klik Disini</a></small>
+                                    <small class="form-text">Pilih pengguna alumni jika data di atas merupakan pekerjaan saat ini. Jika pilihan pengguna alumni tidak ada <a data-toggle="collapse" href="#collapseExample_1" aria-expanded="false" aria-controls="collapseExample"> Klik Disini</a></small>
                                   </div>
                                 </div>
-                                   <div class="collapse" id="collapseExample">
+                                   <div class="collapse" id="collapseExample_1">
                                     <div class="card card-body">
-                                      <div class="form-group">
+                                      <div class="form-group row">
                                       <label class="col-sm-3 form-control-label">Nama Pengguna</label>
                                       <div class="col-sm-9">
-                                        <input type="text" placeholder="" class="form-control" name="pengguna_nama_1">
+                                        <input type="text" placeholder="" class="form-control form-control-sm" name="pengguna_nama_1">
                                       </div>
                                     </div>
 
-                                    <div class="form-group">       
-                                      <label class="form-control-label">Divisi</label>
-                                      <input type="text" placeholder="" class="form-control" name="divisi_1">
+                                    <div class="form-group row">       
+                                      <label class="col-sm-3 form-control-label">Divisi</label>
+                                      <div class="col-sm-9">
+                                        <input type="text" placeholder="" class="form-control form-control-sm" name="divisi_1">
+                                      </div>
                                     </div>
-                                    <div class="form-group">       
-                                      <label class="form-control-label">Email</label>
-                                      <input type="text" placeholder="" class="form-control" name="pengguna_email_1">
+                                    <div class="form-group row">       
+                                      <label class="col-sm-3 form-control-label">Email</label>
+                                      <div class="col-sm-9">
+                                        <input type="text" placeholder="" class="form-control" name="pengguna_email_1">
+                                      </div>
                                     </div>
-                                    <div class="form-group">       
-                                      <label class="form-control-label">No HP/Telepon</label>
-                                      <input type="text" placeholder="" class="form-control" name="pengguna_telepon_1">
+                                    <div class="form-group row">       
+                                      <label class="col-sm-3 form-control-label">No HP/Telepon</label>
+                                      <div class="col-sm-9">
+                                        <input type="text" placeholder="" class="form-control" name="pengguna_telepon_1">
+                                      </div>
                                     </div>
                                     </div>
                                   </div> <!-- collapse -->
-                                  <div class="form-group row">
-                                   <div class="col-sm-9 offset-sm-3">
-                                    <button type="submit" class="btn btn-primary ml-auto">Simpan</button>
-                                   </div>
-                                </div>
-                                </form>
+                                  
                               <!-- pekerjaan kedua dst -->
                               <?php if ($cek > 1) { 
+                                $j = 0;
                                 foreach (array_slice($pekerjaanAlumni, 1) as $k) {
                               ?>
                                 <h5>Pekerjaan Lainnya</h5>
                                 <div class="row">
                                 <div class="col-md-12">
-                                <form class="form-horizontal" method="post" action="<?php echo base_url();?>alumni/Profil/exeAddPekerjaanDua">
                                    <div class="form-group row">
                                     <label class="col-sm-3 form-control-label">Pilih Instansi</label>
                                     <div class="col-sm-9">
-                                      <select name="id_instansi" id="id_instansi" class="form-control mb-3">
-                                      <option><?php echo $this->m_master->getInstansiByID($k->id_instansi)->nama_instansi ?></option>
+                                      <select name="instansiID_2[<?php echo $j++; ?>]" id="id_instansi" class="form-control mb-3">
+                                      <option value="<?php echo $k->id_instansi; ?>"><?php echo $this->m_master->getInstansiByID($k->id_instansi)->nama_instansi ?></option>
+                                      <option value="">-----------------------</option>
                                       <?php foreach($instansi as $i){ ?>
                                           <option value="<?php echo $i->id ?>"><?php echo $i->nama_instansi ?></option>
                                       <?php } //end foreach  ?>
                                       </select>
                                       <small class="form-text">Lainnya :</small>
-                                      <input type="text" class="form-control" name="new_instansi">
+                                      <input type="text" class="form-control" name="instansiBaru_2[<?php echo $j++; ?>]">
                                     </div>
                                   </div>
 
                                   <div class="form-group row">
                                     <label class="col-sm-3 form-control-label">Skala Instansi</label>
                                     <div class="col-sm-9">
-                                      <select name="skala_instansi" id="skala_instansi" class="form-control mb-3" required>
+                                      <select name="skalaInstansi_2[<?php echo $j++; ?>]" id="skala_instansi" class="form-control mb-3" required>
                                         <option></option>
                                         <option value="Lokal"> Lokal </option>
                                         <option value="Nasional"> Nasional </option>
@@ -336,14 +339,16 @@
                                   <div class="form-group row">
                                     <label class="col-sm-3 form-control-label">Profesi</label>
                                      <div class="col-sm-9">
-                                        <input type="text" class="form-control" value="<?php echo $k->posisi ?>" name="posisi" required>
+                                        <input type="text" class="form-control" value="<?php echo $k->posisi ?>" name="posisi_2[<?php echo $j++; ?>]" required>
+                                        <input type="hidden" class="form-control" value="ada" name="cek_2">
+                                        <input type="hidden" class="form-control" name="id_2[<?php echo $j++; ?>]" value="<?php echo $k->id ?>">
                                      </div>
                                   </div>
 
                                   <div class="form-group row">
                                     <label class="col-sm-3 form-control-label">Profil Pekerjaan</label>
                                     <div class="col-sm-9">
-                                      <select name="profil" class="form-control mb-3" required>
+                                      <select name="profil_2[<?php echo $j++; ?>]" class="form-control mb-3" required>
                                         <option></option>
                                         <option value="Programmer"> Programmer </option>
                                         <option value="Penanggung Jawab Jaringan"> Penanggung Jawab Jaringan </option>
@@ -359,13 +364,12 @@
                                   <div class="form-group row">
                                     <label  class="col-sm-3 form-control-label">Pendapatan Tiap Bulan</label>
                                     <div class="col-sm-9">
-                                      <select name="gaji" class="form-control mb-3" required>
+                                      <select name="gaji_2[<?php echo $j++; ?>]" class="form-control mb-3" required>
                                         <option value="<?php echo $k->gaji ?>"><?php echo $k->gaji ?></option>
-                                        <option value="< 1jt"> < Rp 1jt </option>
-                                        <option value="1jt - 2jt"> Rp 1jt - 2 jt </option>
-                                         <option value="2jt - 3jt"> Rp 2jt - 3 jt </option>
-                                        <option value="3jt - 4jt"> Rp 3jt - 4 jt </option>
-                                        <option value="> 4jt"> > Rp 4jt </option>
+                                        <option value="1-5 juta"> Rp 1-5 juta </option>
+                                        <option value="6-10 juta"> Rp 6-10juta </option>
+                                        <option value="11-15juta"> Rp 11-15juta </option>
+                                        <option value="> 15juta"> > Rp 15juta </option>
                                       </select>
                                     </div>
                                   </div>
@@ -373,7 +377,7 @@
                                   <div class="form-group row">
                                     <label class="col-sm-3 form-control-label">Pilih Pengguna Alumni</label>
                                     <div class="col-sm-9">
-                                      <select name="penggunaID" id="penggunaID" class="form-control mb-3">
+                                      <select name="penggunaID_2[<?php echo $j++; ?>]" id="penggunaID" class="form-control mb-3">
 
                                       <?php 
                                         $penggunaInstansi = $this->m_pengguna->getPenggunaByInstansiID($k->id_instansi);
@@ -383,11 +387,46 @@
                                        <?php } ?>
 
                                       </select>
-                                      <small class="form-text">Pilih pengguna alumni jika data di atas merupakan pekerjaan saat ini. Jika pilihan pengguna alumni tidak ada <a href="" data-toggle="modal" data-target="#ModalTambahPengguna">klik disini</a></small>
+                                      <small class="form-text">Pilih pengguna alumni jika data di atas merupakan pekerjaan saat ini. Jika pilihan pengguna alumni tidak ada <a data-toggle="collapse" href="#collapseExample_2" aria-expanded="false" aria-controls="collapseExample">klik disini</a></small>
                                     </div>
                                   </div>
+
+                                   <div class="collapse" id="collapseExample_2">
+                                    <div class="card card-body">
+                                      <div class="form-group row">
+                                      <label class="col-sm-3 form-control-label">Nama Pengguna</label>
+                                      <div class="col-sm-9">
+                                        <input type="text" placeholder="" class="form-control form-control-sm" name="pengguna_nama_2[<?php echo $j++; ?>]">
+                                      </div>
+                                    </div>
+
+                                    <div class="form-group row">       
+                                      <label class="col-sm-3 form-control-label">Divisi</label>
+                                      <div class="col-sm-9">
+                                        <input type="text" placeholder="" class="form-control form-control-sm" name="divisi_2[<?php echo $j++; ?>]">
+                                      </div>
+                                    </div>
+                                    <div class="form-group row">       
+                                      <label class="col-sm-3 form-control-label">Email</label>
+                                      <div class="col-sm-9">
+                                        <input type="text" placeholder="" class="form-control" name="pengguna_email_2[<?php echo $j++; ?>]">
+                                      </div>
+                                    </div>
+                                    <div class="form-group row">       
+                                      <label class="col-sm-3 form-control-label">No HP/Telepon</label>
+                                      <div class="col-sm-9">
+                                        <input type="text" placeholder="" class="form-control" name="pengguna_telepon_2[<?php echo $j++; ?>]">
+                                      </div>
+                                    </div>
+                                    </div>
+                                  </div> <!-- collapse -->
                               <?php } //foreach
                               } //if ?>
+                              <div class="form-group row">
+                                   <div class="col-sm-9 offset-sm-3">
+                                    <button type="submit" class="btn btn-primary ml-auto">Simpan</button>
+                                   </div>
+                                </div>
                               </form>
                                <div class="form-group row" style="float: left;">
                                 <div class="col-sm-9 offset-sm-3">
