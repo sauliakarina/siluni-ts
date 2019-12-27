@@ -44,6 +44,16 @@ class M_kuesioner extends CI_Model{
 
 	}
 
+	function getJawabanAlumni($pertanyaanID, $alumniID)
+	{
+		$this->db->select('*');
+		$this->db->where('pertanyaanID',$pertanyaanID);
+		$this->db->where('alumniID',$alumniID);
+		$query = $this->db->get('jawaban_alumni');
+		return $query->row();
+
+	}
+
 	function getKuesionerAlumni($prodiID)
 	{
 		$this->db->select('*');
@@ -120,6 +130,22 @@ class M_kuesioner extends CI_Model{
 			return $query->result();
 		}
 	}
+
+	function getPertanyaanNonSkalaByKuesionerID($id)
+	{
+		$this->db->select('*');
+		$this->db->where('kuesionerID',$id);
+		$this->db->where('isDelete','no');
+		$this->db->where('jenis !=','skala');
+		$query = $this->db->get('pertanyaan');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
+	}
+
 
 	function getPertanyaanAlumniByJenis($jenis)
 	{
@@ -203,6 +229,8 @@ class M_kuesioner extends CI_Model{
 			return $query->result();
 		}
 	}
+
+
 
 	function getPertanyaanSkalaByPertanyaan($pertanyaan)
 	{

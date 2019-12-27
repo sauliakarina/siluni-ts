@@ -22,10 +22,9 @@
             </div>
             <div class="card-body">
               <div class="table-responsive">                       
-                <table class="table table-striped table-hover">
-                  <thead>
+                <table class="table  table-hover table-bordered">
+                  <thead class="thead-dark">
                     <tr>
-                      <th>No</th>
                       <th>Pertanyaan</th>
                       <th>Jawaban</th>
                     </tr>
@@ -33,10 +32,15 @@
                   <tbody>
                     <?php foreach ($kuesioner as $k) { ?>
                     <tr>
-                      <th scope="row">1</th>
-                      <td>Mark</td>
-                      <td>Otto</td>
+                      <td colspan="2" scope="row"><b><?php echo $k->nama_kuesioner ?></b></td>
                     </tr>
+                      <?php $pertanyaan = $this->m_kuesioner->getPertanyaanNonSkalaByKuesionerID($k->id);
+                      foreach ($pertanyaan as $p) { ?>
+                        <tr>
+                          <td width="600px"><?php echo $p->pertanyaan ?></td>
+                          <td><?php echo $this->m_kuesioner->getJawabanAlumni($p->id, $alumniID)->jawaban ?></td>
+                        </tr>
+                      <?php } ?>
                   <?php } ?>
                   </tbody>
                 </table>
