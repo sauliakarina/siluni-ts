@@ -25,6 +25,23 @@ class Pengguna extends CI_Controller {
 		$this->load->view('element/footer');
 	}
 
+	public function daftarInstansi()
+	{
+		$prodiID = $this->session->userdata('prodiID');
+		$data = array(
+			'role' => $this->session->userdata('role'),
+			'userID' => $this->session->userdata('userID'),
+			'prodiID' => $prodiID,
+			'instansi'=> $this->m_pengguna->getInstansiGuest($prodiID)
+		);
+		$this->load->view('element/head');
+		$this->load->view('element/header');
+		$this->load->view('element/navbar', $data);
+		$this->load->view('v_dataInstansi', $data);
+		$this->load->view('element/footer');
+	}
+
+
 	public function getNewPengguna($num) {
 		
 		//update data seen

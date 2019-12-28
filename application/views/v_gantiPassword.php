@@ -2,13 +2,12 @@
          <!-- Side Navbar -->
         <div class="content-inner">
           <!-- Page Header-->
-           <!-- Breadcrumb-->
-          <div class="breadcrumb-holder container-fluid" style="background-color: #EFE037">
-            <ul class="breadcrumb" style="background-color: #EFE037">
-              <li class="breadcrumb-item"><a href="index.html">Beranda</a></li>
-              <li class="breadcrumb-item active">Ganti Password</li>
-            </ul>
-          </div>
+            <!-- Page Header-->
+          <header class="page-header" style="background-color: #EFE037">
+            <div class="container-fluid">
+              <h2 class="no-margin-bottom"></h2>
+            </div>
+          </header>
 
                    <!-- Forms Section-->
           <section class="forms"> 

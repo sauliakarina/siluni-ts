@@ -7,13 +7,6 @@
               <h2 class="no-margin-bottom">Form Kuesioner Pengguna</h2>
             </div>
           </header>
-           <!-- Breadcrumb-->
-          <div class="breadcrumb-holder container-fluid">
-            <ul class="breadcrumb">
-              <li class="breadcrumb-item"><a href="<?php echo site_url('alumni/Profil') ?>">Biodata</a></li>
-              <li class="breadcrumb-item"><a href="<?php echo site_url('alumni/Profil/riwayatPekerjaan') ?>">Riwayat Pekerjaan</a></li>
-            </ul>
-          </div>
 
          <!-- Forms Section-->
           <section class="forms"> 

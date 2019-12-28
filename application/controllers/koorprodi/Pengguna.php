@@ -26,6 +26,22 @@ class Pengguna extends CI_Controller {
 		$this->load->view('element/footer');
 	}
 
+		public function daftarInstansi()
+	{
+		$prodiID = $this->session->userdata('prodiID');
+		$data = array(
+			'role' => $this->session->userdata('role'),
+			'userID' => $this->session->userdata('userID'),
+			'prodiID' => $prodiID,
+			'instansi'=> $this->m_pengguna->getInstansiGuest($prodiID)
+		);
+		$this->load->view('element/head');
+		$this->load->view('element/header');
+		$this->load->view('element/navbar', $data);
+		$this->load->view('v_dataInstansi', $data);
+		$this->load->view('element/footer');
+	}
+
 	public function daftarAlumni($id_pengguna)
 	{
 		$data = array(
@@ -42,20 +58,5 @@ class Pengguna extends CI_Controller {
 		$this->load->view('element/footer');
 	}
 
-/*	public function daftarAlumniVer2($id_instansi)
-	{
-		$data = array(
-			'role' => $this->session->userdata('role'),
-			'userID' => $this->session->userdata('userID'),
-			'prodiID' => $this->session->userdata('prodiID'),
-			'id_pengguna' => $this->m_pengguna->getPenggunaByInstansiIDKoor($id_instansi),
-			'id_instansi' => $id_instansi
-		);
-		$this->load->view('element/head');
-		$this->load->view('element/header');
-		$this->load->view('element/navbar', $data);
-		$this->load->view('koorprodi/v_dataAlumniPengguna', $data);
-		$this->load->view('element/footer');
-	}*/
 
 }

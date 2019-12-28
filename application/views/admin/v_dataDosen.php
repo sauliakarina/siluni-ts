@@ -5,13 +5,9 @@
               <h2 class="no-margin-bottom">Data Dosen</h2>
             </div>
           </header>
-          <!-- Breadcrumb-->
-          <div class="breadcrumb-holder container-fluid">
-            <ul class="breadcrumb">
-              <li class="breadcrumb-item"><a href="index.html">Beranda</a></li>
-              <li class="breadcrumb-item active">Data</li>
-            </ul>
-          </div>
+    
+    <?php echo $this->session->flashdata('sukses_edit'); ?>
+
           <section class="tables">   
             <div class="container-fluid">
               <div class="row">
@@ -48,11 +44,9 @@
                               <td><?php echo $d->email ?></td>
                               <td><?php echo $d->no_telepon ?></td>
                               <td>
-                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                  <label class="btn btn-warning btn-sm">
-                                    <input type="radio" name="options"><i class="fas fa-user-edit"></i>
-                                  </label>
-                                  <button onclick="set_id(<?php echo $d->userID ?>)" class="btn btn-danger btn-sm" data-toggle="modal" data-placement="top" title="Hapus" data-target="#ModalHapus"><i class="fas fa-trash-alt"></i></button>
+                                <div class="btn-group btn-group-toggle">
+                                  <button onclick='editDosen(<?php echo $d->id ?>)' id="btn-edit" class="btn-warning btn-sm" data-toggle="modal" data-target="#ModalEdit"><i class="fas fa-user-edit"></i></button>
+                                  <button onclick="set_id(<?php echo $d->id ?>)" class="btn btn-danger btn-sm" data-toggle="modal" data-placement="top" title="Hapus" data-target="#ModalHapus"><i class="fas fa-trash-alt"></i></button>
                                 </div>
                               </td>
                             </tr>
@@ -113,6 +107,52 @@
                       </div>
 <!-- modal tambah -->
 
+<!-- Modal Edit dosen-->
+<div id="ModalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+    <div role="document" class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 id="exampleModalLabel" class="modal-title">Sunting Dosen</h4>
+          <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+        </div>
+        <div class="modal-body">
+          <p></p>
+          <?php echo form_open_multipart('admin/Dosen/exeEditDosen'); ?>
+            <div class="form-group">
+              <label>Nama</label>
+              <input type="text" id="nama" value="<?php echo $d->nama ?>" class="form-control" name="nama">
+              <input type="hidden" id="id" value="<?php echo $d->id ?>" class="form-control" name="id">
+            </div>
+            <div class="form-group">       
+              <label>NIDN</label>
+              <input type="text" placeholder="" class="form-control"  name="nidn" id="nidn" value="<?php echo $d->nidn ?>">
+            </div>
+            <div class="form-group">
+              <label>Jenis Kelamin</label>
+                <select  id="jenis_kelamin" name="jenis_kelamin" class="form-control">
+                  <option value="<?php echo $d->jenis_kelamin ?>"><?php echo $d->jenis_kelamin ?></option>
+                  <option value="Laki-laki">Laki-laki</option>
+                  <option value="Perempuan">Perempuan</option>
+                </select>
+            </div>
+            <div class="form-group">       
+              <label>Email</label>
+              <input type="text" placeholder="" class="form-control"  name="email" id="email" value="<?php echo $d->email ?>">
+            </div>
+            <div class="form-group">       
+              <label>No Telepon</label>
+              <input type="text" placeholder="" class="form-control"  name="no_telepon" id="no_telepon" value="<?php echo $d->no_telepon ?>">
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" data-dismiss="modal" class="btn btn-secondary">Tutup</button>
+          <button type="submit" class="btn btn-primary">Simpan</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
   <!-- Modal Hapus-->
                       <div id="ModalHapus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
                         <div role="document" class="modal-dialog">
@@ -154,4 +194,26 @@
     }
       );
 } );
+
+function editDosen(id) {
+
+      $.ajax({
+        url: "<?php echo base_url('admin/Dosen/getDosen/') ?>/" + id,
+        type: "GET",
+        dataType: "JSON",
+        success: function(data) {
+          $('[name="id"]').val(data.id);
+          $('[name="nama"]').val(data.nama);
+          $('[name="nidn"]').val(data.nidn);
+          $('[name="jenis_kelamin"]').val(data.jenis_kelamin);
+          $('[name="email"]').val(data.email);
+          $('[name="no_telepon"]').val(data.no_telepon);
+          
+          $('#ModalEdit').modal('show');
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          console.log('gagal mengambil data');
+        }
+      });
+    }
 </script>

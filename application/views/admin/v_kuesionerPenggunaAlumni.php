@@ -29,6 +29,7 @@
                               <th>No</th>
                               <th>Kuesioner</th>
                               <th>Status</th>
+                              <th>Jenis Pertanyaan</th>
                               <th></th>
                               <th></th>
                             </tr>
@@ -41,6 +42,12 @@
                               <th scope="row"><?php echo $no++ ?></th>
                               <td><?php echo $k->nama_kuesioner ?></td>
                               <td><b><?php echo $k->status ?></b></td>
+                              <td><?php 
+                              if ($k->jenisKuesionerPengguna == 'isian') {
+                                echo "isian/pilihan/ganda";
+                              } else {
+                                echo $k->jenisKuesionerPengguna;
+                              } ?></td>
                               <td> 
                                 <?php if ($k->status == 'aktif') { ?>
                                 <button type="button" class="btn btn-outline-danger btn-sm" onclick="set_id(<?php echo $k->id ?>)"  data-toggle="modal" data-target="#ModalNonaktif">Nonaktifkan</button>
@@ -177,15 +184,15 @@
     }
 
    function deletep(){
-        window.location.href =  "<?php echo base_url();?>admin/Kuesioner/deleteKuesioner/"+p_id;
+        window.location.href =  "<?php echo base_url();?>admin/Kuesioner/deleteKuesionerPengguna/"+p_id;
     }
 
     function nonaktif(){
-        window.location.href =  "<?php echo base_url();?>admin/Kuesioner/nonaktifKuesioner/"+p_id;
+        window.location.href =  "<?php echo base_url();?>admin/Kuesioner/nonaktifKuesionerPengguna/"+p_id;
     }
 
      function aktif(){
-        window.location.href =  "<?php echo base_url();?>admin/Kuesioner/aktifKuesioner/"+p_id;
+        window.location.href =  "<?php echo base_url();?>admin/Kuesioner/aktifKuesionerPengguna/"+p_id;
     }
 
 </script>

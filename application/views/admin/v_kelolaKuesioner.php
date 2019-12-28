@@ -253,7 +253,7 @@
                                       <label>Ya</label>
                                     </div>
                                     <div class="i-checks">
-                                      <input type="radio" value="tidak" name="inputBox" class="radio-template">
+                                      <input type="radio" checked="" value="tidak" name="inputBox" class="radio-template">
                                       <label>Tidak</label>
                                     </div>
                                 </div>

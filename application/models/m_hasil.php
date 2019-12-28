@@ -89,6 +89,7 @@ class M_hasil extends CI_Model{
 		$this->db->where('jawaban_alumni.pertanyaanID', $pertanyaanID);
 		$this->db->where('alumni.prodiID', $prodiID);
 		$this->db->where('jawaban_alumni.jawaban !=', "");
+		$this->db->where('jawaban_alumni.tambahanJawaban', "tidak");
 		$this->db->join('pilihan_jawaban', 'jawaban_alumni.jawaban = pilihan_jawaban.pilihan', 'left');
 		$this->db->join('alumni', 'jawaban_alumni.alumniID = alumni.id', 'left');
 		$this->db->group_by('jawaban');
@@ -328,7 +329,7 @@ class M_hasil extends CI_Model{
 
   	function getPilihanJawabanByPertanyaanID($id)
 	{
-		$this->db->select('*');
+		$this->db->select('pilihan');
 		$this->db->where('pertanyaanID',$id);
 		$query = $this->db->get('pilihan_jawaban');
 		if($query->num_rows() > 0){

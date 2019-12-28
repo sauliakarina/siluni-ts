@@ -52,7 +52,8 @@ class Data extends CI_Controller {
 		
 		$where = array('id' => $this->input->post('id'));
 		$this->m_master->updateData($where,$data_alumni,'alumni');
-		redirect('alumni/Data');
+		$this->session->set_flashdata("edit_profil", '<div><div class="alert alert-success" id="alert" align="center">Data diri anda berhasil disunting</div></div>');
+		redirect('alumni/Beranda');
 	}
 
 	function exeAddInstansi()
@@ -111,24 +112,6 @@ class Data extends CI_Controller {
 	    echo json_encode($callback); // konversi varibael $callback menjadi JSON
   }
 
-  public function getInstansi(){
-	    // Ambil data ID Provinsi yang dikirim via ajax post
-	    $id_instansi = $this->input->post('id_instansi');
-	    
-	    $instansi = $this->m_master->getInstansiByID($id_instansi);
-	    
-	    // Buat variabel untuk menampung tag-tag option nya
-	    // Set defaultnya dengan tag option Pilih
-	    $lists = "<option value=''>Pilih</option>";
-	    $lists .= "<option value='".$instansi->jenis_instansi."'>".$instansi->jenis_instansi."</option>";
-	    
-	    /*foreach($pengguna as $data){
-	      $lists .= "<option value='".$data->id."'>".$data->pengguna_nama."</option>"; // Tambahkan tag option ke variabel $lists
-	    }*/
-	    //list_kota = list_pertanyaanSkala
-	    $callback = array('list_skala_instansi'=>$lists); // Masukan variabel lists tadi ke dalam array $callback dengan index array : list_kota
-	    echo json_encode($callback); // konversi varibael $callback menjadi JSON
-  }
 
   public function exeAddPekerjaan() {
 
@@ -227,7 +210,6 @@ class Data extends CI_Controller {
 						'prodiID' => $this->session->userdata('prodiID'),
 					);
 					$this->m_master->inputData($newInstansi,'instansi');
-					$instansiID = $this->m_master->getInstansiByName($a)->id;
 					}
 				}
 			}
@@ -261,7 +243,8 @@ class Data extends CI_Controller {
 			'profil_2' => $profil_2,
 			'gaji_2' => $gaji_2,
 			'penggunaID_2' => $penggunaID_2,
-			'pengguna_nama_2' => $pengguna_nama_2
+			'pengguna_nama_2' => $pengguna_nama_2,
+			'instansiBaru_2' => $instansiBaru_2
 		);
 		$this->load->view('element/head');
 		$this->load->view('element/header');

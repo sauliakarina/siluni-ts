@@ -92,15 +92,38 @@ class Dosen extends CI_Controller {
 		redirect(base_url('admin/Dosen/kelolaKoorprodi'));
 	}
 
-	public function deleteDosen($userID){
+	public function deleteDosen($id){
 
-		$id = $this->m_master->getUserByUserID($userID)->id;
-		$where = array('id' => $id);
-		$this->m_master->deleteData($where,'user');
-
-		$id = $this->m_dosen->getDosenByUserID($userID)->id;
 		$where = array('id' => $id);
 		$this->m_master->deleteData($where,'dosen');
+
+		$id_user = $this->m_master->getUserByUserID($this->m_dosen->getDosenByID($id)->userID)->id;
+		$where = array('id' => $id_user);
+		$this->m_master->deleteData($where,'user');
+
+		redirect('admin/Dosen');
+	}
+
+	public function getDosen($id)
+	{
+		$data = $this->m_dosen->getDosenByID($id);
+		echo json_encode($data);
+	}
+
+	function exeEditDosen()
+	{
+		$data = array(
+			'nama' => $this->input->post('nama'),
+			'nidn' => $this->input->post('nidn'),
+			'jenis_kelamin' => $this->input->post('jenis_kelamin'),
+			'email' => $this->input->post('email'),
+			'no_telepon' => $this->input->post('no_telepon')
+		);
+		
+		$where = array('id' => $this->input->post('id'));
+		$this->m_master->updateData($where,$data,'dosen');
+
+		$this->session->set_flashdata("sukses_edit", '<div><div class="alert alert-success" id="alert" align="center">Data Dosen berhasil disunting</div></div>');
 		redirect('admin/Dosen');
 	}
 }

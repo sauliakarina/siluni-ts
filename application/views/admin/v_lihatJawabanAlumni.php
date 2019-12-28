@@ -21,8 +21,8 @@
             </div>
             <div class="card-body">
               <div class="table-responsive">                       
-                <table class="table  table-hover">
-                  <thead class="thead-dark">
+                <table class="table table-responsive table-striped table-hover">
+                  <thead>
                     <tr>
                       <th>Pertanyaan</th>
                       <th>Jawaban</th>
@@ -78,8 +78,15 @@
                            <?php  
                               } else { ?>
                           <td>
-                              <?php if (isset($this->m_kuesioner->getJawabanAlumni($p->id, $alumniID)->jawaban)) {
-                                echo $this->m_kuesioner->getJawabanAlumni($p->id, $alumniID)->jawaban; } ?>
+                              <?php if ($p->inputBox == 'ya') {
+                                $jawabanGanda = $this->m_kuesioner->getJawabanGandaAlumni($p->id, $alumniID);
+                                foreach ($jawabanGanda as $jg) {
+                                   echo $jg->jawaban."<br>"; }
+                              } else {
+                                if (isset($this->m_kuesioner->getJawabanAlumni($p->id, $alumniID)->jawaban)) {
+                                echo $this->m_kuesioner->getJawabanAlumni($p->id, $alumniID)->jawaban; }
+                              }
+                             ?>
                           </td>
                           <?php } ?>
                         </tr>

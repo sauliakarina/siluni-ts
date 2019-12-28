@@ -32,6 +32,16 @@ class M_dosen extends CI_Model{
 
 	}
 
+	function getDosenByID($id)
+	{
+		$this->db->select('*');
+		$this->db->where('id',$id);
+		$query = $this->db->get('dosen');
+		return $query->row();
+
+	}
+
+
 	function getKoorByProdiID($prodiID)
 	{
 		$this->db->select('*');

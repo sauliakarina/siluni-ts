@@ -34,7 +34,6 @@
                               <th>Tahun Lulus</th>
                               <th>Tanggal Pengisian</th>
                               <th>Jawaban</th>
-                              <th></th>
                             </tr>
                           </thead>
                           <tbody>
@@ -53,13 +52,6 @@
                                 <form method='' action="<?php echo base_url('admin/Kuesioner/lihatJawabanAlumni/'.$d->id_alumni) ?>">
                                  <button type="submit" name="options" class="btn btn-info btn-sm" >Lihat</button>
                                 </form>
-                              </td>
-                              <td>
-                                <div class="btn-group btn-group-toggle">
-                                    <!-- <button type="submit" class="btn btn-info btn-sm"  data-toggle="tooltip" data-placement="top" title="Data Tracer"><i class="fas fa-database"></i></button> -->
-                                    <form method='' action="<?php echo base_url('admin/Alumni/editProfil/'.$d->id) ?>"><button type="submit" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="Profil"><i class="fas fa-user-edit"></i></button></form>
-                                    <button onclick="set_id(<?php echo $d->id ?>)" name="options" class="btn btn-danger btn-sm" data-toggle="modal" data-placement="top" title="Hapus" data-target="#ModalHapus"><i class="fas fa-trash-alt"></i></button>
-                                </div>
                               </td>
                             </tr>
                             <?php } ?>

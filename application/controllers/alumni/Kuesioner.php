@@ -61,7 +61,8 @@ class Kuesioner extends CI_Controller {
 				    	$data = array(
 				    		'pertanyaanID' => $p->id,
 				        	'jawaban' => $this->input->post('inputBox'.$p->id),
-				        	'alumniID' => $alumniID
+				        	'alumniID' => $alumniID,
+				        	'tambahanJawaban' => 'ya'
 				    	);
 				    	$this->m_master->inputData($data,'jawaban_alumni');
 				    } // if inputBox
@@ -79,7 +80,8 @@ class Kuesioner extends CI_Controller {
 					    	$data = array(
 					    		'pertanyaanID' => $p->id,
 					        	'jawaban' => $this->input->post('inputBox'.$p->id),
-					        	'alumniID' => $alumniID
+					        	'alumniID' => $alumniID,
+					        	'tambahanJawaban' => 'ya'
 					    	);
 					    	$this->m_master->inputData($data,'jawaban_alumni');
 					    } // if inputBox
@@ -110,7 +112,7 @@ class Kuesioner extends CI_Controller {
 		);
 		$this->m_master->inputData($data,'notif_kuesioner');
 
-		$this->session->set_flashdata("pesan", '<div><div class="alert alert-success" id="alert" align="center">Pengisian Kuesioner Sukses! Terimakasih atas partisipasi anda</div></div>');
-		redirect('alumni/Kuesioner');
+		$this->session->set_flashdata("isi_kuesioner", '<div><div class="alert alert-success" id="alert" align="center">Pengisian Kuesioner Sukses! Terimakasih atas partisipasi anda</div></div>');
+		redirect('alumni/Beranda');
 	}
 }

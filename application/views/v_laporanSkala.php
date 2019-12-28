@@ -30,7 +30,7 @@
                         <div class="form-group row">
                           <label class="col-sm-3 form-control-label">Pertanyaan</label>
                           <div class="col-sm-9">
-                            <select class="js-example-basic-single dropdown" id="pertanyaan" name="pertanyaanID" style="width: 100%;">
+                            <select class="js-example-basic-single dropdown" id="pertanyaan" name="pertanyaanID" style="width: 100%;"required>
                             <option value="">Pilih Pertanyaan</option>
                             <?php 
                             foreach ($kuesioner as $k) {
@@ -46,7 +46,7 @@
                         <div class="form-group row">
                           <label class="col-sm-3 form-control-label">Sub Pertanyaan</label>
                           <div class="col-sm-9">
-                            <select class="js-example-basic-single dropdown" id="pertanyaanSkala" name="pertanyaanSkalaID" style="width: 100%;">
+                            <select class="js-example-basic-single dropdown" id="pertanyaanSkala" name="pertanyaanSkalaID" style="width: 100%;" required>
                               <option value="">Pilih Pertanyaan</option>
                             </select>
                           </div>

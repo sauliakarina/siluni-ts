@@ -84,6 +84,24 @@ class M_kuesioner extends CI_Model{
 		$this->db->select('*');
 		$this->db->where('prodiID',$prodiID);
 		$this->db->where('responden','alumni');
+		$this->db->where('status','aktif');
+		$this->db->where('isDelete','no');
+		$this->db->order_by('id', 'ASC');
+		$query = $this->db->get('kuesioner');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
+	}
+
+	//tampilin kuesioner aktif dan non aktif
+	function getKuesionerAlumniAdmin($prodiID)
+	{
+		$this->db->select('*');
+		$this->db->where('prodiID',$prodiID);
+		$this->db->where('responden','alumni');;
 		$this->db->where('isDelete','no');
 		$this->db->order_by('id', 'ASC');
 		$query = $this->db->get('kuesioner');
@@ -136,6 +154,22 @@ class M_kuesioner extends CI_Model{
 		$this->db->where('prodiID',$prodiID);
 		$this->db->where('responden','pengguna');
 		$this->db->where('status','aktif');
+		$this->db->where('isDelete','no');
+		$query = $this->db->get('kuesioner');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
+	}
+
+	//tampilin kuesioner aktif dan non aktif
+	function getKuesionerPenggunaAdmin($prodiID)
+	{
+		$this->db->select('*');
+		$this->db->where('prodiID',$prodiID);
+		$this->db->where('responden','pengguna');
 		$this->db->where('isDelete','no');
 		$query = $this->db->get('kuesioner');
 		if($query->num_rows()>0)
