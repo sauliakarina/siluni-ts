@@ -35,24 +35,6 @@
                     <div class="card-body">
                       <h4>Data Pribadi</h4>
                       <div class="form-group row">
-                          <label class="col-sm-3 form-control-label">Nama</label>
-                          <div class="col-sm-9">
-                            <input id="inputHorizontalSuccess" type="text" name="pengguna_nama" placeholder="" class="form-control form-control-success">
-                          </div>
-                        </div>
-                        <div class="form-group row">
-                          <label class="col-sm-3 form-control-label">Email</label>
-                          <div class="col-sm-9">
-                            <input id="inputHorizontalSuccess" type="text" name="pengguna_email" placeholder="" class="form-control form-control-success">
-                          </div>
-                        </div>
-                        <div class="form-group row">
-                          <label class="col-sm-3 form-control-label">No Hp/Telepon</label>
-                          <div class="col-sm-9">
-                            <input id="inputHorizontalSuccess" type="text" name="pengguna_telepon" placeholder="" class="form-control form-control-success">
-                          </div>
-                        </div>
-                        <div class="form-group row">
                           <label class="col-sm-3 form-control-label">Pilih Instansi</label>
                           <div class="col-sm-9">
                             <select name="id_instansi" class="form-control mb-3" required>
@@ -70,6 +52,24 @@
                                  <option value="Null">Non Instansi</option>
                             </select>
                           <small class="form-text">Jika pilihan instansi tidak ada <a href="" data-toggle="modal" data-target="#ModalTambah">klik disini</a></small>
+                          </div>
+                        </div>
+                      <div class="form-group row">
+                          <label class="col-sm-3 form-control-label">Nama</label>
+                          <div class="col-sm-9">
+                            <input id="inputHorizontalSuccess" type="text" name="pengguna_nama" placeholder="" class="form-control form-control-success">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label class="col-sm-3 form-control-label">Email</label>
+                          <div class="col-sm-9">
+                            <input id="inputHorizontalSuccess" type="text" name="pengguna_email" placeholder="" class="form-control form-control-success">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label class="col-sm-3 form-control-label">No Hp/Telepon</label>
+                          <div class="col-sm-9">
+                            <input id="inputHorizontalSuccess" type="text" name="pengguna_telepon" placeholder="" class="form-control form-control-success">
                           </div>
                         </div>
                         <div class="form-group row">

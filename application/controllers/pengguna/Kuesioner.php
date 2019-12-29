@@ -53,13 +53,14 @@ class Kuesioner extends CI_Controller {
 		);	
 		$this->m_master->inputData($data,'instansi');
 
+		$prodiID = $this->session->userdata('prodiID');
 		$data = array(
 			'role' => $this->session->userdata('role'),
 			'userID' => $this->session->userdata('userID'),
 			'kuesioner' => $this->m_kuesioner->getKuesionerPengguna($prodiID),
 			'penggunaID' => Null,
 			'prodiID' => $prodiID,
-			'instansi' => $this->m_master->getInstansi(),
+			'instansi' => $this->m_master->getInstansi($prodiID),
 			'nama_instansi' => $this->input->post('nama_instansi'),
 		);
 

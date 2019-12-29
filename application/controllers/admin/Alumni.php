@@ -246,6 +246,11 @@ class Alumni extends CI_Controller {
 		'id' => $id
 		);
 		$this->m_master->deleteData($where,'alumni');
+
+		$where = array(
+		'respondenID' => $id
+		);
+		$this->m_master->deleteData($where,'notif_kuesioner');
 		redirect('admin/Alumni');
 	}
 

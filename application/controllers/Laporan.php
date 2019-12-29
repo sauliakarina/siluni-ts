@@ -99,7 +99,7 @@ class Laporan extends CI_Controller {
 			'role' => $this->session->userdata('role'),
 			'userID' => $this->session->userdata('userID'),
 			'prodiID' => $prodiID,
-			'grafik' => $this->m_hasil->getHasilPengguna($pertanyaanID, $prodiID),
+			'grafik' => $this->m_hasil->getHasilPengguna($pertanyaanID, $prodiID, $pertanyaanID),
 			'label' => $this->m_hasil->getPilihanJawabanByPertanyaanID($pertanyaanID),
 			'pertanyaan' => $this->m_kuesioner->getPertanyaanByPertanyaanID($pertanyaanID),
 			'tabel' => $this->m_hasil->getJawabanPenggunaByPertanyaanID($pertanyaanID),
@@ -251,10 +251,10 @@ class Laporan extends CI_Controller {
 		} else {
 			if ($tahun_lulus == "") {
 				$tabel = $this->m_hasil->getJawabanByPertanyaanSkalaID($pertanyaanSkalaID);
-				$grafik = $this->m_hasil->getHasilAlumniSkala($pertanyaanSkalaID, $prodiID);
+				$grafik = $this->m_hasil->getHasilAlumniSkala($pertanyaanSkalaID, $prodiID, $pertanyaanID);
 			} else {
 				$tabel = $this->m_hasil->getJawabanByPertanyaanSkalaTahun($pertanyaanSkalaID, $tahun_lulus);
-				$grafik = $this->m_hasil->getHasilAlumniSkalaTahun($pertanyaanSkalaID, $prodiID, $tahun_lulus);
+				$grafik = $this->m_hasil->getHasilAlumniSkalaTahun($pertanyaanSkalaID, $prodiID, $tahun_lulus, $pertanyaanID);
 			}
 			$data = array(
 				'role' => $this->session->userdata('role'),
@@ -285,7 +285,7 @@ public function laporanPenggunaSkala()
 			'role' => $this->session->userdata('role'),
 			'userID' => $this->session->userdata('userID'),
 			'prodiID' => $prodiID,
-			'grafik' => $this->m_hasil->getHasilPenggunaSkala($pertanyaanSkalaID, $prodiID),
+			'grafik' => $this->m_hasil->getHasilPenggunaSkala($pertanyaanSkalaID, $prodiID, $pertanyaanID),
 			'label' => $this->m_hasil->getSkalaByPertanyaanID($pertanyaanID),
 			'pertanyaan' => $this->m_kuesioner->getPertanyaanByPertanyaanID($pertanyaanID),
 			'pertanyaanSkala' => $this->m_kuesioner->getPertanyaanSkalaByID($pertanyaanSkalaID),

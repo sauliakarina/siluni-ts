@@ -88,6 +88,7 @@ class M_hasil extends CI_Model{
 		$this->db->select('jawaban, pilihan, COUNT(*) AS "num"');
 		$this->db->where('jawaban_alumni.pertanyaanID', $pertanyaanID);
 		$this->db->where('alumni.prodiID', $prodiID);
+		$this->db->where('pilihan_jawaban.pertanyaanID', $pertanyaanID);
 		$this->db->where('jawaban_alumni.jawaban !=', "");
 		$this->db->where('jawaban_alumni.tambahanJawaban', "tidak");
 		$this->db->join('pilihan_jawaban', 'jawaban_alumni.jawaban = pilihan_jawaban.pilihan', 'left');
@@ -107,6 +108,7 @@ class M_hasil extends CI_Model{
 		$this->db->select('jawaban, pilihan, COUNT(*) AS "num"');
 		$this->db->where('jawaban_pengguna.pertanyaanID', $pertanyaanID);
 		$this->db->where('pengguna.prodiID', $prodiID);
+		$this->db->where('pilihan_jawaban.pertanyaanID', $pertanyaanID);
 		$this->db->where('jawaban_pengguna.jawaban !=', "");
 		$this->db->join('pilihan_jawaban', 'jawaban_pengguna.jawaban = pilihan_jawaban.pilihan', 'left');
 		$this->db->join('pengguna', 'jawaban_pengguna.penggunaID = pengguna.id', 'left');
@@ -125,6 +127,7 @@ class M_hasil extends CI_Model{
 		$this->db->select('jawaban, pilihan, COUNT(*) AS "num"');
 		$this->db->where('jawaban_alumni.pertanyaanID', $pertanyaanID);
 		$this->db->where('alumni.prodiID', $prodiID);
+		$this->db->where('pilihan_jawaban.pertanyaanID', $pertanyaanID);
 		$this->db->where('jawaban_alumni.jawaban !=', "");
 		$this->db->where('alumni.tahun_lulus', $tahun_lulus);
 		$this->db->join('pilihan_jawaban', 'jawaban_alumni.jawaban = pilihan_jawaban.pilihan', 'left');
@@ -139,12 +142,13 @@ class M_hasil extends CI_Model{
         };
 	}
 
-	public function getHasilAlumniSkalaTahun($pertanyaanSkalaID, $prodiID, $tahun_lulus)
+	public function getHasilAlumniSkalaTahun($pertanyaanSkalaID, $prodiID, $tahun_lulus, $pertanyaanID)
 	{
 		$this->db->select('jawaban, nilai, COUNT(*) AS "num"');
 		$this->db->where('jawaban_alumni.pertanyaanSkalaID', $pertanyaanSkalaID);
 		$this->db->where('alumni.prodiID', $prodiID);
 		$this->db->where('jawaban_alumni.jawaban !=', "");
+		$this->db->where('skala_nilai.pertanyaanID', $pertanyaanID);
 		$this->db->where('alumni.tahun_lulus', $tahun_lulus);
 		$this->db->join('skala_nilai', 'jawaban_alumni.jawaban = skala_nilai.nilai', 'left');
 		$this->db->join('alumni', 'jawaban_alumni.alumniID = alumni.id', 'left');
@@ -158,12 +162,13 @@ class M_hasil extends CI_Model{
         };
 	}
 
-	public function getHasilAlumniSkala($pertanyaanSkalaID, $prodiID)
+	public function getHasilAlumniSkala($pertanyaanSkalaID, $prodiID, $pertanyaanID)
 	{
 		$this->db->select('jawaban, nilai, COUNT(*) AS "num"');
 		$this->db->where('jawaban_alumni.pertanyaanSkalaID', $pertanyaanSkalaID);
 		$this->db->where('alumni.prodiID', $prodiID);
 		$this->db->where('jawaban_alumni.jawaban !=', "");
+		$this->db->where('skala_nilai.pertanyaanID', $pertanyaanID);
 		$this->db->join('skala_nilai', 'jawaban_alumni.jawaban = skala_nilai.nilai', 'left');
 		$this->db->join('alumni', 'jawaban_alumni.alumniID = alumni.id', 'left');
 		$this->db->group_by('jawaban');
@@ -176,12 +181,13 @@ class M_hasil extends CI_Model{
         };
 	}
 
-	public function getHasilPenggunaSkala($pertanyaanSkalaID, $prodiID)
+	public function getHasilPenggunaSkala($pertanyaanSkalaID, $prodiID, $pertanyaanID)
 	{
-		$this->db->select('jawaban, nilai, COUNT(*) AS "num"');
+		$this->db->select('jawaban, nilai, jawaban_pengguna.penggunaID AS idpengguna, pertanyaanSkalaID, COUNT(*) AS "num"');
 		$this->db->where('jawaban_pengguna.pertanyaanSkalaID', $pertanyaanSkalaID);
 		$this->db->where('pengguna.prodiID', $prodiID);
 		$this->db->where('jawaban_pengguna.jawaban !=', "");
+		$this->db->where('skala_nilai.pertanyaanID', $pertanyaanID);
 		$this->db->join('skala_nilai', 'jawaban_pengguna.jawaban = skala_nilai.nilai', 'left');
 		$this->db->join('pengguna', 'jawaban_pengguna.penggunaID = pengguna.id', 'left');
 		$this->db->group_by('jawaban');
@@ -193,6 +199,7 @@ class M_hasil extends CI_Model{
             return $hasil;
         };
 	}
+
 
 
 	public function getJawabanByPertanyaanTahun($pertanyaanID, $tahun_lulus){

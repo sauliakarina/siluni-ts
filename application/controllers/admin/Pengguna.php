@@ -93,6 +93,10 @@ class Pengguna extends CI_Controller {
 		'id' => $id
 		);
 		$this->m_master->updateData($where,$data,'pengguna');
+		$where = array(
+		'respondenID' => $id
+		);
+		$this->m_master->deleteData($where,'notif_kuesioner');
 		redirect('admin/Pengguna');
 	}
 

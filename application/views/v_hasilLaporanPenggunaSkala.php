@@ -56,13 +56,16 @@
                       for ($i=count($jumlahPilihan); $i <count($json); $i++) { 
                         $labelVer2[] = $json[$i];
                       }
+                     /* foreach ($jumlah as $k) {
+                        echo $k;
+                      }*/
                       ?>
                     </div>
                       <div class="row" style="margin-top: 20px" >
                         <div class="table-responsive col-lg-12" >                       
                         <table id="myTable" class="table table-striped table-hover">
                           <thead>
-                            <tr>
+                             <tr>
                               <th>No</th>
                               <th>Nama Pengguna Alumni</th>
                               <th>Divisi</th>
@@ -123,7 +126,7 @@
               "select": true,
               dom: 'Bfrtip',
               buttons: [
-                  'copy', 'excel'
+                  'copy', 'excel', 'print'
               ]
             }); //input fungsi
         });
