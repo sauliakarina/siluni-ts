@@ -5,13 +5,6 @@
               <h2 class="no-margin-bottom">Data Alumni</h2>
             </div>
           </header>
-          <!-- Breadcrumb-->
-          <div class="breadcrumb-holder container-fluid">
-            <ul class="breadcrumb">
-              <li class="breadcrumb-item"><a href="index.html">Beranda</a></li>
-              <li class="breadcrumb-item active">Data</li>
-            </ul>
-          </div>
           <section class="tables">   
             <div class="container-fluid">
               <div class="row">

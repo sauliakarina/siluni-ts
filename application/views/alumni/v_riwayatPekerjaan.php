@@ -7,13 +7,7 @@
               <h2 class="no-margin-bottom">Riwayat Pekerjaan</h2>
             </div>
           </header>
-           <!-- Breadcrumb-->
-          <div class="breadcrumb-holder container-fluid">
-            <ul class="breadcrumb">
-              <li class="breadcrumb-item"><a href="<?php echo site_url('alumni/Profil/biodata') ?>">Data Diri</a></li>
-              <li class="breadcrumb-item active"><a href="<?php echo site_url('alumni/Profil/riwayatPekerjaan') ?>">Riwayat Pekerjaan</a></li>
-            </ul>
-          </div>
+          
           <!-- marquee -->
           <div class="alert alert-success alert-dismissible" role="alert" style="height: 60px">
             <button type="button" onclick="this.parentNode.parentNode.removeChild(this.parentNode);" class="close" data-dismiss="alert"><span aria-hidden="true">×</span></button><marquee><p style="font-family:; font-size: 18pt">Harap lengkapi data riwayat pekerjaan anda</p></marquee>
@@ -26,7 +20,7 @@
                   <div class="card">
                     <div class="card-header d-flex align-items-center">
                       <h3 class="h4">Riwayat Pekerjaan Anda</h3>
-                      <a type="button" class="btn btn-primary ml-auto btn-sm" href="<?php echo site_url('alumni/Profil/tambahRiwayat') ?>" ><i class="fas fa-plus-circle"></i> Tambah</a>
+                      <!-- <a type="button" class="btn btn-primary ml-auto btn-sm" href="<?php echo site_url('alumni/Profil/tambahRiwayat') ?>" ><i class="fas fa-plus-circle"></i> Tambah</a> -->
                     </div>
                     <div class="card-body">
                       <div class="table-responsive">                       
@@ -36,7 +30,6 @@
                               <th>No</th>
                               <th>Instansi</th>
                               <th>Profesi</th>
-                              <th>Divisi</th>
                               <th>Pendapatan per Bulan</th>
                               <th></th>
                             </tr>
@@ -50,7 +43,6 @@
                               <th scope="row"><?php echo $no++ ?></th>
                               <td><?php echo $this->m_master->getInstansiByID($r->id_instansi)->nama_instansi ?></td>
                               <td><?php echo $r->posisi ?></td>
-                              <td><?php echo $r->divisi ?></td>
                               <td><?php echo $r->gaji ?></td>
                               <td>
                                 <div class="btn-group btn-group-toggle">

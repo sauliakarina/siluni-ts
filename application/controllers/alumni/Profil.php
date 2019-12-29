@@ -3,7 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Profil extends CI_Controller {
 	function __construct(){
-		parent::__construct();		
+		parent::__construct();	
+		if($_SESSION["logged_in"] != 'login') {
+			redirect(base_url("login"));
+		}	
 		$this->load->model('m_alumni');
 		$this->load->model('m_master');
 		$this->load->model('m_pengguna');
@@ -50,7 +53,7 @@ class Profil extends CI_Controller {
 			'role' => $this->session->userdata('role'),
 			'userID' => $this->session->userdata('userID'),
 			'prodiID' => $this->session->userdata('prodiID'),
-			'instansi' => $this->m_master->getInstansiByProdiID($this->session->userdata('prodiID')),
+			'instansi' => $this->m_master->getInstansi($this->session->userdata('prodiID')),
 			'divisi' => $this->m_master->getDivisi(),
 			'nama_instansi' => ''
 		);
@@ -67,7 +70,7 @@ class Profil extends CI_Controller {
 			'role' => $this->session->userdata('role'),
 			'userID' => $this->session->userdata('userID'),
 			'prodiID' => $this->session->userdata('prodiID'),
-			'instansi' => $this->m_master->getInstansi(),
+			'instansi' => $this->m_master->getInstansi($this->session->userdata('prodiID')),
 			'divisi' => $this->m_master->getDivisi(),
 			'p' => $this->m_pengguna->joinPenggunaPekerjaanByPekerjaanID($id)
 		);
