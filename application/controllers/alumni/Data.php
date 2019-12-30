@@ -180,6 +180,7 @@ class Data extends CI_Controller {
 			'firstPekerjaan' => 'yes',
 			'id_pengguna' => $penggunaID,
 			'id_alumni' => $this->m_alumni->getAlumniByUserID($this->session->userdata('userID'))->id,
+			'periode_kerja' => $this->input->post('p1_1')."-".$this->input->post('p2_1'),
 			'isiPekerjaan' => 'sudah_1'
 		);
 		//pekerjaan belum ada di db update or add
@@ -192,68 +193,121 @@ class Data extends CI_Controller {
 
 		//pekerjaan 2 dst 
 		if ($this->input->post('cek_2') == 'ada') {
-			$instansiID_2 = $this->input->post('instansiID_2');
-			$instansiBaru_2 = $this->input->post('instansiBaru_2');
-			$skalaInstansi_2 = $this->input->post('skalaInstansi_2');
-			$posisi_2 = $this->input->post('posisi_2');
-			$profil_2 = $this->input->post('profil_2');
-			$gaji_2 = $this->input->post('gaji_2');
-			$penggunaID_2 = $this->input->post('penggunaID_2');
-			$pengguna_nama_2 = $this->input->post('pengguna_nama_2');
-			$pengguna_email_2 = $this->input->post('pengguna_email_2');
-			$pengguna_telepon_2 = $this->input->post('pengguna_telepon_2');
-			$divisi_2 = $this->input->post('divisi_2');
-			$id_2 = $this->input->post('id_2');
 
-			foreach ($instansiBaru_2 as $a) {
-				foreach ($skalaInstansi_2 as $b) {
-					if ($a != "") {
+			for($j=2 ; $j < $this->input->post('jumlah_loop'); $j++) {
+				
+				$instansiID_2 = $this->input->post('instansiID_'.$j);
+				$instansiBaru_2 = $this->input->post('instansiBaru_'.$j);
+				$skalaInstansi_2 = $this->input->post('skalaInstansi_'.$j);
+				$posisi_2 = $this->input->post('posisi_'.$j);
+				$profil_2 = $this->input->post('profil_'.$j);
+				$gaji_2 = $this->input->post('gaji_'.$j);
+				$penggunaID_2 = $this->input->post('penggunaID_'.$j);
+				$pengguna_nama_2 = $this->input->post('pengguna_nama_'.$j);
+				$pengguna_email_2 = $this->input->post('pengguna_email_'.$j);
+				$pengguna_telepon_2 = $this->input->post('pengguna_telepon_'.$j);
+				$divisi_2 = $this->input->post('divisi_$j'.$j);
+				$id_2 = $this->input->post('id_'.$j);
+				$periode_2 = $this->input->post('p1_'.$j)."-".$this->input->post('p2_'.$j);
+ 
+				//input instansi
+				if ($instansiID_2 != "") {
+					$instansiID = $instansiID_2;
+					$data = array(
+						"jenis_instansi" => $skalaInstansi_2
+					);
+					$where = array('id' => $instansiID_2);
+					$this->m_master->updateData($where, $data, 'instansi');
+				} elseif ($instansiBaru_2 != "") {
 					$newInstansi = array(
-						'nama_instansi' => $a,
-						'jenis_instansi' => $b,
+						'nama_instansi' => $instansiBaru_2,
+						'jenis_instansi' => $skalaInstansi_2,
 						'prodiID' => $this->session->userdata('prodiID'),
 					);
 					$this->m_master->inputData($newInstansi,'instansi');
-					}
+					$instansiID = $this->m_master->getInstansiByName($instansiBaru_2)->id;
 				}
-			}
+				//input pengguna
+				//pengguna pekerjaan kedua
+				if ($pengguna_nama_2 != "") {
+					//generate customID kuesioner
+					$id_length = 8;
+					$id_found = false;
+					$possible_chars = "23456789BCDFGHJKMNPQRSTVWXYZ"; 
+					while (!$id_found) {  
+					    $customID = "";  
+					    $i = 0;  
+					    while ($i < $id_length) {  
+					        $char = substr($possible_chars, mt_rand(0, strlen($possible_chars)-1), 1);  
+					        $customID .= $char;   
+					        $i++;   
+					    }  
+					    $where = array( 'customID' => $customID);
+					    $cek = $this->m_master->cekData("kuesioner",$where)->num_rows();
+					    if ($cek == 0) {
+					    	$id_found = true;
+					    }
+					}  //tutup while
+					$data = array(
+						'pengguna_nama' => $pengguna_nama_2,
+						'divisi' => $divisi_2,
+						'pengguna_email' => $pengguna_email_2,
+						'pengguna_telepon' => $pengguna_telepon_2,
+						'prodiID' => $this->session->userdata('prodiID'),
+						'id_instansi' => $instansiID,
+						'penggunaID' => $customID
+					);
+					$this->m_master->inputData($data,'pengguna');
+					$penggunaID = $this->m_pengguna->getPenggunaByCustomID($customID)->id;
+				} elseif ($penggunaID_2 != "") {
+					$penggunaID = $penggunaID_2;
+				}
 
+				//data pekerjaan kedua dst
+				$data = array(
+					'id_instansi' => $instansiID,
+					'posisi' => $posisi_2,
+					'profil' => $profil_2,
+					'gaji' => $gaji_2,
+					'id_pengguna' => $penggunaID,
+					'id_alumni' => $this->m_alumni->getAlumniByUserID($this->session->userdata('userID'))->id,
+					'periode_kerja' => $periode_2,
+					'isiPekerjaan' => 'sudah_2'
+				);
+				$where = array('id' => $id_2);
+				$this->m_master->updateData($where, $data, 'pekerjaan');
+
+			/*	echo "instansiID_2 :".$instansiID_2."<br>";
+				echo "instansiBaru_2 :".$instansiBaru_2."<br>";
+				echo "skalaInstansi_2 :".$skalaInstansi_2."<br>";
+				echo "posisi_2 :".$posisi_2."<br>";
+				echo "profil_2 :".$profil_2."<br>";
+				echo "gaji_2 :".$gaji_2."<br>";
+				echo "penggunaID_2 :".$penggunaID_2."<br>";
+				echo "pengguna_nama_2 :".$pengguna_nama_2."<br>";*/
+			}
+				
 		} //if pekerjaan 2 dst
 
+
 		redirect('alumni/Beranda');
-	}
+}
 
 	public function testing (){
-		$instansiID_2 = $this->input->post('instansiID_2');
-		$instansiBaru_2 = $this->input->post('instansiBaru_2');
-		$skalaInstansi_2 = $this->input->post('skalaInstansi_2');
-		$posisi_2 = $this->input->post('posisi_2');
-		$profil_2 = $this->input->post('profil_2');
-		$gaji_2 = $this->input->post('gaji_2');
-		$penggunaID_2 = $this->input->post('penggunaID_2');
-		$pengguna_nama_2 = $this->input->post('pengguna_nama_2');
-		$pengguna_email_2 = $this->input->post('pengguna_email_2');
-		$pengguna_telepon_2 = $this->input->post('pengguna_telepon_2');
-		$divisi_2 = $this->input->post('divisi_2');
-		$id_2 = $this->input->post('id_2');
-
-		$data = array(
-			'role' => $this->session->userdata('role'),
-			'userID' => $this->session->userdata('userID'),
-			'prodiID' => $this->session->userdata('prodiID'),
-			'instansiID_2' => $instansiID_2,
-			'skalaInstansi_2' => $skalaInstansi_2,
-			'posisi_2' => $posisi_2,
-			'profil_2' => $profil_2,
-			'gaji_2' => $gaji_2,
-			'penggunaID_2' => $penggunaID_2,
-			'pengguna_nama_2' => $pengguna_nama_2,
-			'instansiBaru_2' => $instansiBaru_2
-		);
-		$this->load->view('element/head');
+		/*$this->load->view('element/head');
 		$this->load->view('element/header');
-		$this->load->view('element/navbar', $data);
-		$this->load->view('alumni/v_testing', $data);
+		$this->load->view('element/navbar');
+		$this->load->view('alumni/v_testing');
+		$this->load->view('element/footer');
+	}
+
+	public function exeTesting (){
+		$instansiID_2 = $this->input->post('instansiID_2');
+
+		/*$this->load->view('element/head');
+		$this->load->view('element/header');
+		$this->load->view('element/navbar');*/
+		$this->load->view('alumni/v_testing', $instansiID_2);
 		$this->load->view('element/footer');
 	}
 }

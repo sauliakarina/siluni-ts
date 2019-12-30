@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row" style="margin-top: 30px">
         <div class="col-md-12">
-               <h4>Data Tracer Study <?php echo $this->m_master->getProdiByID($prodiID)->nama_prodi; ?></h4>
+               <h4>Statistik Alumni Program Studi <?php echo $this->m_master->getProdiByID($prodiID)->nama_prodi; ?></h4>
       </div><!-- col-12 -->
     </div> <!-- row -->
 <?php
@@ -36,6 +36,7 @@ $pendidik = $this->m_hasil->getProfilLulusan('Pendidik',$prodiID);
           <div class="card">
             <center><h4 style="margin-top: 20px"></h4></center>
           <div class="card-body">
+
             <div class="row">
               <div class="col-md-2"></div>
               <div class="col-md-8"> 
@@ -44,9 +45,20 @@ $pendidik = $this->m_hasil->getProfilLulusan('Pendidik',$prodiID);
                       <canvas id="myChart"></canvas>
                     </div>
               </div>
+               <div class="col-md-2"></div>
             </div> <!-- row -->
-            <div class="col-md-2"></div>
-            <div class="row"  style="margin-top: 60px">
+          </div> <!-- carod body -->
+        </div>
+        </div><!-- col-12 -->
+      </div> <!-- row -->
+
+
+<div class="row" style="margin-top: 40px">
+  <div class="col-md-12">
+      <div class="card">
+          <center><h4 style="margin-top: 20px"></h4></center>
+          <div class="card-body">
+             <div class="row"  style="margin-top: 60px">
                <div class="col-md-2"></div>
                 <div class="col-md-8">
                    <center><h5><b>Penghasilan Pertama</b></h5></center>
@@ -57,8 +69,12 @@ $pendidik = $this->m_hasil->getProfilLulusan('Pendidik',$prodiID);
               </div>
                <div class="col-md-2"></div>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-            <div class="row"  style="margin-top: 60px">
+           <!--  <div class="row"  style="margin-top: 60px">
                <div class="col-md-2"></div>
               <div class="col-md-8">
                 <center><h5><b>Profil Lulusan</b></h5></center>
@@ -67,12 +83,9 @@ $pendidik = $this->m_hasil->getProfilLulusan('Pendidik',$prodiID);
                   </div>
               </div>
                <div class="col-md-2"></div>
-            </div>
-          </div>
-        </div>
-        </div><!-- col-12 -->
-        
-      </div> <!-- row -->
+            </div> -->
+
+
     </div><!-- Container -->
     <script>
       $(document).ready(function(){
