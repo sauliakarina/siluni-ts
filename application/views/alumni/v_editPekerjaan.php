@@ -86,6 +86,34 @@
                           </div>
                         </div>
                         <div class="line"></div>
+                         <div class="form-group row">       
+                          <label class="col-sm-3 form-control-label">Periode Kerja</label>
+                           <div class="col-sm-9">
+                            <div class="row">
+                               <?php 
+                                if($p->periode_kerja == NULL ){ ?>
+                                  <div class="col-md-5">
+                                      <input type="text" class="form-control" name="p1">
+                                    </div>
+                                    <div class="col-md-2"><p style="text-align: center;font-size: 15px">Sampai</p></div>
+                                    <div class="col-md-5">
+                                      <input type="text" name="p2" class="form-control">
+                                    </div>
+                                <?php  } else { 
+                                  $periode = explode("-",$p->periode_kerja);?>
+                                  <div class="col-md-5">
+                                      <input type="text" class="form-control" name="p1" value="<?php echo $periode[0] ?>">
+                                    </div>
+                                    <div class="col-md-2"><p style="text-align: center;font-size: 15px">Sampai</p></div>
+                                    <div class="col-md-5">
+                                      <input type="text" name="p2" class="form-control" value="<?php echo $periode[1] ?>">
+                                    </div>
+                                <?php } ?>
+                             </div>
+                            </div>
+                          </div>
+
+                      <div class="line"></div>
                      <?php if ($this->m_pengguna->getPenggunaByID($p->id_pengguna)->pengguna_nama == NULL) { ?>
                           <p>Pilih Pengguna Alumni Sesuai dengan Divisi anda</p>
                           <div class="table-responsive">                       

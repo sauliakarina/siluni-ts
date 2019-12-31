@@ -177,7 +177,7 @@ class Pengguna extends CI_Controller {
 			$where = array('id' => $p);
 			$this->m_master->updateData($where,$data,'pengguna');
 		}
-		redirect('admin/Pengguna');
+		redirect('admin/Pengguna/getNewPengguna');
 	}
 
 }

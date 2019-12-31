@@ -31,6 +31,7 @@
                               <th>Instansi</th>
                               <th>Profesi</th>
                               <th>Pendapatan per Bulan</th>
+                              <th>Periode</th>
                               <th></th>
                             </tr>
                           </thead>
@@ -44,6 +45,7 @@
                               <td><?php echo $this->m_master->getInstansiByID($r->id_instansi)->nama_instansi ?></td>
                               <td><?php echo $r->posisi ?></td>
                               <td><?php echo $r->gaji ?></td>
+                              <td><?php echo $r->periode_kerja ?></td>
                               <td>
                                 <div class="btn-group btn-group-toggle">
                                 <?php if ($r->pengguna_nama == Null) { ?>
