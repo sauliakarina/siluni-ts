@@ -26,6 +26,45 @@
             </div>
           </section>
 
+      <section class="tables no-padding-bottom">   
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="card">
+                <div class="card-header d-flex align-items-center">
+                  <h5 class="h4">Alumni kami yang bekerja pada <?php echo $this->m_master->getInstansiByID($instansiID)->nama_instansi; ?></h5>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>No</th>
+                          <th>Nama</th>
+                          <th>Posisi</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php $alumni = $this->m_pengguna->joinPekerjaanAlumniByPenggunaID($penggunaID);
+                          $no = 1;
+                          foreach ($alumni as $a) {
+                         ?>
+                        <tr>
+                          <th scope="row"><?php echo $no++; ?></th>
+                          <td><?php echo $a->nama ?></td>
+                          <td><?php echo $a->posisi ?></td>
+                        </tr>
+                      <?php } ?>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
          <!-- Forms Section-->
           <section class="forms"> 
             <div class="container-fluid">

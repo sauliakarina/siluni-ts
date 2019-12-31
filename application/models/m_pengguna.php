@@ -143,8 +143,9 @@ class M_pengguna extends CI_Model{
 	 function getPenggunaBySeen($seen, $prodiID)
 	{
 		$this->db->select('*');
-		$this->db->where('seen', '0');
+		$this->db->where('seen',$seen);
 		$this->db->where('prodiID', $prodiID);
+		$this->db->where('isDelete', 'no');
 		$query = $this->db->get('pengguna');
 		if($query->num_rows()>0)
 		{

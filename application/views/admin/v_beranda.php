@@ -16,12 +16,21 @@
                 <div class="col-xl-4 col-sm-6">
                   <div class="item d-flex align-items-center">
                     <div class="icon bg-violet"><i class="icon-user"></i></div>
-                    <div class="title"><span>Pengguna<br> Alumni</span>
-                    </div>
                     <?php 
-                    $newPengguna = $this->m_master->getPenggunaByProdiSeen('0',$this->session->userdata('prodiID')); ?>
-                    <a <?php if ($newPengguna == 0) { ?> href="#" <?php } else {?> href="<?php echo site_url('admin/Pengguna/getNewPengguna/'.$newPengguna) ?>" <?php } ?>><div class="number" style="color: green;"><strong><?php echo $newPengguna ?></strong>
-                  </div></a>
+                    $newPengguna = $this->m_master->getPenggunaByProdiSeen('0',$this->session->userdata('prodiID')); 
+                    $allPengguna = $this->m_master->countAllPengguna($this->session->userdata('prodiID'));
+                    ?>
+                    <a href="<?php echo site_url('admin/Pengguna/getNewPengguna/') ?>">
+                      <div class="title"><span>Pengguna<br> Alumni</span></div>
+                    <div class="number" style="color: green;"><strong>
+                      <?php if ($newPengguna != 0) { ?>
+                      <span class="badge badge-pill badge-danger" style="size: 10px">New</span>
+                      <?php } else { 
+                        echo $allPengguna;
+                      }?>
+                    </strong>
+                    </a>
+                  </div>
                   </div>
                 </div>
                 <!-- Item -->

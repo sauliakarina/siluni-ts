@@ -56,8 +56,15 @@ class Pengguna extends CI_Controller {
 			$where = array('id' => $a->id);
 			$this->m_master->updateData($where,$data,'pekerjaan');
 		}
-
 		$prodiID = $this->session->userdata('prodiID');
+		//update seen di table pengguna
+		$data = array(
+			'seen' => '1'
+		);
+		$where = array('id' => $penggunaID);
+		$this->m_master->updateData($where,$data,'pengguna');
+		
+		
 		$data = array(
 			'role' => $this->session->userdata('role'),
 			'userID' => $this->session->userdata('userID'),
@@ -73,7 +80,7 @@ class Pengguna extends CI_Controller {
 	}
 
 
-	public function getNewPengguna($num) {
+	public function getNewPengguna() {
 		
 		//update data seen
 		$prodiID = $this->session->userdata('prodiID');
@@ -83,13 +90,13 @@ class Pengguna extends CI_Controller {
 			$where = array('id' => $p->id);
 			$this->m_master->updateData($where,$data,'pengguna');
 		}
-*/
+		*/
 		$data = array(
 			'role' => $this->session->userdata('role'),
 			'userID' => $this->session->userdata('userID'),
 			'prodiID' => $prodiID,
-			'num' => $num,
-			'pengguna' => $this->m_pengguna->getPenggunaInstansi($prodiID)
+			'penggunaBaru' => $this->m_pengguna->getPenggunaBySeen('0', $prodiID),
+			'penggunaLama' => $this->m_pengguna->getPenggunaBySeen('1', $prodiID)
 		);
 
 		$this->load->view('element/head');

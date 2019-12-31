@@ -163,6 +163,15 @@ class M_master extends CI_Model{
 
 	}
 
+	function countAllPengguna($prodiID) {
+		$this->db->select('*');
+		$this->db->where('isDelete', 'no');
+		$this->db->where('prodiID', $prodiID);
+		$query = $this->db->get('pengguna');
+		return $query->num_rows();
+
+	}
+
 	function getBerandaPenggunaByProdi($prodiID)
 	{
 		$this->db->select('*');

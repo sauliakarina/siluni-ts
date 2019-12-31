@@ -51,7 +51,7 @@
                             <?php 
                             $no = 1;
                             $i = 0; 
-                            foreach (array_slice($pengguna, 0,$num) as $p) { ?>
+                            foreach ($penggunaBaru as $p) { ?>
                             <tr>
                               <th scope="row"><?php echo $no++ ?></th>
                               <td><?php echo $p->pengguna_nama ?></td>
@@ -82,7 +82,7 @@
                             </tr>
                           <?php } ?>
                            <?php
-                              foreach (array_slice($pengguna, $num) as $p) {
+                              foreach ($penggunaLama as $p) {
                                ?>
                               <tr>
                                 <th scope="row"><?php echo $no++ ?></th>
@@ -116,9 +116,7 @@
                                 </div>
 
                               </td>
-                              <td><?php if ($newAlumni != 0) { ?>
-                                <span class="badge badge-pill badge-danger">New</span>
-                                <?php } ?>
+                              <td>
                               </td>
                               </tr>
                             <?php } ?>
