@@ -1,4 +1,4 @@
-<?php
+e<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Data extends CI_Controller {
@@ -170,6 +170,9 @@ class Data extends CI_Controller {
 			$penggunaID = $this->m_pengguna->getPenggunaByCustomID($customID)->id;
 		} elseif ($this->input->post('penggunaID_1') != "") {
 			$penggunaID = $this->input->post('penggunaID_1');
+			$data = array('seen' => '0');
+			$where = array('id' => $penggunaID);
+			$this->m_master->updateData($where, $data, 'pengguna');
 		}
 		//data pekerjaan pertama
 		$data = array(
@@ -261,6 +264,9 @@ class Data extends CI_Controller {
 					$penggunaID = $this->m_pengguna->getPenggunaByCustomID($customID)->id;
 				} elseif ($penggunaID_2 != "") {
 					$penggunaID = $penggunaID_2;
+					$data = array('seen' => '0');
+					$where = array('id' => $penggunaID);
+					$this->m_master->updateData($where, $data, 'pengguna');
 				}
 
 				//data pekerjaan kedua dst

@@ -14,7 +14,7 @@
                 <div class="col-lg-12">
                   <div class="card">
                     <div class="card-header d-flex align-items-center">
-                      <h3 class="h4">Dosen Ilmu Komputer</h3>
+                      <h3 class="h4">Dosen <?php echo $this->m_master->getProdiByID($prodiID)->nama_prodi ?></h3>
                       <button type="button" class="btn btn-primary ml-auto btn-sm"  data-toggle="modal" data-target="#ModalTambah"><i class="fas fa-user-plus"></i> Tambah Data</button>
                     </div>
                     <div class="card-body">

@@ -469,7 +469,7 @@
 
           <div class="form-group row">
                <div class="col-sm-9 offset-sm-3">
-                <button type="submit" value="<?php echo $j ?>" class="btn btn-primary ml-auto">Simpan</button>
+                <button type="submit"  class="btn btn-primary ml-auto">Simpan</button>
                </div>
             </div>
           </form>

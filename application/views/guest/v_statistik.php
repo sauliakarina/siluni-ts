@@ -74,17 +74,26 @@ $pendidik = $this->m_hasil->getProfilLulusan('Pendidik',$prodiID);
       </div>
     </div>
 
-           <!--  <div class="row"  style="margin-top: 60px">
-               <div class="col-md-2"></div>
-              <div class="col-md-8">
-                <center><h5><b>Profil Lulusan</b></h5></center>
-                <div  class="bar-chart has-shadow bg-white">
-                    <canvas id="profilChart"></canvas>
-                  </div>
-              </div>
-               <div class="col-md-2"></div>
-            </div> -->
 
+<div class="row" style="margin-top: 40px">
+  <div class="col-md-12">
+      <div class="card">
+          <center><h4 style="margin-top: 20px"></h4></center>
+          <div class="card-body">
+        <div class="row"  style="margin-top: 60px">
+           <div class="col-md-2"></div>
+          <div class="col-md-8">
+            <center><h5><b>Profil Lulusan</b></h5></center>
+            <div  class="bar-chart has-shadow bg-white">
+                <canvas id="profilChart"></canvas>
+              </div>
+          </div>
+           <div class="col-md-2"></div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     </div><!-- Container -->
     <script>

@@ -45,18 +45,45 @@ class Pengguna extends CI_Controller {
 		$this->load->view('element/footer');
 	}
 
+	public function lihatAlumni($penggunaID)
+	{
+		$newAlumni = $this->m_pengguna->getCountNewAlumniPengguna($penggunaID);
+		$unseenAlumni = $this->m_pengguna->getPekerjaanSeenPengguna($penggunaID, '0');
+		foreach ($unseenAlumni as $a) {
+			$data = array(
+				'seenPengguna' => '1'
+			);
+			$where = array('id' => $a->id);
+			$this->m_master->updateData($where,$data,'pekerjaan');
+		}
+
+		$prodiID = $this->session->userdata('prodiID');
+		$data = array(
+			'role' => $this->session->userdata('role'),
+			'userID' => $this->session->userdata('userID'),
+			'prodiID' => $prodiID,
+			'alumni'=> $this->m_pengguna->joinPekerjaanAlumniByPenggunaID($penggunaID),
+			'newAlumni' => $newAlumni
+		);
+		$this->load->view('element/head');
+		$this->load->view('element/header');
+		$this->load->view('element/navbar', $data);
+		$this->load->view('admin/v_lihatAlumniPengguna', $data);
+		$this->load->view('element/footer');
+	}
+
 
 	public function getNewPengguna($num) {
 		
 		//update data seen
 		$prodiID = $this->session->userdata('prodiID');
 		$pengguna = $this->m_pengguna->getPenggunaBySeen('0',$prodiID);
-		foreach ($pengguna as $p) {
+		/*foreach ($pengguna as $p) {
 			$data = array('seen' => '1');
 			$where = array('id' => $p->id);
 			$this->m_master->updateData($where,$data,'pengguna');
 		}
-
+*/
 		$data = array(
 			'role' => $this->session->userdata('role'),
 			'userID' => $this->session->userdata('userID'),

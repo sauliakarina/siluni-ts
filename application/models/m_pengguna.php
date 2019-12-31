@@ -58,6 +58,15 @@ class M_pengguna extends CI_Model{
 
 	}
 
+	 function getCountNewAlumniPengguna($penggunaID) {
+		$this->db->select('*');
+		$this->db->where('id_pengguna', $penggunaID);
+		$this->db->where('seenPengguna', '0');
+		$query = $this->db->get('pekerjaan');
+		return $query->num_rows();
+
+	}
+
 	function getPenggunaInstansi($prodiID)
 	{
 		$this->db->select('*');
@@ -256,6 +265,32 @@ class M_pengguna extends CI_Model{
       $this->db->where('pekerjaan.id_alumni',$id_alumni);
       $query = $this->db->get();
       return $query->result();
+  	}
+
+
+public function joinPekerjaanAlumniByPenggunaID($penggunaID){
+      $this->db->select('
+          pekerjaan.id AS id_pekerjaan, pekerjaan.*, alumni.id AS id_alumni, alumni.*
+      ');
+      $this->db->join('alumni', 'pekerjaan.id_alumni = alumni.id');
+      $this->db->from('pekerjaan');
+      $this->db->where('pekerjaan.id_pengguna',$penggunaID);
+      $this->db->order_by('pekerjaan.id','DESC');
+      $query = $this->db->get();
+      return $query->result();
+ }  	
+
+public function getPekerjaanSeenPengguna($id_pengguna, $seen){
+		$this->db->select('*');
+		$this->db->where('id_pengguna', $id_pengguna);
+		$this->db->where('seenPengguna', $seen);
+		$query = $this->db->get('pekerjaan');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
   	}
 
   	public function getPekerjaanByPenggunaID($id_pengguna){

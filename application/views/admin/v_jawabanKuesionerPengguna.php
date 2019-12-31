@@ -38,6 +38,7 @@
                               <th>Nama</th>
                               <th>Divisi</th>
                               <th>Instansi</th>
+                            <!--   <th>ID</th> -->
                               <th>Tanggal Pengisian</th>
                               <th>Jawaban</th>
                             </tr>
@@ -59,6 +60,7 @@
                                     }
                               ?>
                               </td>
+                              <!-- <td><?php echo $d->id ?></td> -->
                               <td><?php echo $d->timestamp ?></td>
                               <td>
                                 <form method='' action="<?php echo base_url('admin/Kuesioner/lihatJawabanPengguna/'.$d->id_pengguna) ?>">
