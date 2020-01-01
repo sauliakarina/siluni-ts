@@ -32,13 +32,15 @@ class Profil extends CI_Controller {
 	public function riwayatPekerjaan()
 	{
 		$id_alumni = $this->m_alumni->getAlumniByUserID($this->session->userdata('userID'))->id;
+		$prodiID = $this->session->userdata('prodiID');
 		$data = array(
 			'role' => $this->session->userdata('role'),
 			'userID' => $this->session->userdata('userID'),
-			'prodiID' => $this->session->userdata('prodiID'),
+			'prodiID' => $prodiID,
 			/*'riwayat' => $this->m_alumni->getRiwayatByAlumniID($id_alumni),*/
 			'riwayat' => $this->m_pengguna->joinPekerjaanByPenggunaID($id_alumni),
-			'alumni_pengguna' => $this->m_alumni->getAlumniPengguna($id_alumni)
+			'alumni_pengguna' => $this->m_alumni->getAlumniPengguna($id_alumni),
+			'instansi' => $this->m_master->getInstansi($prodiID),
 		);
 		$this->load->view('element/head');
 		$this->load->view('element/header');
@@ -310,6 +312,24 @@ class Profil extends CI_Controller {
 		$data = $this->m_pengguna->getPenggunaByID($id);
 		echo json_encode($data);
 	}
+
+	public function getPenggunaID(){
+	    // Ambil data ID Provinsi yang dikirim via ajax post
+	    $instansiID = $this->input->post('instansiID');
+	    
+	    $penggunaID = $this->m_pengguna->getPenggunaByInstansiID($instansiID);
+	    
+	    // Buat variabel untuk menampung tag-tag option nya
+	    // Set defaultnya dengan tag option Pilih
+	    $lists = "<option value=''>Pilih</option>";
+	    
+	    foreach($penggunaID as $data){
+	      $lists .= "<option value='".$data->id."'>".$data->pengguna_nama."</option>"; // Tambahkan tag option ke variabel $lists
+	    }
+	    //list_kota = list_pertanyaanSkala
+	    $callback = array('list_penggunaID'=>$lists); // Masukan variabel lists tadi ke dalam array $callback dengan index array : list_kota
+	    echo json_encode($callback); // konversi varibael $callback menjadi JSON
+  }
 
 	public function hapusRiwayat($id){
 		$where = array('id' => $id);

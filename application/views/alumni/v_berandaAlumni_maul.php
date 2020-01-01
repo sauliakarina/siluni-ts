@@ -1,4 +1,4 @@
-<!-- head -->
+  <!-- head -->
          <!-- Side Navbar -->
         <div class="content-inner">
           <!-- Page Header-->
@@ -164,50 +164,73 @@
                                 </form>
                         </div>
 
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- COLLAPSE -->
+
+
         <!-- tab pekerjaan -->
         <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel" aria-labelledby="tabs-icons-text-2-tab">
-           <!-- alert box -->
-          <div class="alert alert-info alert-dismissible" role="alert">
-            <button type="button" onclick="this.parentNode.parentNode.removeChild(this.parentNode);" class="close" data-dismiss="alert"></button>
-           <p style="font-family: verdana; font-size: 11pt">Mohon lengkapi data riwayat pekerjaan anda.</p>
-          </div>
 
-          <h5>Pekerjaan Pertama</h5>
-          <div class="row">
-            <div class="col-md-12">
-            <form class="form-horizontal" method="post" action="<?php echo base_url();?>alumni/Data/exeAddPekerjaan">
-              <!-- <form class="form-horizontal form_pekerjaan" method="post" onsubmit="return cek()"> -->
-              <div class="pekerjaan">
-              <?php 
-              $where = array('id_alumni' => $alumniID);
-              $cek = $this->m_master->cekData("pekerjaan",$where)->num_rows(); 
-              $firstPekerjaan = $this->m_pengguna->getFirstInstansi($alumniID);
-              $pekerjaanAlumni = $this->m_pengguna->getPekerjaanByAlumniID($alumniID);
-              ?>
+
+         <div class="container">
+          
+
+         <?php 
+          $where = array('id_alumni' => $alumniID);
+          $cek = $this->m_master->cekData("pekerjaan",$where)->num_rows(); 
+          $firstPekerjaan = $this->m_pengguna->getFirstInstansi($alumniID);
+          $pekerjaanAlumni = $this->m_pengguna->getPekerjaanByAlumniID($alumniID);
+          ?>
+          <h2><?php echo $this->m_master->getInstansiByID($firstPekerjaan->id_instansi)->nama_instansi ?></h2>
+          <p><?php echo $this->m_master->getInstansiByID($firstPekerjaan->id_instansi)->alamat ?></p>
+          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#pekerjaan_pertama">Lengkapi Data</button>
+          <div id="pekerjaan_pertama" class="collapse">
+            
+            <div class="pekerjaan" style="margin-top: 25px">
+            
+              <form method="post" onsubmit="return exeAddPekerjaan()" class="form_pekerjaan" id="form_pekerjaan">
+
                <div class="form-group row">
                 <label class="col-sm-3 form-control-label">Pilih Instansi</label>
                 <div class="col-sm-9">
                   <select name="instansiID_1" id="id_instansi" class="form-control mb-3">
-                  <?php if ($cek > 0) { ?>
-                  <option value="<?php echo $firstPekerjaan->id_instansi ?>"><?php echo $this->m_master->getInstansiByID($firstPekerjaan->id_instansi)->nama_instansi ?></option>
-                  <?php } else {?>
-                  <option value=""></option>
-                  <?php } ?>
-                   <option value=""></option>
-                  <?php foreach($instansi as $i){ ?>
-                      <option value="<?php echo $i->id ?>"><?php echo $i->nama_instansi ?></option>
-                  <?php } //end foreach  ?>
+                    <?php if ($cek > 0) { ?>
+                    <option value="<?php echo $firstPekerjaan->id_instansi ?>"><?php echo $this->m_master->getInstansiByID($firstPekerjaan->id_instansi)->nama_instansi ?></option>
+                    <?php } else {?>
+                    <option value=""></option>
+                    <?php } ?>
+                     <option value=""></option>
+                    <?php foreach($instansi as $i){ ?>
+                        <option value="<?php echo $i->id ?>"><?php echo $i->nama_instansi ?></option>
+                    <?php } //end foreach  ?>
                   </select>
                   <small class="form-text">Lainnya :</small>
                   <input type="text" class="form-control" name="instansiBaru_1">
                 </div>
               </div>
 
+
               <div class="form-group row">
                 <label class="col-sm-3 form-control-label">Skala Instansi</label>
                 <div class="col-sm-9">
                   <select name="skalaInstansi_1" id="skala_instansi" class="form-control mb-3" required>
-                    <option></option>
+                    <option value="<?php echo $this->m_master->getInstansiByID($firstPekerjaan->id_instansi)->jenis_instansi ?>"><?php echo $this->m_master->getInstansiByID($firstPekerjaan->id_instansi)->jenis_instansi ?></option>
                     <option value="Lokal"> Lokal </option>
                     <option value="Nasional"> Nasional </option>
                     <option value="Internasional"> Internasional </option>
@@ -280,7 +303,8 @@
                   </div>
                 </div>
 
-              <div class="form-group row">
+
+                 <div class="form-group row">
                 <label class="col-sm-3 form-control-label">Pilih Pengguna Alumni</label>
                 <div class="col-sm-9">
                   <select name="penggunaID_1" id="penggunaID" class="form-control mb-3">
@@ -326,164 +350,197 @@
                   </div>
                 </div> <!-- collapse -->
 
-    <!-- pekerjaan kedua dst -->
-    <?php if ($cek > 1) { 
-      $j = 1;
-      $length = 3;
-      foreach (array_slice($pekerjaanAlumni, 1) as $k) {
-        $j++; //mulai dari 2
-    ?>
-      <h5>Pekerjaan Lainnya</h5>
+              
 
-       <div class="form-group row">
-        <label class="col-sm-3 form-control-label">Pilih Instansi</label>
-        <div class="col-sm-9">
-          <select name="instansiID_<?php echo $j; ?>" id="instansiID_2" class="form-control mb-3">
-          <option value="<?php echo $k->id_instansi; ?>"><?php echo $this->m_master->getInstansiByID($k->id_instansi)->nama_instansi ?></option>
-          <option value=""></option>
-          <?php foreach($instansi as $i){ ?>
-              <option value="<?php echo $i->id ?>"><?php echo $i->nama_instansi ?></option>
-          <?php } //end foreach  ?>
-          </select>
-          <small class="form-text">Lainnya :</small>
-          <input type="text" class="form-control" name="instansiBaru_<?php echo $j; ?>">
-        </div>
-      </div>
 
-      <div class="form-group row">
-        <label class="col-sm-3 form-control-label">Skala Instansi</label>
-        <div class="col-sm-9">
-          <select name="skalaInstansi_<?php echo $j; ?>" id="skala_instansi" class="form-control mb-3" required>
-            <option></option>
-            <option value="Lokal"> Lokal </option>
-            <option value="Nasional"> Nasional </option>
-            <option value="Internasional"> Internasional </option>
-          </select>
-        </div>
-      </div>
 
-          <div class="form-group row">
-            <label class="col-sm-3 form-control-label">Profesi</label>
-             <div class="col-sm-9">
-                <input type="text" class="form-control" value="<?php echo $k->posisi ?>" name="posisi_<?php echo $j; ?>" required>
-                <input type="hidden" class="form-control" value="ada" name="cek_2">
-                <input type="hidden" class="form-control" name="id_<?php echo $j; ?>" value="<?php echo $k->id ?>">
-             </div>
-          </div>
-
-          <div class="form-group row">
-            <label class="col-sm-3 form-control-label">Profil Pekerjaan</label>
-            <div class="col-sm-9">
-              <select name="profil_<?php echo $j; ?>" class="form-control mb-3" required>
-                <option></option>
-                <option value="Programmer"> Programmer </option>
-                <option value="Penanggung Jawab Jaringan"> Penanggung Jawab Jaringan </option>
-                <option value="Wirausahawan"> Wirausahawan </option>
-                <option value="Praktisi"> Praktisi </option>
-                <option value="Konsultan"> Konsultan </option>
-                <option value="Perencana SI"> Perencana SI </option>
-                <option value="Peneliti"> Peneliti </option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label  class="col-sm-3 form-control-label">Pendapatan Tiap Bulan</label>
-            <div class="col-sm-9">
-              <select name="gaji_<?php echo $j; ?>" class="form-control mb-3" required>
-                <option value="<?php echo $k->gaji ?>"><?php echo $k->gaji ?></option>
-                <option value="1-5 juta"> Rp 1-5 juta </option>
-                <option value="6-10 juta"> Rp 6-10juta </option>
-                <option value="11-15juta"> Rp 11-15juta </option>
-                <option value="> 15juta"> > Rp 15juta </option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-group row">       
-          <label class="col-sm-3 form-control-label">Periode Kerja</label>
-           <div class="col-sm-9">
-            <div class="row">
-                  <div class="col-md-5">
-                    <input type="text" class="form-control" name="p1_<?php echo $j; ?>">
-                  </div>
-                  <div class="col-md-2"><p style="text-align: center;font-size: 15px">Sampai</p></div>
-                  <div class="col-md-5">
-                    <input type="text" name="p2_<?php echo $j; ?>" class="form-control">
-                  </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label class="col-sm-3 form-control-label">Pilih Pengguna Alumni</label>
-            <div class="col-sm-9">
-              <select name="penggunaID_<?php echo $j; ?>" id="penggunaID_2" class="form-control mb-3">
-
-              <?php 
-                $penggunaInstansi = $this->m_pengguna->getPenggunaByInstansiID($k->id_instansi);
-               foreach ($penggunaInstansi as $p ) { ?>
-                <option value=""></option>
-                <option value="<?php echo $p->id ?>"><?php echo $p->pengguna_nama ?></option>
-               <?php } ?>
-
-              </select>
-              <small class="form-text">Pilih pengguna alumni jika data di atas merupakan pekerjaan saat ini. Jika pilihan pengguna alumni tidak ada <a data-toggle="collapse" href="#collapseExample_<?php echo $j ?>" aria-expanded="false" aria-controls="collapseExample">klik disini</a></small>
-            </div>
-          </div>
-
-           <div class="collapse" id="collapseExample_<?php echo $j ?>">
-            <div class="card card-body">
-              <div class="form-group row">
-              <label class="col-sm-3 form-control-label">Nama Pengguna</label>
-              <div class="col-sm-9">
-                <input type="text" placeholder="" class="form-control form-control-sm" name="pengguna_nama_<?php echo $j; ?>">
-              </div>
-            </div>
-
-            <div class="form-group row">       
-              <label class="col-sm-3 form-control-label">Divisi</label>
-              <div class="col-sm-9">
-                <input type="text" placeholder="" class="form-control form-control-sm" name="divisi_<?php echo $j; ?>">
-              </div>
-            </div>
-            <div class="form-group row">       
-              <label class="col-sm-3 form-control-label">Email</label>
-              <div class="col-sm-9">
-                <input type="text" placeholder="" class="form-control" name="pengguna_email_<?php echo $j; ?>">
-              </div>
-            </div>
-            <div class="form-group row">       
-              <label class="col-sm-3 form-control-label">No HP/Telepon</label>
-              <div class="col-sm-9">
-                <input type="text" placeholder="" class="form-control" name="pengguna_telepon_<?php echo $j; ?>">
-                <?php $jumlah_loop = $length++; ?>
-                <input type="hidden" placeholder="" class="form-control" name="jumlah_loop" value="<?php echo $jumlah_loop ?>">
-              </div>
-            </div>
-            </div>
-          </div> <!-- collapse -->
-      <?php 
-        } //foreach
-      } //if ?>
-
-          <div class="form-group row">
-               <div class="col-sm-9 offset-sm-3">
-                <button type="submit"  class="btn btn-primary ml-auto">Simpan</button>
-               </div>
-            </div>
+            </div> <!-- end div class pekerjaan -->
+              <button type="submit">Simpan</button>
           </form>
+          </div>
+        </div>
 
-     <div class="form-group row" style="float: left;">
-      <div class="col-sm-9 offset-sm-3">
-        <button class="btn btn-info add">+Pekerjaan</button>
-       </div>
-    </div>
-  </div> <!-- col md 6 -->
-  </div> <!-- row -->
-          
-  </div> <!-- div id pekerjaan -->
+        <hr>
+
+
+
+<!-- END COLLAPSE -->
+
+
+<!-- START COLLAPSE KE 2 -->
+
+
+      <?php if ($cek > 1) { 
+        $pekerjaanAlumni = $this->m_pengguna->getPekerjaanByAlumniID($alumniID);
+          $j = 1;
+          $length = 3;
+          foreach (array_slice($pekerjaanAlumni, 1) as $k) {
+            $j++; //mulai dari 2
+            $alamat = $this->m_master->getInstansiByID($k->id_instansi)->alamat;
+        ?>
+
+      <div class="container">
+
+          <h2><?php echo $this->m_master->getInstansiByID($k->id_instansi)->nama_instansi ?></h2>
+          <p><?php if(is_null($alamat)) {
+            echo "<font color='red'>Alamat instansi tidak terdaftar</font>";
+          }  
+          else {
+            echo $alamat;
+          }?></p>
+          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo_<?= $j ?>">Lengkapi Data</button>
+         
+          <div id="demo_<?= $j ?>" class="collapse">
+            
+            <div class="pekerjaan" style="margin-top: 25px">
+            
+               <!-- pekerjaan kedua dst -->
+
+                 <div class="form-group row">
+                  <label class="col-sm-3 form-control-label">Pilih Instansi</label>
+                  <div class="col-sm-9">
+                    <select name="instansiID_<?php echo $j; ?>" id="instansiID_2" class="form-control mb-3">
+                    <option value="<?php echo $k->id_instansi; ?>"><?php echo $this->m_master->getInstansiByID($k->id_instansi)->nama_instansi ?></option>
+                    <option value=""></option>
+                    <?php foreach($instansi as $i){ ?>
+                        <option value="<?php echo $i->id ?>"><?php echo $i->nama_instansi ?></option>
+                    <?php } //end foreach  ?>
+                    </select>
+                    <small class="form-text">Lainnya :</small>
+                    <input type="text" class="form-control" name="instansiBaru_<?php echo $j; ?>">
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-sm-3 form-control-label">Skala Instansi</label>
+                  <div class="col-sm-9">
+                    <select name="skalaInstansi_<?php echo $j; ?>" id="skala_instansi" class="form-control mb-3" required>
+                      <option></option>
+                      <option value="Lokal"> Lokal </option>
+                      <option value="Nasional"> Nasional </option>
+                      <option value="Internasional"> Internasional </option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-sm-3 form-control-label">Profesi</label>
+                   <div class="col-sm-9">
+                      <input type="text" class="form-control" value="<?php echo $k->posisi ?>" name="posisi_<?php echo $j; ?>" required>
+                      <input type="hidden" class="form-control" value="ada" name="cek_2">
+                      <input type="hidden" class="form-control" name="id_<?php echo $j; ?>" value="<?php echo $k->id ?>">
+                   </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-sm-3 form-control-label">Profil Pekerjaan</label>
+                  <div class="col-sm-9">
+                    <select name="profil_<?php echo $j; ?>" class="form-control mb-3" required>
+                      <option></option>
+                      <option value="Programmer"> Programmer </option>
+                      <option value="Penanggung Jawab Jaringan"> Penanggung Jawab Jaringan </option>
+                      <option value="Wirausahawan"> Wirausahawan </option>
+                      <option value="Praktisi"> Praktisi </option>
+                      <option value="Konsultan"> Konsultan </option>
+                      <option value="Perencana SI"> Perencana SI </option>
+                      <option value="Peneliti"> Peneliti </option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label  class="col-sm-3 form-control-label">Pendapatan Tiap Bulan</label>
+                  <div class="col-sm-9">
+                    <select name="gaji_<?php echo $j; ?>" class="form-control mb-3" required>
+                      <option value="<?php echo $k->gaji ?>"><?php echo $k->gaji ?></option>
+                      <option value="1-5 juta"> Rp 1-5 juta </option>
+                      <option value="6-10 juta"> Rp 6-10juta </option>
+                      <option value="11-15juta"> Rp 11-15juta </option>
+                      <option value="> 15juta"> > Rp 15juta </option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group row">       
+                <label class="col-sm-3 form-control-label">Periode Kerja</label>
+                 <div class="col-sm-9">
+                  <div class="row">
+                        <div class="col-md-5">
+                          <input type="text" class="form-control" name="p1_<?php echo $j; ?>">
+                        </div>
+                        <div class="col-md-2"><p style="text-align: center;font-size: 15px">Sampai</p></div>
+                        <div class="col-md-5">
+                          <input type="text" name="p2_<?php echo $j; ?>" class="form-control">
+                        </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-sm-3 form-control-label">Pilih Pengguna Alumni</label>
+                  <div class="col-sm-9">
+                    <select name="penggunaID_<?php echo $j; ?>" id="penggunaID_2" class="form-control mb-3">
+
+                    <?php 
+                      $penggunaInstansi = $this->m_pengguna->getPenggunaByInstansiID($k->id_instansi);
+                     foreach ($penggunaInstansi as $p ) { ?>
+                      <option value=""></option>
+                      <option value="<?php echo $p->id ?>"><?php echo $p->pengguna_nama ?></option>
+                     <?php } ?>
+
+                    </select>
+                    <small class="form-text">Pilih pengguna alumni jika data di atas merupakan pekerjaan saat ini. Jika pilihan pengguna alumni tidak ada <a data-toggle="collapse" href="#collapseExample_<?php echo $j ?>" aria-expanded="false" aria-controls="collapseExample">klik disini</a></small>
+                  </div>
+                </div>
+
+                 <div class="collapse" id="collapseExample_<?php echo $j ?>">
+                  <div class="card card-body">
+                    <div class="form-group row">
+                    <label class="col-sm-3 form-control-label">Nama Pengguna</label>
+                    <div class="col-sm-9">
+                      <input type="text" placeholder="" class="form-control form-control-sm" name="pengguna_nama_<?php echo $j; ?>">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">       
+                    <label class="col-sm-3 form-control-label">Divisi</label>
+                    <div class="col-sm-9">
+                      <input type="text" placeholder="" class="form-control form-control-sm" name="divisi_<?php echo $j; ?>">
+                    </div>
+                  </div>
+                  <div class="form-group row">       
+                    <label class="col-sm-3 form-control-label">Email</label>
+                    <div class="col-sm-9">
+                      <input type="text" placeholder="" class="form-control" name="pengguna_email_<?php echo $j; ?>">
+                    </div>
+                  </div>
+                  <div class="form-group row">       
+                    <label class="col-sm-3 form-control-label">No HP/Telepon</label>
+                    <div class="col-sm-9">
+                      <input type="text" placeholder="" class="form-control" name="pengguna_telepon_<?php echo $j; ?>">
+                      <?php $jumlah_loop = $length++; ?>
+                      <input type="hidden" placeholder="" class="form-control" name="jumlah_loop" value="<?php echo $jumlah_loop ?>">
+                    </div>
+                  </div>
+                  </div>
+                </div> <!-- collapse -->
+           
+
+
+           </div> <!-- end div class pekerjaan -->
+
+
+          </div>
+        </div>
+
+<hr>
+ <?php 
+              } //foreach
+            } //if ?>
+
 </div>
+<!-- END COLLAPSE KE 2 -->
+
 
 <!-- tab kuesioner -->
 <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel" aria-labelledby="tabs-icons-text-3-tab">
@@ -665,6 +722,50 @@
 </html>
 
 <script>
+
+
+
+  function exeAddPekerjaan(){
+    var data = $('.form_pekerjaan').serialize();
+
+
+     $.ajax({
+        type: 'POST',
+        data: data,
+        url: "<?php echo base_url('Data_new/exeAddPekerjaan') ?>",
+        success: function() {
+            Swal.fire({
+              position: 'top-end',
+              type: 'success',
+              title: 'Data diupdate',
+              showConfirmButton: false,
+              timer: 1500
+            }).then(function(){
+                alert('berhasil')
+                // $('#form_edit_profil').trigger("reset");
+                $("form_pekerjaan")[0].reset();
+            })     
+        }
+    });
+    
+
+    alert(data);
+
+
+    return false;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
   $(document).ready(function(){ 
     
     $("#id_instansi").change(function(){ // Ketika user mengganti atau memilih data provinsi
@@ -691,6 +792,7 @@
       });
     });
   });
+
   $(document).ready(function(){ 
     
     $("#instansiID_2").change(function(){ // Ketika user mengganti atau memilih data provinsi
@@ -721,6 +823,7 @@
 
   <script>
   
+
   $(document).ready(function() {
   var maksimal    = 6;
   var field       = $(".pekerjaan"); 
@@ -741,6 +844,19 @@
     i--;
   })
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
   function cek(){
    var data = $('.form_pekerjaan').serialize();
    alert(data);
