@@ -1,3 +1,9 @@
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/DataTables/buttons.dataTables.min.css">
+<script src="<?php echo base_url(); ?>assets/DataTables/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/DataTables/buttons.flash.min.js" ></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/DataTables/jszip.min.js" ></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/DataTables/buttons.html5.min.js" ></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/DataTables/buttons.print.min.js" ></script>
 <!-- head -->
          <!-- Side Navbar -->
         <div class="content-inner">
@@ -738,11 +744,14 @@
     window.location.href =  "<?php echo base_url();?>alumni/Profil/hapusRiwayat/"+p_id;
   }
 
-   $(document).ready( function () {
-    $('#myTable').DataTable(
-        {
-        "ordering": false,
-    }
-      );
-} );
+$(document).ready( function () {
+      $('#myTable').DataTable({
+          "ordering": false,
+          "select": true,
+          dom: 'Bfrtip',
+          buttons: [
+              'print'
+          ]
+        }); //input fungsi
+    });
 </script>

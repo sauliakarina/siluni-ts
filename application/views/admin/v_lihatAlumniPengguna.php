@@ -2,7 +2,7 @@
           <!-- Page Header-->
           <header class="page-header" style="background-color: #EFE037">
             <div class="container-fluid">
-              <h2 class="no-margin-bottom">Data Pengguna Alumni</h2>
+              <h2 class="no-margin-bottom"><?php echo $this->m_pengguna->getPenggunaByID($penggunaID)->pengguna_nama." - ".$this->m_master->getInstansiByID($this->m_pengguna->getPenggunaByID($penggunaID)->id_instansi)->nama_instansi ?></h2>
             </div>
           </header>
   
@@ -13,7 +13,7 @@
         <div class="col-lg-12">
           <div class="card">
             <div class="card-header d-flex align-items-center">
-              <h3 class="h4">Daftar Alumni <?php echo $this->m_master->getProdiByID($prodiID)->nama_prodi ?></h3>
+              <h3 class="h4">Daftar Alumni</h3>
             </div>
             <div class="card-body">
               <div class="table-responsive">                       

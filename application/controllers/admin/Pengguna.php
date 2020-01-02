@@ -70,7 +70,8 @@ class Pengguna extends CI_Controller {
 			'userID' => $this->session->userdata('userID'),
 			'prodiID' => $prodiID,
 			'alumni'=> $this->m_pengguna->joinPekerjaanAlumniByPenggunaID($penggunaID),
-			'newAlumni' => $newAlumni
+			'newAlumni' => $newAlumni,
+			'penggunaID' => $penggunaID
 		);
 		$this->load->view('element/head');
 		$this->load->view('element/header');

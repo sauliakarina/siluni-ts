@@ -334,7 +334,7 @@ class Profil extends CI_Controller {
 	public function hapusRiwayat($id){
 		$where = array('id' => $id);
 		$this->m_master->deleteData($where,'pekerjaan');
-		redirect('alumni/Profil/riwayatPekerjaan');
+		redirect('alumni/Beranda');
 	}
 
 	public function exeEditPass(){

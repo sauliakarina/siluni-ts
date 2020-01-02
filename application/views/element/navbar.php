@@ -90,13 +90,13 @@
               </ul>
             </li> -->
               <li class="<?php if($this->uri->segment(2)=="Berita"){echo "active";} ?>"><a href="<?php echo site_url('alumni/Berita') ?>"> <i class="far fa-newspaper"></i>Berita Saya </a></li>
+               <li class="<?php if($this->uri->segment(2)=="Pengguna"){echo "active";} ?>"><a href="<?php echo site_url('alumni/Pengguna') ?>"> <i class="fas fa-briefcase"></i>Pengguna Alumni</a></li>
               <li class="<?php if($this->uri->segment(2)=="GantiPassword"){echo "active";} ?>"><a href="<?php echo site_url('GantiPassword') ?>"> <i class="fas fa-unlock-alt"></i>Ganti Password </a></li>
-              <span class="heading">Tracer Study</span>
+              <!-- <span class="heading">Tracer Study</span>
                <ul class="list-unstyled">
-              <!-- <li class="<?php if($this->uri->segment(2)=="Kuesioner" ){echo "active";} ?>"><a href="<?php echo site_url('alumni/Kuesioner') ?>"> <i class="icon-padnote"></i>Kuesioner </a></li> -->
+               <li class="<?php if($this->uri->segment(2)=="Kuesioner" ){echo "active";} ?>"><a href="<?php echo site_url('alumni/Kuesioner') ?>"> <i class="icon-padnote"></i>Kuesioner </a></li>
               <li class="<?php if($this->uri->segment(2)=="Profil" ){echo "active";} ?>"><a href="<?php echo site_url('alumni/Profil/riwayatPekerjaan') ?>"> <i class="icon-padnote"></i>Pekerjaan </a></li>
-              <li class="<?php if($this->uri->segment(2)=="Pengguna"){echo "active";} ?>"><a href="<?php echo site_url('alumni/Pengguna') ?>"> <i class="fas fa-briefcase"></i>Pengguna Alumni</a></li>
-              </ul>
+              </ul> -->
 
             <?php } ?>
 

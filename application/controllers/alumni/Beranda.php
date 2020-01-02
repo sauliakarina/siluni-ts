@@ -35,7 +35,7 @@ class Beranda extends CI_Controller {
 		$this->load->view('element/head');
 		$this->load->view('element/header');
 		$this->load->view('element/navbar', $data);
-		$this->load->view('alumni/v_berandaAlumni_new', $data);
+		$this->load->view('alumni/v_berandaAlumni_maul', $data);
 		$this->load->view('element/footer');
 	}
 }
