@@ -318,6 +318,32 @@ public function getPekerjaanSeenPengguna($id_pengguna, $seen){
 		}
   	}
 
+  	public function getPekerjaanByAlumniIDWhereNotSudah($id_alumni){
+		$this->db->select('*');
+		$this->db->where('id_alumni', $id_alumni);
+		$this->db->where('isiPekerjaan !=', 'sudah');
+		$query = $this->db->get('pekerjaan');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
+  	}
+
+  	public function getPekerjaanByAlumniIDWhereSudah($id_alumni){
+		$this->db->select('*');
+		$this->db->where('id_alumni', $id_alumni);
+		$this->db->where('isiPekerjaan', 'sudah');
+		$query = $this->db->get('pekerjaan');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
+  	}
+
   	//untuk halaman guest grup by
   	public function getPekerjaanByInstansiID($id_instansi){
 		$this->db->select('*');

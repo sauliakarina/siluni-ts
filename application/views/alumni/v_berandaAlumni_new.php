@@ -171,7 +171,7 @@
   <?php 
   $where = array('id_alumni' => $alumniID);
   $cek = $this->m_master->cekData("pekerjaan",$where)->num_rows();
-  $pekerjaan = $this->m_pengguna->getPekerjaanByAlumniID($alumniID);  
+  $pekerjaan = $this->m_pengguna->getPekerjaanByAlumniIDWhereNotSudah($alumniID);  
   if ($cek>0) {
     $j = 0;
     foreach ($pekerjaan as $k ) {
@@ -180,7 +180,7 @@
   <h4><?php echo $this->m_master->getInstansiByID($k->id_instansi)->nama_instansi ?></h4>
   <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="collapse" data-target="#form_pekerjaan<?php echo $j ?>">Lengkapi Data</button>
   <div style="padding-top: 10px" id="form_pekerjaan<?php echo $j ?>" class="collapse">
-    <form class="form-horizontal" method="post" action="<?php echo base_url();?>alumni/Data/exeAddPekerjaan_new"> 
+    <form class="form-horizontal" method="post" action="<?php echo base_url();?>alumni/Data/exeUpdatePekerjaan"> 
      <div class="form-group row">
       <label class="col-sm-3 form-control-label">Pilih Instansi</label>
       <div class="col-sm-9">
@@ -316,7 +316,52 @@
 <?php 
     } //foreach pekerjaan
   } //if cek ?>
-<button type="button" class="btn btn-info ml-auto btn-sm"  data-toggle="modal" data-target="#ModalTambah"><i class="fas fa-plus-circle"></i> Pekerjaan</button>
+<button type="button" class="btn btn-info ml-auto btn-sm" style="margin-bottom: 20px"  data-toggle="modal" data-target="#ModalTambah"><i class="fas fa-plus-circle"></i> Pekerjaan</button>
+
+<!-- table riwayat pekerjaan -->
+<?php 
+  $pekerjaanSudah = $this->m_pengguna->getPekerjaanByAlumniIDWhereSudah($alumniID);
+  $cek = count($pekerjaanSudah);
+  if ($cek > 0) { ?>
+    <center><h4 class="h4">Riwayat Pekerjaan Anda</h4></center>
+    <table id="myTable" class="table table-striped table-hover" style="margin-top: 20px">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Instansi</th>
+          <th>Profesi</th>
+          <th>Pendapatan per Bulan</th>
+          <th>Periode</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php 
+          $no = 1;
+          foreach($pekerjaanSudah as $r){ 
+          ?>
+        <tr>
+          <th scope="row"><?php echo $no++ ?></th>
+          <td><?php echo $this->m_master->getInstansiByID($r->id_instansi)->nama_instansi ?></td>
+          <td><?php echo $r->posisi ?></td>
+          <td><?php echo $r->gaji ?></td>
+          <td><?php echo $r->periode_kerja ?></td>
+          <td>
+            <div class="btn-group btn-group-toggle">
+             <form method='' action="<?php echo base_url('alumni/Profil/editPekerjaan/'.$r->id) ?>">
+                <button type="submit" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="Sunting"><i class="far fa-edit"></i></button>
+              </form>
+              <label class="btn btn-danger btn-sm" data-toggle="modal" data-target="#ModalHapus" onclick="set_id(<?php echo $r->id ?>)">
+                  <input type="radio" name="options"><i class="fas fa-trash-alt"></i>
+              </label>
+            </div>
+          </td>
+        </tr>
+      <?php } ?>
+      </tbody>
+    </table>
+<?php } //if pekerjaan sudah ?>
+
 </div> <!-- tab pekerjaan -->
 
 <!-- tab kuesioner -->
@@ -468,7 +513,7 @@
                <div class="form-group row">
                 <label class="col-sm-3 form-control-label">Pilih Instansi</label>
                 <div class="col-sm-9">
-                  <select name="instansiID_m" id="instansiID_m" class="form-control mb-3">
+                  <select name="instansiID" id="instansiID_m" class="form-control mb-3">
                    <option value=""></option>
                   <?php foreach($instansi as $i){ ?>
                       <option value="<?php echo $i->id ?>"><?php echo $i->nama_instansi ?></option>
@@ -545,7 +590,7 @@
                <div class="form-group row">
                 <label class="col-sm-3 form-control-label">Pengguna Alumni</label>
                 <div class="col-sm-9">
-                  <select name="penggunaID_m" id="penggunaID_m" class="form-control mb-3">
+                  <select name="penggunaID" id="penggunaID_m" class="form-control mb-3">
                     <option value=""></option>
                   </select>
                   <small class="form-text">Pilih pengguna alumni jika data di atas merupakan pekerjaan saat ini. Jika pilihan pengguna alumni tidak ada <a data-toggle="collapse" href="#collapseExample_m" aria-expanded="false" aria-controls="collapseExample"> Klik Disini</a></small>
@@ -592,6 +637,28 @@
         </div>
       </div>
 <!-- modal tambah -->
+
+ <!-- Modal Hapus-->
+    <div id="ModalHapus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+      <div role="document" class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 id="exampleModalLabel" class="modal-title">Hapus Data</h4>
+            <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+          </div>
+          <div class="modal-body">
+            <p>Apakah anda yakin ingin menghapus data ini?</p>
+            <div class="text-center">
+            <i class="far fa-times-circle fa-4x mb-3 animated bounce" style="color: #D60C0C"></i>
+          </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" data-dismiss="modal" class="btn btn-secondary">Tutup</button>
+            <button type="button" class="btn btn-danger" onclick='deletep()'>Hapus</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
 </html>
 
@@ -659,4 +726,23 @@
       });
     });
   });
+</script>
+
+<script type="text/javascript">
+   var p_id;
+  function set_id(id) {
+    p_id = id;
+  }
+
+  function deletep(){
+    window.location.href =  "<?php echo base_url();?>alumni/Profil/hapusRiwayat/"+p_id;
+  }
+
+   $(document).ready( function () {
+    $('#myTable').DataTable(
+        {
+        "ordering": false,
+    }
+      );
+} );
 </script>
