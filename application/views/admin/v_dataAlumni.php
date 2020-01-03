@@ -13,15 +13,12 @@
               <h2 class="no-margin-bottom">Data Alumni</h2>
             </div>
           </header>
-          <!-- Breadcrumb-->
-          <div class="breadcrumb-holder container-fluid">
-            <ul class="breadcrumb">
-              <li class="breadcrumb-item"><a href="index.html">Beranda</a></li>
-              <li class="breadcrumb-item active">Data</li>
-            </ul>
-          </div>
+        
           <?php echo $this->session->flashdata('suksesImpor'); ?>
-           <?php echo $this->session->flashdata('gagalImpor'); ?>
+          <?php echo $this->session->flashdata('gagalImpor'); ?>
+          <?php echo $this->session->flashdata('suksesAddAlumni'); ?>
+          <?php echo $this->session->flashdata('gagalAddAlumni'); ?>
+
           <section class="tables">   
             <div class="container-fluid">
               <div class="row">
@@ -29,7 +26,7 @@
                   <div class="card">
                     <div class="card-header d-flex align-items-center">
                       <h3 class="h4">Alumni <?php echo $this->m_master->getProdiByID($prodiID)->nama_prodi ?></h3>
-                      <button type="button" class="btn btn-primary ml-auto btn-sm" data-toggle="modal" data-target="#modalTambah"><i class="fas fa-user-plus"></i> Tambah Data</button>
+                      <button type="button" class="btn btn-primary ml-auto btn-sm" data-toggle="modal" data-target="#modalTambah"><i class="fas fa-user-plus"></i> Tambah Akun</button>
                       <button type="button" class="btn btn-dark ml-3 btn-sm" data-toggle="modal" data-target="#modalImport"><i class="fas fa-cloud-upload-alt"></i>  Import</button>
                     </div>
                     <div class="card-body">
@@ -88,26 +85,26 @@
                               <?php echo form_open_multipart('admin/Alumni/exeAddAlumni'); ?>
                                 <div class="form-group">
                                   <label>Nama</label>
-                                  <input type="text" placeholder="" class="form-control" name="nama">
+                                  <input type="text" placeholder="" class="form-control" name="nama" required>
                                 </div>
                                 <div class="form-group">       
                                   <label>No Registrasi</label>
-                                  <input type="text" placeholder="" class="form-control" name="nim">
+                                  <input type="text" placeholder="" class="form-control" name="nim" required>
                                 </div>
                                 <div class="form-group">
                                   <label>Jenis Kelamin</label>
-                                    <select name="jenis_kelamin" class="form-control">
+                                    <select name="jenis_kelamin" class="form-control" required>
                                       <option value="Laki-laki">Laki-laki</option>
                                       <option value="Perempuan">Perempuan</option>
                                     </select>
                                 </div>
                                 <div class="form-group">       
                                   <label>Tahun Masuk</label>
-                                  <input type="text" placeholder="" class="form-control" name="tahun_masuk">
+                                  <input type="text" placeholder="" class="form-control" name="tahun_masuk" required>
                                 </div>
                                 <div class="form-group">       
                                   <label>Tahun Lulus</label>
-                                  <input type="text" placeholder="" class="form-control" name="tahun_lulus">
+                                  <input type="text" placeholder="" class="form-control" name="tahun_lulus" required>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -183,7 +180,7 @@
         "select": true,
         dom: 'Bfrtip',
         buttons: [
-            'copy', 'excel', 'print'
+          'excel', 'print'
         ]
       }); //input fungsi
   });

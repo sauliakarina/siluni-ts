@@ -420,6 +420,14 @@ public function exeAddPekerjaan_new() {
 		$this->m_master->updateData($where, $data, 'pengguna');
 	}
 
+	$where = array( 'id_alumni' => $alumniID);
+	$cek = $this->m_master->cekData("pekerjaan",$where)->num_rows();
+	if ($cek == 0) {
+		$firstPekerjaan = 'yes';
+	} else {
+		$firstPekerjaan = 'no';
+	}
+
 	$data = array(
 		'id_instansi' => $instansiID,
 		'posisi' => $this->input->post('posisi'),
@@ -428,7 +436,8 @@ public function exeAddPekerjaan_new() {
 		'id_pengguna' => $penggunaID,
 		'id_alumni' => $this->m_alumni->getAlumniByUserID($this->session->userdata('userID'))->id,
 		'periode_kerja' => $this->input->post('p1')."-".$this->input->post('p2'),
-		'isiPekerjaan' => 'sudah'
+		'isiPekerjaan' => 'sudah',
+		'firstPekerjaan' => $firstPekerjaan
 	);
 	
 	$this->m_master->inputData($data,'pekerjaan');

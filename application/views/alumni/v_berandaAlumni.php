@@ -544,6 +544,10 @@
                   <!-- jika pertanyaan ganda -->
               <?php } elseif ($p->jenis == 'ganda') { 
                 $pilihanJawaban = $this->m_kuesioner->getPilihanJawabanByPertanyaanID($p->id);
+                if ($p->keterangan != Null) {
+                   ?>
+                   <small class="form-text"><?php echo $p->keterangan; ?></small>
+                 <?php } 
                   foreach ($pilihanJawaban as $pj) {?>
                 <div class="i-checks">
                   <input id="checkbox1" type="checkbox" value="<?php echo $pj->pilihan ?>" name="<?php echo $p->id; ?>[]" class="checkbox-template">
@@ -554,10 +558,7 @@
                   <div class="form-group row">
                       <textarea placeholder="" name="inputBox<?php echo $p->id ?>" class="form-control" rows="3"></textarea>
                   </div>
-                  <?php }  if ($p->keterangan != Null) {
-                   ?>
-                   <small class="form-text"><?php echo $p->keterangan; ?></small>
-                 <?php } ?>
+                  <?php }  ?>
                   <!-- jika pertanyaan skala -->
               <?php } //if jenis ganda 
                 if ($p->jenis == 'skala') { 

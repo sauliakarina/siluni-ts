@@ -112,7 +112,7 @@
               "select": true,
               dom: 'Bfrtip',
               buttons: [
-                  'copy', 'excel', 'print'
+                  'copy', 'excel'
               ]
             }); //input fungsi
         });

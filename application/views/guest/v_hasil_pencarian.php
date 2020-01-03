@@ -24,7 +24,7 @@
                 <td><?php echo $u->tahun_masuk; ?></td>
                 <td><?php echo $u->tahun_lulus; ?></td>
                 <td><?php echo $this->m_data->get_t_prodi($u->prodiID)->nama_prodi ?></td>
-                <td><?php echo anchor('profil_user/tampil/'.$u->id,'Lihat Profil'); ?> </td>
+                <td><?php echo anchor('pencarian_alumni/tampil/'.$u->id,'Lihat Profil'); ?> </td>
               </tr>
               <?php } ?>
             </tbody>

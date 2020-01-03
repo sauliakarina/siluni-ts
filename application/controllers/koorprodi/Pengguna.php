@@ -20,7 +20,7 @@ class Pengguna extends CI_Controller {
 			'role' => $this->session->userdata('role'),
 			'userID' => $this->session->userdata('userID'),
 			'prodiID' => $prodiID,
-			'pengguna' => $this->m_pengguna->getPengguna($prodiID)
+			'pengguna' => $this->m_pengguna->getPenggunaInstansi($prodiID)
 		);
 		$this->load->view('element/head');
 		$this->load->view('element/header');
@@ -58,6 +58,22 @@ class Pengguna extends CI_Controller {
 		$this->load->view('element/header');
 		$this->load->view('element/navbar', $data);
 		$this->load->view('koorprodi/v_dataAlumniPengguna', $data);
+		$this->load->view('element/footer');
+	}
+
+	public function daftarAlumniInstansi($id_instansi)
+	{
+		$data = array(
+			'role' => $this->session->userdata('role'),
+			'userID' => $this->session->userdata('userID'),
+			'prodiID' => $this->session->userdata('prodiID'),
+			'pekerjaan' => $this->m_pengguna->getPekerjaanByInstansiID($id_instansi),
+			'id_instansi' => $id_instansi
+		);
+		$this->load->view('element/head');
+		$this->load->view('element/header');
+		$this->load->view('element/navbar', $data);
+		$this->load->view('alumni/v_dataAlumniPengguna', $data);
 		$this->load->view('element/footer');
 	}
 

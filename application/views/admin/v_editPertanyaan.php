@@ -52,7 +52,8 @@
                                   </ul>
                           </div>
                         </div>
-                         <div class="line"></div>
+                         
+                        <div class="line"></div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary ml-auto">Simpan</button>
                         </div>

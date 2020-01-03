@@ -41,6 +41,10 @@
                        <?php foreach ($pertanyaan as $p) { 
                           if ($p->jenis == 'skala') { ?>
                              <small class="help-block-none"><a href="#" onclick="set_id(<?php echo $p->id ?>)" data-toggle="modal" data-target="#ModalHapusSkala" style="color: red">Hapus tabel?</a></small>
+                              <?php  if ($p->keterangan != Null) {
+                               ?>
+                               <small class="form-text"><?php echo $p->keterangan; ?></small>
+                             <?php } ?>
                             <table class="table table-striped table-hover">
                               <thead>
                                 <tr>
@@ -74,13 +78,17 @@
                             if ($p->jenis == 'isian') {
                           ?>
                           <div class="form-group">
-                          <label class="form-control-label"><b style="font-size: 15px"><?php echo $p->pertanyaan ?></b></label>
-                          <small class="help-block-none"><a href="#" data-toggle="modal" data-target="#ModalEdit" data-placement="top" title="Edit"><i class="far fa-edit" style="color: blue"></i></a></small>
-                          <small class="help-block-none"><a href="#" onclick="set_id(<?php echo $p->id ?>)" data-toggle="modal" data-target="#ModalHapus"><i class="far fa-trash-alt" style="color: red"></i></a></small>
-                          <?php if ($p->textarea == 'ya') { ?>
-                             <textarea class="form-control" rows="5"></textarea>
-                          <?php } else { ?>
-                           <input type="text" placeholder="" class="form-control">
+                            <label class="form-control-label"><b style="font-size: 15px"><?php echo $p->pertanyaan ?></b></label>
+                            <small class="help-block-none"><a href="#" data-toggle="modal" data-target="#ModalEdit" data-placement="top" title="Edit"><i class="far fa-edit" style="color: blue"></i></a></small>
+                            <small class="help-block-none"><a href="#" onclick="set_id(<?php echo $p->id ?>)" data-toggle="modal" data-target="#ModalHapus"><i class="far fa-trash-alt" style="color: red"></i></a></small>
+                            <?php if ($p->textarea == 'ya') { ?>
+                               <textarea class="form-control" rows="5"></textarea>
+                            <?php } else { ?>
+                             <input type="text" placeholder="" class="form-control">
+                           <?php } 
+                           if ($p->keterangan != Null) {
+                           ?>
+                           <small class="form-text"><?php echo $p->keterangan; ?></small>
                          <?php } ?>
                         </div>
                         <?php } elseif ($p->jenis == 'pilihan') { ?>
@@ -89,13 +97,28 @@
                           <small class="help-block-none"><a href="#" onclick="set_id(<?php echo $p->id ?>)" data-toggle="modal" data-target="#ModalHapus"><i class="far fa-trash-alt" style="color: red"></i></a></small>
                            <?php  
                            $pilihan = $this->m_kuesioner->getPilihanJawabanByPertanyaanID($p->id);
-                           foreach ($pilihan as $k) { ?>
+                           $jumlahPilihan = count($pilihan);
+                            if ($jumlahPilihan > 5) { ?>
+                              <select name="<?php echo $p->id ?>" class="form-control mb-3">
+                              <?php 
+                              foreach ($pilihan as $pj) {  ?>
+                              <option><?php echo $pj->pilihan ?></option>
+                            <?php } ?>
+                            </select>
+                            <?php }  else {?>
+                             <?php foreach ($pilihan as $k) { ?>
                              <div class="i-checks">
                               <input id="radioCustom1" type="radio" checked="" disabled="" name="a" class="radio-template">
                               <label for="radioCustom1"><?php echo $k->pilihan ?></label>
                             </div>
-                        <?php } 
-                         if ($p->inputBox == 'ya') { ?>
+                            <?php } ?> 
+                            <?php  //loop pilihanJawaban
+                            } //else select 
+                            if ($p->keterangan != Null) {
+                             ?>
+                             <small class="form-text"><?php echo $p->keterangan; ?></small>
+                           <?php } ?>
+                            <?php if ($p->inputBox == 'ya') { ?>
                                 <div class="form-group">
                                       <textarea placeholder="" class="form-control" rows="3"></textarea>
                                     </div>
@@ -112,6 +135,10 @@
                               <label for="checkboxCustom1"><?php echo $k->pilihan ?></label>
                           </div>
                         <?php } // foreach pilihan jawaban
+                        if ($p->keterangan != Null) {
+                           ?>
+                           <small class="form-text"><?php echo $p->keterangan; ?></small>
+                         <?php } 
                          if ($p->inputBox == 'ya') { ?>
                           <div class="form-group">
                             <textarea placeholder="" class="form-control" rows="3"></textarea>
@@ -192,7 +219,7 @@
                                 <table class="table table-condensed">
                                   <tbody id="isianForm">
                                     <tr>
-                                      <td><input placeholder="Tuliskan jawaban" class="form-control" name="jawaban[0]"></td>
+                                      <td><input placeholder="Tuliskan pilihan jawaban" class="form-control" name="jawaban[0]"></td>
                                       <td><button class="btn btn-small btn-info" onclick="pilihanForm(); return false"><i class="fas fa-plus-circle"></i></button></td>
                                     </tr>
                                   </tbody>
@@ -405,7 +432,7 @@
         var jawaban = document.createElement('input');
         jawaban.setAttribute('name', 'jawaban['+i+']');
         jawaban.setAttribute('class', 'form-control');
-        jawaban.setAttribute('placeholder', 'Tuliskan jawaban');
+        jawaban.setAttribute('placeholder', 'Tuliskan pilihan jawaban');
 
         //input button hapus
         var hapus = document.createElement('span');

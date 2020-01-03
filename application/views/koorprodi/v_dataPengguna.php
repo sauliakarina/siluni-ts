@@ -31,7 +31,6 @@
                               <th>Instansi</th>
                               <th>Email</th>
                               <th>Telepon</th>
-                              <th>Alamat</th>
                               <th>Daftar Alumni</th>
                             </tr>
                           </thead>
@@ -51,12 +50,6 @@
                               </td>
                               <td><?php echo $d->pengguna_email ?></td>
                               <td><?php echo $d->pengguna_telepon ?></td>
-                              <td>
-                                <?php if ($d->id_instansi == '0') {
-                                echo "";
-                                } else {echo $this->m_master->getInstansiByID($d->id_instansi)->nama_instansi;
-                                } ?>
-                              </td>
                               <td>
                                  <a type="button" href="<?php echo site_url('koorprodi/Pengguna/daftarAlumni/'.$d->id) ?>" class="btn btn-info btn-sm">Lihat</a>
                               </td>

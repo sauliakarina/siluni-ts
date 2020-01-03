@@ -126,8 +126,8 @@ class Master extends CI_Controller {
 			);
 			$this->m_master->inputData($data,'user');
 
-		$isiBerandaAlumni = '<p>Yth. Alumni '.echo $this->m_master->getProdiByID($prodiID)->nama_prodi;.' FMIPA UNJ</p>
-							<p style="text-align: justify;">FMIPA UNJ sedang melakukan Tracer Study (penelusuran alumni) pada Program Studi '.$prodiID.' Adapun tujuan dari kegiatan ini adalah untuk mendapatkan basis data yang diperlukan dalam penyusunan Evaluasi Diri dalam rangka Akreditasi Program Studi. Berkaitan dengan hal tersebut, Kami mohon kesediaan alumni '.$prodiID.' UNJ yang kami hormati untuk mengisi kuesioner Tracer Study yang dapat diisi pada website ini</p>';
+		$isiBerandaAlumni = '<p>Yth. Alumni '.$this->m_master->getProdiByID($prodiID)->nama_prodi.' FMIPA UNJ</p>
+							<p style="text-align: justify;">FMIPA UNJ sedang melakukan Tracer Study (penelusuran alumni) pada Program Studi '.$this->m_master->getProdiByID($prodiID)->nama_prodi.' Adapun tujuan dari kegiatan ini adalah untuk mendapatkan basis data yang diperlukan dalam penyusunan Evaluasi Diri dalam rangka Akreditasi Program Studi. Berkaitan dengan hal tersebut, Kami mohon kesediaan alumni '.$this->m_master->getProdiByID($prodiID)->nama_prodi.' UNJ yang kami hormati untuk mengisi kuesioner Tracer Study yang dapat diisi pada website ini</p>';
 		$berandaAlumni = array(
 			'jenis' => 'alumni',
 			'isi' => $isiBerandaAlumni,
@@ -135,7 +135,7 @@ class Master extends CI_Controller {
 			);
 		$this->m_master->inputData($berandaAlumni,'beranda');
 
-		$isiBerandaPengguna = '<p style="text-align: justify;"><span style="color: #212529; font-family: cambria; font-size: 17px; text-align: justify;">Bapak/Ibu yang terhormat, saat ini kami sedang melakukan&nbsp;</span><strong><em style="box-sizing: border-box; display: inline-block; transition: all 0.3s ease 0s; color: #212529; font-family: cambria; font-size: 17px; text-align: justify;"><span style="box-sizing: border-box;">Tracer Study</span></em></strong><span style="color: #212529; font-family: cambria; font-size: 17px; text-align: justify;">&nbsp;(penelusuran alumni)&nbsp;</span><strong><span style="box-sizing: border-box; color: #212529; font-family: cambria; font-size: 17px; text-align: justify;">Program Studi '.echo $this->m_master->getProdiByID($prodiID)->nama_prodi;.' </span></strong><span style="color: #212529; font-family: cambria; font-size: 17px; text-align: justify;">&nbsp;FMIPA-UNJ. Adapun tujuan dari kegiatan ini adalah untuk mendapatkan basis data yang diperlukan dalam penyusunan Evaluasi Diri dalam rangka Akreditasi Program Studi. Berkaitan dengan hal tersebut, kami mohon Bapak/Ibu dapat mengisi kuesioner ini, data yang Bapak/Ibu isi dijamin kerahasiaannya. Untuk kerjasama dan bantuannya, kami mengucapkan banyak terima kasih.</span></p>';
+		$isiBerandaPengguna = '<p style="text-align: justify;"><span style="color: #212529; font-family: cambria; font-size: 17px; text-align: justify;">Bapak/Ibu yang terhormat, saat ini kami sedang melakukan&nbsp;</span><strong><em style="box-sizing: border-box; display: inline-block; transition: all 0.3s ease 0s; color: #212529; font-family: cambria; font-size: 17px; text-align: justify;"><span style="box-sizing: border-box;">Tracer Study</span></em></strong><span style="color: #212529; font-family: cambria; font-size: 17px; text-align: justify;">&nbsp;(penelusuran alumni)&nbsp;</span><strong><span style="box-sizing: border-box; color: #212529; font-family: cambria; font-size: 17px; text-align: justify;">Program Studi '.$this->m_master->getProdiByID($prodiID)->nama_prodi.' </span></strong><span style="color: #212529; font-family: cambria; font-size: 17px; text-align: justify;">&nbsp;FMIPA-UNJ. Adapun tujuan dari kegiatan ini adalah untuk mendapatkan basis data yang diperlukan dalam penyusunan Evaluasi Diri dalam rangka Akreditasi Program Studi. Berkaitan dengan hal tersebut, kami mohon Bapak/Ibu dapat mengisi kuesioner ini, data yang Bapak/Ibu isi dijamin kerahasiaannya. Untuk kerjasama dan bantuannya, kami mengucapkan banyak terima kasih.</span></p>';
 		$berandaPengguna = array(
 			'jenis' => 'pengguna',
 			'isi' => $isiBerandaPengguna,
@@ -145,13 +145,13 @@ class Master extends CI_Controller {
 
 		//untuk laporan data diri (ipk toefl gaji)
 		$kuesioner = array(
-			'nama_kuesioner' => 'pekerjaan',
+			'nama_kuesioner' => 'Pekerjaan',
 			 'responden' => 'alumni',
 			 'prodiID' => $this->input->post('prodiID')
 		);
 		$this->m_master->inputData($kuesioner,'kuesioner');
 		$kuesioner = array(
-			'nama_kuesioner' => 'pendidikan',
+			'nama_kuesioner' => 'Pendidikan',
 			 'responden' => 'alumni',
 			 'prodiID' => $this->input->post('prodiID')
 		);
@@ -180,7 +180,8 @@ class Master extends CI_Controller {
 			'nama_kuesioner' => 'Kompetensi',
 			'responden' => 'pengguna',
 			'prodiID' => $this->input->post('prodiID'),
-			'customID' => $customID
+			'customID' => $customID,
+			'jenisKuesionerPengguna' => 'skala'
 		);
 		$this->m_master->inputData($kuesioner,'kuesioner');
 
@@ -207,13 +208,12 @@ class Master extends CI_Controller {
 			'pertanyaan' => 'Jenis Kemampuan',
 			'jenis' => 'skala',
 			'kuesionerID' => $kuesionerID,
-			'customID' => $customID,
-			'jenisKuesionerPengguna' => 'skala'
+			'customID' => $customID
 		);
 		$this->m_master->inputData($pertanyaan,'pertanyaan');
 		$pertanyaanID = $this->m_kuesioner->getPertanyaanByCustomID($customID)->id;
 
-		$pertanyaanKompetensi = $this->m_kuesioner->getPertanyaanSkalaByPertanyaanID('101');
+		$pertanyaanKompetensi = $this->m_kuesioner->getPertanyaanSkalaByPertanyaanID('27');
 		foreach ($pertanyaanKompetensi as $p) {
 			$pertanyaanSkala = array(
 				'pertanyaan' => $p->pertanyaan,
@@ -221,7 +221,7 @@ class Master extends CI_Controller {
 			);
 			$this->m_master->inputData($pertanyaanSkala,'pertanyaan_skala');
 		}
-		$skalaNilai = $this->m_kuesioner->getSkalaByPertanyaanID('101');
+		$skalaNilai = $this->m_kuesioner->getSkalaByPertanyaanID('27');
 		foreach ($skalaNilai as $p) {
 			$skala_nilai = array(
 				'nilai' => $p->nilai,

@@ -13,17 +13,17 @@
 			    <div class="carousel-inner" role="listbox">
 			        <!--First slide-->
 			        <div class="carousel-item active">
-			            <img class="d-block w-100" src="<?php echo base_url();?>/assets/siluni//images/alumni1.jpg" alt="First slide">
+			            <img class="d-block w-100" style="width: 300px; height: 500px" src="<?php echo base_url();?>/assets/siluni/images/alumni1.jpg" alt="First slide">
 			        </div>
 			        <!--/First slide-->
 			        <!--Second slide-->
 			        <div class="carousel-item">
-			            <img class="d-block w-100" src="<?php echo base_url();?>/assets/siluni//images/alumni2.jpg" alt="Second slide">
+			            <img class="d-block w-100" style="width: 300px; height: 500px" src="<?php echo base_url();?>/assets/siluni/images/alumni2.jpg" alt="Second slide">
 			        </div>
 			        <!--/Second slide-->
 			        <!--Third slide-->
 			        <div class="carousel-item">
-			            <img class="d-block w-100" src="<?php echo base_url();?>/assets/siluni//images/alumni3.jpg" alt="Third slide">
+			            <img class="d-block w-100" style="width: 300px; height: 500px" src="<?php echo base_url();?>/assets/siluni/images/alumni3.jpg" alt="Third slide">
 			        </div>
 			        <!--/Third slide-->
 			    </div>

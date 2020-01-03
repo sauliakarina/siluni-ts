@@ -18,7 +18,7 @@
                 <div class="col-lg-12">
                   <div class="card">
                     <div class="card-header d-flex align-items-center">
-                      <h3 class="h4">Alumni yang Bekerja pada <?php echo $this->m_master->getInstansiByID($id_instansi)->nama_instansi ?></h3>
+                      <h5 class="h4">Alumni yang Bekerja pada <?php echo $this->m_master->getInstansiByID($this->m_pengguna->getPenggunaByID($id_pengguna)->id_instansi)->nama_instansi." - Divisi ".$this->m_pengguna->getPenggunaByID($id_pengguna)->divisi ?></h5>
                     </div>
                     <div class="card-body">
                       <div class="table-responsive">                       

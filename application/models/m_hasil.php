@@ -363,6 +363,8 @@ class M_hasil extends CI_Model{
 	public function getDataDiri($prodiID){
   		$this->db->select('*');
 		$this->db->where('prodiID',$prodiID);
+		/*$this->db->where('toefl', "");
+		$this->db->or_where('ipk', ""); */ 
 		$query = $this->db->get('alumni');
 		if($query->num_rows()>0)
 		{
@@ -381,7 +383,7 @@ class M_hasil extends CI_Model{
       $this->db->from('pekerjaan');
       $this->db->where('alumni.prodiID',$prodiID);
       $this->db->where('pekerjaan.firstPekerjaan','yes');
-       $this->db->where('pekerjaan.gaji !=','0');
+       $this->db->where('pekerjaan.gaji !=', '');
       $query = $this->db->get();
       return $query->result();
   	}
@@ -396,7 +398,7 @@ class M_hasil extends CI_Model{
       $this->db->where('alumni.prodiID',$prodiID);
       $this->db->where('alumni.tahun_lulus',$tahun_lulus);
       $this->db->where('pekerjaan.firstPekerjaan','yes');
-       $this->db->where('pekerjaan.gaji !=','0');
+      $this->db->where('pekerjaan.gaji !=', '');
       $query = $this->db->get();
       return $query->result();
   	}

@@ -238,48 +238,15 @@
                         </div>
                     </li>
                     <?php  
-                    if ($status=='alumni') {
-                      echo "<li class='nav-item'>
-                        <a style='color: grey' class='nav-link' href='".base_url('tracer_study')."'><b>Tracer Study</b></a>
-                    </li>";
-                    }
                 } ?>
                      
                 </ul>
                 <ul class="navbar-nav nav-flex-icons">
-                  <?php if ($status=='alumni') {
-                    echo "<li class='nav-item'>
-                        <a class='nav-link unjcolor-txt' href='".site_url('profil_saya/index')."''><b>Profil</b><i class='fa fa-user-o unjcolor-txt' data-toggle='tooltip' data-placement='bottom' title='Profil Saya'></i></a>
-                    </li>"; //hapus tanda ";
-                    /*
-                    <li class='nav-item'>
-                        <a class='nav-link unjcolor-txt'><b>Forum</b><i class='fa fa-users unjcolor-txt' data-toggle='tooltip' data-placement='bottom' title='Forum Diskusi'></i></a>
-                    </li>";*/
-                  } elseif ($status=='dosen') {
-                    echo "<li class='nav-item'>
-                        <a class='nav-link unjcolor-txt' href='".site_url('profil_dosen/index')."''><b>Profil</b><i class='fa fa-user-o unjcolor-txt' data-toggle='tooltip' data-placement='bottom' title='Profil Saya'></i></a>
-                    </li>";
-                     /*
-                     <li class='nav-item'>
-                        <a class='nav-link unjcolor-txt'><b>Forum</b><i class='fa fa-users unjcolor-txt' data-toggle='tooltip' data-placement='bottom' title='Forum Diskusi'></i></a>
-                    </li>"; //hapus tanda ";
-                    */
-                
-                  }
-                   ?>
 
-                   <?php 
 
-                     if(!isset($_SESSION['username'])) {
-                    ?>
                         <li class='nav-item'>
                         <a class='nav-link unjcolor-txt' href="<?php echo  site_url('Login') ?>"><b>Masuk</b><i class='fa fa-arrow-circle-o-right unjcolor-txt' data-toggle='tooltip' data-placement='bottom' title=''></i></a>
                     </li>
-                <?php } else { ?>
-                    <li class='nav-item'>
-                        <a class='nav-link unjcolor-txt' href="<?php echo site_url('Beranda/logout') ?>"><b>Keluar</b><i class='fa fa-arrow-circle-o-right unjcolor-txt' data-toggle='tooltip' data-placement='bottom' title=''></i></a>
-                    </li>
-                <?php } ?>
                    
                 </ul>
             </div>

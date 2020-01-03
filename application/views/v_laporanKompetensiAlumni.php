@@ -6,14 +6,15 @@
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/DataTables/buttons.print.min.js" ></script>
 <script src="<?php echo base_url('assets/template/vendor') ?>/chart.js/Chart.js"></script>
   <!-- head -->
-         <!-- Side Navbar -->
-        <div class="content-inner">
-          <!-- Page Header-->
-          <header class="page-header" style="background-color: #EFE037">
-            <div class="container-fluid">
-              <h2 class="no-margin-bottom">Laporan</h2>
-            </div>
-          </header>
+  
+ <!-- Side Navbar -->
+<div class="content-inner">
+  <!-- Page Header-->
+  <header class="page-header" style="background-color: #EFE037">
+    <div class="container-fluid">
+      <h2 class="no-margin-bottom">Laporan</h2>
+    </div>
+  </header>
 
 <?php 
 if ($tahun_lulus == "") {

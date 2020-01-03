@@ -803,7 +803,8 @@ public function addGanda() {
 	{
 		$data = array(
 			'pertanyaan' => $this->input->post('pertanyaan'),
-			'inputBox' => $this->input->post('inputBox')
+			'inputBox' => $this->input->post('inputBox'),
+			'keterangan' => $this->input->post('keterangan')
 		);
 		$where = array('id' => $this->input->post('pertanyaanID'));
 		$this->m_master->updateData($where,$data,'pertanyaan');

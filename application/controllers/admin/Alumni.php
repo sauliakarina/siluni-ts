@@ -38,27 +38,37 @@ class Alumni extends CI_Controller {
 			$tanggal_lulus = date("d M", $d);
 			$tahun_lulus = date("Y", $d);*/
 			$userID = 'ALU'.$this->input->post('nim');
+			$cek = $this->m_alumni->cekAlumni($this->input->post('nim'));
 
-			$data_user = array(
+			if($cek->num_rows() > 0){
+				$this->session->set_flashdata("gagalAddAlumni", '<div><div class="alert alert-danger" id="alert" align="center">Gagal menambahkan! Akun alumni sudah terdaftar</div></div>');
+			} else {
+
+				$data_user = array(
 				'userID' => $userID,
 				'username' => $this->input->post('nim'),
 				'password' => md5($this->input->post('nim')),
 				'prodiID' => $this->session->userdata('prodiID'),
 				'role' => 'alumni'
-			);
-			$this->m_master->inputData($data_user,'user');
-				
-			$data_alumni = array(
-			'nama' => $this->input->post('nama'),
-			'nim' => $this->input->post('nim'),
-			'userID' => $userID,
-			'jenis_kelamin' => $this->input->post('jenis_kelamin'),
-			'tahun_masuk' => $this->input->post('tahun_masuk'),
-			'tahun_lulus' => $this->input->post('tahun_lulus'),
-			'prodiID' => $this->session->userdata('prodiID'),
-			);
-			
-			$this->m_master->inputData($data_alumni,'alumni');
+				);
+				$this->m_master->inputData($data_user,'user');
+					
+				$data_alumni = array(
+				'nama' => $this->input->post('nama'),
+				'nim' => $this->input->post('nim'),
+				'userID' => $userID,
+				'jenis_kelamin' => $this->input->post('jenis_kelamin'),
+				'tahun_masuk' => $this->input->post('tahun_masuk'),
+				'tahun_lulus' => $this->input->post('tahun_lulus'),
+				'prodiID' => $this->session->userdata('prodiID'),
+				);
+
+				$this->m_master->inputData($data_alumni,'alumni');
+
+				$this->session->set_flashdata("suksesAddAlumni", '<div><div class="alert alert-success" id="alert" align="center">Akun alumni berhasil ditambahkan!</div></div>');
+
+			}
+
 			redirect('admin/Alumni');
 		}
 
@@ -179,6 +189,7 @@ class Alumni extends CI_Controller {
 				    if ($cek == 0) {
 				    	$data = array(
 				    		"nama_instansi" => $rowData[0][7],
+				    		"prodiID" => $this->session->userdata('prodiID')
 				    	);
 				    	$insert = $this->db->insert("instansi",$data);
 				    	$id_instansi = $this->m_master->getInstansiByName($rowData[0][7])->id;
@@ -187,11 +198,11 @@ class Alumni extends CI_Controller {
 				    }
 				    //tabel alumni instansi
 				    $alumniID = $this->m_alumni->getAlumniByUserID("ALU".$rowData[0][1])->id;
-				    $data = array(
+				   /* $data = array(
 				    	"instansiID" => $id_instansi,
 				    	"alumniID" => $alumniID,
 				    );
-				    $insert = $this->db->insert("alumni_instansi",$data);
+				    $insert = $this->db->insert("alumni_instansi",$data);*/
 
 				    //tabel pekerjaan
 					$where = array( 'id_alumni' => $alumniID);

@@ -6,12 +6,11 @@
             </div>
           </header>
           <!-- Breadcrumb-->
-          <div class="breadcrumb-holder container-fluid">
+          <!-- <div class="breadcrumb-holder container-fluid">
             <ul class="breadcrumb">
-              <li class="breadcrumb-item"><a href="<?php echo base_url('alumni/Pengguna') ?>"><i class="fas fa-chevron-left"></i> Pengguna Alumni</a></li>
-              <!-- <li class="breadcrumb-item active">Data</li> -->
+              <li class="breadcrumb-item"><a href="<?php echo base_url('alumni/Pengguna') ?>"><i class="fas fa-chevron-left"></i> Pengguna  Alumni</a></li>
             </ul>
-          </div>
+          </div> -->
           <section class="tables">   
             <div class="container-fluid">
               <div class="row">

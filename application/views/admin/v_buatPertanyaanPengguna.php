@@ -38,8 +38,11 @@
                     </div>
                     <div class="card-body">
                       <?php foreach ($pertanyaan as $p) { 
-                          if ($p->jenis == 'skala') { ?>
+                          if ($p->jenis == 'skala') { 
+                            if ($p->pertanyaan != 'Jenis Kemampuan') {
+                            ?>
                              <small class="help-block-none"><a href="#" onclick="set_id(<?php echo $p->id ?>)" data-toggle="modal" data-target="#ModalHapusSkala" style="color: red">Hapus tabel?</a></small>
+                           <?php } ?>
                             <table class="table table-striped table-hover">
                               <thead>
                                 <tr>

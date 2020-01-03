@@ -35,7 +35,7 @@ class Dosen extends CI_Controller {
 		$userID = 'DOS'.$this->input->post('nidn');
 		$dataUser = array(
 			'username' => $this->input->post('nidn'),
-			'password' => $this->input->post('nidn'),
+			'password' => md5($this->input->post('nidn')),
 			'prodiID' => $this->session->userdata('prodiID'),
 			'role' => 'dosen',
 			'userID' => $userID
@@ -98,12 +98,12 @@ class Dosen extends CI_Controller {
 
 	public function deleteDosen($id){
 
-		$where = array('id' => $id);
-		$this->m_master->deleteData($where,'dosen');
-
 		$id_user = $this->m_master->getUserByUserID($this->m_dosen->getDosenByID($id)->userID)->id;
 		$where = array('id' => $id_user);
 		$this->m_master->deleteData($where,'user');
+
+		$where = array('id' => $id);
+		$this->m_master->deleteData($where,'dosen');
 
 		redirect('admin/Dosen');
 	}

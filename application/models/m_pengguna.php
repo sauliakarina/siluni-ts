@@ -58,6 +58,7 @@ class M_pengguna extends CI_Model{
 
 	}
 
+
 	 function getCountNewAlumniPengguna($penggunaID) {
 		$this->db->select('*');
 		$this->db->where('id_pengguna', $penggunaID);
@@ -321,7 +322,7 @@ public function getPekerjaanSeenPengguna($id_pengguna, $seen){
   	public function getPekerjaanByAlumniIDWhereNotSudah($id_alumni){
 		$this->db->select('*');
 		$this->db->where('id_alumni', $id_alumni);
-		$this->db->where('isiPekerjaan !=', 'sudah');
+		$this->db->where('isiPekerjaan', Null);
 		$query = $this->db->get('pekerjaan');
 		if($query->num_rows()>0)
 		{

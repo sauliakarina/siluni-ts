@@ -1,3 +1,9 @@
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/DataTables/buttons.dataTables.min.css">
+<script src="<?php echo base_url(); ?>assets/DataTables/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/DataTables/buttons.flash.min.js" ></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/DataTables/jszip.min.js" ></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/DataTables/buttons.html5.min.js" ></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/DataTables/buttons.print.min.js" ></script>
 <!-- head -->
          <!-- Side Navbar -->
         <div class="content-inner">
@@ -180,8 +186,7 @@
   <h4><?php echo $this->m_master->getInstansiByID($k->id_instansi)->nama_instansi ?></h4>
   <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="collapse" data-target="#form_pekerjaan<?php echo $j ?>">Lengkapi Data</button>
   <div style="padding-top: 10px" id="form_pekerjaan<?php echo $j ?>" class="collapse">
-    <!-- <form class="form-horizontal" method="post" action="<?php echo base_url();?>alumni/Data/exeUpdatePekerjaan"> -->
-    <form class="form-horizontal exeUpdatePekerjaan" onsubmit="return exeUpdatePekerjaan()">  
+    <form class="form-horizontal" method="post" action="<?php echo base_url();?>alumni/Data/exeUpdatePekerjaan"> 
      <div class="form-group row">
       <label class="col-sm-3 form-control-label">Pilih Instansi</label>
       <div class="col-sm-9">
@@ -370,7 +375,7 @@
     <form action="<?php echo site_url('alumni/Kuesioner/addJawaban'); ?>" method="post">
     <p></p>
     <?php foreach ($kuesioner as $k) { ?>
-    <table class="table table-striped mb-4 table-responsive">
+    <table class="table table-striped mb-4">
     <h4><?php echo $k->nama_kuesioner ?></h4>
     <?php $pertanyaan = $this->m_kuesioner->getPertanyaanByKuesionerID($k->id);
     foreach ($pertanyaan as $p) {
@@ -411,25 +416,19 @@
     <label for="option1"><?php echo $pj->pilihan ?></label>
     </div> 
     <?php } //loop pilihanJawaban
-    } //else select ?>
-    <?php  if ($p->keterangan != Null) {
-    ?>
-    <small class="form-text"><?php echo $p->keterangan; ?></small>
-    <?php } ?>
-    <?php  if ($p->inputBox == 'ya') { ?>
+    } //else select
+    if ($p->inputBox == 'ya') { ?>
     <div class="form-group row">
     <textarea placeholder="" name="inputBox<?php echo $p->id ?>" class="form-control" rows="3"></textarea>
     </div>
-    <?php } ?> 
-
+    <?php } if ($p->keterangan != Null) {
+    ?>
+    <small class="form-text"><?php echo $p->keterangan; ?></small>
+    <?php } ?>
 
     <!-- jika pertanyaan ganda -->
     <?php } elseif ($p->jenis == 'ganda') { 
     $pilihanJawaban = $this->m_kuesioner->getPilihanJawabanByPertanyaanID($p->id);
-    if ($p->keterangan != Null) {
-    ?>
-    <small class="form-text"><?php echo $p->keterangan; ?></small>
-    <?php }
     foreach ($pilihanJawaban as $pj) {?>
     <div class="i-checks">
     <input id="checkbox1" type="checkbox" value="<?php echo $pj->pilihan ?>" name="<?php echo $p->id; ?>[]" class="checkbox-template">
@@ -440,6 +439,9 @@
     <div class="form-group row">
     <textarea placeholder="" name="inputBox<?php echo $p->id ?>" class="form-control" rows="3"></textarea>
     </div>
+    <?php }  if ($p->keterangan != Null) {
+    ?>
+    <small class="form-text"><?php echo $p->keterangan; ?></small>
     <?php } ?>
     <!-- jika pertanyaan skala -->
     <?php } //if jenis ganda 
@@ -513,7 +515,6 @@
             <div class="modal-body">
               <p></p>
               <form action="<?php echo base_url();?>alumni/Data/exeAddPekerjaan_new" method="post">
-              <!-- <form class="exeAddPekerjaan_new" onsubmit="return exeAddPekerjaan_new()" method="post">  --> 
 
                <div class="form-group row">
                 <label class="col-sm-3 form-control-label">Pilih Instansi</label>
@@ -667,8 +668,6 @@
 
 </html>
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-
 <script type="text/javascript">
    $(document).ready(function(){ // Ketika halaman sudah siap (sudah selesai di load)
     // Kita sembunyikan dulu untuk loadingnya
@@ -745,44 +744,14 @@
     window.location.href =  "<?php echo base_url();?>alumni/Profil/hapusRiwayat/"+p_id;
   }
 
-   $(document).ready( function () {
-    $('#myTable').DataTable(
-        {
-        "ordering": false,
-    }
-      );
-} );
-  
-
-function exeUpdatePekerjaan() {
-    
-    var data = $('.exeUpdatePekerjaan').serialize();
-
-    // alert(data);
-
-    $.ajax({
-    type: 'POST',
-    data: data,
-    url: "<?php echo base_url('alumni/Data/exeUpdatePekerjaan') ?>",
-    success: function(response) {
-        
-    Swal.fire({
-          position: 'top-end',
-          type: 'success',
-          title: 'Berhasi menambah pekerjaan',
-          showConfirmButton: false,
-          timer: 1500
-        }).then(function(){
-            var ref = $('#myTable')
-            $('#myTable').load(document.URL +  ' #myTable', function() {
-            ref.children('#myTable').unwrap();});
-        })     
-
-  }
-
-});
-    
-    return false;
-
-}
+$(document).ready( function () {
+      $('#myTable').DataTable({
+          "ordering": false,
+          "select": true,
+          dom: 'Bfrtip',
+          buttons: [
+              'print'
+          ]
+        }); //input fungsi
+    });
 </script>

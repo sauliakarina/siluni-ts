@@ -23,6 +23,7 @@
                               <th>No</th>
                               <th>Nama Instansi</th>
                               <th>Skala Instansi</th>
+                              <th>Alumni</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -34,6 +35,9 @@
                               <th scope="row"><?php echo $no++; ?></th>
                               <td><?php echo $p->nama_instansi ?></td>
                               <td><?php echo $p->jenis_instansi?></td>
+                              <td>
+                                <a type="button" href="<?php echo site_url('koorprodi/Pengguna/daftarAlumniInstansi/'.$p->id) ?>" class="btn btn-info btn-sm">Lihat</a>
+                              </td>
                             </tr>
                           <?php } ?>
                           </tbody>

@@ -69,7 +69,7 @@ public function index()
 		         'username' => $this->session->userdata('username'),
 		         'alumni' => $this->m_data->tampil_user($where,'alumni')->result(),
 		         'prodi' => $this->m_master->getProdi(),
-		         'pekerjaan' => $this->m_pengguna->joinPekerjaanByPenggunaID($nrm),
+		         'pekerjaan' => $this->m_pengguna->getPekerjaanByAlumniID($nrm),
 		        );
 		        $this->load->view('element/header_siluni',$data);
 		        $this->load->view('guest/v_profil_user',$data);

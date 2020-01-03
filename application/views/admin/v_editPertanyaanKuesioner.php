@@ -52,6 +52,13 @@
                                   </ul>
                           </div>
                         </div>
+                        <div class="line"></div>
+                         <div class="form-group row">
+                          <label class="col-sm-3 form-control-label">Keterangan</label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" name="keterangan" value="<?php echo $pr->keterangan ?>">
+                          </div>
+                        </div>
                          <div class="line"></div>
                            <div class="form-group row">
                           <label class="col-sm-3 form-control-label">Tambahan Input Box</label>
