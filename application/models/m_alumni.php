@@ -121,4 +121,17 @@ class M_alumni extends CI_Model{
 		$query = $this->db->get('pekerjaan');
 		return $query->row();
 	}
+
+	public function joinPekerjaanAlumniByProdiID($prodiID){
+      $this->db->select('
+          pekerjaan.id AS id_pekerjaan, pekerjaan.*, alumni.id AS id_alumni, alumni.*
+      ');
+      $this->db->join('alumni', 'pekerjaan.id_alumni = alumni.id');
+      $this->db->from('pekerjaan');
+      $this->db->where('alumni.prodiID',$prodiID);
+      $this->db->where('pekerjaan.gaji !=',"");
+      $query = $this->db->get();
+      return $query->result();
+  	}
+
 }

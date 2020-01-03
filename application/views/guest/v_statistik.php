@@ -13,11 +13,29 @@ $instansiNasional = $this->m_hasil->getSkalaInstansi('Nasional', $prodiID);
 $instansiInternasional = $this->m_hasil->getSkalaInstansi('Internasional', $prodiID);
 
 //grafik first gaji
-$tipe1 = $this->m_hasil->getFirstGaji('1-5 juta', $prodiID);//< 1jt
-$tipe2 = $this->m_hasil->getFirstGaji('6-10 juta', $prodiID);//1jt - 2jt
-$tipe3 = $this->m_hasil->getFirstGaji('11-15 juta', $prodiID);//2jt - 3jt
-$tipe4 = $this->m_hasil->getFirstGaji('> 15 juta', $prodiID);//> 4jt
+$tipe1 = 0;
+$tipe2 = 0;
+$tipe3 = 0;
+$tipe4 = 0;
+$alumni = $this->m_hasil->joinPekerjaanAlumni($prodiID);
+foreach ($alumni as $a) {
+  $gaji = $a->gaji;
+  if ($gaji >= "1000000" && $gaji <= "5000000") {
+    $tipe1++;
+  } elseif ($gaji >= "6000000" && $gaji <= "10000000") {
+    $tipe2++;
+  } elseif ($gaji >= "11000000" && $gaji <= "15000000") {
+    $tipe3++;
+  } elseif ($gaji > "15000000"){
+    $tipe4++;
+  }
+}
 
+/*$tipe1 = $this->m_hasil->getFirstGaji('1-5 juta', $prodiID);
+$tipe2 = $this->m_hasil->getFirstGaji('6-10 juta', $prodiID);
+$tipe3 = $this->m_hasil->getFirstGaji('11-15 juta', $prodiID);
+$tipe4 = $this->m_hasil->getFirstGaji('> 15 juta', $prodiID);
+*/
 
 //grafik profil lulusan
 $praktisi = $this->m_hasil->getProfilLulusan('Praktisi',$prodiID);

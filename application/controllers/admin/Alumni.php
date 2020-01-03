@@ -66,7 +66,6 @@ class Alumni extends CI_Controller {
 				$this->m_master->inputData($data_alumni,'alumni');
 
 				$this->session->set_flashdata("suksesAddAlumni", '<div><div class="alert alert-success" id="alert" align="center">Akun alumni berhasil ditambahkan!</div></div>');
-
 			}
 
 			redirect('admin/Alumni');
@@ -214,7 +213,7 @@ class Alumni extends CI_Controller {
 					}
 
 				    $gajiawal = str_replace(".","",$rowData[0][9]);
-				    if ($gajiawal >= "1000000" && $gajiawal <= "5000000" ) {
+				    /*if ($gajiawal >= "1000000" && $gajiawal <= "5000000" ) {
 				    	$gaji = "1-5 juta";
 				    } elseif ($gajiawal >= "6000000" && $gajiawal <= "10000000" ) {
 				    	$gaji = "6-10 juta";
@@ -224,10 +223,10 @@ class Alumni extends CI_Controller {
 				    	$gaji = "> 15 juta";
 				    } else {
 				    	$gaji = '';
-				    }
+				    }*/
 				    $data = array(
 				    	"posisi" => $rowData[0][8],
-				    	"gaji" => $gaji,
+				    	"gaji" => $gajiawal,
 				    	"id_pengguna" => '0',
 				    	"id_alumni" => $alumniID,
 				    	'firstPekerjaan' => $firstPekerjaan,

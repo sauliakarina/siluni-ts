@@ -5,6 +5,7 @@
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/DataTables/buttons.html5.min.js" ></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/DataTables/buttons.print.min.js" ></script>
 <script src="<?php echo base_url('assets/template/vendor') ?>/chart.js/Chart.js"></script>
+<script src="<?php echo base_url('assets/number_format/dist') ?>/jquery.masknumber.js"></script>
   <!-- head -->
          <!-- Side Navbar -->
         <div class="content-inner">
@@ -16,16 +17,41 @@
           </header>
 
 <?php 
-  if ($pertanyaan == 'gaji' && $tahun_lulus == '') {
-    $tipe1 = $this->m_hasil->getFirstGaji('1-5 juta', $prodiID);//< 1jt
-    $tipe2 = $this->m_hasil->getFirstGaji('6-10 juta', $prodiID);//1jt - 2jt
-    $tipe3 = $this->m_hasil->getFirstGaji('11-15 juta', $prodiID);//2jt - 3jt
-    $tipe4 = $this->m_hasil->getFirstGaji('> 15 juta', $prodiID);//> 4jt
-  } elseif ($pertanyaan == 'gaji' && $tahun_lulus != '') {
-    $tipe1 = $this->m_hasil->getFirstGajiTahun('1-5 juta', $prodiID, $tahun_lulus);//< 1jt
-    $tipe2 = $this->m_hasil->getFirstGajiTahun('6-10 juta', $prodiID, $tahun_lulus);//1jt - 2jt
-    $tipe3 = $this->m_hasil->getFirstGajiTahun('11-15 juta', $prodiID, $tahun_lulus);//2jt - 3jt
-    $tipe4 = $this->m_hasil->getFirstGajiTahun('> 15 juta', $prodiID, $tahun_lulus);//> 4jt
+ //first gaji
+if ($pertanyaan == 'gaji') {
+  $tipe1 = 0;
+  $tipe2 = 0;
+  $tipe3 = 0;
+  $tipe4 = 0;
+  if ($tahun_lulus == '') {
+      $alumni = $this->m_hasil->joinPekerjaanAlumni($prodiID);
+
+    } elseif ($tahun_lulus != '') {
+      $alumni = $this->m_hasil->joinPekerjaanAlumniTahun($prodiID, $tahun_lulus);
+    }
+    foreach ($alumni as $a) {
+      $gaji = $a->gaji;
+      if ($gaji >= "1000000" && $gaji <= "5000000") {
+        $tipe1++;
+      } elseif ($gaji >= "6000000" && $gaji <= "10000000") {
+        $tipe2++;
+      } elseif ($gaji >= "11000000" && $gaji <= "15000000") {
+        $tipe3++;
+      } elseif ($gaji > "15000000"){
+        $tipe4++;
+      }
+    }
+    //rata2 gaji pertama
+    $sumGaji = 0;
+    //$alumni = $this->m_hasil->joinPekerjaanAlumni($prodiID);
+    foreach ($alumni as $a) {
+      $sumGaji += $a->gaji;
+    }
+    if ($sumGaji != '0') {
+      $rataGaji = $sumGaji/count($alumni);
+    } else {
+      $rataGaji = '0';
+    }
   }
  ?>
   <section class="tables">   
@@ -55,6 +81,15 @@
                         </div>
                         </div>
                     <?php } ?>
+
+                    <?php if ($pertanyaan == 'gaji') { ?>
+                    <div class="row">
+                     <h6 style="margin: 10px">Rata-rata penghasilan pertama <?php 
+                        echo "Rp ".number_format($rataGaji,0,",",",");
+                      ?></h6> 
+                    </div>
+                    <?php } ?>
+
                       <div class="row" style="margin-top: 20px" >
                         <div class="table-responsive col-lg-12" >                       
                         <table id="myTable" class="table table-striped table-hover">
@@ -77,7 +112,7 @@
                               } elseif ($pertanyaan == 'ipk') {
                                 echo $t->ipk;
                               } else {
-                                echo $t->gaji;
+                                echo "Rp ".number_format($t->gaji,0,",",","); 
                               }?></td>
                             </tr>
                           <?php } ?>

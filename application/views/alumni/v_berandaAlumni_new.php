@@ -1,3 +1,4 @@
+<script src="<?php echo base_url('assets/number_format/dist') ?>/jquery.masknumber.js"></script>
 <!-- head -->
          <!-- Side Navbar -->
         <div class="content-inner">
@@ -206,6 +207,13 @@
           <option value="Nasional"> Nasional </option>
           <option value="Internasional"> Internasional </option>
         </select>
+        <small class="form-text">
+          <ul>
+            <li>Instansi Lokal          : instansi yang diakui dalam suatu provisi</li>
+            <li>Instansi Nasional       : instansi yang diakui di seluruh indonesia </li>
+            <li>Instansi Internasional  : instansi yang memiliki cabang di luar negeri</li>
+          </ul>
+    </small>
       </div>
     </div>
 
@@ -236,13 +244,14 @@
     <div class="form-group row">
       <label  class="col-sm-3 form-control-label">Pendapatan Tiap Bulan</label>
       <div class="col-sm-9">
-        <select name="gaji" class="form-control mb-3" required>
+        <input type="text" class="form-control" id="gajiNominal" value="<?php echo number_format($k->gaji,0,",",","); ?>" name="gaji" required>
+        <!-- <select name="gaji" class="form-control mb-3" required>
           <option value="<?php echo $k->gaji ?>"><?php echo $k->gaji ?></option>
           <option value="1-5 juta"> Rp 1-5 juta </option>
           <option value="6-10 juta"> Rp 6-10juta </option>
           <option value="11-15juta"> Rp 11-15juta </option>
           <option value="> 15juta"> > Rp 15juta </option>
-        </select>
+        </select> -->
       </div>
     </div>
 
@@ -345,7 +354,7 @@
           <th scope="row"><?php echo $no++ ?></th>
           <td><?php echo $this->m_master->getInstansiByID($r->id_instansi)->nama_instansi ?></td>
           <td><?php echo $r->posisi ?></td>
-          <td><?php echo $r->gaji ?></td>
+          <td><?php echo number_format($r->gaji,0,",",","); ?></td>
           <td><?php echo $r->periode_kerja ?></td>
           <td>
             <div class="btn-group btn-group-toggle">
@@ -567,13 +576,14 @@
                 <div class="form-group row">
                   <label  class="col-sm-3 form-control-label">Pendapatan Tiap Bulan</label>
                   <div class="col-sm-9">
-                    <select name="gaji" class="form-control mb-3" required>
+                    <input type="text" class="form-control" id="gajiNominal_m" name="gaji" required>
+                    <!-- <select name="gaji" class="form-control mb-3" required>
                       <option value=""></option>
                       <option value="1-5 juta"> Rp 1-5 juta </option>
                       <option value="6-10 juta"> Rp 6-10juta </option>
                       <option value="11-15juta"> Rp 11-15juta </option>
                       <option value="> 15juta"> > Rp 15juta </option>
-                    </select>
+                    </select> -->
                   </div>
                 </div>
 
@@ -785,4 +795,14 @@ function exeUpdatePekerjaan() {
     return false;
 
 }
+
+$('#gajiNominal').maskNumber({
+  integer: true,
+
+});
+
+$('#gajiNominal_m').maskNumber({
+  integer: true,
+
+});
 </script>
