@@ -324,7 +324,7 @@ class Profil extends CI_Controller {
 	    $lists = "<option value=''>Pilih</option>";
 	    
 	    foreach($penggunaID as $data){
-	      $lists .= "<option value='".$data->id."'>".$data->pengguna_nama."</option>"; // Tambahkan tag option ke variabel $lists
+	      $lists .= "<option value='".$data->id."'>".$data->pengguna_nama." - Divisi  ".$data->divisi."</option>";  // Tambahkan tag option ke variabel $lists
 	    }
 	    //list_kota = list_pertanyaanSkala
 	    $callback = array('list_penggunaID'=>$lists); // Masukan variabel lists tadi ke dalam array $callback dengan index array : list_kota
@@ -419,7 +419,7 @@ class Profil extends CI_Controller {
 		$this->m_master->updateData($where,$data,'instansi');
 		//data tabel pekerjaan
 		$data = array(
-			'gaji' => $this->input->post('gaji'),
+			'gaji' => str_replace(",","",$this->input->post('gaji')),
 			'posisi' => $this->input->post('posisi'),
 			'profil' => $this->input->post('profil'),
 			'periode_kerja' => $this->input->post('p1')."-".$this->input->post('p2')
@@ -448,7 +448,8 @@ class Profil extends CI_Controller {
 			$this->m_master->deleteData($where,'pengguna');
 		}
 
-		redirect('alumni/Profil/riwayatPekerjaan/');
+		$this->session->set_flashdata("edit_pekerjaan", '<div><div class="alert alert-success" id="alert" align="center">Data pekerjaan anda berhasil disunting</div></div>');
+		redirect('alumni/Beranda');
 	}
 
 

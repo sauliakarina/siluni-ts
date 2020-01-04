@@ -7,6 +7,8 @@
           </header>
     
     <?php echo $this->session->flashdata('sukses_edit'); ?>
+    <?php echo $this->session->flashdata('suksesAddDosen'); ?>
+    <?php echo $this->session->flashdata('gagalAddDosen'); ?>
 
           <section class="tables">   
             <div class="container-fluid">

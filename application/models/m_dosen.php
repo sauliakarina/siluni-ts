@@ -23,6 +23,11 @@ class M_dosen extends CI_Model{
 
 	}
 
+	public function cekDosen($nidn){
+		$this->db->where('nidn', $nidn);
+		return $this->db->get('dosen');
+	}
+
 	function getDosenByUserID($userid)
 	{
 		$this->db->select('*');

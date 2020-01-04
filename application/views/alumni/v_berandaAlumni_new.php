@@ -1,3 +1,9 @@
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/DataTables/buttons.dataTables.min.css">
+<script src="<?php echo base_url(); ?>assets/DataTables/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/DataTables/buttons.flash.min.js" ></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/DataTables/jszip.min.js" ></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/DataTables/buttons.html5.min.js" ></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/DataTables/buttons.print.min.js" ></script>
 <script src="<?php echo base_url('assets/number_format/dist') ?>/jquery.masknumber.js"></script>
 <!-- head -->
          <!-- Side Navbar -->
@@ -126,21 +132,22 @@
           </div>
           <div class="line"></div>
           <div class="form-group row row">
-            <label class="col-sm-3 form-control-label">Tahun Lulus</label>
+            <label class="col-sm-3 form-control-label">Bulan dan Tahun Lulus</label>
             <div class="col-sm-3">
-              <input type="text" name="tahun_lulus" class="form-control" value="<?php echo $profil->tahun_lulus ?>">
+              <input type="text" name="waktu_lulus" class="form-control" value="<?php echo $profil->bulan_lulus ?> <?php echo $profil->tahun_lulus ?>">
+               <small class="form-text">contoh : Agustus 2017</small>
             </div>
           </div>
           <div class="line"></div>
           <div class="form-group row row">
-            <label class="col-sm-3 form-control-label">IPK</label>
+            <label class="col-sm-3 form-control-label">IPK Kelulusan</label>
             <div class="col-sm-3">
               <input type="text" name="ipk" class="form-control" value="<?php echo $profil->ipk ?>">
             </div>
           </div>
            <div class="line"></div>
           <div class="form-group row row">
-            <label class="col-sm-3 form-control-label">TOEFL</label>
+            <label class="col-sm-3 form-control-label">Nilai TOEFL Kelulusan</label>
             <div class="col-sm-3">
               <input type="text" name="toefl" class="form-control" value="<?php echo $profil->toefl ?>">
             </div>
@@ -181,8 +188,8 @@
   <h4><?php echo $this->m_master->getInstansiByID($k->id_instansi)->nama_instansi ?></h4>
   <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="collapse" data-target="#form_pekerjaan<?php echo $j ?>">Lengkapi Data</button>
   <div style="padding-top: 10px" id="form_pekerjaan<?php echo $j ?>" class="collapse">
-    <!-- <form class="form-horizontal" method="post" action="<?php echo base_url();?>alumni/Data/exeUpdatePekerjaan"> -->
-    <form class="form-horizontal exeUpdatePekerjaan" onsubmit="return exeUpdatePekerjaan()">  
+  <form class="form-horizontal" method="post" action="<?php echo base_url();?>alumni/Data/exeUpdatePekerjaan"> 
+    <!-- <form class="form-horizontal exeUpdatePekerjaan" onsubmit="return exeUpdatePekerjaan()">  --> 
      <div class="form-group row">
       <label class="col-sm-3 form-control-label">Pilih Instansi</label>
       <div class="col-sm-9">
@@ -244,14 +251,14 @@
     <div class="form-group row">
       <label  class="col-sm-3 form-control-label">Pendapatan Tiap Bulan</label>
       <div class="col-sm-9">
-        <input type="text" class="form-control" id="gajiNominal" value="<?php echo number_format($k->gaji,0,",",","); ?>" name="gaji" required>
-        <!-- <select name="gaji" class="form-control mb-3" required>
-          <option value="<?php echo $k->gaji ?>"><?php echo $k->gaji ?></option>
-          <option value="1-5 juta"> Rp 1-5 juta </option>
-          <option value="6-10 juta"> Rp 6-10juta </option>
-          <option value="11-15juta"> Rp 11-15juta </option>
-          <option value="> 15juta"> > Rp 15juta </option>
-        </select> -->
+        <?php 
+        if ($k->gaji != "") {
+          $gaji = number_format($k->gaji,0,",",","); 
+        } else {
+          $gaji = "";
+        }
+        ?>
+        <input type="text" class="form-control" id="gajiNominal" value="<?php echo $gaji ?>" name="gaji" required>
       </div>
     </div>
 
@@ -271,15 +278,16 @@
     </div>
 
     <div class="form-group row">
-      <label class="col-sm-3 form-control-label">Pilih Pengguna Alumni</label>
+      <label class="col-sm-3 form-control-label">Pengguna Alumni</label>
       <div class="col-sm-9">
+        <small>*untuk pekerjaan saat ini</small>
         <select name="penggunaID" id="penggunaID" class="form-control mb-3">
 
         <?php 
           $penggunaInstansi = $this->m_pengguna->getPenggunaByInstansiID($k->id_instansi);
          foreach ($penggunaInstansi as $p ) { ?>
           <option value=""></option>
-          <option value="<?php echo $p->id ?>"><?php echo $p->pengguna_nama ?></option>
+          <option value="<?php echo $p->id ?>"><?php echo $p->pengguna_nama." - Divisi ".$p->divisi ?></option>
          <?php } ?>
 
         </select>
@@ -339,7 +347,7 @@
         <tr>
           <th>No</th>
           <th>Instansi</th>
-          <th>Profesi</th>
+          <th>Profesi/Posisi</th>
           <th>Pendapatan per Bulan</th>
           <th>Periode</th>
           <th></th>
@@ -377,124 +385,124 @@
 <!-- tab kuesioner -->
   <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel" aria-labelledby="tabs-icons-text-3-tab">
     <form action="<?php echo site_url('alumni/Kuesioner/addJawaban'); ?>" method="post">
-    <p></p>
-    <?php foreach ($kuesioner as $k) { ?>
-    <table class="table table-striped mb-4 table-responsive">
-    <h4><?php echo $k->nama_kuesioner ?></h4>
-    <?php $pertanyaan = $this->m_kuesioner->getPertanyaanByKuesionerID($k->id);
-    foreach ($pertanyaan as $p) {
-    ?>
-    <tr>
-    <td><?php echo $p->pertanyaan ?></td>
-    <td>:</td>
-    <td width="600px">
-    <!-- jika pertanyaan isian -->
-    <?php if ($p->jenis == 'isian') { ?>
-    <div class="form-group row">
-    <?php if ($p->textarea == 'ya') { ?>
-    <textarea class="form-control" name="<?php echo $p->id ?>" rows="5" placeholder="masukkan jawaban"></textarea>
-    <?php } else { ?>
-    <input type="text" placeholder="masukkan jawaban" name="<?php echo $p->id ?>" class="form-control">
-    <?php } 
-    if ($p->keterangan != Null) {
-    ?>
-    <small class="form-text"><?php echo $p->keterangan; ?></small>
-    <?php } ?>
-    </div>
-    <!-- jika pertanyaan pilihan -->
-    <?php } elseif ($p->jenis == 'pilihan') { 
-    $pilihanJawaban = $this->m_kuesioner->getPilihanJawabanByPertanyaanID($p->id);
-    $jumlahPilihan = count($pilihanJawaban);
-    if ($jumlahPilihan > 5) { ?>
-    <select name="<?php echo $p->id ?>" class="form-control mb-3">
-    <option></option>
-    <?php 
-    foreach ($pilihanJawaban as $pj) {  ?>
-    <option value="<?php echo $pj->pilihan ?>"><?php echo $pj->pilihan ?></option>
-    <?php } ?>
-    </select>
-    <?php }  else {?>
-    <?php foreach ($pilihanJawaban as $pj) {  ?> 
-    <div class="i-checks">
-    <input id="option1" type="radio" value="<?php echo $pj->pilihan ?>" name="<?php echo $p->id ?>" class="radio-template">
-    <label for="option1"><?php echo $pj->pilihan ?></label>
-    </div> 
-    <?php } //loop pilihanJawaban
-    } //else select ?>
-    <?php  if ($p->keterangan != Null) {
-    ?>
-    <small class="form-text"><?php echo $p->keterangan; ?></small>
-    <?php } ?>
-    <?php  if ($p->inputBox == 'ya') { ?>
-    <div class="form-group row">
-    <textarea placeholder="" name="inputBox<?php echo $p->id ?>" class="form-control" rows="3"></textarea>
-    </div>
-    <?php } ?> 
-
-
-    <!-- jika pertanyaan ganda -->
-    <?php } elseif ($p->jenis == 'ganda') { 
-    $pilihanJawaban = $this->m_kuesioner->getPilihanJawabanByPertanyaanID($p->id);
-    if ($p->keterangan != Null) {
-    ?>
-    <small class="form-text"><?php echo $p->keterangan; ?></small>
-    <?php }
-    foreach ($pilihanJawaban as $pj) {?>
-    <div class="i-checks">
-    <input id="checkbox1" type="checkbox" value="<?php echo $pj->pilihan ?>" name="<?php echo $p->id; ?>[]" class="checkbox-template">
-    <label for="checkbox1"><?php echo $pj->pilihan ?></label>
-    </div>
-    <?php } //loop jawaban ganda 
-    if ($p->inputBox == 'ya') {?>
-    <div class="form-group row">
-    <textarea placeholder="" name="inputBox<?php echo $p->id ?>" class="form-control" rows="3"></textarea>
-    </div>
-    <?php } ?>
-    <!-- jika pertanyaan skala -->
-    <?php } //if jenis ganda 
-    if ($p->jenis == 'skala') { 
-    if ($p->keterangan != Null) { ?>
-    <small class="form-text"><?php echo $p->keterangan; ?></small>
-    <?php } ?>
-
-    <table class="table table-striped table-hover">
-        <thead>
+        <p></p>
+        <?php foreach ($kuesioner as $k) { ?>
+        <table class="table table-striped mb-4 table-responsive">
+          <h4><?php echo $k->nama_kuesioner ?></h4>
+          <?php $pertanyaan = $this->m_kuesioner->getPertanyaanByKuesionerID($k->id);
+          foreach ($pertanyaan as $p) {
+          ?>
           <tr>
-            <th></th>
-            <?php 
-            $skalaNilai = $this->m_kuesioner->getSkalaByPertanyaanID($p->id);
-            foreach ($skalaNilai as $sn) { ?>
-            <th><?php echo $sn->nilai ?></th>
-            <?php } //foreach skala nilai ?>
-          </tr>
-          </thead>
-        <tbody>
-        <?php
-        $pertanyaanSkala = $this->m_kuesioner->getPertanyaanSkalaByPertanyaanID($p->id);
-        foreach ($pertanyaanSkala as $ps) {
-        ?>
-        <tr>
-          <th><?php echo $ps->pertanyaan ?></th>
-          <?php 
-          $skalaNilai = $this->m_kuesioner->getSkalaByPertanyaanID($p->id);
-          foreach ($skalaNilai as $sn) { ?>
-          <th><input type="radio" value="<?php echo $sn->nilai ?>" name="<?php echo $ps->id ?>" class="radio-template"></th>
-          <?php } //foreach skala nilai ?>
+            <td><?php echo $p->pertanyaan ?></td>
+            <td>:</td>
+            <td width="600px">
+            <!-- jika pertanyaan isian -->
+            <?php if ($p->jenis == 'isian') { ?>
+              <div class="form-group row">
+                <?php if ($p->textarea == 'ya') { ?>
+                  <textarea class="form-control" name="isian_<?php echo $p->id ?>" rows="5" placeholder="masukkan jawaban"></textarea>
+                <?php } else { ?>
+                  <input type="text" placeholder="masukkan jawaban" name="isian_<?php echo $p->id ?>" class="form-control">
+                <?php } 
+                if ($p->keterangan != Null) {
+                ?>
+                  <small class="form-text"><?php echo $p->keterangan; ?></small>
+                <?php } ?>
+              </div>
+
+            <!-- jika pertanyaan pilihan -->
+            <?php } elseif ($p->jenis == 'pilihan') { 
+              $pilihanJawaban = $this->m_kuesioner->getPilihanJawabanByPertanyaanID($p->id);
+              $jumlahPilihan = count($pilihanJawaban);
+              if ($jumlahPilihan > 5) { ?>
+                <select name="pilihan_<?php echo $p->id ?>" class="form-control mb-3">
+                <option></option>
+              <?php foreach ($pilihanJawaban as $pj) {  ?>
+                <option value="<?php echo $pj->pilihan ?>"><?php echo $pj->pilihan ?></option>
+              <?php } ?>
+              </select>
+              <?php }  else {?>
+              <?php foreach ($pilihanJawaban as $pj) {  ?> 
+                <div class="i-checks">
+                  <input id="option1" type="radio" value="<?php echo $pj->pilihan ?>" name="pilihan_<?php echo $p->id ?>" class="radio-template">
+                  <label for="option1"><?php echo $pj->pilihan ?></label>
+                </div> 
+              <?php } //loop pilihanJawaban
+              } //else select ?>
+              <?php  if ($p->keterangan != Null) { ?>
+                <small class="form-text"><?php echo $p->keterangan; ?></small>
+              <?php } ?>
+              <?php  if ($p->inputBox == 'ya') { ?>
+                <div class="form-group row">
+                  <textarea placeholder="" name="inputBoxPilihan_<?php echo $p->id ?>" class="form-control" rows="3"></textarea>
+                </div>
+              <?php } ?> 
+
+            <!-- jika pertanyaan ganda -->
+            <?php } elseif ($p->jenis == 'ganda') { 
+              $pilihanJawaban = $this->m_kuesioner->getPilihanJawabanByPertanyaanID($p->id);
+              if ($p->keterangan != Null) {
+              ?>
+              <small class="form-text"><?php echo $p->keterangan; ?></small>
+              <?php }
+              foreach ($pilihanJawaban as $pj) {?>
+                <div class="i-checks">
+                  <input id="checkbox1" type="checkbox" value="<?php echo $pj->pilihan ?>" name="ganda_<?php echo $p->id; ?>[]" class="checkbox-template">
+                  <label for="checkbox1"><?php echo $pj->pilihan ?></label>
+                </div>
+              <?php } //loop jawaban ganda 
+              if ($p->inputBox == 'ya') {?>
+                <div class="form-group row">
+                  <textarea placeholder="" name="inputBoxGanda_<?php echo $p->id ?>" class="form-control" rows="3"></textarea>
+                </div>
+            <?php } ?>
+
+            <!-- jika pertanyaan skala -->
+            <?php } //if jenis ganda 
+            if ($p->jenis == 'skala') { 
+              //tampil keterangan
+              if ($p->keterangan != Null) { ?>
+                 <small class="form-text"><?php echo $p->keterangan; ?></small>
+              <?php } ?>
+
+              <table class="table table-striped table-hover">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <?php 
+                      $skalaNilai = $this->m_kuesioner->getSkalaByPertanyaanID($p->id);
+                      foreach ($skalaNilai as $sn) { ?>
+                      <th><?php echo $sn->nilai ?></th>
+                      <?php } //foreach skala nilai ?>
+                    </tr>
+                    </thead>
+                  <tbody>
+                  <?php
+                  $pertanyaanSkala = $this->m_kuesioner->getPertanyaanSkalaByPertanyaanID($p->id);
+                  foreach ($pertanyaanSkala as $ps) {
+                  ?>
+                  <tr>
+                    <th><?php echo $ps->pertanyaan ?></th>
+                    <?php 
+                    $skalaNilai = $this->m_kuesioner->getSkalaByPertanyaanID($p->id);
+                    foreach ($skalaNilai as $sn) { ?>
+                    <th><input type="radio" value="<?php echo $sn->nilai ?>" name="skala_<?php echo $ps->id ?>" class="radio-template"></th>
+                    <?php } //foreach skala nilai ?>
+                  </tr>
+                  <?php } //foreach pertanyaan skala ?>
+                  </tbody>
+            </table>
+          <?php } //jenis skala ?>
+          </td>
         </tr>
-        <?php } //foreach pertanyaan skala ?>
-        </tbody>
-    </table>
-    <?php } //jenis skala ?>
-    </td>
-    </tr>
-    <?php } //loop pertanyaan ?>
-    </table>
-    <?php }//loop kuesioner ?>
-    <div class="form-group row">
-      <div class="col-sm-4 offset-sm-5 mb-3">
-        <button type="submit" class="btn btn-primary">Simpan Jawaban</button>
-      </div>
-    </div>
+        <?php } //loop pertanyaan ?>
+        </table>
+        <?php }//loop kuesioner ?>
+        <div class="form-group row">
+          <div class="col-sm-4 offset-sm-5 mb-3">
+            <button type="submit" class="btn btn-primary">Simpan Jawaban</button>
+          </div>
+        </div>
     </form>
   </div> <!-- tab kuesioner -->
 
@@ -551,7 +559,7 @@
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-sm-3 form-control-label">Profesi</label>
+                  <label class="col-sm-3 form-control-label">Profesi/Posisi</label>
                    <div class="col-sm-9">
                       <input type="text" class="form-control" value="" name="posisi" required>
                    </div>
@@ -605,6 +613,7 @@
                <div class="form-group row">
                 <label class="col-sm-3 form-control-label">Pengguna Alumni</label>
                 <div class="col-sm-9">
+                  <small>*untuk pekerjaan saat ini</small>
                   <select name="penggunaID" id="penggunaID_m" class="form-control mb-3">
                     <option value=""></option>
                   </select>
@@ -755,14 +764,17 @@
     window.location.href =  "<?php echo base_url();?>alumni/Profil/hapusRiwayat/"+p_id;
   }
 
-   $(document).ready( function () {
-    $('#myTable').DataTable(
-        {
+ $(document).ready( function () {
+    $('#myTable').DataTable({
         "ordering": false,
-    }
-      );
-} );
-  
+        "select": true,
+        dom: 'Bfrtip',
+        buttons: [
+          'excel', 'print'
+        ]
+      }); //input fungsi
+  });
+
 
 function exeUpdatePekerjaan() {
     
@@ -779,8 +791,8 @@ function exeUpdatePekerjaan() {
     Swal.fire({
           position: 'top-end',
           type: 'success',
-          title: 'Berhasi menambah pekerjaan',
-          showConfirmButton: false,
+          title: 'Update Data Pekerjaan Berhasil',
+          showConfirmButton: true,
           timer: 1500
         }).then(function(){
             var ref = $('#myTable')

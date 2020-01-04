@@ -32,25 +32,34 @@ class Dosen extends CI_Controller {
 
 	public function exeAdd(){
 
-		$userID = 'DOS'.$this->input->post('nidn');
-		$dataUser = array(
-			'username' => $this->input->post('nidn'),
-			'password' => md5($this->input->post('nidn')),
-			'prodiID' => $this->session->userdata('prodiID'),
-			'role' => 'dosen',
-			'userID' => $userID
-		);
-		$this->m_master->inputData($dataUser,'user');
-		$dataDosen = array(
-			'nama' => $this->input->post('nama'),
-			'jenis_kelamin' => $this->input->post('jenis_kelamin'),
-			'nidn' => $this->input->post('nidn'),
-			'prodiID' => $this->session->userdata('prodiID'),
-			'email' => $this->input->post('email'),
-			'no_telepon' => $this->input->post('no_telepon'),
-			'userID' => $userID
-		);
-		$this->m_master->inputData($dataDosen,'dosen');
+		$cek = $this->m_dosen->cekDosen($this->input->post('nidn'));
+
+		if($cek->num_rows() > 0){
+			$this->session->set_flashdata("gagalAddDosen", '<div><div class="alert alert-danger" id="alert" align="center">Gagal menambahkan! Akun dosen sudah terdaftar</div></div>');
+		} else {
+
+			$userID = 'DOS'.$this->input->post('nidn');
+			$dataUser = array(
+				'username' => $this->input->post('nidn'),
+				'password' => md5($this->input->post('nidn')),
+				'prodiID' => $this->session->userdata('prodiID'),
+				'role' => 'dosen',
+				'userID' => $userID
+			);
+			$this->m_master->inputData($dataUser,'user');
+			$dataDosen = array(
+				'nama' => $this->input->post('nama'),
+				'jenis_kelamin' => $this->input->post('jenis_kelamin'),
+				'nidn' => $this->input->post('nidn'),
+				'prodiID' => $this->session->userdata('prodiID'),
+				'email' => $this->input->post('email'),
+				'no_telepon' => $this->input->post('no_telepon'),
+				'userID' => $userID
+			);
+			$this->m_master->inputData($dataDosen,'dosen');
+			$this->session->set_flashdata("suksesAddDosen", '<div><div class="alert alert-success" id="alert" align="center">Akun dosen berhasil ditambahkan!</div></div>');
+		}
+
 		redirect(base_url('admin/Dosen'));
 	}
 

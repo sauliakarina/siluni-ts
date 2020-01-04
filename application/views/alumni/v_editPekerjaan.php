@@ -1,19 +1,13 @@
-  <!-- head -->
+<script src="<?php echo base_url('assets/number_format/dist') ?>/jquery.masknumber.js"></script>
+<!-- head -->
          <!-- Side Navbar -->
         <div class="content-inner">
           <!-- Page Header-->
            <header class="page-header" style="background-color: #EFE037">
             <div class="container-fluid">
-              <h2 class="no-margin-bottom">Biodata Alumni</h2>
+              <h2 class="no-margin-bottom">Data Pekerjaan</h2>
             </div>
           </header>
-           <!-- Breadcrumb-->
-          <div class="breadcrumb-holder container-fluid">
-            <ul class="breadcrumb">
-              <li class="breadcrumb-item"><a href="<?php echo site_url('alumni/Profil') ?>">Biodata</a></li>
-              <li class="breadcrumb-item"><a href="<?php echo site_url('alumni/Profil/riwayatPekerjaan') ?>">Riwayat Pekerjaan</a></li>
-            </ul>
-          </div>
 
           <!-- Forms Section-->
           <section class="forms"> 
@@ -41,7 +35,7 @@
                         </div>
                         <div class="line"></div>
                         <div class="form-group row">
-                          <label class="col-sm-3 form-control-label">Jenis Instansi</label>
+                          <label class="col-sm-3 form-control-label">Skala Instansi</label>
                           <div class="col-sm-9">
                             <select name="jenis_instansi" class="form-control mb-3">
                               <option value="<?php echo $this->m_master->getInstansiByID($p->id_instansi)->jenis_instansi ?>"><b><?php echo $this->m_master->getInstansiByID($p->id_instansi)->jenis_instansi ?></b></option>
@@ -76,13 +70,14 @@
                         <div class="form-group row">
                           <label class="col-sm-3 form-control-label">Pendapatan</label>
                           <div class="col-sm-9">
-                            <select name="gaji" class="form-control mb-3">
-                              <option value="<?php echo $p->gaji ?>"><b><?php echo $p->gaji ?></b></option>
-                              <option value="< 1jt"> < Rp 1jt </option>
-                              <option value="1jt - 2jt"> Rp 1jt - 2 jt </option>
-                              <option value="3jt - 4jt"> Rp 3jt - 4 jt </option>
-                              <option value="> 4jt"> > Rp 4jt </option>
-                            </select>
+                             <?php 
+                              if ($p->gaji != "") {
+                                $gaji = number_format($p->gaji,0,",",","); 
+                              } else {
+                                $gaji = "";
+                              }
+                              ?>
+                            <input type="text" class="form-control" id="gajiNominal" value="<?php echo $gaji ?>" name="gaji" required>
                           </div>
                         </div>
                         <div class="line"></div>
@@ -201,3 +196,10 @@
 
   </body>
 </html>
+
+<script type="text/javascript">
+  $('#gajiNominal').maskNumber({
+  integer: true,
+
+});
+</script>

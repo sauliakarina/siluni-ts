@@ -52,7 +52,7 @@ class Kuesioner extends CI_Controller {
 			$pertanyaan = $this->m_kuesioner->getPertanyaanByKuesionerID($k->id);
 			foreach ($pertanyaan as $p) {
 				if ($p->jenis == 'ganda') {
-					$jawaban = $this->input->post("ganda_".$p->id);
+					$jawaban = $this->input->post($p->id);
 					foreach ($jawaban as $j) {       						
 				        $data = array(	            
 				        	'pertanyaanID' => $p->id,
@@ -61,54 +61,44 @@ class Kuesioner extends CI_Controller {
 				        );				        
 				        $this->m_master->inputData($data,'jawaban_alumni');
 				    } // foreach jawaban ganda
-				    if ($p->inputBox == 'ya' && $this->input->post('inputBoxGanda_'.$p->id) != '') {
+				    if ($p->inputBox == 'ya' && $this->input->post('inputBox'.$p->id) != Null) {
 				    	$data = array(
 				    		'pertanyaanID' => $p->id,
-				        	'jawaban' => $this->input->post('inputBoxGanda_'.$p->id),
+				        	'jawaban' => $this->input->post('inputBox'.$p->id),
 				        	'alumniID' => $alumniID,
 				        	'tambahanJawaban' => 'ya'
 				    	);
 				    	$this->m_master->inputData($data,'jawaban_alumni');
 				    } // if inputBox
 				} // if ganda 
-				elseif ($p->jenis == 'isian') {
-					if ($this->input->post("isian_".$p->id) != "") {
+				elseif ($p->jenis == 'isian' || $p->jenis == 'pilihan') {
+					if ($this->input->post($p->id) != Null) {
 						$data = array(
 						'pertanyaanID' => $p->id,
-			            'jawaban' => $this->input->post("isian_".$p->id),
-			            'alumniID' => $alumniID
-			          	);
-						$this->m_master->inputData($data, 'jawaban_alumni');
-					} //if not null
-				} // if isian 
-				elseif ($p->jenis == 'pilihan') {
-					if ($this->input->post("pilihan_".$p->id) != Null) {
-						$data = array(
-						'pertanyaanID' => $p->id,
-			            'jawaban' => $this->input->post("pilihan_".$p->id),
+			            'jawaban' => $this->input->post($p->id),
 			            'alumniID' => $alumniID
 			          	);
 						$this->m_master->inputData($data, 'jawaban_alumni');
 
-						if ($p->inputBox == 'ya' && $this->input->post('inputBoxPilihan_'.$p->id) != '') {
+						if ($p->inputBox == 'ya' && $this->input->post('inputBox'.$p->id) != Null) {
 					    	$data = array(
 					    		'pertanyaanID' => $p->id,
-					        	'jawaban' => $this->input->post('inputBoxPilihan_'.$p->id),
+					        	'jawaban' => $this->input->post('inputBox'.$p->id),
 					        	'alumniID' => $alumniID,
 					        	'tambahanJawaban' => 'ya'
 					    	);
 					    	$this->m_master->inputData($data,'jawaban_alumni');
 					    } // if inputBox
 					} //if not null
-				}
+				} // if isian dan pilihan
 				elseif ($p->jenis == 'skala') {
 					$pertanyaanSkala = $this->m_kuesioner->getPertanyaanSkalaByPertanyaanID($p->id);
 					foreach ($pertanyaanSkala as $ps) {
-						if ($this->input->post("skala_".$ps->id) != Null) {
+						if ($this->input->post($ps->id) != Null) {
 							$data = array(	            
 					        	'pertanyaanID' => $p->id,
 					        	'pertanyaanSkalaID' => $ps->id,
-					        	'jawaban' => $this->input->post("skala_".$ps->id),
+					        	'jawaban' => $this->input->post($ps->id),
 					        	'alumniID' => $alumniID
 					        );				        
 					        $this->m_master->inputData($data,'jawaban_alumni');

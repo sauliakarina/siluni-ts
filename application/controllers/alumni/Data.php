@@ -39,12 +39,15 @@ class Data extends CI_Controller {
 
 	function exeEditProfil()
 	{
+		$waktu_lulus = $this->input->post('waktu_lulus');
+		$explode = explode(" ", $waktu_lulus);
+
 		$data_alumni = array(
 			'nama' => $this->input->post('nama'),
 			'jenis_kelamin' => $this->input->post('jenis_kelamin'),
 			'tahun_masuk' => $this->input->post('tahun_masuk'),
-			'tahun_lulus' => $this->input->post('tahun_lulus'),
-			'tanggal_lulus' => $this->input->post('tanggal_lulus'),
+			'tahun_lulus' => $explode[1],
+			'bulan_lulus' => $explode[0],
 			'ipk' => $this->input->post('ipk'),
 			'toefl' => $this->input->post('toefl'),
 			'alamat' => $this->input->post('alamat'),
@@ -360,7 +363,7 @@ class Data extends CI_Controller {
 	
 	$where = array('id' => $this->input->post('pekerjaanID'));
 	$this->m_master->updateData($where, $data, 'pekerjaan');
-	$this->session->set_flashdata("edit_pekerjaan", '<div><div class="alert alert-success" id="alert" align="center">Data pekerjaan berhasil ditambahkan</div></div>');
+	$this->session->set_flashdata("edit_pekerjaan", '<div><div class="alert alert-success" id="alert" align="center">Data pekerjaan berhasil ditambahkan. Jika ada silahkan lengkapi data pekerjaan berikutnya</div></div>');
 	redirect('alumni/Beranda');
 }
 
