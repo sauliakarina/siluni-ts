@@ -2,7 +2,14 @@
           <!-- Page Header-->
           <header class="page-header" style="background-color: #EFE037">
             <div class="container-fluid">
-              <h2 class="no-margin-bottom"><?php echo $this->m_pengguna->getPenggunaByID($penggunaID)->pengguna_nama." - ".$this->m_master->getInstansiByID($this->m_pengguna->getPenggunaByID($penggunaID)->id_instansi)->nama_instansi ?></h2>
+              <h2 class="no-margin-bottom"><?php 
+              if ($this->m_pengguna->getPenggunaByID($penggunaID)->id_instansi != 0) {
+                echo $this->m_pengguna->getPenggunaByID($penggunaID)->pengguna_nama." - ".$this->m_master->getInstansiByID($this->m_pengguna->getPenggunaByID($penggunaID)->id_instansi)->nama_instansi;
+              } else {
+                echo $this->m_pengguna->getPenggunaByID($penggunaID)->pengguna_nama;
+              }
+              
+              ?></h2>
             </div>
           </header>
   

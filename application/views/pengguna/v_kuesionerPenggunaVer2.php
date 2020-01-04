@@ -45,11 +45,11 @@
                             <?php } //end foreach
                               } else { ?>
                                 <option></option>
+                                 <option value="Null">Non Instansi</option>
                                 <?php foreach($instansi as $i){ ?>
                                   <option value="<?php echo $i->id ?>"><?php echo $i->nama_instansi ?></option>
                             <?php } //end foreach
                                  }  ?>
-                                 <option value="Null">Non Instansi</option>
                             </select>
                           <small class="form-text">Jika pilihan instansi tidak ada <a href="" data-toggle="modal" data-target="#ModalTambah">klik disini</a></small>
                           </div>
@@ -108,7 +108,7 @@
                                   <?php 
                                   $skalaNilai = $this->m_kuesioner->getSkalaByPertanyaanID($p->id);
                                   foreach ($skalaNilai as $sn) { ?>
-                                    <th><input type="radio" value="<?php echo $sn->nilai ?>" name="<?php echo $ps->id ?>" class="radio-template"></th>
+                                    <th><input type="radio" value="<?php echo $sn->nilai ?>" name="skala_<?php echo $ps->id ?>" class="radio-template"></th>
                                   <?php } //foreach skala nilai ?>
                                 </tr>
                               <?php } //foreach pertanyaan skala ?>
@@ -119,12 +119,12 @@
                           ?>
                           <div class="form-group">
                           <label class="form-control-label"><b><?php echo $p->pertanyaan ?>:</b></label>
-                           <input type="text" name="<?php echo $p->id ?>" placeholder="" class="form-control">
+                           <input type="text" name="isian_<?php echo $p->id ?>" placeholder="" class="form-control">
                         </div>
                       <?php } elseif ($p->jenis == 'isian' && $p->textarea == 'ya') { ?>
                           <div class="form-group">
                           <label class="form-control-label"><b><?php echo $p->pertanyaan ?>:</b></label>
-                           <textarea class="form-control" name="<?php echo $p->id ?>" rows="5"></textarea>
+                           <textarea class="form-control" name="isian_<?php echo $p->id ?>" rows="5"></textarea>
                         </div>
                         <?php } elseif ($p->jenis == 'pilihan') { ?>
                           <label class="form-control-label"><b><?php echo $p->pertanyaan ?>:</b></label>
@@ -132,7 +132,7 @@
                            $pilihan = $this->m_kuesioner->getPilihanJawabanByPertanyaanID($p->id);
                            foreach ($pilihan as $k) { ?>
                              <div class="i-checks">
-                              <input id="radioCustom1" type="radio" name="<?php echo $p->id ?>"  class="radio-template">
+                              <input id="radioCustom1" type="radio" name="pilihan_<?php echo $p->id ?>"  class="radio-template">
                               <label for="radioCustom1"><?php echo $k->pilihan ?></label>
                             </div>
                         <?php } // foreach pilihan ?>
@@ -142,7 +142,7 @@
                            $pilihan = $this->m_kuesioner->getPilihanJawabanByPertanyaanID($p->id);
                            foreach ($pilihan as $k) { ?>
                           <div class="i-checks">
-                              <input id="checkboxCustom1" name="<?php echo $p->id; ?>[]" type="checkbox" value="<?php echo $k->pilihan ?>" class="checkbox-template">
+                              <input id="checkboxCustom1" name="ganda_<?php echo $p->id; ?>[]" type="checkbox" value="<?php echo $k->pilihan ?>" class="checkbox-template">
                               <label for="checkboxCustom1"><?php echo $k->pilihan ?></label>
                           </div>
                       <?php }// foreach pilihan

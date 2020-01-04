@@ -9,7 +9,7 @@ class M_hasil extends CI_Model{
 
 	 function getHorizontal($jawaban) {
 		$this->db->select('*');
-		$this->db->where('pertanyaanID', '60');
+		$this->db->where('pertanyaanID', '2');
 		$this->db->where('jawaban', $jawaban);
 		$query = $this->db->get('jawaban_alumni');
 		return $query->num_rows();

@@ -11,7 +11,7 @@
             <!-- alert box -->
           <div class="alert alert-info alert-dismissible" role="alert">
             <button type="button" onclick="this.parentNode.parentNode.removeChild(this.parentNode);" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-            <strong><i class="fa fa-warning"></i> Perhatian!</strong> <p style="font-family: verdana; font-size: 11pt">Grafik dapat ditampilkan untuk pertanyaan jenis pilihan dan ganda</p>
+            <strong><i class="fa fa-warning"></i> Perhatian!</strong> <p style="font-family: verdana; font-size: 11pt">Grafik dapat ditampilkan untuk pertanyaan jenis pilihan, ganda, dan skala</p>
           </div>
                    <!-- Forms Section-->
           <section class="forms"> 
