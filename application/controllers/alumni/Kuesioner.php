@@ -53,14 +53,16 @@ class Kuesioner extends CI_Controller {
 			foreach ($pertanyaan as $p) {
 				if ($p->jenis == 'ganda') {
 					$jawaban = $this->input->post("ganda_".$p->id);
-					foreach ($jawaban as $j) {       						
-				        $data = array(	            
-				        	'pertanyaanID' => $p->id,
-				        	'jawaban' => $j,
-				        	'alumniID' => $alumniID
-				        );				        
-				        $this->m_master->inputData($data,'jawaban_alumni');
-				    } // foreach jawaban ganda
+					if ($jawaban != Null) {  
+						foreach ($jawaban as $j) {					
+						        $data = array(	            
+						        	'pertanyaanID' => $p->id,
+						        	'jawaban' => $j,
+						        	'alumniID' => $alumniID
+						        );				        
+						        $this->m_master->inputData($data,'jawaban_alumni');
+					    } // foreach jawaban ganda
+					}
 				    if ($p->inputBox == 'ya' && $this->input->post('inputBoxGanda_'.$p->id) != '') {
 				    	$data = array(
 				    		'pertanyaanID' => $p->id,

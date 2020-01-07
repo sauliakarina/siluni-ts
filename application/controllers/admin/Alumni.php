@@ -102,7 +102,6 @@ class Alumni extends CI_Controller {
 			'jenis_kelamin' => $this->input->post('jenis_kelamin'),
 			'tahun_masuk' => $this->input->post('tahun_masuk'),
 			'tahun_lulus' => $this->input->post('tahun_lulus'),
-			'tanggal_lulus' => $this->input->post('tanggal_lulus'),
 			'ipk' => $this->input->post('ipk'),
 			'toefl' => $this->input->post('toefl'),
 			'alamat' => $this->input->post('alamat'),
@@ -227,7 +226,6 @@ class Alumni extends CI_Controller {
 				    $data = array(
 				    	"posisi" => $rowData[0][8],
 				    	"gaji" => $gajiawal,
-				    	"id_pengguna" => '0',
 				    	"id_alumni" => $alumniID,
 				    	'firstPekerjaan' => $firstPekerjaan,
 				    	'id_instansi'=> $id_instansi

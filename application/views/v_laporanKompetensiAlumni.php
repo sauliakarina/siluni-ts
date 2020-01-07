@@ -18,10 +18,10 @@
 
 <?php 
 if ($tahun_lulus == "") {
-  $skalaNilai = $this->m_hasil->getJawabanSkala($pertanyaanID, $prodiID);
+  $skalaNilai = $this->m_hasil->getJawabanSkala($pertanyaanID, $prodiID, $pertanyaanSkalaID);
   $tabel = $this->m_hasil->getJawabanByPertanyaanSkalaID($pertanyaanSkalaID);
 } else {
-  $skalaNilai = $this->m_hasil->getJawabanSkalaTahun($pertanyaanID, $prodiID, $tahun_lulus);
+  $skalaNilai = $this->m_hasil->getJawabanSkalaTahun($pertanyaanID, $prodiID, $tahun_lulus, $pertanyaanSkalaID);
   $tabel = $this->m_hasil->getJawabanByPertanyaanSkalaTahun($pertanyaanSkalaID, $tahun_lulus);
 }
   $rendah = 0;
@@ -123,7 +123,7 @@ if ($tahun_lulus == "") {
               "select": true,
               dom: 'Bfrtip',
               buttons: [
-                  'copy', 'excel', 'print'
+                  'copy', 'excel'
               ]
             }); //input fungsi
         });

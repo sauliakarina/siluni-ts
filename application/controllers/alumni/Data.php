@@ -1,4 +1,4 @@
-e<?php
+<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Data extends CI_Controller {
@@ -8,10 +8,10 @@ class Data extends CI_Controller {
 			redirect(base_url("login"));
 		}
 			
-		$this->load->model('m_master');
 		$this->load->model('m_alumni');
-		$this->load->model('m_pengguna');
+		$this->load->model('m_master');
 		$this->load->model('m_kuesioner');
+ 
 	}
 
 	public function index()
@@ -348,6 +348,8 @@ class Data extends CI_Controller {
 		$data = array('seen' => '0');
 		$where = array('id' => $penggunaID);
 		$this->m_master->updateData($where, $data, 'pengguna');
+	} else {
+		$penggunaID = Null;
 	}
 
 	$data = array(

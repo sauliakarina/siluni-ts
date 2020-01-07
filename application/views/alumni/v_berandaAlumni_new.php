@@ -188,12 +188,12 @@
   <h4><?php echo $this->m_master->getInstansiByID($k->id_instansi)->nama_instansi ?></h4>
   <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="collapse" data-target="#form_pekerjaan<?php echo $j ?>">Lengkapi Data</button>
   <div style="padding-top: 10px" id="form_pekerjaan<?php echo $j ?>" class="collapse">
-  <form class="form-horizontal" method="post" action="<?php echo base_url();?>alumni/Data/exeUpdatePekerjaan"> 
-    <!-- <form class="form-horizontal exeUpdatePekerjaan" onsubmit="return exeUpdatePekerjaan()">  --> 
+  <!-- <form class="form-horizontal" method="post" action="<?php echo base_url();?>alumni/Data/exeUpdatePekerjaan">  -->
+    <form class="form-horizontal exeUpdatePekerjaan" id="formUpdatePekerjaan_<?php echo $j ?>" onsubmit="return exeUpdatePekerjaan(<?php echo $j ?>)">  
      <div class="form-group row">
       <label class="col-sm-3 form-control-label">Pilih Instansi</label>
       <div class="col-sm-9">
-        <select name="instansiID" id="instansiID" class="form-control mb-3">
+        <select name="instansiID" id="instansiID_<?php echo $j ?>" class="form-control mb-3 instansiID_C">
         <option value="<?php echo $k->id_instansi; ?>"><?php echo $this->m_master->getInstansiByID($k->id_instansi)->nama_instansi ?></option>
         <option value=""></option>
         <?php foreach($instansi as $i){ ?>
@@ -244,6 +244,7 @@
           <option value="Konsultan"> Konsultan </option>
           <option value="Perencana SI"> Perencana SI </option>
           <option value="Peneliti"> Peneliti </option>
+          <option value="Pendidik"> Pendidik </option>
         </select>
       </div>
     </div>
@@ -258,7 +259,7 @@
           $gaji = "";
         }
         ?>
-        <input type="text" class="form-control" id="gajiNominal" value="<?php echo $gaji ?>" name="gaji" required>
+        <input type="text" class="form-control gajiNominal_c  " id="gajiNominal" value="<?php echo $gaji ?>" name="gaji" required>
       </div>
     </div>
 
@@ -280,8 +281,8 @@
     <div class="form-group row">
       <label class="col-sm-3 form-control-label">Pengguna Alumni</label>
       <div class="col-sm-9">
-        <small>*untuk pekerjaan saat ini</small>
-        <select name="penggunaID" id="penggunaID" class="form-control mb-3">
+        <small>*Diisi jika pekerjaan saat ini</small>
+        <select name="penggunaID" id="penggunaID_<?php echo $j ?>" class="form-control mb-3 penggunaID_C">
 
         <?php 
           $penggunaInstansi = $this->m_pengguna->getPenggunaByInstansiID($k->id_instansi);
@@ -530,7 +531,7 @@
             <div class="modal-body">
               <p></p>
               <form action="<?php echo base_url();?>alumni/Data/exeAddPekerjaan_new" method="post">
-              <!-- <form class="exeAddPekerjaan_new" onsubmit="return exeAddPekerjaan_new()" method="post">  --> 
+              <form class="exeAddPekerjaan_new" onsubmit="return exeAddPekerjaan_new()" method="post">  
 
                <div class="form-group row">
                 <label class="col-sm-3 form-control-label">Pilih Instansi</label>
@@ -577,6 +578,7 @@
                       <option value="Konsultan"> Konsultan </option>
                       <option value="Perencana SI"> Perencana SI </option>
                       <option value="Peneliti"> Peneliti </option>
+                      <option value="Pendidik"> Pendidik </option>
                     </select>
                   </div>
                 </div>
@@ -693,14 +695,18 @@
     // Kita sembunyikan dulu untuk loadingnya
     //$("#loading").hide();
     
-    $("#instansiID").change(function(){ // Ketika user mengganti atau memilih data provinsi
-      $("#penggunaID").hide(); // Sembunyikan dulu combobox kota nya
+    $(".instansiID_C").change(function(){ // Ketika user mengganti atau memilih data provinsi
+      var id = $(this).attr("id");
+      var id_s = id.split("_");
+      var id_num = id_s[1];
+
+      $("#penggunaID" + id_num).hide(); // Sembunyikan dulu combobox kota nya
       //$("#loading").show(); // Tampilkan loadingnya
     
       $.ajax({
         type: "POST", // Method pengiriman data bisa dengan GET atau POST
         url: "<?php echo base_url("alumni/Profil/getPenggunaID"); ?>", // Isi dengan url/path file php yang dituju
-        data: {instansiID : $("#instansiID").val()}, // data yang akan dikirim ke file yang dituju
+        data: {instansiID : $("#instansiID_" + id_num).val()}, // data yang akan dikirim ke file yang dituju
         dataType: "json",
         beforeSend: function(e) {
           if(e && e.overrideMimeType) {
@@ -711,7 +717,7 @@
           //$("#loading").hide(); // Sembunyikan loadingnya
           // set isi dari combobox kota
           // lalu munculkan kembali combobox kotanya
-          $("#penggunaID").html(response.list_penggunaID).show();
+          $("#penggunaID_"  + id_num).html(response.list_penggunaID).show();
         },
         error: function (xhr, ajaxOptions, thrownError) { // Ketika ada error
           alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError); // Munculkan alert error
@@ -776,9 +782,9 @@
   });
 
 
-function exeUpdatePekerjaan() {
-    
-    var data = $('.exeUpdatePekerjaan').serialize();
+function exeUpdatePekerjaan(id) {
+
+    var data = $('#formUpdatePekerjaan_' + id).serialize();
 
     // alert(data);
 
@@ -808,7 +814,7 @@ function exeUpdatePekerjaan() {
 
 }
 
-$('#gajiNominal').maskNumber({
+$('.gajiNominal_c').maskNumber({
   integer: true,
 
 });

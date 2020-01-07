@@ -416,10 +416,11 @@ class M_hasil extends CI_Model{
 		}
   	}
 
-function getJawabanSkala($pertanyaanID, $prodiID)
+function getJawabanSkala($pertanyaanID, $prodiID, $pertanyaanSkalaID)
 	{
 		$this->db->select('jawaban_alumni.*, alumni.id AS id_alumni, alumni.*');
 		$this->db->where('jawaban_alumni.pertanyaanID', $pertanyaanID);
+		$this->db->where('jawaban_alumni.pertanyaanSkalaID', $pertanyaanSkalaID);
 		$this->db->where('alumni.prodiID', $prodiID);
 		$this->db->where('jawaban_alumni.jawaban !=', "");
 		$this->db->join('alumni', 'jawaban_alumni.alumniID = alumni.id', 'left');
@@ -436,6 +437,7 @@ function getJawabanSkala($pertanyaanID, $prodiID)
 	{
 		$this->db->select('jawaban_alumni.*, alumni.id AS id_alumni, alumni.*');
 		$this->db->where('jawaban_alumni.pertanyaanID', $pertanyaanID);
+		$this->db->where('jawaban_alumni.pertanyaanSkalaID', $pertanyaanSkalaID);
 		$this->db->where('alumni.prodiID', $prodiID);
 		$this->db->where('alumni.tahun_lulus', $tahun_lulus);
 		$this->db->where('jawaban_alumni.jawaban !=', "");
