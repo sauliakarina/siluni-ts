@@ -172,7 +172,7 @@
                             </div>
                             <div class="modal-footer">
                               <button type="button" data-dismiss="modal" class="btn btn-secondary">Tutup</button>
-                              <button type="submit" class="btn btn-danger" onclick='aktif()'>Ya</button>
+                              <button type="submit" class="btn btn-info" onclick='aktif()'>Ya</button>
                             </div>
                           </div>
               </div>

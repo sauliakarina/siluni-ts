@@ -88,7 +88,7 @@ class Beranda extends CI_Controller {
 	  );
 	  $this->m_master->updateData($where, $data,'beranda');
 
-	//Upload File gambar jika gambar ingin di Ubah	
+	/*//Upload File gambar jika gambar ingin di Ubah	
 	  	  $time = time();
 		  $config = array(
 		      'upload_path' => "assets/siluni/images/beranda/",
@@ -114,7 +114,7 @@ class Beranda extends CI_Controller {
 				echo "Terjadi kesalahan";
 				$error = array('error' => $this->upload->display_errors());
 				print_r($error);
-			}	
+			}	*/
 	$this->session->set_flashdata("pesan", '<div><div class="alert alert-success" id="alert" align="center">Kata Pengantar Telah Sukses disunting</div></div>');
 	  redirect(base_url('admin/Beranda/kelolaBerandaAlumni'));
 	}
