@@ -181,7 +181,8 @@ class Alumni extends CI_Controller {
 				} /*else {
 					unlink($inputFileName);
 				}*/
-					//data instansi
+				if ($rowData[0][7] != NULL) {
+					//tabel instansi
 					$where = array('nama_instansi' => $rowData[0][7]);
 				    $cek = $this->m_master->cekData("instansi",$where)->num_rows();
 				    if ($cek == 0) {
@@ -194,15 +195,9 @@ class Alumni extends CI_Controller {
 				    } else {
 				    	$id_instansi = $this->m_master->getInstansiByName($rowData[0][7])->id;
 				    }
-				    //tabel alumni instansi
-				    $alumniID = $this->m_alumni->getAlumniByUserID("ALU".$rowData[0][1])->id;
-				   /* $data = array(
-				    	"instansiID" => $id_instansi,
-				    	"alumniID" => $alumniID,
-				    );
-				    $insert = $this->db->insert("alumni_instansi",$data);*/
-
+				   
 				    //tabel pekerjaan
+				    $alumniID = $this->m_alumni->getAlumniByUserID("ALU".$rowData[0][1])->id;
 					$where = array( 'id_alumni' => $alumniID);
 					$cek = $this->m_master->cekData("pekerjaan",$where)->num_rows();
 					if ($cek == 0) {
@@ -212,17 +207,6 @@ class Alumni extends CI_Controller {
 					}
 
 				    $gajiawal = str_replace(".","",$rowData[0][9]);
-				    /*if ($gajiawal >= "1000000" && $gajiawal <= "5000000" ) {
-				    	$gaji = "1-5 juta";
-				    } elseif ($gajiawal >= "6000000" && $gajiawal <= "10000000" ) {
-				    	$gaji = "6-10 juta";
-				    }elseif ($gajiawal >= "11000000" && $gajiawal <= "15000000" ) {
-				    	$gaji = "11-15 juta";
-				    } elseif ($gajiawal > "15000000" ) {
-				    	$gaji = "> 15 juta";
-				    } else {
-				    	$gaji = '';
-				    }*/
 				    $data = array(
 				    	"posisi" => $rowData[0][8],
 				    	"gaji" => $gajiawal,
@@ -231,6 +215,7 @@ class Alumni extends CI_Controller {
 				    	'id_instansi'=> $id_instansi
 				    );
 				    $insert = $this->db->insert("pekerjaan",$data);
+				} // if instansi not null
 				
 			}
 			$this->session->set_flashdata("suksesImpor", '<div><div class="alert alert-info" id="alert" align="center">Data alumni berhasil diimpor</div></div>');

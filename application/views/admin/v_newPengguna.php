@@ -16,7 +16,7 @@
           <div class="alert alert-info alert-dismissible" role="alert">
           <button type="button" onclick="this.parentNode.parentNode.removeChild(this.parentNode);" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
           <strong><i class="fa fa-warning"></i> Perhatian!</strong> <p style="font-family: verdana; font-size: 11pt">Pengisian kuesioner untuk pengguna alumni dilakukan melalui link pada tabel dibawah ini, copy link tersebut kemudian kirimkan melalui email masing-masing pengguna dan untuk pengisian kuesioner bagi pengguna alumni yang belum terdaftar dilakukan melalui link berikut:</p> <button class="btn btn-sm btn-dark" onclick="copyFunction2()">Link Kuesioner Pengguna yang Belum Terdaftar</button>
-          <input style="position: absolute; left: -1000px" type="text" value="http://localhost/siluni-ts/pengguna/Kuesioner/kuesionerPenggunaAlumni/<?php echo $prodiID ?>" id="myInput">
+          <input style="position: absolute; left: -1000px" type="text" value="<?php echo base_url();?>pengguna/Kuesioner/kuesionerPenggunaAlumni/<?php echo $prodiID ?>" id="myInput">
         </div>
 
           <section class="tables">   
