@@ -11,6 +11,7 @@ class Data extends CI_Controller {
 		$this->load->model('m_alumni');
 		$this->load->model('m_master');
 		$this->load->model('m_kuesioner');
+		$this->load->model('m_pengguna');
  
 	}
 
@@ -425,6 +426,7 @@ public function exeAddPekerjaan_new() {
 		$this->m_master->updateData($where, $data, 'pengguna');
 	}
 
+	$alumniID = $this->input->post('alumniID');
 	$where = array( 'id_alumni' => $alumniID);
 	$cek = $this->m_master->cekData("pekerjaan",$where)->num_rows();
 	if ($cek == 0) {

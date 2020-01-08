@@ -385,7 +385,7 @@ public function getPekerjaanSeenPengguna($id_pengguna, $seen){
 
   	public function joinPenggunaPekerjaanByPekerjaanID($id_pekerjaan){
       $this->db->select('
-          pekerjaan.id AS id_pekerjaan, pekerjaan.*, pengguna.id AS id_pengguna, pengguna.*
+          pekerjaan.id AS id, pekerjaan.*, pengguna.id AS id_pengguna, pengguna.*
       ');
       $this->db->join('pengguna', 'pekerjaan.id_pengguna = pengguna.id');
       $this->db->from('pekerjaan');

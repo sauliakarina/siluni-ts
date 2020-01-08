@@ -17,7 +17,6 @@
 
   <?php echo $this->session->flashdata('isi_kuesioner'); ?>
   <?php echo $this->session->flashdata('edit_profil'); ?>
-  <?php echo $this->session->flashdata('edit_pekerjaan'); ?>
 
            <!-- Updates Section                                                -->
           <section class="updates padding-top no-padding-bottom">
@@ -531,7 +530,7 @@
             <div class="modal-body">
               <p></p>
               <form action="<?php echo base_url();?>alumni/Data/exeAddPekerjaan_new" method="post">
-              <form class="exeAddPekerjaan_new" onsubmit="return exeAddPekerjaan_new()" method="post">  
+             <!--  <form class="exeAddPekerjaan_new" onsubmit="return exeAddPekerjaan_new()" method="post">  --> 
 
                <div class="form-group row">
                 <label class="col-sm-3 form-control-label">Pilih Instansi</label>
@@ -563,6 +562,7 @@
                   <label class="col-sm-3 form-control-label">Profesi/Posisi</label>
                    <div class="col-sm-9">
                       <input type="text" class="form-control" value="" name="posisi" required>
+                      <input type="hidden" class="form-control" value="<?php echo $alumniID ?>" name="alumniID">
                    </div>
                 </div>
 

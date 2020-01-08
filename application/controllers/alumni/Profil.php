@@ -68,13 +68,19 @@ class Profil extends CI_Controller {
 
 	public function editPekerjaan($id)
 	{
+		$id_pengguna = $this->m_alumni->getPekerjaanByID($id)->id_pengguna;
+		if ($id_pengguna != NULL) {
+			$pekerjaan = $this->m_pengguna->joinPenggunaPekerjaanByPekerjaanID($id);
+		} else {
+			$pekerjaan = $this->m_alumni->getPekerjaanByID($id);
+		}
 		$data = array(
 			'role' => $this->session->userdata('role'),
 			'userID' => $this->session->userdata('userID'),
 			'prodiID' => $this->session->userdata('prodiID'),
 			'instansi' => $this->m_master->getInstansi($this->session->userdata('prodiID')),
 			'divisi' => $this->m_master->getDivisi(),
-			'p' => $this->m_pengguna->joinPenggunaPekerjaanByPekerjaanID($id)
+			'p' => $pekerjaan
 		);
 		$this->load->view('element/head');
 		$this->load->view('element/header');
@@ -427,7 +433,7 @@ class Profil extends CI_Controller {
 		$where = array('id' => $this->input->post('id_pekerjaan'));
 		$this->m_master->updateData($where,$data,'pekerjaan');
 		//data pengguna
-		if ($this->input->post('radioPenggunaID') == "") {
+		if ($this->input->post('id_pengguna') != NULL) {
 			$data = array(
 				'pengguna_nama' => $this->input->post('pengguna_nama'),
 				'pengguna_email' => $this->input->post('pengguna_email'),
@@ -436,20 +442,11 @@ class Profil extends CI_Controller {
 			);
 			$where = array('id' => $this->input->post('id_pengguna'));
 			$this->m_master->updateData($where,$data,'pengguna');
-		} else {
-			//update id pengguna di tabel pekerjaan
-			$data = array(
-				'id_pengguna' => $this->input->post('radioPenggunaID')
-			);
-			$where = array('id' => $this->input->post('id_pekerjaan'));
-			$this->m_master->updateData($where,$data,'pekerjaan');
-			//hapus pengguna sebelumnya
-			$where = array('id' => $this->input->post('id_pengguna'));
-			$this->m_master->deleteData($where,'pengguna');
 		}
 
+
 		$this->session->set_flashdata("edit_pekerjaan", '<div><div class="alert alert-success" id="alert" align="center">Data pekerjaan anda berhasil disunting</div></div>');
-		redirect('alumni/Beranda');
+		redirect('alumni/Profil/editPekerjaan/'.$this->input->post('id_pekerjaan'));
 	}
 
 
