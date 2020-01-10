@@ -192,7 +192,7 @@
      <div class="form-group row">
       <label class="col-sm-3 form-control-label">Pilih Instansi</label>
       <div class="col-sm-9">
-        <select name="instansiID" id="instansiID_<?php echo $j ?>" class="form-control mb-3 instansiID_C">
+        <select name="instansiID" id="instansiID_<?php echo $j ?>" class="js-example-basic-single dropdown form-control mb-3 instansiID_C" id="" style="width: 300px">
         <option value="<?php echo $k->id_instansi; ?>"><?php echo $this->m_master->getInstansiByID($k->id_instansi)->nama_instansi ?></option>
         <option value=""></option>
         <?php foreach($instansi as $i){ ?>
@@ -527,7 +527,7 @@
   </body>
 
 <!-- Modal Tambah-->
-      <div id="ModalTambah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+      <div id="ModalTambah" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
         <div role="document" class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -542,8 +542,8 @@
                <div class="form-group row">
                 <label class="col-sm-3 form-control-label">Pilih Instansi</label>
                 <div class="col-sm-9">
-                  <select name="instansiID" id="instansiID_m" class="form-control mb-3">
-                   <option value=""></option>
+                  <select name="instansiID" id="instansiID_m" class="js-example-basic-single2 dropdown" style="width: 320px">
+                   <option value="">Pilih</option>
                   <?php foreach($instansi as $i){ ?>
                       <option value="<?php echo $i->id ?>"><?php echo $i->nama_instansi ?></option>
                   <?php } //end foreach  ?>
@@ -704,6 +704,27 @@
 </html>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+<!-- select2 -->
+<link href="<?php echo base_url('assets/template/vendor/select2/dist/css/select2.min.css')?>" rel="stylesheet">
+<script src="<?php echo base_url('assets/template/vendor/select2/dist/js/select2.full.min.js')?>"></script>
+
+
+<script type="text/javascript">
+  $(document).ready(function() {
+      $('.js-example-basic-single').select2(
+        );
+    });
+</script>
+
+
+<script type="text/javascript">
+  $(document).ready(function() {
+      $('.js-example-basic-single2').select2({
+          dropdownParent: $("#ModalTambah")
+        }
+        );
+    });
+</script>
 
 <script type="text/javascript">
    $(document).ready(function(){ // Ketika halaman sudah siap (sudah selesai di load)

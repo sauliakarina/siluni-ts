@@ -118,6 +118,8 @@ class M_pengguna extends CI_Model{
 	{
 		$this->db->select('*');
 		$this->db->where('prodiID', $prodiID);
+		$this->db->group_by('nama_instansi');
+		$this->db->order_by('nama_instansi', 'ASC');
 		$query = $this->db->get('instansi');
 		if($query->num_rows()>0)
 		{
