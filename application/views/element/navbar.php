@@ -46,6 +46,7 @@
            <ul class="list-unstyled"> 
             <li class="<?php if($this->uri->segment(2)=="Alumni" ){echo "active";} ?>"><a href="<?php echo site_url('admin/Alumni') ?>"><i class="fas fa-user-graduate"></i>Kelola Alumni</a></li>
             <li class="<?php if($this->uri->segment(2)=="Pengguna"  && ($this->uri->segment(3)!="daftarInstansi" && $this->uri->segment(3)!="getNewPengguna")){echo "active";} ?>"><a href="<?php echo site_url('admin/Pengguna') ?>"><i class="icon-user"></i>Kelola Pengguna Alumni</a></li>
+             <li class="<?php if($this->uri->segment(2)=="Pengguna" && ($this->uri->segment(3)=="daftarInstansi"  || $this->uri->segment(3)=="daftarAlumniInstansi")){echo "active";} ?>"><a href="<?php echo site_url('admin/Pengguna/daftarInstansi') ?>"><i class="icon-user"></i>Kelola Instansi</a></li>
             <li class="<?php if($this->uri->segment(2)=="Kuesioner"){echo "active";} ?>"><a href="#dropdownKuesioner" aria-expanded="false" data-toggle="collapse"> <i class="icon-padnote"></i>Kelola Kuesioner </a>
               <ul id="dropdownKuesioner" class="collapse list-unstyled ">
                 <li><a href="<?php echo site_url('admin/Kuesioner/kuesionerAlumni') ?>">Kuesioner Alumni</a></li>

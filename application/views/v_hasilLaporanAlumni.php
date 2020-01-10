@@ -54,12 +54,15 @@
                     <?php } ?>
                     <div class="row">
                       <?php 
-                      $jumlahPilihan = $this->m_kuesioner->getPilihanJawabanByPertanyaanID($pertanyaan->id);
-                      $json = json_encode($label);
-                      $json = json_decode($json , true);
-                      for ($i=count($jumlahPilihan); $i <count($json); $i++) { 
-                        $labelVer2[] = $json[$i];
+                      if($pertanyaan->jenis == 'pilihan' || $pertanyaan->jenis == 'ganda'){ 
+                        $jumlahPilihan = $this->m_kuesioner->getPilihanJawabanByPertanyaanID($pertanyaan->id);
+                        $json = json_encode($label);
+                        $json = json_decode($json , true);
+                        for ($i=count($jumlahPilihan); $i <count($json); $i++) { 
+                          $labelVer2[] = $json[$i];
+                        }
                       }
+                      
                       ?>
                     </div>
                       <div class="row" style="margin-top: 20px" >

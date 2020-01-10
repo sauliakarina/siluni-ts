@@ -204,8 +204,10 @@ $lainnya = $this->m_hasil->getProfilLulusan('Lainnya',$prodiID);
           'rgba(55, 181, 94, 1)',
           'rgba(55, 181, 94, 1)',
           'rgba(55, 181, 94, 1)',
+          'rgba(55, 181, 94, 1)',
           ],
           borderColor: [
+          'rgba(55, 181, 94, 1)',
           'rgba(55, 181, 94, 1)',
           'rgba(55, 181, 94, 1)',
           'rgba(55, 181, 94, 1)',
