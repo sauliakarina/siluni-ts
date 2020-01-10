@@ -13,6 +13,7 @@
               <tr>
                 <th>No</th>
                 <th>Instansi</th>
+                <th>Alamat</th>
                 <th>Posisi Alumni</th>
               </tr>
             </thead>
@@ -24,6 +25,7 @@
               <tr>
                 <td><?php echo $no++ ?></td>
                 <td><?php echo $p->nama_instansi ?></td>
+                <td><?php echo $p->alamat ?></td>
                 <td><ul style="list-style-type:circle;">
                   <?php 
                   $posisi= $this->m_pengguna->getPekerjaanByInstansiID($p->id);

@@ -45,7 +45,7 @@
                               <td><?php echo $d->pengguna_nama ?></td>
                               <td><?php echo $d->divisi ?></td>
                               <td>
-                                <?php if ($d->id_instansi == '0') {
+                                <?php if ($d->id_instansi == '0' || $d->id_instansi == Null) {
                                       echo "non instansi";
                                     } else {
                                       echo $this->m_master->getInstansiByID($d->id_instansi)->nama_instansi;

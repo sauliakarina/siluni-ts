@@ -5,8 +5,9 @@ class Beranda extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		if($_SESSION["logged_in"] != 'login') {
-			redirect(base_url("login"));
+		    redirect(base_url("login"));
 		}
+ 	
 				
 		$this->load->model('m_alumni');
 		$this->load->model('m_master');

@@ -204,6 +204,13 @@
       </div>
     </div>
 
+     <div class="form-group row">
+      <label class="col-sm-3 form-control-label">Alamat Instansi</label>
+       <div class="col-sm-9">
+          <textarea class="form-control" name="alamat_instansi"></textarea>
+       </div>
+    </div>
+
     <div class="form-group row">
       <label class="col-sm-3 form-control-label">Skala Instansi</label>
       <div class="col-sm-9">
@@ -244,6 +251,7 @@
           <option value="Perencana SI"> Perencana SI </option>
           <option value="Peneliti"> Peneliti </option>
           <option value="Pendidik"> Pendidik </option>
+           <option value="Lainnya"> Lainnya </option>
         </select>
       </div>
     </div>
@@ -282,16 +290,15 @@
       <div class="col-sm-9">
         <small>*Diisi jika pekerjaan saat ini</small>
         <select name="penggunaID" id="penggunaID_<?php echo $j ?>" class="form-control mb-3 penggunaID_C">
-
         <?php 
           $penggunaInstansi = $this->m_pengguna->getPenggunaByInstansiID($k->id_instansi);
          foreach ($penggunaInstansi as $p ) { ?>
-          <option value=""></option>
+          <option value="">Pilih</option>
           <option value="<?php echo $p->id ?>"><?php echo $p->pengguna_nama." - Divisi ".$p->divisi ?></option>
          <?php } ?>
 
         </select>
-        <small class="form-text">Pilih pengguna alumni jika data di atas merupakan pekerjaan saat ini. Jika pilihan pengguna alumni tidak ada <a data-toggle="collapse" href="#collapseExample_<?php echo $j ?>" aria-expanded="false" aria-controls="collapseExample">klik disini</a></small>
+        <small class="form-text">Pilih pengguna alumni jika data di atas merupakan pekerjaan saat ini. Jika pilihan pengguna alumni tidak ada <a data-toggle="collapse" href="#collapseExample_<?php echo $j ?>" aria-expanded="false" aria-controls="collapseExample">isi form disini</a></small>
       </div>
     </div>
 
@@ -415,7 +422,7 @@
               $pilihanJawaban = $this->m_kuesioner->getPilihanJawabanByPertanyaanID($p->id);
               $jumlahPilihan = count($pilihanJawaban);
               if ($jumlahPilihan > 5) { ?>
-                <select name="pilihan_<?php echo $p->id ?>" class="form-control mb-3">
+                <select name="pilihan_<?php echo $p->id ?>" class="form-control mb-3" required>
                 <option></option>
               <?php foreach ($pilihanJawaban as $pj) {  ?>
                 <option value="<?php echo $pj->pilihan ?>"><?php echo $pj->pilihan ?></option>
@@ -547,6 +554,13 @@
               </div>
 
               <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Alamat Instansi</label>
+               <div class="col-sm-9">
+                  <textarea class="form-control" name="alamat_instansi"></textarea>
+               </div>
+            </div>
+
+              <div class="form-group row">
                   <label class="col-sm-3 form-control-label">Skala Instansi</label>
                   <div class="col-sm-9">
                     <select name="skalaInstansi" class="form-control mb-3" required>
@@ -579,6 +593,7 @@
                       <option value="Perencana SI"> Perencana SI </option>
                       <option value="Peneliti"> Peneliti </option>
                       <option value="Pendidik"> Pendidik </option>
+                      <option value="Lainnya"> Lainnya </option>
                     </select>
                   </div>
                 </div>
@@ -615,11 +630,11 @@
                <div class="form-group row">
                 <label class="col-sm-3 form-control-label">Pengguna Alumni</label>
                 <div class="col-sm-9">
-                  <small>*untuk pekerjaan saat ini</small>
+                  <small>*Diisi jika pekerjaan saat ini</small>
                   <select name="penggunaID" id="penggunaID_m" class="form-control mb-3">
-                    <option value=""></option>
+                    <option value="">Pilih</option>
                   </select>
-                  <small class="form-text">Pilih pengguna alumni jika data di atas merupakan pekerjaan saat ini. Jika pilihan pengguna alumni tidak ada <a data-toggle="collapse" href="#collapseExample_m" aria-expanded="false" aria-controls="collapseExample"> Klik Disini</a></small>
+                  <small class="form-text">Pilih pengguna alumni jika data di atas merupakan pekerjaan saat ini. Jika pilihan pengguna alumni tidak ada <a data-toggle="collapse" href="#collapseExample_m" aria-expanded="false" aria-controls="collapseExample"> isi form disini</a></small>
                 </div>
               </div>
 

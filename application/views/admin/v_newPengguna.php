@@ -36,7 +36,7 @@
                           <thead>
                             <tr>
                               <th>No</th>
-                              <th>Nama</th>
+                              <th width="100px">Nama</th>
                               <th>Divisi</th>
                               <th>Instansi</th>
                               <th>Email</th>
@@ -54,10 +54,10 @@
                             foreach ($penggunaBaru as $p) { ?>
                             <tr>
                               <th scope="row"><?php echo $no++ ?></th>
-                              <td><?php echo $p->pengguna_nama ?></td>
+                              <td style="width: 500px"><?php echo $p->pengguna_nama ?></td>
                               <td><?php echo $p->divisi ?></td>
                               <td>
-                                <?php if ($p->id_instansi == '0') {
+                                <?php if ($p->id_instansi == '0' || $p->id_instansi == NULL) {
                                 echo "Non Instansi";
                                 } else {echo $this->m_master->getInstansiByID($p->id_instansi)->nama_instansi;
                                 } ?>
@@ -65,14 +65,19 @@
                               <td><?php echo $p->pengguna_email ?></td>
                               <td><?php echo $p->pengguna_telepon ?></td>
                                <td width="100px">
-                                  <?php $newAlumni = $this->m_pengguna->getCountNewAlumniPengguna($p->id); ?>
-                                    <a href="<?php echo base_url('admin/Pengguna/lihatAlumni/'.$p->id) ?>" class="btn btn-info btn-sm">
-                                      Lihat <span class="badge badge-light" style="color: #E62004"><?php if($newAlumni != 0) {echo "+".$newAlumni;}  ?></span>
-                                    </a>
+
+                                 <?php 
+                                    if ($p->id_instansi != Null) {
+                                    $newAlumni = $this->m_pengguna->getCountNewAlumniPengguna($p->id); ?>
+                                      <a href="<?php echo base_url('admin/Pengguna/lihatAlumni/'.$p->id) ?>" class="btn btn-info btn-sm">
+                                        Lihat <span class="badge badge-light" style="color: #E62004"><?php if($newAlumni != 0) {echo "+".$newAlumni;}  ?></span>
+                                      </a>
+                                    <?php } ?>
+
                                 </td>
                                 <td>
                                <button type="button" class="btn btn-sm btn-outline-info" onclick="copyFunction(<?php echo $no ?>)">Copy</button>
-                                <input style="position: absolute; left: -1000px" type="text" class="input-sm" value="http://localhost/siluni-ts/pengguna/Kuesioner/kuesionerInstansi/<?php echo $p->id ?>" id="myInput[<?php echo $no ?>]">
+                                <input style="position: absolute; left: -1000px" type="text" class="input-sm" value="<?php echo base_url();?>pengguna/Kuesioner/kuesionerInstansi/<?php echo $p->id ?>" id="myInput[<?php echo $no ?>]">
                               </td>
                               <td><div class="i-checks">
                               <input name="tandai<?php echo $p->id ?>" type="checkbox" <?php if ($p->tandai == 'checked') { echo 'checked=""'; } ?> value="checked" class="checkbox-template">
@@ -86,10 +91,10 @@
                                ?>
                               <tr>
                                 <th scope="row"><?php echo $no++ ?></th>
-                                <td><?php echo $p->pengguna_nama ?></td>
+                                <td style="width: 500px"><?php echo $p->pengguna_nama ?></td>
                                 <td><?php echo $p->divisi ?></td>
                                 <td>
-                                  <?php if ($p->id_instansi == '0') {
+                                  <?php if ($p->id_instansi == '0'|| $p->id_instansi == Null) {
                                   echo "Non Instansi";
                                   } else {echo $this->m_master->getInstansiByID($p->id_instansi)->nama_instansi;
                                   } ?>
@@ -98,10 +103,14 @@
                                 <td><?php echo $p->pengguna_telepon ?></td>
                                 <td width="100px">
 
-                                    <?php $newAlumni = $this->m_pengguna->getCountNewAlumniPengguna($p->id); ?>
+                                    <?php 
+                                    if ($p->id_instansi != Null) {
+                                    $newAlumni = $this->m_pengguna->getCountNewAlumniPengguna($p->id); ?>
                                       <a href="<?php echo base_url('admin/Pengguna/lihatAlumni/'.$p->id) ?>" class="btn btn-info btn-sm">
                                         Lihat <span class="badge badge-light" style="color: #E62004"><?php if($newAlumni != 0) {echo "+".$newAlumni;}  ?></span>
                                       </a>
+                                    <?php } ?>
+
                                   </td>
                                   <td>
                                  <button type="button" class="btn btn-sm btn-outline-info" onclick="copyFunction(<?php echo $no ?>)">Copy</button>

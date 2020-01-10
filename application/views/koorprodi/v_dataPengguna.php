@@ -5,13 +5,7 @@
               <h2 class="no-margin-bottom">Data Pengguna Alumni</h2>
             </div>
           </header>
-          <!-- Breadcrumb-->
-          <div class="breadcrumb-holder container-fluid">
-            <ul class="breadcrumb">
-              <li class="breadcrumb-item"><a href="index.html">Beranda</a></li>
-              <li class="breadcrumb-item active">Data</li>
-            </ul>
-          </div>
+       
           <section class="tables">   
             <div class="container-fluid">
               <div class="row">
@@ -43,7 +37,7 @@
                               <td><?php echo $d->pengguna_nama ?></td>
                               <td><?php echo $d->divisi ?></td>
                               <td>
-                                <?php if ($d->id_instansi == '0') {
+                                <?php if ($d->id_instansi == '0' || $d->id_instansi == Null) {
                                 echo "Non Instansi";
                                 } else {echo $this->m_master->getInstansiByID($d->id_instansi)->nama_instansi;
                                 } ?>

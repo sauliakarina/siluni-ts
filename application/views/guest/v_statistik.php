@@ -46,6 +46,7 @@ $programmer = $this->m_hasil->getProfilLulusan('Programmer',$prodiID);
 $wirausahawan = $this->m_hasil->getProfilLulusan('Wirausahawan',$prodiID);
 $peneliti = $this->m_hasil->getProfilLulusan('Peneliti',$prodiID);
 $pendidik = $this->m_hasil->getProfilLulusan('Pendidik',$prodiID);
+$lainnya = $this->m_hasil->getProfilLulusan('Lainnya',$prodiID);
 
 
  ?>
@@ -191,10 +192,10 @@ $pendidik = $this->m_hasil->getProfilLulusan('Pendidik',$prodiID);
     var myChart = new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: ["Praktisi", "Konsultan", "Perencana SI", "Penanggung Jawab Jaringan", "Programmer", "Wirausahawan", "Peneliti", "Pendidik"],
+        labels: ["Praktisi", "Konsultan", "Perencana SI", "Penanggung Jawab Jaringan", "Programmer", "Wirausahawan", "Peneliti", "Pendidik", "Lainnya"],
         datasets: [{
           label: '',
-          data: [<?php echo $praktisi ?>, <?php echo $konsultan ?>, <?php echo $si ?>, <?php echo $jaringan ?>, <?php echo $programmer ?>, <?php echo $wirausahawan ?>, <?php echo $peneliti ?>,  <?php echo $pendidik ?>],
+          data: [<?php echo $praktisi ?>, <?php echo $konsultan ?>, <?php echo $si ?>, <?php echo $jaringan ?>, <?php echo $programmer ?>, <?php echo $wirausahawan ?>, <?php echo $peneliti ?>,  <?php echo $pendidik ?>, <?php echo $lainnya ?>],
           backgroundColor: [
           'rgba(55, 181, 94, 1)',
           'rgba(55, 181, 94, 1)',

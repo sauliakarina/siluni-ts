@@ -42,11 +42,13 @@ class M_pengguna extends CI_Model{
 
 	}
 
+	//pengguna non instansi tidak ditampilkan di data pengguna alumni
 	function getPengguna($prodiID)
 	{
 		$this->db->select('*');
 		$this->db->where('isDelete', 'no');
 		$this->db->where('prodiID', $prodiID);
+		$this->db->where('id_instansi !=', Null);
 		$this->db->order_by('id','DESC');
 		$query = $this->db->get('pengguna');
 		if($query->num_rows()>0)
@@ -72,7 +74,7 @@ class M_pengguna extends CI_Model{
 	{
 		$this->db->select('*');
 		$this->db->where('isDelete', 'no');
-		$this->db->where('id_instansi !=', '0');
+		$this->db->where('id_instansi !=', Null);
 		$this->db->where('prodiID', $prodiID);
 		$this->db->order_by('id','DESC');
 		$query = $this->db->get('pengguna');
@@ -146,6 +148,7 @@ class M_pengguna extends CI_Model{
 		$this->db->select('*');
 		$this->db->where('seen',$seen);
 		$this->db->where('prodiID', $prodiID);
+		$this->db->where('id_instansi !=', Null);
 		$this->db->where('isDelete', 'no');
 		$query = $this->db->get('pengguna');
 		if($query->num_rows()>0)

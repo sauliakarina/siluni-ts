@@ -33,6 +33,15 @@
                             </select>
                           </div>
                         </div>
+
+                        <div class="line"></div>
+                        <div class="form-group row">
+                          <label class="col-sm-3 form-control-label">Alamat Instansi</label>
+                           <div class="col-sm-9">
+                              <textarea class="form-control" name="alamat_instansi"><?php echo $this->m_master->getInstansiByID($p->id_instansi)->alamat ?></textarea>
+                           </div>
+                      </div>
+
                         <div class="line"></div>
                         <div class="form-group row">
                           <label class="col-sm-3 form-control-label">Skala Instansi</label>
@@ -50,7 +59,7 @@
                           <label class="col-sm-3 form-control-label">Posisi</label>
                           <div class="col-sm-9">
                             <input type="text" name="posisi" class="form-control" value="<?php echo $p->posisi ?>">
-                             <input type="hidden" name="id_pekerjaan" class="form-control" value="<?php echo $p->id ?>">
+                             <input type="hidden" name="id_pekerjaan" class="form-control" value="<?php echo $id_pekerjaan ?>">
                               <input type="hidden" name="id_instansi" class="form-control" value="<?php echo $p->id_instansi ?>">
                               <input type="hidden" name="id_pengguna" class="form-control" value="<?php  if ($p->id_pengguna != NULL) { echo $p->id_pengguna; } else {echo NULL;} ?>">
                           </div>
@@ -62,8 +71,14 @@
                             <select name="profil" class="form-control mb-3">
                               <option value="<?php echo $p->profil ?>"><b><?php echo $p->profil ?></b></option>
                               <option value="Programmer">Programmer</option>
-                              <option value="Penangungg Jawab Jaringan">Penangungg Jawab Jaringan</option>
+                              <option value="Penangungg Jawab Jaringan">Penanggung Jawab Jaringan</option>
                               <option value="Wirausahawan">Wirausahawan</option>
+                              <option value="Praktisi"> Praktisi </option>
+                              <option value="Konsultan"> Konsultan </option>
+                              <option value="Perencana SI"> Perencana SI </option>
+                              <option value="Peneliti"> Peneliti </option>
+                              <option value="Pendidik"> Pendidik </option>
+                              <option value="Lainnya"> Lainnya </option>
                             </select>
                           </div>
                         </div>

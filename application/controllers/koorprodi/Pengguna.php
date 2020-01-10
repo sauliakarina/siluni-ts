@@ -10,6 +10,7 @@ class Pengguna extends CI_Controller {
 		$this->load->model('m_master');
 		$this->load->model('m_alumni');
 		$this->load->model('m_pengguna');
+		$this->load->model('m_dosen');
  
 	}
 

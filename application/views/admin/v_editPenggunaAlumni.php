@@ -31,7 +31,7 @@
                         <div class="form-group row">
                           <label class="col-sm-3 form-control-label">Nama Pengguna Alumni</label>
                           <div class="col-sm-9">
-                            <input type="text" class="form-control" name="pertanyaan" value="<?php echo $pr->pengguna_nama ?>">
+                            <input type="text" class="form-control" name="pengguna_nama" value="<?php echo $pr->pengguna_nama ?>">
                             <input type="hidden" class="form-control" name="penggunaID" value="<?php echo $pr->id ?>">
                           </div>
                         </div>

@@ -82,7 +82,7 @@
                               <td><?php echo $t->pengguna_nama; ?></td>
                               <td><?php echo $t->divisi; ?></td>
                               <td>
-                                <?php if ($t->id_instansi == '0') {
+                                <?php if ($t->id_instansi == '0' || $t->id_instansi == Null) {
                                 echo "Non Instansi";
                                 } else {echo $this->m_master->getInstansiByID($t->id_instansi)->nama_instansi;
                                 } ?>

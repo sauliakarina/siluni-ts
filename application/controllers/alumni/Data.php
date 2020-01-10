@@ -3,10 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Data extends CI_Controller {
 	function __construct(){
-		parent::__construct();	
+		parent::__construct();
+		
 		if($_SESSION["logged_in"] != 'login') {
-			redirect(base_url("login"));
+		            redirect(base_url("login"));
 		}
+ 	
 			
 		$this->load->model('m_alumni');
 		$this->load->model('m_master');
@@ -301,6 +303,7 @@ class Data extends CI_Controller {
 	$newInstansi = array(
 		'nama_instansi' => $this->input->post('instansiBaru'),
 		'jenis_instansi' => $this->input->post('skalaInstansi'),
+		'alamat' => $this->input->post('alamat_instansi'),
 		'prodiID' => $this->session->userdata('prodiID'),
 	);
 	$this->m_master->inputData($newInstansi,'instansi');
@@ -308,7 +311,8 @@ class Data extends CI_Controller {
 	} else {
 		$instansiID = $this->input->post('instansiID');
 		$data = array(
-			"jenis_instansi" => $this->input->post('skalaInstansi')
+			'jenis_instansi' => $this->input->post('skalaInstansi'),
+			'alamat' => $this->input->post('alamat_instansi')
 		);
 		$where = array('id' => $this->input->post('instansiID'));
 		$this->m_master->updateData($where, $data, 'instansi');
@@ -377,13 +381,15 @@ public function exeAddPekerjaan_new() {
 		'nama_instansi' => $this->input->post('instansiBaru'),
 		'jenis_instansi' => $this->input->post('skalaInstansi'),
 		'prodiID' => $this->session->userdata('prodiID'),
+		'alamat' => $this->input->post('alamat_instansi')
 	);
 	$this->m_master->inputData($newInstansi,'instansi');
 	$instansiID = $this->m_master->getInstansiByName($this->input->post('instansiBaru'))->id;
 	} else {
 		$instansiID = $this->input->post('instansiID');
 		$data = array(
-			"jenis_instansi" => $this->input->post('skalaInstansi')
+			"jenis_instansi" => $this->input->post('skalaInstansi'),
+			'alamat' => $this->input->post('alamat_instansi')
 		);
 		$where = array('id' => $this->input->post('instansiID'));
 		$this->m_master->updateData($where, $data, 'instansi');

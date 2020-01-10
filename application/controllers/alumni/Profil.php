@@ -80,7 +80,8 @@ class Profil extends CI_Controller {
 			'prodiID' => $this->session->userdata('prodiID'),
 			'instansi' => $this->m_master->getInstansi($this->session->userdata('prodiID')),
 			'divisi' => $this->m_master->getDivisi(),
-			'p' => $pekerjaan
+			'p' => $pekerjaan,
+			'id_pekerjaan' => $id
 		);
 		$this->load->view('element/head');
 		$this->load->view('element/header');
@@ -420,6 +421,7 @@ class Profil extends CI_Controller {
 		//data tabel instansi
 		$data = array(
 			'jenis_instansi' => $this->input->post('jenis_instansi'),
+			'alamat' => $this->input->post('alamat_instansi'),
 		);
 		$where = array('id' => $this->input->post('id_instansi'));
 		$this->m_master->updateData($where,$data,'instansi');

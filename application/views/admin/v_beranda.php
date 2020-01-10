@@ -8,6 +8,8 @@
               <h2 class="no-margin-bottom">Beranda</h2>
             </div>
           </header>
+
+          
            <!-- Dashboard Counts Section-->
           <section class="dashboard-counts no-padding-bottom">
             <div class="container-fluid">
@@ -21,10 +23,10 @@
                     $allPengguna = $this->m_master->countAllPengguna($this->session->userdata('prodiID'));
                     ?>
                     <a href="<?php echo site_url('admin/Pengguna/getNewPengguna/') ?>">
-                      <div class="title"><span>Pengguna<br> Alumni</span></div>
+                      <div class="title"><span>Link Kuesioner<br>Pengguna Alumni</span></div>
                     <div class="number" style="color: green;"><strong>
                       <?php if ($newPengguna != 0) { ?>
-                      <span class="badge badge-pill badge-danger" style="size: 10px">New</span>
+                      <span class="badge badge-pill badge-danger" style="width: 60px; height: 30px"><p style="font-size: 15px">New</p></span>
                       <?php } else { 
                         echo $allPengguna;
                       }?>
