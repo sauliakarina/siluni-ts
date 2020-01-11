@@ -10,7 +10,7 @@ class Kuesioner extends CI_Controller {
  
 	}
 
-	//kuesioner untuk pengguna blm terdaftar
+	//kuesioner untuk pengguna sudah terdaftar
 	public function kuesionerInstansi($penggunaID)
 	{
 		$prodiID = $this->m_pengguna->getPenggunaByID($penggunaID)->prodiID;

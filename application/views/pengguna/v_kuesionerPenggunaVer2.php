@@ -108,7 +108,7 @@
                                   <?php 
                                   $skalaNilai = $this->m_kuesioner->getSkalaByPertanyaanID($p->id);
                                   foreach ($skalaNilai as $sn) { ?>
-                                    <th><input type="radio" value="<?php echo $sn->nilai ?>" name="skala_<?php echo $ps->id ?>" class="radio-template"></th>
+                                    <th><input type="radio" value="<?php echo $sn->nilai ?>" <?php if ($ps->required == 'yes') { echo "required"; } ?> name="skala_<?php echo $ps->id ?>" class="radio-template"></th>
                                   <?php } //foreach skala nilai ?>
                                 </tr>
                               <?php } //foreach pertanyaan skala ?>
@@ -119,12 +119,12 @@
                           ?>
                           <div class="form-group">
                           <label class="form-control-label"><b><?php echo $p->pertanyaan ?>:</b></label>
-                           <input type="text" name="isian_<?php echo $p->id ?>" placeholder="" class="form-control">
+                           <input type="text" name="isian_<?php echo $p->id ?>" placeholder="" <?php if ($p->required == 'yes') { echo "required"; } ?> class="form-control">
                         </div>
                       <?php } elseif ($p->jenis == 'isian' && $p->textarea == 'ya') { ?>
                           <div class="form-group">
                           <label class="form-control-label"><b><?php echo $p->pertanyaan ?>:</b></label>
-                           <textarea class="form-control" name="isian_<?php echo $p->id ?>" rows="5"></textarea>
+                           <textarea class="form-control" name="isian_<?php echo $p->id ?>" <?php if ($p->required == 'yes') { echo "required"; } ?> rows="5"></textarea>
                         </div>
                         <?php } elseif ($p->jenis == 'pilihan') { ?>
                           <label class="form-control-label"><b><?php echo $p->pertanyaan ?>:</b></label>
@@ -132,7 +132,7 @@
                            $pilihan = $this->m_kuesioner->getPilihanJawabanByPertanyaanID($p->id);
                            foreach ($pilihan as $k) { ?>
                              <div class="i-checks">
-                              <input id="radioCustom1" type="radio" name="pilihan_<?php echo $p->id ?>"  class="radio-template">
+                              <input id="radioCustom1" type="radio" name="pilihan_<?php echo $p->id ?>" <?php if ($p->required == 'yes') { echo "required"; } ?> class="radio-template">
                               <label for="radioCustom1"><?php echo $k->pilihan ?></label>
                             </div>
                         <?php } // foreach pilihan ?>

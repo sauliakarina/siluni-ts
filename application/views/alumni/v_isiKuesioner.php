@@ -44,7 +44,7 @@
                               <?php if ($p->jenis == 'isian') { ?>
                                 <div class="form-group">
                                   <?php if ($p->textarea == 'ya') { ?>
-                                    <textarea class="form-control" name="<?php echo $p->id ?>" rows="5" placeholder="masukkan jawaban"></textarea>
+                                    <textarea class="form-control" <?php if ($p->required == 'yes') { echo "required"; } ?> name="<?php echo $p->id ?>" rows="5" placeholder="masukkan jawaban"></textarea>
                                   <?php } else { ?>
                                    <input type="text" placeholder="masukkan jawaban" name="<?php echo $p->id ?>" class="form-control">
                                  <?php } ?>

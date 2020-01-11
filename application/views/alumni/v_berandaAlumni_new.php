@@ -222,7 +222,7 @@
         </select>
         <small class="form-text">
           <ul>
-            <li>Instansi Lokal          : instansi yang diakui dalam suatu provisi</li>
+            <li>Instansi Lokal          : instansi yang diakui dalam suatu provinsi</li>
             <li>Instansi Nasional       : instansi yang diakui di seluruh indonesia </li>
             <li>Instansi Internasional  : instansi yang memiliki cabang di luar negeri</li>
           </ul>
@@ -407,9 +407,9 @@
             <?php if ($p->jenis == 'isian') { ?>
               <div class="form-group row">
                 <?php if ($p->textarea == 'ya') { ?>
-                  <textarea class="form-control" name="isian_<?php echo $p->id ?>" rows="5" placeholder="masukkan jawaban"></textarea>
+                  <textarea class="form-control" name="isian_<?php echo $p->id ?>" <?php if ($p->required == 'yes') { echo "required"; } ?> rows="5" placeholder="masukkan jawaban"></textarea>
                 <?php } else { ?>
-                  <input type="text" placeholder="masukkan jawaban" name="isian_<?php echo $p->id ?>" class="form-control">
+                  <input type="text" placeholder="masukkan jawaban" <?php if ($p->required == 'yes') { echo "required"; } ?> name="isian_<?php echo $p->id ?>" class="form-control">
                 <?php } 
                 if ($p->keterangan != Null) {
                 ?>
@@ -422,7 +422,7 @@
               $pilihanJawaban = $this->m_kuesioner->getPilihanJawabanByPertanyaanID($p->id);
               $jumlahPilihan = count($pilihanJawaban);
               if ($jumlahPilihan > 5) { ?>
-                <select name="pilihan_<?php echo $p->id ?>" class="form-control mb-3" required>
+                <select name="pilihan_<?php echo $p->id ?>" <?php if ($p->required == 'yes') { echo "required"; } ?> class="form-control mb-3">
                 <option></option>
               <?php foreach ($pilihanJawaban as $pj) {  ?>
                 <option value="<?php echo $pj->pilihan ?>"><?php echo $pj->pilihan ?></option>
@@ -431,7 +431,7 @@
               <?php }  else {?>
               <?php foreach ($pilihanJawaban as $pj) {  ?> 
                 <div class="i-checks">
-                  <input id="option1" type="radio" value="<?php echo $pj->pilihan ?>" name="pilihan_<?php echo $p->id ?>" class="radio-template">
+                  <input id="option1" type="radio" value="<?php echo $pj->pilihan ?>" <?php if ($p->required == 'yes') { echo "required"; } ?> name="pilihan_<?php echo $p->id ?>" class="radio-template">
                   <label for="option1"><?php echo $pj->pilihan ?></label>
                 </div> 
               <?php } //loop pilihanJawaban
@@ -493,7 +493,7 @@
                     <?php 
                     $skalaNilai = $this->m_kuesioner->getSkalaByPertanyaanID($p->id);
                     foreach ($skalaNilai as $sn) { ?>
-                    <th><input type="radio" value="<?php echo $sn->nilai ?>" name="skala_<?php echo $ps->id ?>" class="radio-template"></th>
+                    <th><input type="radio" value="<?php echo $sn->nilai ?>" <?php if ($ps->required == 'yes') { echo "required"; } ?> name="skala_<?php echo $ps->id ?>" class="radio-template"></th>
                     <?php } //foreach skala nilai ?>
                   </tr>
                   <?php } //foreach pertanyaan skala ?>
