@@ -102,6 +102,26 @@ class M_master extends CI_Model{
 
 	}
 
+	
+	function getNotifKuesionerByCustomID($customID)
+	{
+		$this->db->select('*');
+		$this->db->where('customID',$customID);
+		$query = $this->db->get('notif_kuesioner');
+		return $query->row();
+
+	}
+
+	function getNotifKuesionerByID($ID)
+	{
+		$this->db->select('*');
+		$this->db->where('id',$ID);
+		$query = $this->db->get('notif_kuesioner');
+		return $query->row();
+
+	}
+
+
 	function getBeranda()
 	{
 		$this->db->select('*');

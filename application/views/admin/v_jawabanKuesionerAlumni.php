@@ -49,7 +49,7 @@
                               <td><?php echo $d->tahun_lulus ?></td>
                               <td><?php echo $d->timestamp ?></td>
                               <td>
-                                <form method='' action="<?php echo base_url('admin/Kuesioner/lihatJawabanAlumni/'.$d->id_alumni) ?>">
+                                <form method='' action="<?php echo base_url('admin/Kuesioner/lihatJawabanAlumni/'.$d->notifID) ?>">
                                  <button type="submit" name="options" class="btn btn-info btn-sm" >Lihat</button>
                                 </form>
                               </td>

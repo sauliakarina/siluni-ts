@@ -48,7 +48,7 @@ class M_kuesioner extends CI_Model{
 	{
 		$this->db->select('*');
 		$this->db->where('pertanyaanID',$pertanyaanID);
-		$this->db->where('alumniID',$alumniID);
+		$this->db->where('notifID',$alumniID);
 		$query = $this->db->get('jawaban_alumni');
 		return $query->row();
 
@@ -58,7 +58,7 @@ class M_kuesioner extends CI_Model{
 	{
 		$this->db->select('*');
 		$this->db->where('pertanyaanSkalaID',$pertanyaanSkalaID);
-		$this->db->where('alumniID',$alumniID);
+		$this->db->where('notifID',$alumniID);
 		$query = $this->db->get('jawaban_alumni');
 		return $query->row();
 
@@ -68,7 +68,7 @@ class M_kuesioner extends CI_Model{
 	{
 		$this->db->select('*');
 		$this->db->where('pertanyaanID',$pertanyaanID);
-		$this->db->where('alumniID',$alumniID);
+		$this->db->where('notifID',$alumniID);
 		$query = $this->db->get('jawaban_alumni');
 		if($query->num_rows()>0)
 		{
@@ -117,7 +117,7 @@ class M_kuesioner extends CI_Model{
 	{
 		$this->db->select('*');
 		$this->db->where('pertanyaanID',$pertanyaanID);
-		$this->db->where('penggunaID',$penggunaID);
+		$this->db->where('notifID',$penggunaID);
 		$query = $this->db->get('jawaban_pengguna');
 		return $query->row();
 
@@ -127,7 +127,7 @@ class M_kuesioner extends CI_Model{
 	{
 		$this->db->select('*');
 		$this->db->where('pertanyaanSkalaID',$pertanyaanSkalaID);
-		$this->db->where('penggunaID',$penggunaID);
+		$this->db->where('notifID',$penggunaID);
 		$query = $this->db->get('jawaban_pengguna');
 		return $query->row();
 
@@ -137,7 +137,7 @@ class M_kuesioner extends CI_Model{
 	{
 		$this->db->select('*');
 		$this->db->where('pertanyaanID',$pertanyaanID);
-		$this->db->where('penggunaID',$penggunaID);
+		$this->db->where('notifID',$penggunaID);
 		$query = $this->db->get('jawaban_pengguna');
 		if($query->num_rows()>0)
 		{

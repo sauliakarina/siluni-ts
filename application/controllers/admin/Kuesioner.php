@@ -97,7 +97,7 @@ class Kuesioner extends CI_Controller {
 		$this->load->view('element/footer');
 	}
 
-	public function lihatJawabanAlumni($alumniID)
+	public function lihatJawabanAlumni($notifID)
 	{
 		$prodiID = $this->session->userdata('prodiID');
 		$data = array(
@@ -105,7 +105,7 @@ class Kuesioner extends CI_Controller {
 			'userID' => $this->session->userdata('userID'),
 			'prodiID' => $prodiID,
 			'kuesioner' => $this->m_kuesioner->getKuesionerAlumni($prodiID),
-			'alumniID' => $alumniID
+			'notifID' => $notifID
 		);
 		$this->load->view('element/head');
 		$this->load->view('element/header');
@@ -130,7 +130,7 @@ class Kuesioner extends CI_Controller {
 		$this->load->view('element/footer');
 	}
 
-	public function lihatJawabanPengguna($penggunaID)
+	public function lihatJawabanPengguna($notifID)
 	{
 		$prodiID = $this->session->userdata('prodiID');
 		$data = array(
@@ -138,7 +138,7 @@ class Kuesioner extends CI_Controller {
 			'userID' => $this->session->userdata('userID'),
 			'prodiID' => $prodiID,
 			'kuesioner' => $this->m_kuesioner->getKuesionerPengguna($prodiID),
-			'penggunaID' => $penggunaID
+			'notifID' => $notifID
 		);
 		$this->load->view('element/head');
 		$this->load->view('element/header');

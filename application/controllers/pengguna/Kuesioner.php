@@ -78,6 +78,35 @@ class Kuesioner extends CI_Controller {
 		$penggunaID = $this->input->post('penggunaID');
 		$prodiID = $this->m_pengguna->getPenggunaByID($penggunaID)->prodiID;
 		$kuesionerID = $this->m_kuesioner->getKuesionerByResponden('pengguna', $prodiID);
+
+		//tabel notif kuesioner
+		$id_length = 8;
+		$id_found = false;
+		$possible_chars = "23456789BCDFGHJKMNPQRSTVWXYZ"; 
+		while (!$id_found) {  
+			$customID = "";  
+			$i = 0;  
+			while ($i < $id_length) {  
+			    $char = substr($possible_chars, mt_rand(0, strlen($possible_chars)-1), 1);  
+			    $customID .= $char;   
+			    $i++;   
+			    }  
+			$where = array( 'customID' => $customID);
+			$cek = $this->m_master->cekData("notif_kuesioner",$where)->num_rows();
+			if ($cek == 0) {
+			   	$id_found = true;
+			}
+		} 
+		$data = array(
+			'respondenID' => $penggunaID,
+			'jenis_kuesioner' => 'pengguna',
+			'timestamp' => date("d-m-Y"),
+			'prodiID' => $prodiID,
+			'customID' => $customID
+		);
+		$this->m_master->inputData($data,'notif_kuesioner');
+		$notifID = $this->m_master->getNotifKuesionerByCustomID($customID)->id;
+
 		foreach ($kuesionerID as $k ) {
 			$pertanyaan = $this->m_kuesioner->getPertanyaanByKuesionerID($k->id);
 			foreach ($pertanyaan as $p) {
@@ -87,7 +116,8 @@ class Kuesioner extends CI_Controller {
 				        $data = array(	            
 				        	'pertanyaanID' => $p->id,
 				        	'jawaban' => $j,
-				        	'penggunaID' => $penggunaID
+				        	'penggunaID' => $penggunaID,
+				        	'notifID' => $notifID
 				        );				        
 				        $this->m_master->inputData($data,'jawaban_pengguna');
 				    } // foreach jawaban ganda
@@ -97,7 +127,8 @@ class Kuesioner extends CI_Controller {
 						$data = array(
 						'pertanyaanID' => $p->id,
 			            'jawaban' => $this->input->post("isian_".$p->id),
-			            'penggunaID' => $penggunaID
+			            'penggunaID' => $penggunaID,
+			            'notifID' => $notifID
 			          	);
 						$this->m_master->inputData($data, 'jawaban_pengguna');
 					} //if not null
@@ -107,7 +138,8 @@ class Kuesioner extends CI_Controller {
 						$data = array(
 						'pertanyaanID' => $p->id,
 			            'jawaban' => $this->input->post("pilihan_".$p->id),
-			            'penggunaID' => $penggunaID
+			            'penggunaID' => $penggunaID,
+			            'notifID' => $notifID
 			          	);
 						$this->m_master->inputData($data, 'jawaban_pengguna');
 					} //if not null
@@ -120,7 +152,8 @@ class Kuesioner extends CI_Controller {
 					        	'pertanyaanID' => $p->id,
 					        	'pertanyaanSkalaID' => $ps->id,
 					        	'jawaban' => $this->input->post("skala_".$ps->id),
-					        	'penggunaID' => $penggunaID
+					        	'penggunaID' => $penggunaID,
+					        	'notifID' => $notifID
 					        );				        
 					        $this->m_master->inputData($data,'jawaban_pengguna');
 				    	} // if not null
@@ -129,13 +162,6 @@ class Kuesioner extends CI_Controller {
 			}//foreach pertanyaan
 		} //foreach kuesionerID
 
-		$data = array(
-			'respondenID' => $penggunaID,
-			'jenis_kuesioner' => 'pengguna',
-			'timestamp' => date("d-m-Y"),
-			'prodiID' => $prodiID
-		);
-		$this->m_master->inputData($data,'notif_kuesioner');
 
 		$this->session->set_flashdata("pesan", '<div><div class="alert alert-success" id="alert" align="center">Pengisian Kuesioner Sukses! Terimakasih atas partisipasi anda</div></div>');
 		redirect('pengguna/Kuesioner/kuesionerInstansi/'.$penggunaID);
@@ -167,13 +193,41 @@ public function addJawabanVer2()
 			'pengguna_nama' => $this->input->post('pengguna_nama'),
 			'pengguna_email' => $this->input->post('pengguna_email'),
 			'pengguna_telepon' => $this->input->post('pengguna_telepon'),
-			'id_instansi' => $this->input->post('id_instansi'),
 			'divisi' => $this->input->post('divisi'),
 			'prodiID' => $this->input->post('prodiID'),
 			'penggunaID' => $penggunaID
 		);
 		$this->m_master->inputData($data,'pengguna');
 		$id_pengguna = $this->m_pengguna->getPenggunaByPenggunaID($penggunaID)->id;
+
+		//tabel notif kuesioner
+		$id_length = 8;
+		$id_found = false;
+		$possible_chars = "23456789BCDFGHJKMNPQRSTVWXYZ"; 
+		while (!$id_found) {  
+			$customID = "";  
+			$i = 0;  
+			while ($i < $id_length) {  
+			    $char = substr($possible_chars, mt_rand(0, strlen($possible_chars)-1), 1);  
+			    $customID .= $char;   
+			    $i++;   
+			    }  
+			$where = array( 'customID' => $customID);
+			$cek = $this->m_master->cekData("notif_kuesioner",$where)->num_rows();
+			if ($cek == 0) {
+			   	$id_found = true;
+			}
+		} 
+		$data = array(
+			'respondenID' => $id_pengguna,
+			'jenis_kuesioner' => 'pengguna',
+			'timestamp' => date("d-m-Y"),
+			'prodiID' => $prodiID,
+			'customID' => $customID
+		);
+		$this->m_master->inputData($data,'notif_kuesioner');
+		$notifID = $this->m_master->getNotifKuesionerByCustomID($customID)->id;
+
 
 		$kuesionerID = $this->m_kuesioner->getKuesionerByResponden('pengguna', $prodiID);
 		foreach ($kuesionerID as $k ) {
@@ -185,7 +239,8 @@ public function addJawabanVer2()
 				        $data = array(	            
 				        	'pertanyaanID' => $p->id,
 				        	'jawaban' => $j,
-				        	'penggunaID' => $id_pengguna
+				        	'penggunaID' => $id_pengguna,
+				        	'notifID' => $notifID
 				        );				        
 				        $this->m_master->inputData($data,'jawaban_pengguna');
 				    } // foreach jawaban ganda
@@ -195,7 +250,8 @@ public function addJawabanVer2()
 						$data = array(
 						'pertanyaanID' => $p->id,
 			            'jawaban' => $this->input->post("isian_".$p->id),
-			            'penggunaID' => $id_pengguna
+			            'penggunaID' => $id_pengguna,
+			            'notifID' => $notifID
 			          	);
 						$this->m_master->inputData($data, 'jawaban_pengguna');
 					} //if not null
@@ -205,7 +261,8 @@ public function addJawabanVer2()
 						$data = array(
 						'pertanyaanID' => $p->id,
 			            'jawaban' => $this->input->post("pilihan_".$p->id),
-			            'penggunaID' => $id_pengguna
+			            'penggunaID' => $id_pengguna,
+			            'notifID' => $notifID
 			          	);
 						$this->m_master->inputData($data, 'jawaban_pengguna');
 					} //if not null
@@ -218,7 +275,8 @@ public function addJawabanVer2()
 					        	'pertanyaanID' => $p->id,
 					        	'pertanyaanSkalaID' => $ps->id,
 					        	'jawaban' => $this->input->post("skala_".$ps->id),
-					        	'penggunaID' => $id_pengguna
+					        	'penggunaID' => $id_pengguna,
+					        	'notifID' => $notifID
 					        );				        
 					        $this->m_master->inputData($data,'jawaban_pengguna');
 				    	} // if not null
@@ -227,13 +285,6 @@ public function addJawabanVer2()
 			}//foreach pertanyaan
 		} //foreach kuesionerID
 
-		$data = array(
-			'respondenID' => $id_pengguna,
-			'jenis_kuesioner' => 'pengguna',
-			'timestamp' => date("d-m-Y"),
-			'prodiID' => $prodiID
-		);
-		$this->m_master->inputData($data,'notif_kuesioner');
 		
 		$this->session->set_flashdata("pesan", '<div><div class="alert alert-success" id="alert" align="center">Pengisian Kuesioner Sukses! Terimakasih atas partisipasi anda</div></div>');
 		redirect('pengguna/Kuesioner/kuesionerPenggunaAlumni/'.$prodiID);

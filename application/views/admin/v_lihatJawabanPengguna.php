@@ -11,6 +11,50 @@
       <li class="breadcrumb-item"><a href="<?php echo site_url('admin/Kuesioner/jawabanKuesionerPengguna/') ?>">< Kembali</a></li>
     </ul>
   </div>
+<?php $penggunaID = $this->m_master->getNotifKuesionerByID($notifID)->respondenID;
+  $instansiID = $this->m_pengguna->getPenggunaByID($penggunaID)->id_instansi;
+ ?>
+
+ <?php if ($instansiID != Null) { ?>
+<section class="tables no-padding-bottom">   
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="card">
+                <div class="card-header d-flex align-items-center">
+                  <h5 class="h4">Alumni yang bekerja pada <?php  if ($instansiID != Null) { echo $this->m_master->getInstansiByID($instansiID)->nama_instansi; }?></h5>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>No</th>
+                          <th>Nama</th>
+                          <th>Posisi</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php $alumni = $this->m_pengguna->joinPekerjaanAlumniByPenggunaID($penggunaID);
+                          $no = 1;
+                          foreach ($alumni as $a) {
+                         ?>
+                        <tr>
+                          <th scope="row"><?php echo $no++; ?></th>
+                          <td><?php echo $a->nama ?></td>
+                          <td><?php echo $a->posisi ?></td>
+                        </tr>
+                      <?php } ?>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+<?php } ?>
 
   <section class="tables">   
     <div class="container-fluid">
@@ -18,7 +62,8 @@
         <div class="col-lg-12">
           <div class="card">
             <div class="card-header d-flex align-items-center">
-              <h3 class="h4"><?php echo $this->m_pengguna->getPenggunaByID($penggunaID)->pengguna_nama ?></h3>
+              <h3 class="h4"><?php
+              echo $this->m_pengguna->getPenggunaByID($penggunaID)->pengguna_nama ?></h3>
             </div>
             <div class="card-body">
               <div class="table-responsive">                       
@@ -48,8 +93,8 @@
                                   <tr>
                                     <th><?php echo $ps->pertanyaan ?></th>
                                     <td><?php 
-                                    if (isset($this->m_kuesioner->getJawabanSkalaPengguna($ps->id, $penggunaID)->jawaban)) {
-                                      $jawabanSkala = $this->m_kuesioner->getJawabanSkalaPengguna($ps->id, $penggunaID)->jawaban;
+                                    if (isset($this->m_kuesioner->getJawabanSkalaPengguna($ps->id, $notifID)->jawaban)) {
+                                      $jawabanSkala = $this->m_kuesioner->getJawabanSkalaPengguna($ps->id, $notifID)->jawaban;
                                       if ($jawabanSkala == '1' || $jawabanSkala == '2') {
                                         echo "rendah";
                                       } elseif($jawabanSkala == '3'){
@@ -68,7 +113,7 @@
                             </td>
                           <?php }
                             elseif ($p->jenis == 'ganda') { 
-                              $jawabanGanda = $this->m_kuesioner->getJawabanGandaPengguna($p->id, $penggunaID);
+                              $jawabanGanda = $this->m_kuesioner->getJawabanGandaPengguna($p->id, $notifID);
                               ?>
                               <td>
                                 <?php 
@@ -79,8 +124,8 @@
                            <?php  
                               } else { ?>
                           <td>
-                              <?php if (isset($this->m_kuesioner->getJawabanPengguna($p->id, $penggunaID)->jawaban)) {
-                                echo $this->m_kuesioner->getJawabanPengguna($p->id, $penggunaID)->jawaban; } ?>
+                              <?php if (isset($this->m_kuesioner->getJawabanPengguna($p->id, $notifID)->jawaban)) {
+                                echo $this->m_kuesioner->getJawabanPengguna($p->id, $notifID)->jawaban; } ?>
                           </td>
                           <?php } ?>
                         </tr>

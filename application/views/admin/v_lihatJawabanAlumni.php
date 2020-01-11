@@ -12,6 +12,10 @@
       <h2 class="no-margin-bottom">Jawaban Kuesioner Alumni</h2>
     </div>
   </header>
+
+  <?php $alumniID = $this->m_master->getNotifKuesionerByID($notifID)->respondenID;
+ ?>
+
   <!-- Breadcrumb-->
   <div class="breadcrumb-holder container-fluid">
     <ul class="breadcrumb">
@@ -54,8 +58,8 @@
                                   <tr>
                                     <th><?php echo $ps->pertanyaan ?></th>
                                     <td><?php 
-                                    if (isset($this->m_kuesioner->getJawabanSkalaAlumni($ps->id, $alumniID)->jawaban)) {
-                                      $jawabanSkala = $this->m_kuesioner->getJawabanSkalaAlumni($ps->id, $alumniID)->jawaban;
+                                    if (isset($this->m_kuesioner->getJawabanSkalaAlumni($ps->id, $notifID)->jawaban)) {
+                                      $jawabanSkala = $this->m_kuesioner->getJawabanSkalaAlumni($ps->id, $notifID)->jawaban;
                                       if ($jawabanSkala == '1' || $jawabanSkala == '2') {
                                         echo "rendah";
                                       } elseif($jawabanSkala == '3'){
@@ -74,7 +78,7 @@
                             </td>
                           <?php }
                             elseif ($p->jenis == 'ganda') { 
-                              $jawabanGanda = $this->m_kuesioner->getJawabanGandaAlumni($p->id, $alumniID);
+                              $jawabanGanda = $this->m_kuesioner->getJawabanGandaAlumni($p->id, $notifID);
                               ?>
                               <td>
                                 <?php 
@@ -86,12 +90,12 @@
                               } else { ?>
                           <td>
                               <?php if ($p->inputBox == 'ya') {
-                                $jawabanGanda = $this->m_kuesioner->getJawabanGandaAlumni($p->id, $alumniID);
+                                $jawabanGanda = $this->m_kuesioner->getJawabanGandaAlumni($p->id, $notifID);
                                 foreach ($jawabanGanda as $jg) {
                                    echo $jg->jawaban."<br>"; }
                               } else {
-                                if (isset($this->m_kuesioner->getJawabanAlumni($p->id, $alumniID)->jawaban)) {
-                                echo $this->m_kuesioner->getJawabanAlumni($p->id, $alumniID)->jawaban; }
+                                if (isset($this->m_kuesioner->getJawabanAlumni($p->id, $notifID)->jawaban)) {
+                                echo $this->m_kuesioner->getJawabanAlumni($p->id, $notifID)->jawaban; }
                               }
                              ?>
                           </td>

@@ -452,7 +452,7 @@ function getJawabanSkala($pertanyaanID, $prodiID, $pertanyaanSkalaID)
 	}
 
 	public function getNotifKuesionerAlumni($jenis_responden, $prodiID) {
-		$this->db->select('notif_kuesioner.*, alumni.id AS id_alumni, alumni.*');
+		$this->db->select('notif_kuesioner.id AS notifID, notif_kuesioner.*, alumni.id AS id_alumni, alumni.*');
 		$this->db->where('notif_kuesioner.jenis_kuesioner', $jenis_responden);
 		$this->db->where('notif_kuesioner.prodiID', $prodiID);
 		$this->db->join('alumni', 'notif_kuesioner.respondenID = alumni.id', 'left');
@@ -467,7 +467,7 @@ function getJawabanSkala($pertanyaanID, $prodiID, $pertanyaanSkalaID)
 	}
 
 	public function getNotifKuesionerPengguna($jenis_responden, $prodiID) {
-		$this->db->select('notif_kuesioner.*, pengguna.id AS id_pengguna, pengguna.*');
+		$this->db->select('notif_kuesioner.id AS notifID, notif_kuesioner.*, pengguna.id AS id_pengguna, pengguna.*');
 		$this->db->where('notif_kuesioner.jenis_kuesioner', $jenis_responden);
 		$this->db->where('notif_kuesioner.prodiID', $prodiID);
 		$this->db->join('pengguna', 'notif_kuesioner.respondenID = pengguna.id', 'left');

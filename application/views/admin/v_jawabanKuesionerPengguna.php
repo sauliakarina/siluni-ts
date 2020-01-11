@@ -55,7 +55,7 @@
                               <!-- <td><?php echo $d->id ?></td> -->
                               <td><?php echo $d->timestamp ?></td>
                               <td>
-                                <form method='' action="<?php echo base_url('admin/Kuesioner/lihatJawabanPengguna/'.$d->id_pengguna) ?>">
+                                <form method='' action="<?php echo base_url('admin/Kuesioner/lihatJawabanPengguna/'.$d->notifID) ?>">
                                  <button type="submit" name="options" class="btn btn-info btn-sm" >Lihat</button>
                                 </form>
                               </td>
