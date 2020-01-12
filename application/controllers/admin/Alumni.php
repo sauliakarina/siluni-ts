@@ -47,7 +47,7 @@ class Alumni extends CI_Controller {
 				$data_user = array(
 				'userID' => $userID,
 				'username' => $this->input->post('nim'),
-				'password' => md5($this->input->post('nim')),
+				'password' => $this->input->post('nim'),
 				'prodiID' => $this->session->userdata('prodiID'),
 				'role' => 'alumni'
 				);
@@ -159,7 +159,7 @@ class Alumni extends CI_Controller {
 					$data = array(
 						"userID"=> "ALU".$rowData[0][1],
 						"username"=> $rowData[0][1],
-						"password"=> md5($rowData[0][1]),
+						"password"=> $rowData[0][1],
 						"role"=> 'alumni',
 						"prodiID" => $this->session->userdata('prodiID')
 					);

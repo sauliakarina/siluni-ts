@@ -48,7 +48,7 @@ class GantiPassword extends CI_Controller {
 				'id' => $id
 			);
 			$data = array(
-				'password' => md5($newpass)
+				'password' => $newpass
 			);
 			$this->m_master->updateData($where, $data, 'user');
 			echo " <script>
@@ -63,7 +63,7 @@ class GantiPassword extends CI_Controller {
 		$id = $this->session->userdata('id');
 		$userpass = $this->m_master->getUserByID($id)->password;
 
-		if ($userpass !== md5($oldpass)) {
+		if ($userpass !== $oldpass) {
 			$this->form_validation->set_message('passwordCheck', 'Password yang anda masukan salah.');
 			return false;
 		}

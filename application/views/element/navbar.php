@@ -46,7 +46,7 @@
            <ul class="list-unstyled"> 
             <li class="<?php if($this->uri->segment(2)=="Alumni" ){echo "active";} ?>"><a href="<?php echo site_url('admin/Alumni') ?>"><i class="fas fa-user-graduate"></i>Kelola Alumni</a></li>
             <li class="<?php if($this->uri->segment(2)=="Pengguna"  && ($this->uri->segment(3)!="daftarInstansi" && $this->uri->segment(3)!="getNewPengguna")){echo "active";} ?>"><a href="<?php echo site_url('admin/Pengguna') ?>"><i class="icon-user"></i>Kelola Pengguna Alumni</a></li>
-             <li class="<?php if($this->uri->segment(2)=="Pengguna" && ($this->uri->segment(3)=="daftarInstansi"  || $this->uri->segment(3)=="daftarAlumniInstansi")){echo "active";} ?>"><a href="<?php echo site_url('admin/Pengguna/daftarInstansi') ?>"><i class="icon-user"></i>Kelola Instansi</a></li>
+             <li class="<?php if($this->uri->segment(2)=="Pengguna" && ($this->uri->segment(3)=="daftarInstansi"  || $this->uri->segment(3)=="daftarAlumniInstansi")){echo "active";} ?>"><a href="<?php echo site_url('admin/Pengguna/daftarInstansi') ?>"><i class="fas fa-building"></i>Kelola Instansi</a></li>
             <li class="<?php if($this->uri->segment(2)=="Kuesioner"){echo "active";} ?>"><a href="#dropdownKuesioner" aria-expanded="false" data-toggle="collapse"> <i class="icon-padnote"></i>Kelola Kuesioner </a>
               <ul id="dropdownKuesioner" class="collapse list-unstyled ">
                 <li><a href="<?php echo site_url('admin/Kuesioner/kuesionerAlumni') ?>">Kuesioner Alumni</a></li>
@@ -91,8 +91,8 @@
               </ul>
             </li> -->
               <li class="<?php if($this->uri->segment(2)=="Berita"){echo "active";} ?>"><a href="<?php echo site_url('alumni/Berita') ?>"> <i class="far fa-newspaper"></i>Berita Saya </a></li>
-               <li class="<?php if($this->uri->segment(2)=="Pengguna"){echo "active";} ?>"><a href="<?php echo site_url('alumni/Pengguna') ?>"> <i class="fas fa-briefcase"></i>Pengguna Alumni</a></li>
-              <li class="<?php if($this->uri->segment(2)=="GantiPassword"){echo "active";} ?>"><a href="<?php echo site_url('GantiPassword') ?>"> <i class="fas fa-unlock-alt"></i>Ganti Password </a></li>
+               <li class="<?php if($this->uri->segment(2)=="Pengguna"){echo "active";} ?>"><a href="<?php echo site_url('alumni/Pengguna') ?>"> <i class="fas fa-building"></i>Pengguna Alumni</a></li>
+              <li class="<?php if($this->uri->segment(1)=="GantiPassword"){echo "active";} ?>"><a href="<?php echo site_url('GantiPassword') ?>"> <i class="fas fa-unlock-alt"></i>Ganti Password </a></li>
               <!-- <span class="heading">Tracer Study</span>
                <ul class="list-unstyled">
                <li class="<?php if($this->uri->segment(2)=="Kuesioner" ){echo "active";} ?>"><a href="<?php echo site_url('alumni/Kuesioner') ?>"> <i class="icon-padnote"></i>Kuesioner </a></li>
@@ -114,7 +114,7 @@
               <li class="<?php if($this->uri->segment(2)=="Beranda" || $this->uri->segment(3)=="getNewPengguna" ){echo "active";} ?>"><a href="<?php echo site_url('admin/Beranda') ?>"> <i class="icon-home"></i>Beranda </a></li>
             <li class="<?php if($this->uri->segment(2)=="Alumni" ){echo "active";} ?>"><a href="<?php echo site_url('koorprodi/Alumni') ?>"><i class="fas fa-user-graduate"></i>Alumni</a></li>
              <li class="<?php if($this->uri->segment(2)=="Pengguna"  && $this->uri->segment(3)!="daftarInstansi" && $this->uri->segment(3)!="daftarAlumniInstansi" && $this->uri->segment(3)!="getNewPengguna"){echo "active";} ?>"><a href="<?php echo site_url('koorprodi/Pengguna') ?>"><i class="fas fa-briefcase"></i>Pengguna Alumni</a></li>
-             <li class="<?php if($this->uri->segment(2)=="Pengguna" && ($this->uri->segment(3)=="daftarInstansi"  || $this->uri->segment(3)=="daftarAlumniInstansi")){echo "active";} ?>"><a href="<?php echo site_url('admin/Pengguna/daftarInstansi') ?>"><i class="icon-user"></i>Daftar Instansi</a></li>
+             <li class="<?php if($this->uri->segment(2)=="Pengguna" && ($this->uri->segment(3)=="daftarInstansi"  || $this->uri->segment(3)=="daftarAlumniInstansi")){echo "active";} ?>"><a href="<?php echo site_url('admin/Pengguna/daftarInstansi') ?>"><i class="fas fa-building"></i>Daftar Instansi</a></li>
               <li class="<?php if($this->uri->segment(1)=="Laporan" && ($this->uri->segment(2)=="kuesionerAlumni" || $this->uri->segment(2)=="laporanAlumni") ){echo "active";} ?>"><a href="#dropdownLaporanAlumni" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-bar-chart"></i>Laporan Alumni</a>
               <ul id="dropdownLaporanAlumni" class="collapse list-unstyled ">
                 <?php $kuesioner = $this->m_master->getKuesionerByResponden('alumni', $prodiID);

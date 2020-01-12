@@ -45,6 +45,12 @@ class Pengguna extends CI_Controller {
 		$this->load->view('element/footer');
 	}
 
+	public function getInstansi($id)
+	{
+		$data = $this->m_master->getInstansiByID($id);
+		echo json_encode($data);
+	}
+
 	public function lihatAlumni($penggunaID)
 	{
 		$newAlumni = $this->m_pengguna->getCountNewAlumniPengguna($penggunaID);
@@ -139,12 +145,13 @@ class Pengguna extends CI_Controller {
 		redirect('admin/Pengguna');
 	}
 
-	/*function deletePengguna($id){
-		$data = array('isDelete');
+	public function deleteInstansi($id){
+
 		$where = array('id' => $id);
-		$this->m_master->deleteData($where,'pengguna');
-		redirect('admin/Pengguna');
-	}*/
+		$this->m_master->deleteData($where,'instansi');
+
+		redirect('admin/Pengguna/daftarInstansi');
+	}
 
 	public function getPengguna($id)
 	{
@@ -166,6 +173,20 @@ class Pengguna extends CI_Controller {
 		$where = array('id' => $this->input->post('penggunaID'));
 		$this->m_master->updateData($where,$data,'pengguna');
 		redirect('admin/Pengguna');
+	}
+
+	public function exeEditInstansi()
+	{
+
+		$data = array(
+			'nama_instansi' => $this->input->post('nama_instansi'),
+			'jenis_instansi' => $this->input->post('jenis_instansi'),
+			'alamat' => $this->input->post('alamat')
+		);
+		
+		$where = array('id' => $this->input->post('id'));
+		$this->m_master->updateData($where,$data,'instansi');
+		redirect('admin/Pengguna/daftarInstansi');
 	}
 
 	function updateTandai()
