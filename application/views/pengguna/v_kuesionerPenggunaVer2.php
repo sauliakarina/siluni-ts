@@ -85,7 +85,7 @@
                         $pertanyaan = $this->m_kuesioner->getPertanyaanByKuesionerID($k->id);
                         foreach ($pertanyaan as $p) { 
                           if ($p->jenis == 'skala') { ?>
-                            <table class="table table-striped table-hover">
+                            <table class="table table-striped table-hover table-responsive">
                               <thead>
                                 <tr>
                                   <th>No</th>
