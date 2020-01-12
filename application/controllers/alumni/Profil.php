@@ -448,7 +448,7 @@ class Profil extends CI_Controller {
 
 
 		$this->session->set_flashdata("edit_pekerjaan", '<div><div class="alert alert-success" id="alert" align="center">Data pekerjaan anda berhasil disunting</div></div>');
-		redirect('alumni/Profil/editPekerjaan/'.$this->input->post('id_pekerjaan'));
+		redirect('alumni/Beranda');
 	}
 
 

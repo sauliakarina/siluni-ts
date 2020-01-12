@@ -27,6 +27,7 @@
                               <th>No</th>
                               <th>Nama</th>
                               <th>Posisi</th>
+                              <th>Periode Kerja</th>
                               <th>Email</th>
                             </tr>
                           </thead>
@@ -37,6 +38,7 @@
                               <th scope="row"><?php echo $no++ ?></th>
                               <td><?php echo $this->m_alumni->getAlumniByID($a->id_alumni)->nama ?></td>
                               <td><?php echo $a->posisi ?></td>
+                              <td><?php echo $a->periode_kerja ?></td>
                               <td><?php echo $this->m_alumni->getAlumniByID($a->id_alumni)->email ?></td>
                             </tr>
                           <?php } ?>

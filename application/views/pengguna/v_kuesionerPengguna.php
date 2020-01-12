@@ -14,7 +14,7 @@
               <div class="row bg-white has-shadow">
                 <p align="justify" style="margin: 5px;font-size: 17px">
                   <font face="cambria">
-                  Bapak/Ibu <?php $instansiID = $this->m_pengguna->getPenggunaByID($penggunaID)->id_instansi;
+                  Bapak/Ibu dari <?php $instansiID = $this->m_pengguna->getPenggunaByID($penggunaID)->id_instansi;
                   if ($instansiID == '0') {
                     echo "";
                   } else {

@@ -267,6 +267,7 @@
         }
         ?>
         <input type="text" class="form-control gajiNominal_c  " id="gajiNominal" value="<?php echo $gaji ?>" name="gaji" required>
+        <small>Dalam rupiah</small>
       </div>
     </div>
 
@@ -602,6 +603,7 @@
                   <label  class="col-sm-3 form-control-label">Pendapatan Tiap Bulan</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="gajiNominal_m" name="gaji" required>
+                     <small>Dalam rupiah</small>
                     <!-- <select name="gaji" class="form-control mb-3" required>
                       <option value=""></option>
                       <option value="1-5 juta"> Rp 1-5 juta </option>
