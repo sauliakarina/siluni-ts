@@ -305,7 +305,7 @@
          <?php } ?>
 
         </select>
-        <small class="form-text">Pilih pengguna alumni jika data di atas merupakan pekerjaan saat ini. Jika pilihan pengguna alumni tidak ada <a data-toggle="collapse" href="#collapseExample_<?php echo $j ?>" aria-expanded="false" aria-controls="collapseExample">isi form disini</a></small>
+        <small class="form-text">Pilih pengguna alumni jika data di atas merupakan pekerjaan saat ini. Jika pilihan pengguna alumni tidak ada <a data-toggle="collapse" href="#collapseExample_<?php echo $j ?>" aria-expanded="false" aria-controls="collapseExample">Klik disini</a></small>
       </div>
     </div>
 
@@ -642,7 +642,7 @@
                   <select name="penggunaID" id="penggunaID_m" class="form-control mb-3">
                     <option value="">Pilih</option>
                   </select>
-                  <small class="form-text">Pilih pengguna alumni jika data di atas merupakan pekerjaan saat ini. Jika pilihan pengguna alumni tidak ada <a data-toggle="collapse" href="#collapseExample_m" aria-expanded="false" aria-controls="collapseExample"> isi form disini</a></small>
+                  <small class="form-text">Pilih pengguna alumni jika data di atas merupakan pekerjaan saat ini. Jika pilihan pengguna alumni tidak ada <a data-toggle="collapse" href="#collapseExample_m" aria-expanded="false" aria-controls="collapseExample"> Klik disini</a></small>
                 </div>
               </div>
 

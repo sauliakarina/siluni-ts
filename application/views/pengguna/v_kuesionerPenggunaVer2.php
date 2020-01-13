@@ -37,7 +37,8 @@
                       <div class="form-group row">
                           <label class="col-sm-3 form-control-label">Pilih Instansi</label>
                           <div class="col-sm-9">
-                            <select name="id_instansi" class="form-control mb-3" required>
+                            <select name="id_instansi" class="js-example-basic-single dropdown form-control mb-3" required>
+                              <option>Pilih</option>
                             <?php if ($nama_instansi != "") { ?>
                               <option value="<?php echo $this->m_master->getInstansiByName($nama_instansi)->id ?>"><?php echo $nama_instansi ?></option>
                               <?php foreach($instansi as $i){ ?> 
@@ -200,3 +201,14 @@
                         </div>
                       </div>
 </html>
+
+<!-- select2 -->
+<link href="<?php echo base_url('assets/template/vendor/select2/dist/css/select2.min.css')?>" rel="stylesheet">
+<script src="<?php echo base_url('assets/template/vendor/select2/dist/js/select2.full.min.js')?>"></script>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+      $('.js-example-basic-single').select2(
+        );
+    });
+</script>
