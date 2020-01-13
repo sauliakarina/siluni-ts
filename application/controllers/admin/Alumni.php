@@ -34,9 +34,6 @@ class Alumni extends CI_Controller {
 	function exeAddAlumni()
 	{
 
-			/*$d=strtotime($this->input->post('tanggal_lulus')); 
-			$tanggal_lulus = date("d M", $d);
-			$tahun_lulus = date("Y", $d);*/
 			$userID = 'ALU'.$this->input->post('nim');
 			$cek = $this->m_alumni->cekAlumni($this->input->post('nim'));
 

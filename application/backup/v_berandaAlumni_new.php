@@ -292,31 +292,52 @@
       </div>
     </div>
 
-<div class="line"></div>
-<h5>Data Pengguna Alumni</h5>
-        <!-- alert box -->
-      <div class="alert alert-warning alert-dismissible" role="alert">
-          <button type="button" onclick="this.parentNode.parentNode.removeChild(this.parentNode);" class="close" data-dismiss="alert"><span aria-hidden="true"></span><span class="sr-only">Close</span></button>
-          <p style="font-family: verdana; font-size: 11pt">Pengguna alumni merupakan seorang atasan yang dapat menilai kinerja anda. Mohon masukkan  data Pengguna alumni anda dibawah ini. Data ini akan kami gunakan untuk mengirim kuesioner kepada atasan anda untuk penilaian kinerja anda di perusahaan/instansi tersebut</p>
+    <div class="form-group row">
+      <label class="col-sm-3 form-control-label">Pengguna Alumni</label>
+      <div class="col-sm-9">
+        <small>*Diisi jika pekerjaan saat ini</small>
+        <select name="penggunaID" id="penggunaID_<?php echo $j ?>" class="form-control mb-3 penggunaID_C">
+        <?php 
+          $penggunaInstansi = $this->m_pengguna->getPenggunaByInstansiID($k->id_instansi);
+         foreach ($penggunaInstansi as $p ) { ?>
+          <option value="">Pilih</option>
+          <option value="<?php echo $p->id ?>"><?php echo $p->pengguna_nama." - Divisi ".$p->divisi ?></option>
+         <?php } ?>
+
+        </select>
+        <small class="form-text">Pilih pengguna alumni jika data di atas merupakan pekerjaan saat ini. Jika pilihan pengguna alumni tidak ada <a data-toggle="collapse" href="#collapseExample_<?php echo $j ?>" aria-expanded="false" aria-controls="collapseExample">Klik disini</a></small>
+      </div>
+    </div>
+
+     <div class="collapse" id="collapseExample_<?php echo $j ?>">
+      <div class="card card-body">
+        <div class="form-group row">
+        <label class="col-sm-3 form-control-label">Nama Pengguna</label>
+        <div class="col-sm-9">
+          <input type="text" placeholder="" class="form-control form-control-sm" name="pengguna_nama">
+        </div>
       </div>
 
-       <div class="form-group">
-      <label class="form-control-label">Nama Pengguna/Atasan</label>
-      <input type="text" placeholder="" class="form-control" name="pengguna_nama">
-    </div>
-    <div class="form-group">       
-      <label class="form-control-label">Divisi</label>
-      <input type="text" placeholder="" class="form-control" name="divisi">
-    </div>
-    <div class="form-group">       
-      <label class="form-control-label">Email</label>
-      <input type="text" placeholder="" class="form-control" name="pengguna_email">
-    </div>
-    <div class="form-group">       
-      <label class="form-control-label">No HP/Telepon</label>
-      <input type="text" placeholder="" class="form-control" name="pengguna_telepon">
-    </div>
-
+      <div class="form-group row">       
+        <label class="col-sm-3 form-control-label">Divisi</label>
+        <div class="col-sm-9">
+          <input type="text" placeholder="" class="form-control form-control-sm" name="divisi">
+        </div>
+      </div>
+      <div class="form-group row">       
+        <label class="col-sm-3 form-control-label">Email</label>
+        <div class="col-sm-9">
+          <input type="text" placeholder="" class="form-control" name="pengguna_email">
+        </div>
+      </div>
+      <div class="form-group row">       
+        <label class="col-sm-3 form-control-label">No HP/Telepon</label>
+        <div class="col-sm-9">
+          <input type="text" placeholder="" class="form-control" name="pengguna_telepon">
+        </div>
+      </div>
+      </div>
+    </div> <!-- collapse pengguna baru -->
 
    <button type="submit" class="btn btn-info">Simpan</button>
 
@@ -521,7 +542,7 @@
               <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-              <h5>Data Perkerjaan</h5>
+              <p></p>
               <form action="<?php echo base_url();?>alumni/Data/exeAddPekerjaan_new" method="post">
              <!--  <form class="exeAddPekerjaan_new" onsubmit="return exeAddPekerjaan_new()" method="post">  --> 
 
@@ -589,6 +610,13 @@
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="gajiNominal_m" name="gaji" required>
                      <small>Dalam rupiah</small>
+                    <!-- <select name="gaji" class="form-control mb-3" required>
+                      <option value=""></option>
+                      <option value="1-5 juta"> Rp 1-5 juta </option>
+                      <option value="6-10 juta"> Rp 6-10juta </option>
+                      <option value="11-15juta"> Rp 11-15juta </option>
+                      <option value="> 15juta"> > Rp 15juta </option>
+                    </select> -->
                   </div>
                 </div>
 
@@ -607,30 +635,46 @@
                   </div>
                 </div>
 
-              <div class="line"></div>
-              <h5>Data Pengguna Alumni</h5>
-                      <!-- alert box -->
-                    <div class="alert alert-warning alert-dismissible" role="alert">
-                        <button type="button" onclick="this.parentNode.parentNode.removeChild(this.parentNode);" class="close" data-dismiss="alert"><span aria-hidden="true"></span><span class="sr-only">Close</span></button>
-                        <p style="font-family: verdana; font-size: 9pt" align="justify">Pengguna alumni merupakan seorang atasan yang dapat menilai kinerja anda. Mohon masukkan  data Pengguna alumni anda dibawah ini. Data ini akan kami gunakan untuk mengirim kuesioner kepada atasan anda untuk penilaian kinerja anda di perusahaan/instansi tersebut</p>
-                    </div>
+               <div class="form-group row">
+                <label class="col-sm-3 form-control-label">Pengguna Alumni</label>
+                <div class="col-sm-9">
+                  <small>*Diisi jika pekerjaan saat ini</small>
+                  <select name="penggunaID" id="penggunaID_m" class="form-control mb-3">
+                    <option value="">Pilih</option>
+                  </select>
+                  <small class="form-text">Pilih pengguna alumni jika data di atas merupakan pekerjaan saat ini. Jika pilihan pengguna alumni tidak ada <a data-toggle="collapse" href="#collapseExample_m" aria-expanded="false" aria-controls="collapseExample"> Klik disini</a></small>
+                </div>
+              </div>
 
-                     <div class="form-group">
-                    <label class="form-control-label">Nama Pengguna/Atasan</label>
-                    <input type="text" placeholder="" class="form-control" name="pengguna_nama">
-                  </div>
-                  <div class="form-group">       
-                    <label class="form-control-label">Divisi</label>
-                    <input type="text" placeholder="" class="form-control" name="divisi">
-                  </div>
-                  <div class="form-group">       
-                    <label class="form-control-label">Email</label>
-                    <input type="text" placeholder="" class="form-control" name="pengguna_email">
-                  </div>
-                  <div class="form-group">       
-                    <label class="form-control-label">No HP/Telepon</label>
-                    <input type="text" placeholder="" class="form-control" name="pengguna_telepon">
-                  </div>
+              <div class="collapse" id="collapseExample_m">
+              <div class="card card-body">
+                <div class="form-group row">
+                <label class="col-sm-3 form-control-label">Nama Pengguna</label>
+                <div class="col-sm-9">
+                  <input type="text" placeholder="" class="form-control form-control-sm" name="pengguna_nama">
+                </div>
+              </div>
+
+              <div class="form-group row">       
+                <label class="col-sm-3 form-control-label">Divisi</label>
+                <div class="col-sm-9">
+                  <input type="text" placeholder="" class="form-control form-control-sm" name="divisi">
+                </div>
+              </div>
+              <div class="form-group row">       
+                <label class="col-sm-3 form-control-label">Email</label>
+                <div class="col-sm-9">
+                  <input type="text" placeholder="" class="form-control" name="pengguna_email">
+                </div>
+              </div>
+              <div class="form-group row">       
+                <label class="col-sm-3 form-control-label">No HP/Telepon</label>
+                <div class="col-sm-9">
+                  <input type="text" placeholder="" class="form-control" name="pengguna_telepon">
+                </div>
+              </div>
+              </div>
+            </div> <!-- collapse pengguna baru -->
 
             </div>
             <div class="modal-footer">
