@@ -130,19 +130,19 @@
                           <div class="card card-body">
                             <div class="form-group">
                             <label class="form-control-label">Nama Pengguna</label>
-                            <input type="text" placeholder="" class="form-control" name="pengguna_nama" value="<?php echo $this->m_pengguna->getPenggunaByID($p->id_pengguna)->pengguna_nama ?>">
+                            <input type="text" placeholder="" class="form-control" name="pengguna_nama" <?php if ($p->id_pengguna != NULL) { ?>value="<?php echo $this->m_pengguna->getPenggunaByID($p->id_pengguna)->pengguna_nama ?>" <?php } ?>>
                           </div>
                           <div class="form-group">       
                             <label class="form-control-label">Divisi</label>
-                            <input type="text" placeholder="" class="form-control" name="divisi" value="<?php echo $this->m_pengguna->getPenggunaByID($p->id_pengguna)->divisi ?>">
+                            <input type="text" placeholder="" class="form-control" name="divisi" <?php if ($p->id_pengguna != NULL) { ?> value="<?php echo $this->m_pengguna->getPenggunaByID($p->id_pengguna)->divisi ?>" <?php } ?>>
                           </div>
                           <div class="form-group">       
                             <label class="form-control-label">Email</label>
-                            <input type="text" placeholder="" class="form-control" name="pengguna_email" value="<?php echo $this->m_pengguna->getPenggunaByID($p->id_pengguna)->pengguna_email ?>">
+                            <input type="text" placeholder="" class="form-control" name="pengguna_email" <?php if ($p->id_pengguna != NULL) { ?>value="<?php echo $this->m_pengguna->getPenggunaByID($p->id_pengguna)->pengguna_email ?>" <?php } ?>>
                           </div>
                           <div class="form-group">       
                             <label class="form-control-label">No HP/Telepon</label>
-                            <input type="text" placeholder="" class="form-control" name="pengguna_telepon" value="<?php echo $this->m_pengguna->getPenggunaByID($p->id_pengguna)->pengguna_telepon ?>">
+                            <input type="text" placeholder="" class="form-control" name="pengguna_telepon" <?php if ($p->id_pengguna != NULL) { ?>value="<?php echo $this->m_pengguna->getPenggunaByID($p->id_pengguna)->pengguna_telepon ?>" <?php } ?>>
                           </div>
                           </div>
                       <?php } ?>

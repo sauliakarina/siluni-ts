@@ -348,7 +348,12 @@ class Data extends CI_Controller {
 		);
 		$this->m_master->inputData($data,'pengguna');
 		$penggunaID = $this->m_pengguna->getPenggunaByCustomID($customID)->id;
-	}  else {
+	} elseif ($this->input->post('penggunaID') != "") {
+		$penggunaID = $this->input->post('penggunaID');
+		$data = array('seen' => '0');
+		$where = array('id' => $penggunaID);
+		$this->m_master->updateData($where, $data, 'pengguna');
+	} else {
 		$penggunaID = Null;
 	}
 
@@ -420,8 +425,11 @@ public function exeAddPekerjaan_new() {
 		);
 		$this->m_master->inputData($data,'pengguna');
 		$penggunaID = $this->m_pengguna->getPenggunaByCustomID($customID)->id;
-	} else {
-		$penggunaID = Null;
+	} elseif ($this->input->post('penggunaID') != "") {
+		$penggunaID = $this->input->post('penggunaID');
+		$data = array('seen' => '0');
+		$where = array('id' => $penggunaID);
+		$this->m_master->updateData($where, $data, 'pengguna');
 	}
 
 	$alumniID = $this->input->post('alumniID');
