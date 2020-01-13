@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 13, 2020 at 01:19 PM
+-- Generation Time: Jan 13, 2020 at 08:07 PM
 -- Server version: 10.2.29-MariaDB
 -- PHP Version: 7.2.7
 
@@ -78,7 +78,7 @@ INSERT INTO `alumni` (`id`, `userID`, `nim`, `nama`, `jenis_kelamin`, `tempat_la
 (18, 'ALU3145136194', '3145136194', 'Dian Rakasiwi', 'Perempuan', '', '', '', '', '2013', NULL, '2018', '3.43', NULL, '', '', '', NULL, '', 'yes', 'yes', 'yes', 'aktif', 1),
 (19, 'ALU3145136210', '3145136210', 'Muhammad Fakhri Ali Ibrahim', 'Laki-laki', '', '', '', '', '2013', NULL, '2018', '3.61', NULL, '', '', '', NULL, '', 'yes', 'yes', 'yes', 'aktif', 1),
 (20, 'ALU3145136206', '3145136206', 'Ghina Salsabila', 'Perempuan', '', '', '', '', '2013', NULL, '2018', '3.66', NULL, '', '', '', NULL, '', 'yes', 'yes', 'yes', 'aktif', 1),
-(21, 'ALU3145136204', '3145136204', 'Dinda Kharisma', 'Perempuan', 'Jakarta', '1995-01-16', 'Jl. Condet Raya No.54 D-E RT 001/RW 03\r\nBatu Ampar, Kramatjati, RT.1/RW.3,\r\nJakarta Timur, DKI Jakarta 13520', '', '2013', NULL, '2018', '3.48', '550', '', 'dindakhrsm@gmail.com', '', '089601676825', '', 'yes', 'yes', 'yes', 'aktif', 1),
+(21, 'ALU3145136204', '3145136204', 'Dinda Kharisma', 'Perempuan', 'Jakarta', '1995-01-16', 'Jl. Mangga Besar XIII RT 003/02 Nomor 3A\r\nJakarta 10730', '', '2013', 'Maret', '2018', '3.48', '550', '', 'dindakhrsm@gmail.com', '', '089601676825', '', 'yes', 'yes', 'yes', 'aktif', 1),
 (22, 'ALU3145136224', '3145136224', 'Annisa Nursya', 'Perempuan', '', '', '', '', '2013', NULL, '2018', '3.51', NULL, '', '', '', NULL, '', 'yes', 'yes', 'yes', 'aktif', 1),
 (23, 'ALU3145136203', '3145136203', 'Ghina Rosika Amalina', 'Perempuan', '', '', '', '', '2013', NULL, '2018', '3.34', NULL, '', '', '', NULL, '', 'yes', 'yes', 'yes', 'aktif', 1),
 (24, 'ALU3145136205', '3145136205', 'Annisa Mutiara Ditri', 'Perempuan', '', '', '', '', '2013', NULL, '2018', '3.34', NULL, '', '', '', NULL, '', 'yes', 'yes', 'yes', 'aktif', 1),
@@ -263,7 +263,10 @@ INSERT INTO `instansi` (`id`, `nama_instansi`, `jenis_instansi`, `alamat`, `prod
 (14, 'PT Difini Teknologi', 'Nasional', 'Jl. Tanah Abang II\r\nRT.1/RW.5, Petojo Sel.\r\nKecamatan Gambir\r\nKota Jakarta Pusat\r\nDaerah Khusus Ibukota Jakarta 10160', 1),
 (15, 'PT Pentasada Andalan Kelola', 'Nasional', 'Sona Topas Tower 5A Floor, Jl. Jend Sudirman 26, RT.4/RW.2, Kuningan, Karet, Jakarta, Daerah Khusus Ibukota Jakarta, Jakarta Pusat, DKI Jakarta, 12920, Indonesia', 1),
 (16, 'PT. Digital Otomotif Indonesia (garasi.id)', 'Nasional', 'Jl. KS Tubun IIC no.8', 1),
-(17, 'PT. Integrasi Logistik Cipta Solusi', 'Nasional', 'Jalan Laksamana Yos Sudarso No.23 - 24, RT.16/RW.6, Kb. Bawang, Jakarta Utara, Kota Jkt Utara, Daerah Khusus Ibukota Jakarta 14320', 1);
+(17, 'PT. Integrasi Logistik Cipta Solusi', 'Nasional', 'Jalan Laksamana Yos Sudarso No.23 - 24, RT.16/RW.6, Kb. Bawang, Jakarta Utara, Kota Jkt Utara, Daerah Khusus Ibukota Jakarta 14320', 1),
+(18, 'Badan Pengawas Tenaga Nuklir', 'Nasional', 'Jl. Gajah Mada no. 8, Jakarta Pusat 10120 DKI Jakarta', 1),
+(19, 'PT Testing', 'Nasional', '', 1),
+(20, 'PT Testing', 'Lokal', '', 1);
 
 -- --------------------------------------------------------
 
@@ -489,7 +492,23 @@ INSERT INTO `jawaban_pengguna` (`id`, `penggunaID`, `pertanyaanID`, `pertanyaanS
 (5, 1, 27, 41, 'Sangat Baik', 5),
 (6, 1, 27, 42, 'Sangat Baik', 5),
 (7, 1, 27, 43, 'Sangat Baik', 5),
-(8, 1, 28, NULL, 'Terus belajar!', 5);
+(8, 1, 28, NULL, 'Terus belajar!', 5),
+(9, 2, 27, 37, 'Sangat Baik', 7),
+(10, 2, 27, 38, 'Sangat Baik', 7),
+(11, 2, 27, 39, 'Cukup', 7),
+(12, 2, 27, 40, 'Baik', 7),
+(13, 2, 27, 41, 'Baik', 7),
+(14, 2, 27, 42, 'Sangat Baik', 7),
+(15, 2, 27, 43, 'Baik', 7),
+(16, 2, 28, NULL, 'perbanyak belajar bahasa inggris. malu lulusan IT tapi inggrisnya jelek', 7),
+(17, 3, 27, 37, 'Baik', 8),
+(18, 3, 27, 38, 'Cukup', 8),
+(19, 3, 27, 39, 'Kurang', 8),
+(20, 3, 27, 40, 'Baik', 8),
+(21, 3, 27, 41, 'Sangat Baik', 8),
+(22, 3, 27, 42, 'Baik', 8),
+(23, 3, 27, 43, 'Kurang', 8),
+(24, 3, 28, NULL, 'testt', 8);
 
 -- --------------------------------------------------------
 
@@ -565,7 +584,9 @@ INSERT INTO `notif_kuesioner` (`id`, `respondenID`, `jenis_kuesioner`, `new`, `t
 (3, 15, 'alumni', '0', '12-01-2020', 1, 'QB69X2Z7'),
 (4, 4, 'alumni', '0', '13-01-2020', 1, 'YKF8XCHK'),
 (5, 1, 'pengguna', '0', '13-01-2020', 1, 'DT8QCF7B'),
-(6, 25, 'alumni', '0', '13-01-2020', 1, 'SDM2Y635');
+(6, 25, 'alumni', '0', '13-01-2020', 1, 'SDM2Y635'),
+(7, 2, 'pengguna', '0', '13-01-2020', 1, '5XNXDMBN'),
+(8, 3, 'pengguna', '0', '13-01-2020', 1, '89V35TJ8');
 
 -- --------------------------------------------------------
 
@@ -606,10 +627,11 @@ INSERT INTO `pekerjaan` (`id`, `posisi`, `gaji`, `periode_kerja`, `profil`, `id_
 (12, 'Penunjang Juru Ukur', '5000000', '22 April 2019-Sekarang', 'Lainnya', 36, NULL, 11, 'yes', 'sudah', '0'),
 (13, 'Staff IT dan Pengolahan Data', '4350000', '-', 'Programmer', 13, NULL, 12, 'yes', 'sudah', '0'),
 (14, 'Software Developer', '6000000', '-', 'Programmer', 13, NULL, 13, 'no', 'sudah', '0'),
-(15, 'Fullstack Developer', '6000000', '-', 'Programmer', 15, NULL, 14, 'yes', 'sudah', '0'),
+(15, 'Fullstack Developer', '6000000', '-', 'Programmer', 15, 2, 14, 'yes', 'sudah', '1'),
 (16, 'Front End Developer', '4000000', 'April, 2018-Maret, 2019', 'Programmer', 37, NULL, 15, 'yes', 'sudah', '0'),
 (17, 'Software Developer Engineer', '9500000', 'Agustus 2019-Sekarang', 'Programmer', 4, NULL, 16, 'no', 'sudah', '0'),
-(18, 'Staff Web Developer', '7000000', 'Agustus 2018-Sekarang', 'Programmer', 25, NULL, 17, 'yes', 'sudah', '0');
+(18, 'Staff Web Developer', '7000000', 'Agustus 2018-Sekarang', 'Programmer', 25, NULL, 17, 'yes', 'sudah', '0'),
+(19, 'Analis Sistem Informasi', '5800000', '01 Maret 2019-saat ini', 'Lainnya', 21, NULL, 18, 'yes', 'sudah', '0');
 
 -- --------------------------------------------------------
 
@@ -636,7 +658,8 @@ CREATE TABLE `pengguna` (
 --
 
 INSERT INTO `pengguna` (`id`, `penggunaID`, `pengguna_nama`, `pengguna_email`, `pengguna_telepon`, `id_instansi`, `divisi`, `prodiID`, `isDelete`, `tandai`, `seen`) VALUES
-(1, NULL, 'Abdullah Izzudiin Alqassam', 'abdullahizzuddiin@gmail.com', '+6287878458371', 10, 'Engineering', 1, 'no', '', '1');
+(1, 'pkfTpPjZdKkBZTHRHnmFy73xvlg8fT-dmYwx', 'Abdullah Izzudiin Alqassam', 'abdullahizzuddiin@gmail.com', '+6287878458371', 10, 'Engineering', 1, 'no', '', '1'),
+(2, 'Mb8lBHsTrCtC2DFfpBcVpKHysoCQoF63p-vm', 'Wendy', 'wendy@difinite.com', NULL, 14, 'Developer', 1, 'no', '', '1');
 
 -- --------------------------------------------------------
 
@@ -952,7 +975,7 @@ INSERT INTO `user` (`id`, `userID`, `username`, `password`, `role`, `prodiID`, `
 (23, 'ALU3145136194', '3145136194', '3145136194', 'alumni', 1, 'aktif'),
 (24, 'ALU3145136210', '3145136210', '3145136210', 'alumni', 1, 'aktif'),
 (25, 'ALU3145136206', '3145136206', '3145136206', 'alumni', 1, 'aktif'),
-(26, 'ALU3145136204', '3145136204', '3145136204', 'alumni', 1, 'aktif'),
+(26, 'ALU3145136204', '3145136204', 'angkalima5', 'alumni', 1, 'aktif'),
 (27, 'ALU3145136224', '3145136224', '3145136224', 'alumni', 1, 'aktif'),
 (28, 'ALU3145136203', '3145136203', '3145136203', 'alumni', 1, 'aktif'),
 (29, 'ALU3145136205', '3145136205', '3145136205', 'alumni', 1, 'aktif'),
@@ -1163,7 +1186,7 @@ ALTER TABLE `fakultas`
 -- AUTO_INCREMENT for table `instansi`
 --
 ALTER TABLE `instansi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `jawaban_alumni`
@@ -1175,7 +1198,7 @@ ALTER TABLE `jawaban_alumni`
 -- AUTO_INCREMENT for table `jawaban_pengguna`
 --
 ALTER TABLE `jawaban_pengguna`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `koorprodi`
@@ -1193,19 +1216,19 @@ ALTER TABLE `kuesioner`
 -- AUTO_INCREMENT for table `notif_kuesioner`
 --
 ALTER TABLE `notif_kuesioner`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `pekerjaan`
 --
 ALTER TABLE `pekerjaan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `pengguna`
 --
 ALTER TABLE `pengguna`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `pertanyaan`
