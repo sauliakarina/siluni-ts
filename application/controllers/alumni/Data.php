@@ -320,9 +320,9 @@ class Data extends CI_Controller {
 		//pengguna pekerjaan pertama
 	if ($this->input->post('pengguna_nama') != "") {
 		//generate customID kuesioner
-		$id_length = 8;
+		$id_length = 36;
 		$id_found = false;
-		$possible_chars = "23456789BCDFGHJKMNPQRSTVWXYZ"; 
+		$possible_chars = "23456789BCDFGHJKMNPQRSTVWXYZbcdefghijklmnopqrstvwxyz-"; 
 		while (!$id_found) {  
 		    $customID = "";  
 		    $i = 0;  
@@ -392,9 +392,9 @@ public function exeAddPekerjaan_new() {
 		//pengguna pekerjaan pertama
 	if ($this->input->post('pengguna_nama') != "") {
 		//generate customID kuesioner
-		$id_length = 8;
+		$id_length = 36;
 		$id_found = false;
-		$possible_chars = "23456789BCDFGHJKMNPQRSTVWXYZ"; 
+		$possible_chars = "23456789BCDFGHJKMNPQRSTVWXYZbcdefghijklmnopqrstvwxyz-"; 
 		while (!$id_found) {  
 		    $customID = "";  
 		    $i = 0;  

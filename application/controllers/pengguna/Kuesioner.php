@@ -13,6 +13,7 @@ class Kuesioner extends CI_Controller {
 	//kuesioner untuk pengguna sudah terdaftar
 	public function kuesionerInstansi($penggunaID)
 	{
+		$penggunaID = $this->m_pengguna->getPenggunaByCustomID($penggunaID)->id;
 		$prodiID = $this->m_pengguna->getPenggunaByID($penggunaID)->prodiID;
 		$data = array(
 			'role' => $this->session->userdata('role'),
@@ -25,6 +26,19 @@ class Kuesioner extends CI_Controller {
 		$this->load->view('element/header');
 		$this->load->view('element/navbar_pengguna', $data);
 		$this->load->view('pengguna/v_kuesionerPengguna', $data);
+		$this->load->view('element/footer');
+	}
+
+	public function kuesionerSukses()
+	{
+		$data = array(
+			'role' => $this->session->userdata('role'),
+			'userID' => $this->session->userdata('userID')
+		);
+		$this->load->view('element/head');
+		$this->load->view('element/header');
+		$this->load->view('element/navbar_pengguna', $data);
+		$this->load->view('pengguna/v_kuesionerSelesai', $data);
 		$this->load->view('element/footer');
 	}
 
@@ -163,8 +177,9 @@ class Kuesioner extends CI_Controller {
 		} //foreach kuesionerID
 
 
-		$this->session->set_flashdata("pesan", '<div><div class="alert alert-success" id="alert" align="center">Pengisian Kuesioner Sukses! Terimakasih atas partisipasi anda</div></div>');
-		redirect('pengguna/Kuesioner/kuesionerInstansi/'.$penggunaID);
+		$this->session->set_flashdata("pesan", '<div><div class="alert alert-success" id="alert" align="center">Pengisian Kuesioner Sukses!</div></div>');
+		/*redirect('pengguna/Kuesioner/kuesionerInstansi/'.$penggunaID);*/
+		redirect('pengguna/Kuesioner/kuesionerSukses/');
 	}
 
 public function addJawabanVer2()
@@ -286,7 +301,8 @@ public function addJawabanVer2()
 		} //foreach kuesionerID
 
 		
-		$this->session->set_flashdata("pesan", '<div><div class="alert alert-success" id="alert" align="center">Pengisian Kuesioner Sukses! Terimakasih atas partisipasi anda</div></div>');
-		redirect('pengguna/Kuesioner/kuesionerPenggunaAlumni/'.$prodiID);
+		$this->session->set_flashdata("pesan", '<div><div class="alert alert-success" id="alert" align="center">Pengisian Kuesioner Sukses!</div></div>');
+		/*redirect('pengguna/Kuesioner/kuesionerInstansi/'.$penggunaID);*/
+		redirect('pengguna/Kuesioner/kuesionerSukses/');
 	}
 }

@@ -132,7 +132,7 @@ class Pengguna extends CI_Controller {
 	function deletePengguna($id){
 		$data = array(
 		'isDelete' => 'yes',
-		'penggunaID' => Null,
+		/*'penggunaID' => Null,*/
 		);
 		$where = array(
 		'id' => $id

@@ -77,7 +77,7 @@
                                 </td>
                                 <td>
                                <button type="button" class="btn btn-sm btn-outline-info" onclick="copyFunction(<?php echo $no ?>)">Copy</button>
-                                <input style="position: absolute; left: -1000px" type="text" class="input-sm" value="<?php echo base_url();?>pengguna/Kuesioner/kuesionerInstansi/<?php echo $p->id ?>" id="myInput[<?php echo $no ?>]">
+                                <input style="position: absolute; left: -1000px" type="text" class="input-sm" value="<?php echo base_url();?>pengguna/Kuesioner/kuesionerInstansi/<?php echo $p->penggunaID ?>" id="myInput[<?php echo $no ?>]">
                               </td>
                               <td><div class="i-checks">
                               <input name="tandai<?php echo $p->id ?>" type="checkbox" <?php if ($p->tandai == 'checked') { echo 'checked=""'; } ?> value="checked" class="checkbox-template">
@@ -114,7 +114,7 @@
                                   </td>
                                   <td>
                                  <button type="button" class="btn btn-sm btn-outline-info" onclick="copyFunction(<?php echo $no ?>)">Copy</button>
-                                  <input style="position: absolute; left: -1000px" type="text" class="input-sm" value="<?php echo base_url();?>pengguna/Kuesioner/kuesionerInstansi/<?php echo $p->id ?>" id="myInput[<?php echo $no ?>]">
+                                  <input style="position: absolute; left: -1000px" type="text" class="input-sm" value="<?php echo base_url();?>pengguna/Kuesioner/kuesionerInstansi/<?php echo $p->penggunaID ?>" id="myInput[<?php echo $no ?>]">
 
                                 </td>
                                 <td>
