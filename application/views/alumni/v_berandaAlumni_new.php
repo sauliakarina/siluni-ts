@@ -15,14 +15,9 @@
             </div>
           </header>
 
-           <!-- marquee -->
-          <div class="alert alert-info alert-dismissible" role="alert" style="height: 45px">
-            <button type="button" onclick="this.parentNode.parentNode.removeChild(this.parentNode);" class="close" data-dismiss="alert"><span aria-hidden="true">×</span></button><marquee><p style="font-family:; font-size: 15pt">Untuk keamanan data harap segera ganti password anda</p></marquee>
-            <!-- marquee -->
-        </div>
-
   <?php echo $this->session->flashdata('isi_kuesioner'); ?>
   <?php echo $this->session->flashdata('edit_profil'); ?>
+   <?php echo $this->session->flashdata('edit_pass'); ?>
 
            <!-- Updates Section                                                -->
           <section class="updates padding-top no-padding-bottom">
@@ -342,7 +337,6 @@
           <th>No</th>
           <th>Instansi</th>
           <th>Profesi/Posisi</th>
-          <th>Pendapatan per Bulan</th>
           <th>Periode</th>
           <th></th>
         </tr>
@@ -356,7 +350,6 @@
           <th scope="row"><?php echo $no++ ?></th>
           <td><?php echo $this->m_master->getInstansiByID($r->id_instansi)->nama_instansi ?></td>
           <td><?php echo $r->posisi ?></td>
-          <td><?php echo number_format($r->gaji,0,",",","); ?></td>
           <td><?php echo $r->periode_kerja ?></td>
           <td>
             <div class="btn-group btn-group-toggle">

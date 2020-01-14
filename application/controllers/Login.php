@@ -31,13 +31,18 @@ class Login extends CI_Controller {
                     $sess_data['userID'] = $sess->userID;
                     $sess_data['username'] = $sess->username;
                     $sess_data['role'] = $sess->role;
+                    $sess_data['firstLogin'] = $sess->firstLogin;
                     $sess_data['prodiID'] = $sess->prodiID;
                     $sess_data['logged_in'] = 'login';
                 }
 			$this->session->set_userdata($sess_data);
  
 			//redirect(base_url("admin/Beranda"));
-			if($this->session->userdata('role')=='admin') 
+			if ($this->session->userdata('firstLogin') != 'tidak') {
+				redirect(base_url("GantiPassword"), 'refresh');
+			} else {
+
+				if($this->session->userdata('role')=='admin') 
 				{
                     redirect(base_url("admin/Beranda"), 'refresh');
                 }
@@ -52,6 +57,8 @@ class Login extends CI_Controller {
                 }elseif($this->session->userdata('role')=='dosen') {
                    redirect(base_url("dosen/Profil"), 'refresh');
                 }
+
+			}
  
 		}else{
 			echo " <script>

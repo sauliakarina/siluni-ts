@@ -48,14 +48,25 @@ class GantiPassword extends CI_Controller {
 				'id' => $id
 			);
 			$data = array(
-				'password' => $newpass
+				'password' => $newpass,
+				'firstLogin' => 'tidak'
 			);
 			$this->m_master->updateData($where, $data, 'user');
-			echo " <script>
+
+			/*echo " <script>
                      alert('Ganti password sukses!');
                      history.go(-1);
-                    </script>";
+                    </script>";*/
+            $this->session->set_flashdata("edit_pass", '<div><div class="alert alert-success" id="alert" align="center">Password Anda berhasil disunting</div></div>');
 
+            if ($this->session->userdata('role')=='admin') {
+            	 redirect('admin/Beranda');
+            }  elseif($this->session->userdata('role')=='alumni') {
+                redirect(base_url("alumni/Beranda"));
+            } elseif($this->session->userdata('role')=='koorprodi') {
+                   redirect(base_url("koorprodi/Beranda"));
+            }
+           
 		}
 	}
 

@@ -8,7 +8,7 @@
               <h2 class="no-margin-bottom">Beranda</h2>
             </div>
           </header>
-
+  <?php echo $this->session->flashdata('edit_pass'); ?>
           
            <!-- Dashboard Counts Section-->
           <section class="dashboard-counts no-padding-bottom">

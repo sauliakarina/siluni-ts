@@ -9,6 +9,13 @@
             </div>
           </header>
 
+            <!-- marquee -->
+          <div class="alert alert-info alert-dismissible" role="alert" style="height: 45px">
+            <button type="button" onclick="this.parentNode.parentNode.removeChild(this.parentNode);" class="close" data-dismiss="alert"><span aria-hidden="true">×</span></button><marquee><p style="font-family:; font-size: 15pt">Untuk keamanan data harap segera ganti password Anda</p></marquee>
+            <!-- marquee -->
+        </div>
+
+
                    <!-- Forms Section-->
           <section class="forms"> 
             <div class="container-fluid">
