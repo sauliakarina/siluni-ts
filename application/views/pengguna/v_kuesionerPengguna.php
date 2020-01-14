@@ -65,6 +65,9 @@
         </div>
       </section>
 
+<?php $tandai = $this->m_pengguna->getPenggunaByID($penggunaID)->tandai;
+  if ($tandai != 'checked') {
+ ?>
          <!-- Forms Section-->
           <section class="forms"> 
             <div class="container-fluid">
@@ -158,6 +161,6 @@
             </div>
           </section>
          
-
+<?php } ?>
   </body>
 </html>

@@ -11,9 +11,9 @@ class Kuesioner extends CI_Controller {
 	}
 
 	//kuesioner untuk pengguna sudah terdaftar
-	public function kuesionerInstansi($penggunaID)
+	public function kuesionerInstansi($customID)
 	{
-		$penggunaID = $this->m_pengguna->getPenggunaByCustomID($penggunaID)->id;
+		$penggunaID = $this->m_pengguna->getPenggunaByCustomID($customID)->id;
 		$prodiID = $this->m_pengguna->getPenggunaByID($penggunaID)->prodiID;
 		$data = array(
 			'role' => $this->session->userdata('role'),
@@ -90,6 +90,7 @@ class Kuesioner extends CI_Controller {
 	public function addJawaban()
 	{
 		$penggunaID = $this->input->post('penggunaID');
+		$customPenggunaID = $this->m_pengguna->getPenggunaByID($penggunaID)->penggunaID;
 		$prodiID = $this->m_pengguna->getPenggunaByID($penggunaID)->prodiID;
 		$kuesionerID = $this->m_kuesioner->getKuesionerByResponden('pengguna', $prodiID);
 
@@ -176,10 +177,15 @@ class Kuesioner extends CI_Controller {
 			}//foreach pertanyaan
 		} //foreach kuesionerID
 
+		$data = array(
+			'tandai' => 'checked'
+		);
+		$where = array('id' => $penggunaID);
+		$this->m_master->updateData($where,$data,'pengguna');
 
-		$this->session->set_flashdata("pesan", '<div><div class="alert alert-success" id="alert" align="center">Pengisian Kuesioner Sukses!</div></div>');
-		/*redirect('pengguna/Kuesioner/kuesionerInstansi/'.$penggunaID);*/
-		redirect('pengguna/Kuesioner/kuesionerSukses/');
+		$this->session->set_flashdata("pesan", '<div><div class="alert alert-success" id="alert" align="center">Pengisian Kuesioner Sukses! Terimakasih atas partisipasi anda</div></div>');
+		redirect('pengguna/Kuesioner/kuesionerInstansi/'.$customPenggunaID);
+		/*redirect('pengguna/Kuesioner/kuesionerSukses/');*/
 	}
 
 public function addJawabanVer2()
