@@ -42,27 +42,31 @@ class Data extends CI_Controller {
 
 	function exeEditProfil()
 	{
-		$waktu_lulus = $this->input->post('waktu_lulus');
-		$explode = explode(" ", $waktu_lulus);
+		$userID = $this->m_alumni->getAlumniByID($this->input->post('id'))->userID;
+		if ($this->session->userdata('userID') == $userID) {
 
-		$data_alumni = array(
-			'nama' => $this->input->post('nama'),
-			'jenis_kelamin' => $this->input->post('jenis_kelamin'),
-			'tahun_masuk' => $this->input->post('tahun_masuk'),
-			'tahun_lulus' => $explode[1],
-			'bulan_lulus' => $explode[0],
-			'ipk' => $this->input->post('ipk'),
-			'toefl' => $this->input->post('toefl'),
-			'alamat' => $this->input->post('alamat'),
-			'tempat_lahir' => $this->input->post('tempat_lahir'),
-			'tanggal_lahir' => $this->input->post('tanggal_lahir'),
-			'email' => $this->input->post('email'),
-			'no_telepon' => $this->input->post('no_telepon'),
-		);
-		
-		$where = array('id' => $this->input->post('id'));
-		$this->m_master->updateData($where,$data_alumni,'alumni');
-		$this->session->set_flashdata("edit_profil", '<div><div class="alert alert-success" id="alert" align="center">Data diri anda berhasil disunting</div></div>');
+			$waktu_lulus = $this->input->post('waktu_lulus');
+			$explode = explode(" ", $waktu_lulus);
+
+			$data_alumni = array(
+				'nama' => $this->input->post('nama'),
+				'jenis_kelamin' => $this->input->post('jenis_kelamin'),
+				'tahun_masuk' => $this->input->post('tahun_masuk'),
+				'tahun_lulus' => $explode[1],
+				'bulan_lulus' => $explode[0],
+				'ipk' => $this->input->post('ipk'),
+				'toefl' => $this->input->post('toefl'),
+				'alamat' => $this->input->post('alamat'),
+				'tempat_lahir' => $this->input->post('tempat_lahir'),
+				'tanggal_lahir' => $this->input->post('tanggal_lahir'),
+				'email' => $this->input->post('email'),
+				'no_telepon' => $this->input->post('no_telepon'),
+			);
+			
+			$where = array('id' => $this->input->post('id'));
+			$this->m_master->updateData($where,$data_alumni,'alumni');
+			$this->session->set_flashdata("edit_profil", '<div><div class="alert alert-success" id="alert" align="center">Data diri anda berhasil disunting</div></div>');
+		} // if session user id
 		redirect('alumni/Beranda');
 	}
 
@@ -299,154 +303,162 @@ class Data extends CI_Controller {
 
  public function exeUpdatePekerjaan() {
 
-	if ($this->input->post('instansiID') == "") {
-	$newInstansi = array(
-		'nama_instansi' => $this->input->post('instansiBaru'),
-		'jenis_instansi' => $this->input->post('skalaInstansi'),
-		'alamat' => $this->input->post('alamat_instansi'),
-		'prodiID' => $this->session->userdata('prodiID'),
-	);
-	$this->m_master->inputData($newInstansi,'instansi');
-	$instansiID = $this->m_master->getInstansiByName($this->input->post('instansiBaru'))->id;
-	} else {
-		$instansiID = $this->input->post('instansiID');
-		$data = array(
-			'jenis_instansi' => $this->input->post('skalaInstansi'),
-			'alamat' => $this->input->post('alamat_instansi')
-		);
-		$where = array('id' => $this->input->post('instansiID'));
-		$this->m_master->updateData($where, $data, 'instansi');
-	}
-		//pengguna pekerjaan pertama
-	if ($this->input->post('pengguna_nama') != "") {
-		//generate customID kuesioner
-		$id_length = 36;
-		$id_found = false;
-		$possible_chars = "23456789BCDFGHJKMNPQRSTVWXYZbcdefghijklmnopqrstvwxyz-"; 
-		while (!$id_found) {  
-		    $customID = "";  
-		    $i = 0;  
-		    while ($i < $id_length) {  
-		        $char = substr($possible_chars, mt_rand(0, strlen($possible_chars)-1), 1);  
-		        $customID .= $char;   
-		        $i++;   
-		    }  
-		    $where = array( 'customID' => $customID);
-		    $cek = $this->m_master->cekData("kuesioner",$where)->num_rows();
-		    if ($cek == 0) {
-		    	$id_found = true;
-		    }
-		}  //tutup while
-		$data = array(
-			'pengguna_nama' => $this->input->post('pengguna_nama'),
-			'divisi' => $this->input->post('divisi'),
-			'pengguna_email' => $this->input->post('pengguna_email'),
-			'pengguna_telepon' => $this->input->post('pengguna_telepon'),
-			'prodiID' => $this->session->userdata('prodiID'),
-			'id_instansi' => $instansiID,
-			'penggunaID' => $customID
-		);
-		$this->m_master->inputData($data,'pengguna');
-		$penggunaID = $this->m_pengguna->getPenggunaByCustomID($customID)->id;
-	}  else {
-		$penggunaID = Null;
-	}
+ 	$userID =  $this->m_alumni->getAlumniByID($this->input->post('alumniID'))->userID;
+	if ($this->session->userdata('userID') == $userID) {
 
-	$data = array(
-		'id_instansi' => $instansiID,
-		'posisi' => $this->input->post('posisi'),
-		'profil' => $this->input->post('profil'),
-		'gaji' => str_replace(",","",$this->input->post('gaji')),
-		'id_pengguna' => $penggunaID,
-		'id_alumni' => $this->m_alumni->getAlumniByUserID($this->session->userdata('userID'))->id,
-		'periode_kerja' => $this->input->post('p1')."-".$this->input->post('p2'),
-		'isiPekerjaan' => 'sudah'
-	);
-	
-	$where = array('id' => $this->input->post('pekerjaanID'));
-	$this->m_master->updateData($where, $data, 'pekerjaan');
-	$this->session->set_flashdata("edit_pekerjaan", '<div><div class="alert alert-success" id="alert" align="center">Data pekerjaan berhasil ditambahkan. Jika ada silahkan lengkapi data pekerjaan berikutnya</div></div>');
+		if ($this->input->post('instansiID') == "") {
+		$newInstansi = array(
+			'nama_instansi' => $this->input->post('instansiBaru'),
+			'jenis_instansi' => $this->input->post('skalaInstansi'),
+			'alamat' => $this->input->post('alamat_instansi'),
+			'prodiID' => $this->session->userdata('prodiID'),
+		);
+		$this->m_master->inputData($newInstansi,'instansi');
+		$instansiID = $this->m_master->getInstansiByName($this->input->post('instansiBaru'))->id;
+		} else {
+			$instansiID = $this->input->post('instansiID');
+			$data = array(
+				'jenis_instansi' => $this->input->post('skalaInstansi'),
+				'alamat' => $this->input->post('alamat_instansi')
+			);
+			$where = array('id' => $this->input->post('instansiID'));
+			$this->m_master->updateData($where, $data, 'instansi');
+		}
+			//pengguna pekerjaan pertama
+		if ($this->input->post('pengguna_nama') != "") {
+			//generate customID kuesioner
+			$id_length = 36;
+			$id_found = false;
+			$possible_chars = "23456789BCDFGHJKMNPQRSTVWXYZbcdefghijklmnopqrstvwxyz-"; 
+			while (!$id_found) {  
+			    $customID = "";  
+			    $i = 0;  
+			    while ($i < $id_length) {  
+			        $char = substr($possible_chars, mt_rand(0, strlen($possible_chars)-1), 1);  
+			        $customID .= $char;   
+			        $i++;   
+			    }  
+			    $where = array( 'customID' => $customID);
+			    $cek = $this->m_master->cekData("kuesioner",$where)->num_rows();
+			    if ($cek == 0) {
+			    	$id_found = true;
+			    }
+			}  //tutup while
+			$data = array(
+				'pengguna_nama' => $this->input->post('pengguna_nama'),
+				'divisi' => $this->input->post('divisi'),
+				'pengguna_email' => $this->input->post('pengguna_email'),
+				'pengguna_telepon' => $this->input->post('pengguna_telepon'),
+				'prodiID' => $this->session->userdata('prodiID'),
+				'id_instansi' => $instansiID,
+				'penggunaID' => $customID
+			);
+			$this->m_master->inputData($data,'pengguna');
+			$penggunaID = $this->m_pengguna->getPenggunaByCustomID($customID)->id;
+		}  else {
+			$penggunaID = Null;
+		}
+
+		$data = array(
+			'id_instansi' => $instansiID,
+			'posisi' => $this->input->post('posisi'),
+			'profil' => $this->input->post('profil'),
+			'gaji' => str_replace(",","",$this->input->post('gaji')),
+			'id_pengguna' => $penggunaID,
+			'id_alumni' => $this->m_alumni->getAlumniByUserID($this->session->userdata('userID'))->id,
+			'periode_kerja' => $this->input->post('p1')."-".$this->input->post('p2'),
+			'isiPekerjaan' => 'sudah'
+		);
+		
+		$where = array('id' => $this->input->post('pekerjaanID'));
+		$this->m_master->updateData($where, $data, 'pekerjaan');
+		$this->session->set_flashdata("edit_pekerjaan", '<div><div class="alert alert-success" id="alert" align="center">Data pekerjaan berhasil ditambahkan.</div></div>');
+
+	} // if session user id
 	redirect('alumni/Beranda');
 }
 
 public function exeAddPekerjaan_new() {
+	$userID =  $this->m_alumni->getAlumniByID($this->input->post('alumniID'))->userID;
+	if ($this->session->userdata('userID') == $userID) {
 
-	if ($this->input->post('instansiID') == "") {
-	$newInstansi = array(
-		'nama_instansi' => $this->input->post('instansiBaru'),
-		'jenis_instansi' => $this->input->post('skalaInstansi'),
-		'prodiID' => $this->session->userdata('prodiID'),
-		'alamat' => $this->input->post('alamat_instansi')
-	);
-	$this->m_master->inputData($newInstansi,'instansi');
-	$instansiID = $this->m_master->getInstansiByName($this->input->post('instansiBaru'))->id;
-	} else {
-		$instansiID = $this->input->post('instansiID');
-		$data = array(
-			"jenis_instansi" => $this->input->post('skalaInstansi'),
+		if ($this->input->post('instansiID') == "") {
+		$newInstansi = array(
+			'nama_instansi' => $this->input->post('instansiBaru'),
+			'jenis_instansi' => $this->input->post('skalaInstansi'),
+			'prodiID' => $this->session->userdata('prodiID'),
 			'alamat' => $this->input->post('alamat_instansi')
 		);
-		$where = array('id' => $this->input->post('instansiID'));
-		$this->m_master->updateData($where, $data, 'instansi');
-	}
-		//pengguna pekerjaan pertama
-	if ($this->input->post('pengguna_nama') != "") {
-		//generate customID kuesioner
-		$id_length = 36;
-		$id_found = false;
-		$possible_chars = "23456789BCDFGHJKMNPQRSTVWXYZbcdefghijklmnopqrstvwxyz-"; 
-		while (!$id_found) {  
-		    $customID = "";  
-		    $i = 0;  
-		    while ($i < $id_length) {  
-		        $char = substr($possible_chars, mt_rand(0, strlen($possible_chars)-1), 1);  
-		        $customID .= $char;   
-		        $i++;   
-		    }  
-		    $where = array( 'customID' => $customID);
-		    $cek = $this->m_master->cekData("kuesioner",$where)->num_rows();
-		    if ($cek == 0) {
-		    	$id_found = true;
-		    }
-		}  //tutup while
+		$this->m_master->inputData($newInstansi,'instansi');
+		$instansiID = $this->m_master->getInstansiByName($this->input->post('instansiBaru'))->id;
+		} else {
+			$instansiID = $this->input->post('instansiID');
+			$data = array(
+				"jenis_instansi" => $this->input->post('skalaInstansi'),
+				'alamat' => $this->input->post('alamat_instansi')
+			);
+			$where = array('id' => $this->input->post('instansiID'));
+			$this->m_master->updateData($where, $data, 'instansi');
+		}
+			//pengguna pekerjaan pertama
+		if ($this->input->post('pengguna_nama') != "") {
+			//generate customID kuesioner
+			$id_length = 36;
+			$id_found = false;
+			$possible_chars = "23456789BCDFGHJKMNPQRSTVWXYZbcdefghijklmnopqrstvwxyz-"; 
+			while (!$id_found) {  
+			    $customID = "";  
+			    $i = 0;  
+			    while ($i < $id_length) {  
+			        $char = substr($possible_chars, mt_rand(0, strlen($possible_chars)-1), 1);  
+			        $customID .= $char;   
+			        $i++;   
+			    }  
+			    $where = array( 'customID' => $customID);
+			    $cek = $this->m_master->cekData("kuesioner",$where)->num_rows();
+			    if ($cek == 0) {
+			    	$id_found = true;
+			    }
+			}  //tutup while
+			$data = array(
+				'pengguna_nama' => $this->input->post('pengguna_nama'),
+				'divisi' => $this->input->post('divisi'),
+				'pengguna_email' => $this->input->post('pengguna_email'),
+				'pengguna_telepon' => $this->input->post('pengguna_telepon'),
+				'prodiID' => $this->session->userdata('prodiID'),
+				'id_instansi' => $instansiID,
+				'penggunaID' => $customID
+			);
+			$this->m_master->inputData($data,'pengguna');
+			$penggunaID = $this->m_pengguna->getPenggunaByCustomID($customID)->id;
+		} else {
+			$penggunaID = Null;
+		}
+
+		$alumniID = $this->input->post('alumniID');
+		$where = array( 'id_alumni' => $alumniID);
+		$cek = $this->m_master->cekData("pekerjaan",$where)->num_rows();
+		if ($cek == 0) {
+			$firstPekerjaan = 'yes';
+		} else {
+			$firstPekerjaan = 'no';
+		}
+
 		$data = array(
-			'pengguna_nama' => $this->input->post('pengguna_nama'),
-			'divisi' => $this->input->post('divisi'),
-			'pengguna_email' => $this->input->post('pengguna_email'),
-			'pengguna_telepon' => $this->input->post('pengguna_telepon'),
-			'prodiID' => $this->session->userdata('prodiID'),
 			'id_instansi' => $instansiID,
-			'penggunaID' => $customID
+			'posisi' => $this->input->post('posisi'),
+			'profil' => $this->input->post('profil'),
+			'gaji' => str_replace(",","",$this->input->post('gaji')),
+			'id_pengguna' => $penggunaID,
+			'id_alumni' => $this->m_alumni->getAlumniByUserID($this->session->userdata('userID'))->id,
+			'periode_kerja' => $this->input->post('p1')."-".$this->input->post('p2'),
+			'isiPekerjaan' => 'sudah',
+			'firstPekerjaan' => $firstPekerjaan
 		);
-		$this->m_master->inputData($data,'pengguna');
-		$penggunaID = $this->m_pengguna->getPenggunaByCustomID($customID)->id;
-	} else {
-		$penggunaID = Null;
-	}
-
-	$alumniID = $this->input->post('alumniID');
-	$where = array( 'id_alumni' => $alumniID);
-	$cek = $this->m_master->cekData("pekerjaan",$where)->num_rows();
-	if ($cek == 0) {
-		$firstPekerjaan = 'yes';
-	} else {
-		$firstPekerjaan = 'no';
-	}
-
-	$data = array(
-		'id_instansi' => $instansiID,
-		'posisi' => $this->input->post('posisi'),
-		'profil' => $this->input->post('profil'),
-		'gaji' => str_replace(",","",$this->input->post('gaji')),
-		'id_pengguna' => $penggunaID,
-		'id_alumni' => $this->m_alumni->getAlumniByUserID($this->session->userdata('userID'))->id,
-		'periode_kerja' => $this->input->post('p1')."-".$this->input->post('p2'),
-		'isiPekerjaan' => 'sudah',
-		'firstPekerjaan' => $firstPekerjaan
-	);
-	
-	$this->m_master->inputData($data,'pekerjaan');
-	$this->session->set_flashdata("edit_pekerjaan", '<div><div class="alert alert-success" id="alert" align="center">Data pekerjaan berhasil ditambahkan</div></div>');
+		
+		$this->m_master->inputData($data,'pekerjaan');
+		$this->session->set_flashdata("edit_pekerjaan", '<div><div class="alert alert-success" id="alert" align="center">Data pekerjaan berhasil ditambahkan</div></div>');
+	} //if session user ID
 	redirect('alumni/Beranda');
 }
 

@@ -31,6 +31,7 @@
                               <th>Instansi</th>
                               <th>Posisi</th>
                               <th>Gaji tiap Bulan</th>
+                              <th>Periode</th>
                             </tr>
                           </thead>
                           <tbody>

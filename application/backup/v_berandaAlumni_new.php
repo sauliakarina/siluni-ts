@@ -23,6 +23,7 @@
 
   <?php echo $this->session->flashdata('isi_kuesioner'); ?>
   <?php echo $this->session->flashdata('edit_profil'); ?>
+  <?php echo $this->session->flashdata('edit_pekerjaan'); ?>
 
            <!-- Updates Section                                                -->
           <section class="updates padding-top no-padding-bottom">
@@ -241,6 +242,7 @@
        <div class="col-sm-9">
           <input type="text" class="form-control" value="<?php echo $k->posisi ?>" name="posisi" required>
           <input type="hidden" class="form-control" name="pekerjaanID" value="<?php echo $k->id ?>">
+          <input type="hidden" class="form-control" value="<?php echo $alumniID ?>" name="alumniID">
        </div>
     </div>
 

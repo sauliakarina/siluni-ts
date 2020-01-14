@@ -241,6 +241,7 @@
        <div class="col-sm-9">
           <input type="text" class="form-control" value="<?php echo $k->posisi ?>" name="posisi" required>
           <input type="hidden" class="form-control" name="pekerjaanID" value="<?php echo $k->id ?>">
+           <input type="hidden" class="form-control" value="<?php echo $alumniID ?>" name="alumniID">
        </div>
     </div>
 
@@ -491,6 +492,7 @@
         <?php } //loop pertanyaan ?>
         </table>
         <?php }//loop kuesioner ?>
+        <input type="hidden" class="form-control" value="<?php echo $alumniID ?>" name="alumniID">
         <div class="form-group row">
           <div class="col-sm-4 offset-sm-5 mb-3">
             <button type="submit" class="btn btn-primary">Simpan Jawaban</button>

@@ -418,36 +418,40 @@ class Profil extends CI_Controller {
 
 	function exeEditPekerjaan()
 	{
-		//data tabel instansi
-		$data = array(
-			'jenis_instansi' => $this->input->post('jenis_instansi'),
-			'alamat' => $this->input->post('alamat_instansi'),
-		);
-		$where = array('id' => $this->input->post('id_instansi'));
-		$this->m_master->updateData($where,$data,'instansi');
-		//data tabel pekerjaan
-		$data = array(
-			'gaji' => str_replace(",","",$this->input->post('gaji')),
-			'posisi' => $this->input->post('posisi'),
-			'profil' => $this->input->post('profil'),
-			'periode_kerja' => $this->input->post('p1')."-".$this->input->post('p2')
-		);
-		$where = array('id' => $this->input->post('id_pekerjaan'));
-		$this->m_master->updateData($where,$data,'pekerjaan');
-		//data pengguna
-		if ($this->input->post('id_pengguna') != NULL) {
+		$userID = $this->m_alumni->getAlumniByID($this->input->post('alumniID'))->userID;
+		if ($this->session->userdata('userID') == $userID) {
+		
+			//data tabel instansi
 			$data = array(
-				'pengguna_nama' => $this->input->post('pengguna_nama'),
-				'pengguna_email' => $this->input->post('pengguna_email'),
-				'pengguna_telepon' => $this->input->post('pengguna_telepon'),
-				'divisi' => $this->input->post('divisi')
+				'jenis_instansi' => $this->input->post('jenis_instansi'),
+				'alamat' => $this->input->post('alamat_instansi'),
 			);
-			$where = array('id' => $this->input->post('id_pengguna'));
-			$this->m_master->updateData($where,$data,'pengguna');
-		}
+			$where = array('id' => $this->input->post('id_instansi'));
+			$this->m_master->updateData($where,$data,'instansi');
+			//data tabel pekerjaan
+			$data = array(
+				'gaji' => str_replace(",","",$this->input->post('gaji')),
+				'posisi' => $this->input->post('posisi'),
+				'profil' => $this->input->post('profil'),
+				'periode_kerja' => $this->input->post('p1')."-".$this->input->post('p2')
+			);
+			$where = array('id' => $this->input->post('id_pekerjaan'));
+			$this->m_master->updateData($where,$data,'pekerjaan');
+			//data pengguna
+			if ($this->input->post('id_pengguna') != NULL) {
+				$data = array(
+					'pengguna_nama' => $this->input->post('pengguna_nama'),
+					'pengguna_email' => $this->input->post('pengguna_email'),
+					'pengguna_telepon' => $this->input->post('pengguna_telepon'),
+					'divisi' => $this->input->post('divisi')
+				);
+				$where = array('id' => $this->input->post('id_pengguna'));
+				$this->m_master->updateData($where,$data,'pengguna');
+			}
 
 
-		$this->session->set_flashdata("edit_pekerjaan", '<div><div class="alert alert-success" id="alert" align="center">Data pekerjaan anda berhasil disunting</div></div>');
+			$this->session->set_flashdata("edit_pekerjaan", '<div><div class="alert alert-success" id="alert" align="center">Data pekerjaan anda berhasil disunting</div></div>');
+		} //if session user id
 		redirect('alumni/Profil/editPekerjaan/'.$this->input->post('id_pekerjaan'));
 	}
 

@@ -45,117 +45,121 @@ class Kuesioner extends CI_Controller {
 
 	public function addJawaban()
 	{
-		$alumniID = $this->m_alumni->getAlumniByUserID($this->session->userdata('userID'))->id;
-		$prodiID = $this->session->userdata('prodiID');
-		$kuesionerID = $this->m_kuesioner->getKuesionerByResponden('alumni', $prodiID);
+		$userID = $this->m_alumni->getAlumniByID($this->input->post("alumniID"))->userID;
+		if ($this->session->userdata('userID') == $userID) {
 
-		//tabel notif kuesioner
-		$id_length = 8;
-		$id_found = false;
-		$possible_chars = "23456789BCDFGHJKMNPQRSTVWXYZ"; 
-		while (!$id_found) {  
-			$customID = "";  
-			$i = 0;  
-			while ($i < $id_length) {  
-			    $char = substr($possible_chars, mt_rand(0, strlen($possible_chars)-1), 1);  
-			    $customID .= $char;   
-			    $i++;   
-			    }  
-			$where = array( 'customID' => $customID);
-			$cek = $this->m_master->cekData("notif_kuesioner",$where)->num_rows();
-			if ($cek == 0) {
-			   	$id_found = true;
-			}
-		} 
-		$data = array(
-			'respondenID' => $alumniID,
-			'jenis_kuesioner' => 'alumni',
-			'timestamp' => date("d-m-Y"),
-			'prodiID' => $prodiID,
-			'customID' => $customID
-		);
-		$this->m_master->inputData($data,'notif_kuesioner');
-		$notifID = $this->m_master->getNotifKuesionerByCustomID($customID)->id;
+			$alumniID = $this->m_alumni->getAlumniByUserID($this->session->userdata('userID'))->id;
+			$prodiID = $this->session->userdata('prodiID');
+			$kuesionerID = $this->m_kuesioner->getKuesionerByResponden('alumni', $prodiID);
 
-		foreach ($kuesionerID as $k ) {
-			$pertanyaan = $this->m_kuesioner->getPertanyaanByKuesionerID($k->id);
-			foreach ($pertanyaan as $p) {
-				if ($p->jenis == 'ganda') {
-					$jawaban = $this->input->post("ganda_".$p->id);
-					if ($jawaban != Null) {  
-						foreach ($jawaban as $j) {					
-						        $data = array(	            
-						        	'pertanyaanID' => $p->id,
-						        	'jawaban' => $j,
-						        	'alumniID' => $alumniID,
-						        	'notifID' => $notifID
-						        );				        
-						        $this->m_master->inputData($data,'jawaban_alumni');
-					    } // foreach jawaban ganda
-					}
-				    if ($p->inputBox == 'ya' && $this->input->post('inputBoxGanda_'.$p->id) != '') {
-				    	$data = array(
-				    		'pertanyaanID' => $p->id,
-				        	'jawaban' => $this->input->post('inputBoxGanda_'.$p->id),
-				        	'alumniID' => $alumniID,
-				        	'tambahanJawaban' => 'ya',
-				        	'notifID' => $notifID
-				    	);
-				    	$this->m_master->inputData($data,'jawaban_alumni');
-				    } // if inputBox
-				} // if ganda 
-				elseif ($p->jenis == 'isian') {
-					if ($this->input->post("isian_".$p->id) != "") {
-						$data = array(
-						'pertanyaanID' => $p->id,
-			            'jawaban' => $this->input->post("isian_".$p->id),
-			            'alumniID' => $alumniID,
-			            'notifID' => $notifID
-			          	);
-						$this->m_master->inputData($data, 'jawaban_alumni');
-					} //if not null
-				} // if isian 
-				elseif ($p->jenis == 'pilihan') {
-					if ($this->input->post("pilihan_".$p->id) != Null) {
-						$data = array(
-						'pertanyaanID' => $p->id,
-			            'jawaban' => $this->input->post("pilihan_".$p->id),
-			            'alumniID' => $alumniID,
-			            'notifID' => $notifID
-			          	);
-						$this->m_master->inputData($data, 'jawaban_alumni');
+			//tabel notif kuesioner
+			$id_length = 8;
+			$id_found = false;
+			$possible_chars = "23456789BCDFGHJKMNPQRSTVWXYZ"; 
+			while (!$id_found) {  
+				$customID = "";  
+				$i = 0;  
+				while ($i < $id_length) {  
+				    $char = substr($possible_chars, mt_rand(0, strlen($possible_chars)-1), 1);  
+				    $customID .= $char;   
+				    $i++;   
+				    }  
+				$where = array( 'customID' => $customID);
+				$cek = $this->m_master->cekData("notif_kuesioner",$where)->num_rows();
+				if ($cek == 0) {
+				   	$id_found = true;
+				}
+			} 
+			$data = array(
+				'respondenID' => $alumniID,
+				'jenis_kuesioner' => 'alumni',
+				'timestamp' => date("d-m-Y"),
+				'prodiID' => $prodiID,
+				'customID' => $customID
+			);
+			$this->m_master->inputData($data,'notif_kuesioner');
+			$notifID = $this->m_master->getNotifKuesionerByCustomID($customID)->id;
 
-						if ($p->inputBox == 'ya' && $this->input->post('inputBoxPilihan_'.$p->id) != '') {
+			foreach ($kuesionerID as $k ) {
+				$pertanyaan = $this->m_kuesioner->getPertanyaanByKuesionerID($k->id);
+				foreach ($pertanyaan as $p) {
+					if ($p->jenis == 'ganda') {
+						$jawaban = $this->input->post("ganda_".$p->id);
+						if ($jawaban != Null) {  
+							foreach ($jawaban as $j) {					
+							        $data = array(	            
+							        	'pertanyaanID' => $p->id,
+							        	'jawaban' => $j,
+							        	'alumniID' => $alumniID,
+							        	'notifID' => $notifID
+							        );				        
+							        $this->m_master->inputData($data,'jawaban_alumni');
+						    } // foreach jawaban ganda
+						}
+					    if ($p->inputBox == 'ya' && $this->input->post('inputBoxGanda_'.$p->id) != '') {
 					    	$data = array(
 					    		'pertanyaanID' => $p->id,
-					        	'jawaban' => $this->input->post('inputBoxPilihan_'.$p->id),
+					        	'jawaban' => $this->input->post('inputBoxGanda_'.$p->id),
 					        	'alumniID' => $alumniID,
 					        	'tambahanJawaban' => 'ya',
 					        	'notifID' => $notifID
 					    	);
 					    	$this->m_master->inputData($data,'jawaban_alumni');
 					    } // if inputBox
-					} //if not null
-				}
-				elseif ($p->jenis == 'skala') {
-					$pertanyaanSkala = $this->m_kuesioner->getPertanyaanSkalaByPertanyaanID($p->id);
-					foreach ($pertanyaanSkala as $ps) {
-						if ($this->input->post("skala_".$ps->id) != Null) {
-							$data = array(	            
-					        	'pertanyaanID' => $p->id,
-					        	'pertanyaanSkalaID' => $ps->id,
-					        	'jawaban' => $this->input->post("skala_".$ps->id),
-					        	'alumniID' => $alumniID,
-					        	'notifID' => $notifID
-					        );				        
-					        $this->m_master->inputData($data,'jawaban_alumni');
-				    	} // if not null
-					}
-				}
-			}//foreach pertanyaan
-		} //foreach kuesionerID
+					} // if ganda 
+					elseif ($p->jenis == 'isian') {
+						if ($this->input->post("isian_".$p->id) != "") {
+							$data = array(
+							'pertanyaanID' => $p->id,
+				            'jawaban' => $this->input->post("isian_".$p->id),
+				            'alumniID' => $alumniID,
+				            'notifID' => $notifID
+				          	);
+							$this->m_master->inputData($data, 'jawaban_alumni');
+						} //if not null
+					} // if isian 
+					elseif ($p->jenis == 'pilihan') {
+						if ($this->input->post("pilihan_".$p->id) != Null) {
+							$data = array(
+							'pertanyaanID' => $p->id,
+				            'jawaban' => $this->input->post("pilihan_".$p->id),
+				            'alumniID' => $alumniID,
+				            'notifID' => $notifID
+				          	);
+							$this->m_master->inputData($data, 'jawaban_alumni');
 
-		$this->session->set_flashdata("isi_kuesioner", '<div><div class="alert alert-success" id="alert" align="center">Pengisian Kuesioner Sukses! Terimakasih atas partisipasi anda</div></div>');
+							if ($p->inputBox == 'ya' && $this->input->post('inputBoxPilihan_'.$p->id) != '') {
+						    	$data = array(
+						    		'pertanyaanID' => $p->id,
+						        	'jawaban' => $this->input->post('inputBoxPilihan_'.$p->id),
+						        	'alumniID' => $alumniID,
+						        	'tambahanJawaban' => 'ya',
+						        	'notifID' => $notifID
+						    	);
+						    	$this->m_master->inputData($data,'jawaban_alumni');
+						    } // if inputBox
+						} //if not null
+					}
+					elseif ($p->jenis == 'skala') {
+						$pertanyaanSkala = $this->m_kuesioner->getPertanyaanSkalaByPertanyaanID($p->id);
+						foreach ($pertanyaanSkala as $ps) {
+							if ($this->input->post("skala_".$ps->id) != Null) {
+								$data = array(	            
+						        	'pertanyaanID' => $p->id,
+						        	'pertanyaanSkalaID' => $ps->id,
+						        	'jawaban' => $this->input->post("skala_".$ps->id),
+						        	'alumniID' => $alumniID,
+						        	'notifID' => $notifID
+						        );				        
+						        $this->m_master->inputData($data,'jawaban_alumni');
+					    	} // if not null
+						}
+					}
+				}//foreach pertanyaan
+			} //foreach kuesionerID
+
+			$this->session->set_flashdata("isi_kuesioner", '<div><div class="alert alert-success" id="alert" align="center">Pengisian Kuesioner Sukses! Terimakasih atas partisipasi anda</div></div>');
+		}// session user id
 		redirect('alumni/Beranda');
 	}
 }

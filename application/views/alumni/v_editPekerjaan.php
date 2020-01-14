@@ -61,6 +61,7 @@
                             <input type="text" name="posisi" class="form-control" value="<?php echo $p->posisi ?>">
                              <input type="hidden" name="id_pekerjaan" class="form-control" value="<?php echo $id_pekerjaan ?>">
                               <input type="hidden" name="id_instansi" class="form-control" value="<?php echo $p->id_instansi ?>">
+                               <input type="hidden" name="alumniID" class="form-control" value="<?php echo $p->id_alumni ?>">
                               <input type="hidden" name="id_pengguna" class="form-control" value="<?php  if ($p->id_pengguna != NULL) { echo $p->id_pengguna; } else {echo NULL;} ?>">
                           </div>
                         </div>
