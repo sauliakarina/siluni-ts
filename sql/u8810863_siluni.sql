@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 13, 2020 at 08:07 PM
+-- Generation Time: Jan 14, 2020 at 07:46 AM
 -- Server version: 10.2.29-MariaDB
 -- PHP Version: 7.2.7
 
@@ -81,17 +81,17 @@ INSERT INTO `alumni` (`id`, `userID`, `nim`, `nama`, `jenis_kelamin`, `tempat_la
 (21, 'ALU3145136204', '3145136204', 'Dinda Kharisma', 'Perempuan', 'Jakarta', '1995-01-16', 'Jl. Mangga Besar XIII RT 003/02 Nomor 3A\r\nJakarta 10730', '', '2013', 'Maret', '2018', '3.48', '550', '', 'dindakhrsm@gmail.com', '', '089601676825', '', 'yes', 'yes', 'yes', 'aktif', 1),
 (22, 'ALU3145136224', '3145136224', 'Annisa Nursya', 'Perempuan', '', '', '', '', '2013', NULL, '2018', '3.51', NULL, '', '', '', NULL, '', 'yes', 'yes', 'yes', 'aktif', 1),
 (23, 'ALU3145136203', '3145136203', 'Ghina Rosika Amalina', 'Perempuan', '', '', '', '', '2013', NULL, '2018', '3.34', NULL, '', '', '', NULL, '', 'yes', 'yes', 'yes', 'aktif', 1),
-(24, 'ALU3145136205', '3145136205', 'Annisa Mutiara Ditri', 'Perempuan', '', '', '', '', '2013', NULL, '2018', '3.34', NULL, '', '', '', NULL, '', 'yes', 'yes', 'yes', 'aktif', 1),
+(24, 'ALU3145136205', '3145136205', 'Annisa Mutiara Ditri', 'Perempuan', 'Jakarta', '1996-02-12', 'Jl. Hirup Raya RT 002/10 Kel. Jatimulya\r\nKec. Tambun Selatan, Bekasi 17510\r\n', '', '2013', 'Maret', '2018', '3.34', '540', '', 'annisamutiaraditri@gmail.com', '', '081284978442', '', 'yes', 'yes', 'yes', 'aktif', 1),
 (25, 'ALU3145136216', '3145136216', 'Rahmi Putri', 'Perempuan', 'Bukittinggi', '1994-06-13', '', '', '2013', 'Maret', '2018', '3.73', '', '', 'rahmiputri1306@gmail.com', '', '085921460527', '', 'yes', 'yes', 'yes', 'aktif', 1),
-(26, 'ALU3145136221', '3145136221', 'Khariza Nabila Aulia', 'Perempuan', '', '', '', '', '2013', NULL, '2018', '3.54', NULL, '', '', '', NULL, '', 'yes', 'yes', 'yes', 'aktif', 1),
-(27, 'ALU3145136215', '3145136215', 'Andrean Oktavianus Halim Saputra', 'Laki-laki', '', '', '', '', '2013', NULL, '2018', '3.54', NULL, '', '', '', NULL, '', 'yes', 'yes', 'yes', 'aktif', 1),
+(26, 'ALU3145136221', '3145136221', 'Khariza Nabila Aulia', 'Perempuan', 'Jakarta', '2014-12-29', 'Jl. H. Enjong RT.008/001 No. 15 Kelurahan Kalisari Kecamatan Pasar Rebo, Jakarta Timur 13790', '', '2013', 'Maret', '2018', '3.54', '517', '', 'khariza.nabilla@gmail.com', '', '085888697520', '', 'yes', 'yes', 'yes', 'aktif', 1),
+(27, 'ALU3145136215', '3145136215', 'Andrean Oktavianus Halim Saputra', 'Laki-laki', 'Kebumen', '1994-10-26', 'Desa Sidomulyo RT 002/ RW 003, Kecamatan Karanganyar, Kabupaten Kebumen, Jawa Tengah 54364', '', '2013', 'Februari', '2018', '3.54', '513', '', 'siskom.andrean@gmail.com', '', '085780905314', '', 'yes', 'yes', 'yes', 'aktif', 1),
 (28, 'ALU3145140591', '3145140591', 'Olga Noersaphira', 'Perempuan', '', '', '', '', '2014', NULL, '2018', NULL, NULL, '', '', '', NULL, '', 'yes', 'yes', 'yes', 'aktif', 1),
-(29, 'ALU3145143626', '3145143626', 'Amelia Apriliani', 'Perempuan', '', '', '', '', '2014', NULL, '2018', '3.67', NULL, '', '', '', NULL, '', 'yes', 'yes', 'yes', 'aktif', 1),
+(29, 'ALU3145143626', '3145143626', 'Amelia Apriliani', 'Perempuan', 'Jakarta', '1996-04-23', 'Jl. Olah Raga I RT.010 RW.05 No.64, Kel. Cililitan Kec. Kramat Jati, Jakarta Timur 13640', '', '2014', 'Agustus', '2018', '3.67', '500', '', 'ameliaapriliani85@gmail.com', '', '085776210885', '', 'yes', 'yes', 'yes', 'aktif', 1),
 (30, 'ALU3145143629', '3145143629', 'Aisyah Naqiyyah', 'Perempuan', '', '', '', '', '2014', NULL, '2019', '3.37', NULL, '', '', '', NULL, '', 'yes', 'yes', 'yes', 'aktif', 1),
 (31, 'ALU3145140588', '3145140588', 'Anisah', 'Perempuan', '', '', '', '', '2014', NULL, '2019', '3.37', NULL, '', '', '', NULL, '', 'yes', 'yes', 'yes', 'aktif', 1),
 (32, 'ALU3145140598', '3145140598', 'Astia Desanti', 'Perempuan', '', '', '', '', '2014', NULL, '2019', '3.52', NULL, '', '', '', NULL, '', 'yes', 'yes', 'yes', 'aktif', 1),
 (33, 'ALU3145140599', '3145140599', 'Dika Nur Azizah', 'Perempuan', '', '', '', '', '2014', NULL, '2019', '3.37', NULL, '', '', '', NULL, '', 'yes', 'yes', 'yes', 'aktif', 1),
-(34, 'ALU3145143620', '3145143620', 'Muhammad Yan Handoko', 'Laki-laki', '', '', '', '', '2014', NULL, '2019', '3.28', NULL, '', '', '', NULL, '', 'yes', 'yes', 'yes', 'aktif', 1),
+(34, 'ALU3145143620', '3145143620', 'Muhammad Yan Handoko', 'Laki-laki', 'Semarang', '1997-06-18', 'Jalan Pengandegan Barat V Nomor 18 RT. 011/007', '', '2014', 'Februari', '2019', '3.28', '', '', 'myanhandkoko17@gmail.com', '', '082124022340', '', 'yes', 'yes', 'yes', 'aktif', 1),
 (35, 'ALU3145140595', '3145140595', 'Tafana Komalasari Dewi', 'Perempuan', '', '', '', '', '2014', NULL, '2019', '3.46', NULL, '', '', '', NULL, '', 'yes', 'yes', 'yes', 'aktif', 1),
 (36, 'ALU3145140596', '3145140596', 'Anita Dewi Sukmawati', 'Perempuan', 'Jakarta, 12 Desember 1996', '', 'Jalan Ontorejo No.449 RT 04 RW 02 Halim Perdana Kusumah Kec.Makasar Jakarta Timur 13610', '', '2014', 'Februari', '2019', '3.54', '527', '', 'anitadewisukmawati@gmail.com', '', '087789207523', '', 'yes', 'yes', 'yes', 'aktif', 1),
 (37, 'ALU3145141976', '3145141976', 'Yogi Perdana', 'Laki-laki', '', '', '', '', '2014', '', '2019', '3.39', '', '', '', '', '', '', 'yes', 'yes', 'yes', 'aktif', 1),
@@ -251,7 +251,7 @@ INSERT INTO `instansi` (`id`, `nama_instansi`, `jenis_instansi`, `alamat`, `prod
 (2, 'PT Tokopedia', '', 'lantai 52 Tokopedia Tower Ciputra World 2, Jl. Prof. DR. Satrio No.Kav. 11, RT.3/RW.3, Karet Semanggi, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12950', 1),
 (3, 'PT Kompas Media Nusantara', NULL, 'Jl. Palmerah Sel. No.26-28, RT.4/RW.2, Gelora, Tanahabang, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta', 1),
 (4, 'DPD RI', NULL, NULL, 1),
-(5, 'PT Harmoni Solusi Bisnis ', '', NULL, 1),
+(5, 'PT Harmoni Solusi Bisnis ', 'Nasional', 'Jl. Dempo I No.51, RT.4/RW.3, Gunung, Kec. Kby. Baru, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12120', 1),
 (6, 'PT Sinar Mas', NULL, NULL, 1),
 (7, 'PT Imkahfa ', NULL, NULL, 1),
 (8, 'PT GSI (United Tractor )', NULL, NULL, 1),
@@ -266,7 +266,10 @@ INSERT INTO `instansi` (`id`, `nama_instansi`, `jenis_instansi`, `alamat`, `prod
 (17, 'PT. Integrasi Logistik Cipta Solusi', 'Nasional', 'Jalan Laksamana Yos Sudarso No.23 - 24, RT.16/RW.6, Kb. Bawang, Jakarta Utara, Kota Jkt Utara, Daerah Khusus Ibukota Jakarta 14320', 1),
 (18, 'Badan Pengawas Tenaga Nuklir', 'Nasional', 'Jl. Gajah Mada no. 8, Jakarta Pusat 10120 DKI Jakarta', 1),
 (19, 'PT Testing', 'Nasional', '', 1),
-(20, 'PT Testing', 'Lokal', '', 1);
+(20, 'PT Testing', 'Lokal', '', 1),
+(21, 'PT. Fore Coffee Indonesia', 'Nasional', 'Jl. Jend. Sudirman No.Kav 25, Kuningan, Karet, Setia Budi, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12920', 1),
+(22, 'PT Electronic Data Interchange Indonesia', 'Nasional', 'Wisma SMR 10th & 3rd Floor, Jl. Yos Sudarso Kav. 89, Jakarta Utara', 1),
+(23, 'Dinas Pendidikan DKI Jakarta', 'Nasional', 'Jalan Gatot Subroto No. Kav. 40-41', 1);
 
 -- --------------------------------------------------------
 
@@ -463,7 +466,104 @@ INSERT INTO `jawaban_alumni` (`id`, `pertanyaanID`, `pertanyaanSkalaID`, `jawaba
 (172, 20, 34, '4', 'tidak', 25, 6),
 (173, 20, 35, '4', 'tidak', 25, 6),
 (174, 20, 36, '5', 'tidak', 25, 6),
-(175, 26, NULL, 'saran saya, mahasiswa diikutsertakan dalam project untuk mengetahui gambaran kerja serta juga dapat meningkatkan skill problem solving.', 'tidak', 25, 6);
+(175, 26, NULL, 'saran saya, mahasiswa diikutsertakan dalam project untuk mengetahui gambaran kerja serta juga dapat meningkatkan skill problem solving.', 'tidak', 25, 6),
+(176, 1, NULL, '0 bulan (setelah lulus langsung diterima)', 'tidak', 8, 9),
+(177, 2, NULL, 'Ya', 'tidak', 8, 9),
+(178, 3, NULL, 'Dihubungi oleh perusahaan', 'tidak', 8, 9),
+(179, 4, NULL, '0', 'tidak', 8, 9),
+(180, 6, NULL, '4', 'tidak', 8, 9),
+(181, 7, NULL, 'Tingkat yang Sama', 'tidak', 8, 9),
+(182, 8, NULL, 'Ada', 'tidak', 8, 9),
+(183, 8, NULL, 'Menyesuaikan dengan perkembangan bahasa pemrograman baru', 'ya', 8, 9),
+(184, 9, NULL, '8 semester', 'tidak', 8, 9),
+(185, 10, NULL, '3 bulan', 'tidak', 8, 9),
+(186, 11, NULL, 'Ya', 'tidak', 8, 9),
+(187, 11, NULL, 'unj', 'ya', 8, 9),
+(188, 12, 1, 'Cukup Besar ', 'tidak', 8, 9),
+(189, 12, 2, 'Besar ', 'tidak', 8, 9),
+(190, 12, 3, 'Sangat Besar', 'tidak', 8, 9),
+(191, 12, 4, 'Sangat Besar', 'tidak', 8, 9),
+(192, 12, 5, 'Besar ', 'tidak', 8, 9),
+(193, 12, 6, 'Sangat Besar', 'tidak', 8, 9),
+(194, 12, 7, 'Cukup Besar ', 'tidak', 8, 9),
+(195, 16, NULL, 'Belum Ada', 'tidak', 8, 9),
+(196, 17, NULL, 'dasar dasar pemrograman ', 'tidak', 8, 9),
+(197, 20, 8, '5', 'tidak', 8, 9),
+(198, 20, 9, '3', 'tidak', 8, 9),
+(199, 20, 10, '3', 'tidak', 8, 9),
+(200, 20, 11, '4', 'tidak', 8, 9),
+(201, 20, 12, '4', 'tidak', 8, 9),
+(202, 20, 13, '5', 'tidak', 8, 9),
+(203, 20, 14, '5', 'tidak', 8, 9),
+(204, 20, 15, '4', 'tidak', 8, 9),
+(205, 20, 16, '4', 'tidak', 8, 9),
+(206, 20, 17, '3', 'tidak', 8, 9),
+(207, 20, 18, '5', 'tidak', 8, 9),
+(208, 20, 19, '4', 'tidak', 8, 9),
+(209, 20, 20, '5', 'tidak', 8, 9),
+(210, 20, 21, '3', 'tidak', 8, 9),
+(211, 20, 22, '5', 'tidak', 8, 9),
+(212, 20, 23, '3', 'tidak', 8, 9),
+(213, 20, 24, '4', 'tidak', 8, 9),
+(214, 20, 25, '4', 'tidak', 8, 9),
+(215, 20, 26, '4', 'tidak', 8, 9),
+(216, 20, 27, '4', 'tidak', 8, 9),
+(217, 20, 28, '4', 'tidak', 8, 9),
+(218, 20, 29, '4', 'tidak', 8, 9),
+(219, 20, 30, '3', 'tidak', 8, 9),
+(220, 20, 31, '5', 'tidak', 8, 9),
+(221, 20, 32, '4', 'tidak', 8, 9),
+(222, 20, 33, '4', 'tidak', 8, 9),
+(223, 20, 34, '4', 'tidak', 8, 9),
+(224, 20, 35, '3', 'tidak', 8, 9),
+(225, 20, 36, '4', 'tidak', 8, 9),
+(226, 26, NULL, 'Diadakan workshop\" yg sesuai dengan perkembangan di dunia pekerjaan', 'tidak', 8, 9),
+(227, 1, NULL, '5 bulan', 'tidak', 29, 10),
+(228, 2, NULL, 'Ya', 'tidak', 29, 10),
+(229, 3, NULL, 'Mencari lewat internet/iklan online/milis', 'tidak', 29, 10),
+(230, 4, NULL, '20', 'tidak', 29, 10),
+(231, 5, NULL, '10', 'tidak', 29, 10),
+(232, 6, NULL, '10', 'tidak', 29, 10),
+(233, 7, NULL, 'Tingkat yang Sama', 'tidak', 29, 10),
+(234, 8, NULL, 'Tidak Ada', 'tidak', 29, 10),
+(235, 9, NULL, '8', 'tidak', 29, 10),
+(236, 10, NULL, '6 bulan', 'tidak', 29, 10),
+(237, 11, NULL, 'Tidak', 'tidak', 29, 10),
+(238, 12, 1, 'Besar ', 'tidak', 29, 10),
+(239, 12, 2, 'Cukup Besar ', 'tidak', 29, 10),
+(240, 12, 3, 'Cukup Besar ', 'tidak', 29, 10),
+(241, 12, 4, 'Kurang', 'tidak', 29, 10),
+(242, 12, 5, 'Cukup Besar ', 'tidak', 29, 10),
+(243, 12, 6, 'Kurang', 'tidak', 29, 10),
+(244, 12, 7, 'Besar ', 'tidak', 29, 10),
+(245, 13, NULL, 'S2', 'tidak', 29, 10),
+(246, 15, NULL, 'Tidak', 'tidak', 29, 10),
+(247, 16, NULL, 'Belum Ada', 'tidak', 29, 10),
+(248, 17, NULL, 'Project Management', 'tidak', 29, 10),
+(249, 18, NULL, 'Tidak Pernah', 'tidak', 29, 10),
+(250, 19, NULL, 'Tidak Ada', 'tidak', 29, 10),
+(251, 26, NULL, 'Lebih ditingkatkan lagi untuk Praktek Lapangan', 'tidak', 29, 10),
+(252, 1, NULL, '1 bulan', 'tidak', 34, 11),
+(253, 2, NULL, 'Tidak', 'tidak', 34, 11),
+(254, 2, NULL, 'Awalnya tawarannya sama, bidang awal mengerjakan website namun semakin lama tidak ada hububgannya', 'ya', 34, 11),
+(255, 3, NULL, 'Memeroleh informasi dari pusat pengembangan karir fakultas/universitas', 'tidak', 34, 11),
+(256, 4, NULL, '10', 'tidak', 34, 11),
+(257, 5, NULL, '10', 'tidak', 34, 11),
+(258, 6, NULL, '10', 'tidak', 34, 11),
+(259, 7, NULL, 'Tingkat yang Sama', 'tidak', 34, 11),
+(260, 8, NULL, 'Tidak Ada', 'tidak', 34, 11),
+(261, 9, NULL, '9 Semester', 'tidak', 34, 11),
+(262, 10, NULL, '6 bulan', 'tidak', 34, 11),
+(263, 11, NULL, 'Ya', 'tidak', 34, 11),
+(264, 12, 1, 'Besar ', 'tidak', 34, 11),
+(265, 12, 2, 'Cukup Besar ', 'tidak', 34, 11),
+(266, 12, 3, 'Kurang', 'tidak', 34, 11),
+(267, 12, 4, 'Kurang', 'tidak', 34, 11),
+(268, 12, 5, 'Kurang', 'tidak', 34, 11),
+(269, 12, 6, 'Kurang', 'tidak', 34, 11),
+(270, 12, 7, 'Besar ', 'tidak', 34, 11),
+(271, 16, NULL, 'Short Course', 'tidak', 34, 11),
+(272, 26, NULL, 'Perbanyak demonstrasi, praktek, dan kerjasama dengan lembaga yang berkaitan dengan IT', 'tidak', 34, 11);
 
 -- --------------------------------------------------------
 
@@ -500,15 +600,7 @@ INSERT INTO `jawaban_pengguna` (`id`, `penggunaID`, `pertanyaanID`, `pertanyaanS
 (13, 2, 27, 41, 'Baik', 7),
 (14, 2, 27, 42, 'Sangat Baik', 7),
 (15, 2, 27, 43, 'Baik', 7),
-(16, 2, 28, NULL, 'perbanyak belajar bahasa inggris. malu lulusan IT tapi inggrisnya jelek', 7),
-(17, 3, 27, 37, 'Baik', 8),
-(18, 3, 27, 38, 'Cukup', 8),
-(19, 3, 27, 39, 'Kurang', 8),
-(20, 3, 27, 40, 'Baik', 8),
-(21, 3, 27, 41, 'Sangat Baik', 8),
-(22, 3, 27, 42, 'Baik', 8),
-(23, 3, 27, 43, 'Kurang', 8),
-(24, 3, 28, NULL, 'testt', 8);
+(16, 2, 28, NULL, 'perbanyak belajar bahasa inggris. malu lulusan IT tapi inggrisnya jelek', 7);
 
 -- --------------------------------------------------------
 
@@ -586,7 +678,9 @@ INSERT INTO `notif_kuesioner` (`id`, `respondenID`, `jenis_kuesioner`, `new`, `t
 (5, 1, 'pengguna', '0', '13-01-2020', 1, 'DT8QCF7B'),
 (6, 25, 'alumni', '0', '13-01-2020', 1, 'SDM2Y635'),
 (7, 2, 'pengguna', '0', '13-01-2020', 1, '5XNXDMBN'),
-(8, 3, 'pengguna', '0', '13-01-2020', 1, '89V35TJ8');
+(9, 8, 'alumni', '0', '13-01-2020', 1, 'ZCRCGRK5'),
+(10, 29, 'alumni', '0', '13-01-2020', 1, 'TSJVZ8SV'),
+(11, 34, 'alumni', '0', '13-01-2020', 1, 'VX9BH997');
 
 -- --------------------------------------------------------
 
@@ -621,7 +715,7 @@ INSERT INTO `pekerjaan` (`id`, `posisi`, `gaji`, `periode_kerja`, `profil`, `id_
 (6, 'Java Pega Programmer', '', '', '', 5, NULL, 6, 'yes', NULL, '0'),
 (7, 'Web Developer', '5000000', '', '', 6, NULL, 7, 'yes', NULL, '0'),
 (8, 'IT Developer', '', '', '', 7, NULL, 8, 'yes', NULL, '0'),
-(9, 'Front End Developer', '4500000', '', '', 8, NULL, 5, 'yes', NULL, '0'),
+(9, 'Frontend Developer', '7500000', 'Agustus 2017-November 2019', 'Programmer', 8, NULL, 5, 'yes', 'sudah', '0'),
 (10, 'IT Bisnis', '6200000', '', '', 9, NULL, 9, 'yes', NULL, '0'),
 (11, 'Mobile Developer', '9000000', 'Oktober 2019-Tidak ada batasan waktu', 'Programmer', 10, 1, 10, 'yes', 'sudah', '1'),
 (12, 'Penunjang Juru Ukur', '5000000', '22 April 2019-Sekarang', 'Lainnya', 36, NULL, 11, 'yes', 'sudah', '0'),
@@ -631,7 +725,10 @@ INSERT INTO `pekerjaan` (`id`, `posisi`, `gaji`, `periode_kerja`, `profil`, `id_
 (16, 'Front End Developer', '4000000', 'April, 2018-Maret, 2019', 'Programmer', 37, NULL, 15, 'yes', 'sudah', '0'),
 (17, 'Software Developer Engineer', '9500000', 'Agustus 2019-Sekarang', 'Programmer', 4, NULL, 16, 'no', 'sudah', '0'),
 (18, 'Staff Web Developer', '7000000', 'Agustus 2018-Sekarang', 'Programmer', 25, NULL, 17, 'yes', 'sudah', '0'),
-(19, 'Analis Sistem Informasi', '5800000', '01 Maret 2019-saat ini', 'Lainnya', 21, NULL, 18, 'yes', 'sudah', '0');
+(19, 'Analis Sistem Informasi', '5800000', '01 Maret 2019-saat ini', 'Lainnya', 21, NULL, 18, 'yes', 'sudah', '0'),
+(20, 'Frontend Developer', '9500000', 'November 2019-Sekarang', 'Programmer', 8, NULL, 21, 'no', 'sudah', '0'),
+(21, 'Technical Writer', '5000000', '2019-sekarang', 'Konsultan', 29, 3, 22, 'yes', 'sudah', '1'),
+(22, 'KKI', '4267349', '2 Mei 2019-Sekarang', 'Pendidik', 34, 4, 23, 'yes', 'sudah', '1');
 
 -- --------------------------------------------------------
 
@@ -649,7 +746,7 @@ CREATE TABLE `pengguna` (
   `divisi` varchar(255) DEFAULT NULL,
   `prodiID` int(11) NOT NULL,
   `isDelete` enum('yes','no') DEFAULT 'no',
-  `tandai` varchar(50) NOT NULL,
+  `tandai` enum('checked') DEFAULT NULL,
   `seen` enum('0','1') NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -658,8 +755,10 @@ CREATE TABLE `pengguna` (
 --
 
 INSERT INTO `pengguna` (`id`, `penggunaID`, `pengguna_nama`, `pengguna_email`, `pengguna_telepon`, `id_instansi`, `divisi`, `prodiID`, `isDelete`, `tandai`, `seen`) VALUES
-(1, 'pkfTpPjZdKkBZTHRHnmFy73xvlg8fT-dmYwx', 'Abdullah Izzudiin Alqassam', 'abdullahizzuddiin@gmail.com', '+6287878458371', 10, 'Engineering', 1, 'no', '', '1'),
-(2, 'Mb8lBHsTrCtC2DFfpBcVpKHysoCQoF63p-vm', 'Wendy', 'wendy@difinite.com', NULL, 14, 'Developer', 1, 'no', '', '1');
+(1, 'pkfTpPjZdKkBZTHRHnmFy73xvlg8fT-dmYwx', 'Abdullah Izzudiin Alqassam', 'abdullahizzuddiin@gmail.com', '+6287878458371', 10, 'Engineering', 1, 'no', 'checked', '1'),
+(2, 'Mb8lBHsTrCtC2DFfpBcVpKHysoCQoF63p-vm', 'Wendy', 'wendy@difinite.com', NULL, 14, 'Developer', 1, 'no', NULL, '1'),
+(3, 'ZSJmdZw4zypQiz8dobo5Xvs82fgV9t9zqnnq', 'Satri Nugraha', 'satri.nugraha@gmail.com', '081213893731', 22, 'Solution Development Government', 1, 'no', NULL, '1'),
+(4, 'xehZ4z8fN7Ti-8iCDFXcyZekjfdFor6n5YmV', 'Ubaidilah', '', '', 23, 'Pendidik', 1, 'no', NULL, '1');
 
 -- --------------------------------------------------------
 
@@ -962,7 +1061,7 @@ INSERT INTO `user` (`id`, `userID`, `username`, `password`, `role`, `prodiID`, `
 (10, 'ALU3145136223', '3145136223', '3145136223', 'alumni', 1, 'aktif'),
 (11, 'ALU3145136197', '3145136197', '3145136197', 'alumni', 1, 'aktif'),
 (12, 'ALU3145136212', '3145136212', '3145136212', 'alumni', 1, 'aktif'),
-(13, 'ALU3145136196', '3145136196', '3145136196', 'alumni', 1, 'aktif'),
+(13, 'ALU3145136196', '3145136196', 'silverlake10e', 'alumni', 1, 'aktif'),
 (14, 'ALU3145136193', '3145136193', '3145136193', 'alumni', 1, 'aktif'),
 (15, 'ALU3145153280', '3145153280', '3145153280', 'alumni', 1, 'aktif'),
 (16, 'ALU3145141983', '3145141983', '3145141983', 'alumni', 1, 'aktif'),
@@ -1186,13 +1285,13 @@ ALTER TABLE `fakultas`
 -- AUTO_INCREMENT for table `instansi`
 --
 ALTER TABLE `instansi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `jawaban_alumni`
 --
 ALTER TABLE `jawaban_alumni`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=176;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=273;
 
 --
 -- AUTO_INCREMENT for table `jawaban_pengguna`
@@ -1216,19 +1315,19 @@ ALTER TABLE `kuesioner`
 -- AUTO_INCREMENT for table `notif_kuesioner`
 --
 ALTER TABLE `notif_kuesioner`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `pekerjaan`
 --
 ALTER TABLE `pekerjaan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `pengguna`
 --
 ALTER TABLE `pengguna`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `pertanyaan`
