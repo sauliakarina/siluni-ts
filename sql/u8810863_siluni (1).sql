@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 16, 2020 at 07:31 PM
+-- Generation Time: Jan 20, 2020 at 08:08 PM
 -- Server version: 10.2.30-MariaDB
 -- PHP Version: 7.2.7
 
@@ -64,8 +64,8 @@ INSERT INTO `alumni` (`id`, `userID`, `nim`, `nama`, `jenis_kelamin`, `tempat_la
 (2, 'ALU3145136218', '3145136218', 'Gregorius Andito Herjuno', 'Laki-laki', 'Jakarta', '1994-11-20', 'Cluster Adena blok SA 2 No. 7 Graha Raya, Tangerang Selatan, Banten\r\n', '', '2013', 'Februari', '2017', '3.71', '550', '', 'gregorius.andito@gmail.com', '', ' +6287881123212', '', 'yes', 'yes', 'yes', 'aktif', 1),
 (3, 'ALU3145136208', '3145136208', 'Alitinia Prastiantari', 'Perempuan', 'Jakarta', '1994-09-17', '\r\n', '', '2013', 'Februari', '2017', '3.83', '540', '', '', '', '', '', 'yes', 'yes', 'yes', 'aktif', 1),
 (4, 'ALU3145136211', '3145136211', 'Tiara Amelia', 'Perempuan', 'Surabaya', '1995-08-21', 'Jl. Kayumanis VI GG. Kapuk I No.46 RT:005 RW:005, Kelurahan Kayumanis, Kecamatan Matraman, Jakarta Timur 13120', '', '2013', 'Agustus', '2017', '3.77', '403', '', 'tiara21.amelia@gmail.com', '', '081282003420', '', 'yes', 'yes', 'yes', 'aktif', 1),
-(5, 'ALU3145136223', '3145136223', 'Agustinus Purimbaga', 'Laki-laki', '', '', '', '', '2013', NULL, '2017', '3.59', NULL, '', '', '', '081281011459', '', 'yes', 'yes', 'yes', 'aktif', 1),
-(6, 'ALU3145136197', '3145136197', 'Muhammad Fachrizal', 'Laki-laki', '', '', '', '', '2013', NULL, '2017', '3.41', NULL, '', '', '', '085711402970', '', 'yes', 'yes', 'yes', 'aktif', 1),
+(5, 'ALU3145136223', '3145136223', 'Agustinus Purimbaga Satria Baja Hitam', 'Laki-laki', '', '', '', '', '2013', NULL, '2017', '3.59', NULL, '', '', '', '081281011459', '', 'yes', 'yes', 'yes', 'aktif', 1),
+(6, 'ALU3145136197', '3145136197', 'Muhammad Fachrizal Antapani', 'Laki-laki', '', '', '', '', '2013', NULL, '2017', '3.41', NULL, '', '', '', '085711402970', '', 'yes', 'yes', 'yes', 'aktif', 1),
 (7, 'ALU3145136212', '3145136212', 'Anantassa Fitri Andini', 'Perempuan', 'Jakarta', '1995-03-10', 'Jl. Tanjung Duren Timur No V Jakarta Barat', '', '2013', 'Agustus', '2017', '3.80', '557', '', 'anantassafitri@gmail.com', '', '081319508117', '', 'yes', 'yes', 'yes', 'aktif', 1),
 (8, 'ALU3145136196', '3145136196', 'Mikael Yurubeli', 'Laki-laki', 'Jakarta', '1995-05-07', 'Jln.Hikmah No.64 rt 01/005, kel. Cilangkap', '', '2013', 'Agustus', '2017', '3.54', '530', '', 'mikaelyuru@gmail.com', '', '087875076738', '', 'yes', 'yes', 'yes', 'aktif', 1),
 (9, 'ALU3145136193', '3145136193', 'Hana Maulinda', 'Perempuan', 'Jakarta', '1995-08-07', 'Jl. Lingkar Sari No.37A RT.006 RW.009 Kel.Kalisari Kec. Pasar Rebo, Jakarta Timur, 13790', '', '2013', 'September', '2017', '3.56', '527', '', 'hanamaulinda@gmail.com', '', '081318400299', '', 'yes', 'yes', 'yes', 'aktif', 1),
@@ -81,7 +81,7 @@ INSERT INTO `alumni` (`id`, `userID`, `nim`, `nama`, `jenis_kelamin`, `tempat_la
 (21, 'ALU3145136204', '3145136204', 'Dinda Kharisma', 'Perempuan', 'Jakarta', '1995-01-16', 'Jl. Mangga Besar XIII RT 003/02 Nomor 3A\r\nJakarta 10730', '', '2013', 'Maret', '2018', '3.48', '550', '', 'dindakhrsm@gmail.com', '', '089601676825', '', 'yes', 'yes', 'yes', 'aktif', 1),
 (22, 'ALU3145136224', '3145136224', 'Annisa Nursya', 'Perempuan', '', '', '', '', '2013', NULL, '2018', '3.51', NULL, '', '', '', NULL, '', 'yes', 'yes', 'yes', 'aktif', 1),
 (23, 'ALU3145136203', '3145136203', 'Ghina Rosika Amalina', 'Perempuan', '', '', '', '', '2013', NULL, '2018', '3.34', NULL, '', '', '', NULL, '', 'yes', 'yes', 'yes', 'aktif', 1),
-(24, 'ALU3145136205', '3145136205', 'Annisa Mutiara Ditri', 'Perempuan', 'Jakarta', '1996-02-12', 'Jl. Hirup Raya RT 002/10 Kel. Jatimulya\r\nKec. Tambun Selatan, Bekasi 17510\r\n', '', '2013', 'Maret', '2018', '3.34', '540', '', 'annisamutiaraditri@gmail.com', '', '081284978442', '', 'yes', 'yes', 'yes', 'aktif', 1),
+(24, 'ALU3145136205', '3145136205', 'DJ Annisa Mutiara Ditri', 'Perempuan', 'Jakarta', '1996-02-12', 'Jl. Hirup Raya RT 002 RW 010 Kel. Jatimulya, Kec. Tambun Selatan, Kab. Bekasi, 17510\r\n', '', '2013', 'Maret', '2018', '3.34', '540', '', 'annisamutiaraditri@gmail.com', '', '081284978442', '', 'yes', 'yes', 'yes', 'aktif', 1),
 (25, 'ALU3145136216', '3145136216', 'Rahmi Putri', 'Perempuan', 'Bukittinggi', '1994-06-13', '', '', '2013', 'Maret', '2018', '3.73', '', '', 'rahmiputri1306@gmail.com', '', '085921460527', '', 'yes', 'yes', 'yes', 'aktif', 1),
 (26, 'ALU3145136221', '3145136221', 'Khariza Nabila Aulia', 'Perempuan', 'Jakarta', '2014-12-29', 'Jl. H. Enjong RT.008/001 No. 15 Kelurahan Kalisari Kecamatan Pasar Rebo, Jakarta Timur 13790', '', '2013', 'Maret', '2018', '3.54', '517', '', 'khariza.nabilla@gmail.com', '', '085888697520', '', 'yes', 'yes', 'yes', 'aktif', 1),
 (27, 'ALU3145136215', '3145136215', 'Andrean Oktavianus Halim Saputra', 'Laki-laki', 'Kebumen', '1994-10-26', 'Desa Sidomulyo RT 002/ RW 003, Kecamatan Karanganyar, Kabupaten Kebumen, Jawa Tengah 54364', '', '2013', 'Februari', '2018', '3.54', '513', '', 'siskom.andrean@gmail.com', '', '081329929100', '', 'yes', 'yes', 'yes', 'aktif', 1),
@@ -207,7 +207,10 @@ CREATE TABLE `dosen` (
 --
 
 INSERT INTO `dosen` (`id`, `userID`, `nama`, `nidn`, `jenis_kelamin`, `email`, `no_telepon`, `avatar`, `status`, `prodiID`, `jabatan`) VALUES
-(1, 'DOS0011026006', 'Fariani Hermin Indiyah', '0011026006', 'Perempuan', '', '', '', 'aktif', 1, 'koorprodi');
+(1, 'DOS0011026006', 'Fariani Hermin Indiyah', '0011026006', 'Perempuan', '', '', '', 'aktif', 1, 'koorprodi'),
+(4, 'DOS0021117501', 'Ria Arafiyah', '0021117501', 'Perempuan', '', '', '', 'aktif', 1, ''),
+(5, 'DOS15067705', 'Med Irzal', '15067705', 'Laki-laki', '', '', '', 'aktif', 1, ''),
+(6, 'DOS25097506', 'Ratna Widyati', '25097506', 'Perempuan', '', '', '', 'aktif', 1, '');
 
 -- --------------------------------------------------------
 
@@ -272,7 +275,9 @@ INSERT INTO `instansi` (`id`, `nama_instansi`, `jenis_instansi`, `alamat`, `prod
 (25, 'PT. Telkom Indonesia', 'Internasional', ' Jl. Medan Merdeka Sel. No.11, RW.2, Gambir, Kecamatan Gambir, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10110', 1),
 (26, 'PT Legal Tekno Digital', 'Lokal', 'Jl. Raden Saleh Raya no. 46A, Cikini,. Menteng, Jakarta, 10330 Indonesia', 1),
 (27, 'Universitas Negeri Jakarta', 'Nasional', 'UNJ', 1),
-(28, 'PT Bank CIMB Niaga Tbk', 'Nasional', '', 1);
+(28, 'PT Bank CIMB Niaga Tbk', 'Nasional', '', 1),
+(29, 'PT Testing', 'Lokal', '', 1),
+(30, 'Kementerian Agraria dan Tata Ruang/Badan Pertanahan Nasional', 'Nasional', 'Kantor Badan Pertanahan Nasional (BPN) Kota Administrasi Jakarta Timur\r\nJl. Dr. Sumarno, Pulo Gebang, Cakung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13950', 1);
 
 -- --------------------------------------------------------
 
@@ -849,7 +854,89 @@ INSERT INTO `jawaban_alumni` (`id`, `pertanyaanID`, `pertanyaanSkalaID`, `jawaba
 (552, 20, 34, '5', 'tidak', 2, 25),
 (553, 20, 35, '5', 'tidak', 2, 25),
 (554, 20, 36, '5', 'tidak', 2, 25),
-(555, 26, NULL, 'Membuka banyak mata kuliah pilihan dengan topik yg sesuai dengan keterampilan yg dibutuhkan industri saat ini', 'tidak', 2, 25);
+(555, 26, NULL, 'Membuka banyak mata kuliah pilihan dengan topik yg sesuai dengan keterampilan yg dibutuhkan industri saat ini', 'tidak', 2, 25),
+(556, 1, NULL, '2 bulan', 'tidak', 24, 28),
+(557, 2, NULL, 'Tidak', 'tidak', 24, 28),
+(558, 2, NULL, 'Pekerjaan saya hanya menggunakan basic komputer saja dan hanya menggunakan web yg telah tersedia', 'ya', 24, 28),
+(559, 3, NULL, 'Melalui relasi (misalnya dosen, orang tua, saudara, teman, dll.)', 'tidak', 24, 28),
+(560, 4, NULL, '+- 10 instansi/perusahaan', 'tidak', 24, 28),
+(561, 5, NULL, '< 4', 'tidak', 24, 28),
+(562, 6, NULL, '2', 'tidak', 24, 28),
+(563, 7, NULL, 'Tingkat yang Sama', 'tidak', 24, 28),
+(564, 8, NULL, 'Tidak Ada', 'tidak', 24, 28),
+(565, 8, NULL, 'Awalnya ada kendala karena memang bukan bidang saya, tetapi seiring berjalannya waktu saya bisa mengatasinya dan dapat menyesuaikan diri', 'ya', 24, 28),
+(566, 9, NULL, '9 Semester', 'tidak', 24, 28),
+(567, 10, NULL, '4 bulan', 'tidak', 24, 28),
+(568, 11, NULL, 'Tidak', 'tidak', 24, 28),
+(569, 12, 1, 'Sangat Besar', 'tidak', 24, 28),
+(570, 12, 2, 'Kurang', 'tidak', 24, 28),
+(571, 12, 3, 'Besar ', 'tidak', 24, 28),
+(572, 12, 4, 'Besar ', 'tidak', 24, 28),
+(573, 12, 5, 'Sangat Besar', 'tidak', 24, 28),
+(574, 12, 6, 'Besar ', 'tidak', 24, 28),
+(575, 12, 7, 'Sangat Besar', 'tidak', 24, 28),
+(576, 13, NULL, 'Tidak Melanjutkan', 'tidak', 24, 28),
+(577, 14, NULL, '-', 'tidak', 24, 28),
+(578, 16, NULL, 'Belum Ada', 'tidak', 24, 28),
+(579, 17, NULL, 'Saya perlu sedikit memahami tentang bidang Hukum dalam lingkup pekerjaan yg sekarang', 'tidak', 24, 28),
+(580, 18, NULL, 'Belum pernah', 'tidak', 24, 28),
+(581, 19, NULL, 'Tidak ada', 'tidak', 24, 28),
+(582, 26, NULL, 'Besar harapan saya Program Studi Ilmu Komputer dapat terus berkembang terutama dalam bidang akademik. Semoga SDM pengajar (dosen) dapat memadai dalam perkuliahan, segera ada dosen baru yang tentu kompeten dalam bidangnya.', 'tidak', 24, 28),
+(583, 1, NULL, '1 bulan', 'tidak', 36, 29),
+(584, 2, NULL, 'Ya', 'tidak', 36, 29),
+(585, 2, NULL, 'Menggunakan sistem dan aplikasi ', 'ya', 36, 29),
+(586, 3, NULL, 'Melalui iklan di koran/majalah, brosur ', 'tidak', 36, 29),
+(587, 3, NULL, 'Mencari lewat internet/iklan online/milis', 'tidak', 36, 29),
+(588, 4, NULL, '4', 'tidak', 36, 29),
+(589, 5, NULL, '4', 'tidak', 36, 29),
+(590, 6, NULL, '4', 'tidak', 36, 29),
+(591, 7, NULL, 'Tingkat yang Sama', 'tidak', 36, 29),
+(592, 8, NULL, 'Tidak Ada', 'tidak', 36, 29),
+(593, 9, NULL, '9 Semester', 'tidak', 36, 29),
+(594, 10, NULL, '8 bulan', 'tidak', 36, 29),
+(595, 11, NULL, 'Tidak', 'tidak', 36, 29),
+(596, 12, 1, 'Sangat Besar', 'tidak', 36, 29),
+(597, 12, 2, 'Besar ', 'tidak', 36, 29),
+(598, 12, 3, 'Besar ', 'tidak', 36, 29),
+(599, 12, 4, 'Besar ', 'tidak', 36, 29),
+(600, 12, 5, 'Besar ', 'tidak', 36, 29),
+(601, 12, 6, 'Besar ', 'tidak', 36, 29),
+(602, 12, 7, 'Besar ', 'tidak', 36, 29),
+(603, 13, NULL, 'Tidak Melanjutkan', 'tidak', 36, 29),
+(604, 16, NULL, 'Belum Ada', 'tidak', 36, 29),
+(605, 17, NULL, 'Database', 'tidak', 36, 29),
+(606, 18, NULL, 'Tidak pernah', 'tidak', 36, 29),
+(607, 19, NULL, 'Tidak ada', 'tidak', 36, 29),
+(608, 20, 8, '3', 'tidak', 36, 29),
+(609, 20, 9, '4', 'tidak', 36, 29),
+(610, 20, 10, '4', 'tidak', 36, 29),
+(611, 20, 11, '3', 'tidak', 36, 29),
+(612, 20, 12, '4', 'tidak', 36, 29),
+(613, 20, 13, '4', 'tidak', 36, 29),
+(614, 20, 14, '4', 'tidak', 36, 29),
+(615, 20, 15, '3', 'tidak', 36, 29),
+(616, 20, 16, '3', 'tidak', 36, 29),
+(617, 20, 17, '5', 'tidak', 36, 29),
+(618, 20, 18, '3', 'tidak', 36, 29),
+(619, 20, 19, '3', 'tidak', 36, 29),
+(620, 20, 20, '3', 'tidak', 36, 29),
+(621, 20, 21, '4', 'tidak', 36, 29),
+(622, 20, 22, '4', 'tidak', 36, 29),
+(623, 20, 23, '4', 'tidak', 36, 29),
+(624, 20, 24, '4', 'tidak', 36, 29),
+(625, 20, 25, '4', 'tidak', 36, 29),
+(626, 20, 26, '4', 'tidak', 36, 29),
+(627, 20, 27, '4', 'tidak', 36, 29),
+(628, 20, 28, '4', 'tidak', 36, 29),
+(629, 20, 29, '4', 'tidak', 36, 29),
+(630, 20, 30, '4', 'tidak', 36, 29),
+(631, 20, 31, '4', 'tidak', 36, 29),
+(632, 20, 32, '4', 'tidak', 36, 29),
+(633, 20, 33, '4', 'tidak', 36, 29),
+(634, 20, 34, '4', 'tidak', 36, 29),
+(635, 20, 35, '3', 'tidak', 36, 29),
+(636, 20, 36, '3', 'tidak', 36, 29),
+(637, 26, NULL, 'Dosennya ditambah agar lebih banyak waktu mengajar', 'tidak', 36, 29);
 
 -- --------------------------------------------------------
 
@@ -894,7 +981,7 @@ INSERT INTO `jawaban_pengguna` (`id`, `penggunaID`, `pertanyaanID`, `pertanyaanS
 (37, 2, 27, 41, 'Baik', 17),
 (38, 2, 27, 42, 'Sangat Baik', 17),
 (39, 2, 27, 43, 'Sangat Baik', 17),
-(40, 2, 28, NULL, 'ok', 17),
+(40, 2, 28, NULL, 'perbanyak belajar bahasa inggris. malu lulusan IT tapi inggrisnya jelek', 17),
 (41, 3, 27, 37, 'Sangat Baik', 20),
 (42, 3, 27, 38, 'Sangat Baik', 20),
 (43, 3, 27, 39, 'Baik', 20),
@@ -926,7 +1013,14 @@ INSERT INTO `jawaban_pengguna` (`id`, `penggunaID`, `pertanyaanID`, `pertanyaanS
 (69, 13, 27, 41, 'Baik', 26),
 (70, 13, 27, 42, 'Baik', 26),
 (71, 13, 27, 43, 'Sangat Baik', 26),
-(72, 13, 28, NULL, 'Akan lebih baik jika lulusan UNJ sudah menguasai programing language yang sedang hype atau umum dipakai di dunia pekerjaan saat ini, contoh : Node.js, React Native/Js, Vue Js, Go lang, dsb.', 26);
+(72, 13, 28, NULL, 'Akan lebih baik jika lulusan UNJ sudah menguasai programing language yang sedang hype atau umum dipakai di dunia pekerjaan saat ini, contoh : Node.js, React Native/Js, Vue Js, Go lang, dsb.', 26),
+(73, 15, 27, 37, 'Baik', 27),
+(74, 15, 27, 38, 'Baik', 27),
+(75, 15, 27, 39, 'Cukup', 27),
+(76, 15, 27, 40, 'Baik', 27),
+(77, 15, 27, 41, 'Cukup', 27),
+(78, 15, 27, 42, 'Baik', 27),
+(79, 15, 27, 43, 'Baik', 27);
 
 -- --------------------------------------------------------
 
@@ -1018,7 +1112,10 @@ INSERT INTO `notif_kuesioner` (`id`, `respondenID`, `jenis_kuesioner`, `new`, `t
 (23, 28, 'alumni', '0', '15-01-2020', 1, 'ZGWQ3FN5'),
 (24, 10, 'pengguna', '0', '15-01-2020', 1, 'KCXRGFX3'),
 (25, 2, 'alumni', '0', '15-01-2020', 1, 'M5G3K5PX'),
-(26, 13, 'pengguna', '0', '16-01-2020', 1, 'C94MTFWM');
+(26, 13, 'pengguna', '0', '16-01-2020', 1, 'C94MTFWM'),
+(27, 15, 'pengguna', '0', '17-01-2020', 1, 'TKCQF86N'),
+(28, 24, 'alumni', '0', '18-01-2020', 1, '7W3FZQX5'),
+(29, 36, 'alumni', '0', '18-01-2020', 1, 'MBYC7Z7W');
 
 -- --------------------------------------------------------
 
@@ -1053,7 +1150,7 @@ INSERT INTO `pekerjaan` (`id`, `posisi`, `gaji`, `periode_kerja`, `profil`, `id_
 (6, 'Java Pega Programmer', '', '', '', 5, NULL, 6, 'yes', NULL, '0'),
 (7, 'Web Developer', '5000000', '', '', 6, NULL, 7, 'yes', NULL, '0'),
 (8, 'IT Developer', '', '', '', 7, NULL, 8, 'yes', NULL, '0'),
-(9, 'Frontend Developer', '7500000', 'Agustus 2017-November 2019', 'Programmer', 8, NULL, 5, 'yes', 'sudah', '0'),
+(9, 'Frontend Developer', '4500000', 'Agustus 2017-November 2019', 'Programmer', 8, NULL, 5, 'yes', 'sudah', '0'),
 (10, 'IT Bisnis', '6200000', '', '', 9, NULL, 9, 'yes', NULL, '0'),
 (11, 'Mobile Developer', '9000000', 'Oktober 2019-Tidak ada batasan waktu', 'Programmer', 10, 1, 10, 'yes', 'sudah', '1'),
 (12, 'Penunjang Juru Ukur', '5000000', '22 April 2019-Sekarang', 'Lainnya', 36, NULL, 11, 'yes', 'sudah', '0'),
@@ -1061,10 +1158,10 @@ INSERT INTO `pekerjaan` (`id`, `posisi`, `gaji`, `periode_kerja`, `profil`, `id_
 (14, 'Software Developer', '6000000', '-', 'Programmer', 13, NULL, 13, 'no', 'sudah', '0'),
 (15, 'Fullstack Developer', '6000000', '-', 'Programmer', 15, 2, 14, 'yes', 'sudah', '1'),
 (16, 'Front End Developer', '4000000', 'April, 2018-Maret, 2019', 'Programmer', 37, NULL, 15, 'yes', 'sudah', '0'),
-(17, 'Software Developer Engineer', '9500000', 'Agustus 2019-Sekarang', 'Programmer', 4, NULL, 16, 'no', 'sudah', '0'),
-(18, 'Staff Web Developer', '7000000', 'Agustus 2018-Sekarang', 'Programmer', 25, NULL, 17, 'yes', 'sudah', '0'),
+(17, 'Software Developer Engineer', '9500000', 'Agustus 2019-Sekarang', 'Programmer', 4, 15, 16, 'no', 'sudah', '1'),
+(18, 'Staff Web Developer', '5000000', 'Agustus 2018-Sekarang', 'Programmer', 25, NULL, 17, 'yes', 'sudah', '0'),
 (19, 'Analis Sistem Informasi', '5800000', '01 Maret 2019-saat ini', 'Lainnya', 21, NULL, 18, 'yes', 'sudah', '0'),
-(20, 'Frontend Developer', '9500000', 'November 2019-Sekarang', 'Programmer', 8, 13, 21, 'no', 'sudah', '1'),
+(20, 'Frontend Developer', '9000000', 'November 2019-Sekarang', 'Programmer', 8, 13, 21, 'no', 'sudah', '1'),
 (21, 'Technical Writer', '5000000', '2019-sekarang', 'Konsultan', 29, 3, 22, 'yes', 'sudah', '1'),
 (22, 'KKI', '4267349', '2 Mei 2019-Sekarang', 'Pendidik', 34, 4, 23, 'yes', 'sudah', '1'),
 (24, 'Sofware Engineer', '6000000', '2017-2018', 'Programmer', 1, 6, 3, 'no', 'sudah', '1'),
@@ -1072,7 +1169,9 @@ INSERT INTO `pekerjaan` (`id`, `posisi`, `gaji`, `periode_kerja`, `profil`, `id_
 (27, 'OFF 3 OTT Platform Operation & Maintenance ', '0', 'Mei 2019-', 'Lainnya', 7, 8, 25, 'no', 'sudah', '1'),
 (28, 'Software Engineer', '5500000', 'November 2019-Saat ini', 'Programmer', 14, 9, 26, 'yes', 'sudah', '1'),
 (29, 'Pranata Komputer', '4500000', '2019-2020', 'Programmer', 28, 10, 27, 'yes', 'sudah', '1'),
-(30, 'Application Development Specialist ', '10500000', '5 November 2018-', 'Konsultan', 2, 12, 28, 'no', 'sudah', '1');
+(30, 'Application Development Specialist ', '10500000', '5 November 2018-', 'Konsultan', 2, 12, 28, 'no', 'sudah', '1'),
+(31, 'Test', '4000000', '2017-Sekarang', 'Programmer', 40, 14, 24, 'yes', 'sudah', '1'),
+(32, 'Pegawai Pemerintah Non Pegawai Negeri', '4000000', 'Mei 2018-Sekarang', 'Lainnya', 24, 16, 30, 'yes', 'sudah', '1');
 
 -- --------------------------------------------------------
 
@@ -1110,7 +1209,10 @@ INSERT INTO `pengguna` (`id`, `penggunaID`, `pengguna_nama`, `pengguna_email`, `
 (10, 'gWZMNPpwRkDC6oxB-qHHnBxkbgwzmJ5o55RF', 'Sutrisno', '', '', 27, 'Kepala Bagian Tata Usaha', 1, 'no', 'checked', '1'),
 (11, 'P9GfQNsYse3cjRXVg2fP4n6zlK9xdP7Vivp8', 'Yosef Yudha Wijaya', 'yudha.wijaya@kompas.com', '', 3, 'Editorial Digital Design', 1, 'no', NULL, '1'),
 (12, 'B7BiQMxHX8b3qqrrZMBY32PDp726KmKgpVgY', 'Jeffry Kurniawan', 'jeffry.kurniawan@cimbniaga.co.id', '', 28, 'Mobile & Internet Banking Development Operations', 1, 'no', NULL, '1'),
-(13, '26xZmkwivGRDBlPgt5SyKw8ksfbshhDoRst2', 'Sindarigo', 'sindarigo@fore.coffee', '0817888160', 21, 'IT', 1, 'no', 'checked', '1');
+(13, '26xZmkwivGRDBlPgt5SyKw8ksfbshhDoRst2', 'Sindarigo', 'sindarigo@fore.coffee', '0817888160', 21, 'IT', 1, 'no', 'checked', '1'),
+(14, '6J3W4zpCmlY8gkxx4cwDkP223mQVCGP8hlTW', 'test pengguna', 'test@mail.com', '0812345667', 24, 'Teknologi Informasi', 1, 'no', NULL, '1'),
+(15, '32kVdhn2Fc9-RVJ2rHpXngjHjGPjzgxjmoqt', 'Dimas Permana ', 'hellodimaspermana@gmail.com', NULL, 16, 'IT', 1, 'no', 'checked', '1'),
+(16, 'GoVNwQgTP5wh8wn8HwCQYvVNJJiJ3nikCFzP', 'Sumarmin, A.Ptnh., S.H.', '-', '+6281385250224', 30, 'Ketua Panitia Ajudikasi', 1, 'no', NULL, '1');
 
 -- --------------------------------------------------------
 
@@ -1407,7 +1509,6 @@ INSERT INTO `user` (`id`, `userID`, `username`, `password`, `role`, `prodiID`, `
 (2, '', 'admin', 'admin', 'admin', 1, 'aktif', 'tidak'),
 (3, 'DOS0011026006', '0011026006', '0011026006', 'dosen', 1, 'aktif', 'ya'),
 (4, '', 'admin_mtk', 'admin_mtk', 'admin', 3, 'aktif', 'ya'),
-(5, 'ALU54321', '54321', '54321', 'alumni', 3, 'aktif', 'ya'),
 (6, 'ALU3145136217', '3145136217', 'k@njing12', 'alumni', 1, 'aktif', 'ya'),
 (7, 'ALU3145136218', '3145136218', '@nditoherjuno', 'alumni', 1, 'aktif', 'tidak'),
 (8, 'ALU3145136208', '3145136208', '3145136208', 'alumni', 1, 'aktif', 'ya'),
@@ -1431,7 +1532,7 @@ INSERT INTO `user` (`id`, `userID`, `username`, `password`, `role`, `prodiID`, `
 (26, 'ALU3145136204', '3145136204', 'angkalima5', 'alumni', 1, 'aktif', 'ya'),
 (27, 'ALU3145136224', '3145136224', '3145136224', 'alumni', 1, 'aktif', 'ya'),
 (28, 'ALU3145136203', '3145136203', '3145136203', 'alumni', 1, 'aktif', 'ya'),
-(29, 'ALU3145136205', '3145136205', '3145136205', 'alumni', 1, 'aktif', 'ya'),
+(29, 'ALU3145136205', '3145136205', 'bedakbayi', 'alumni', 1, 'aktif', 'tidak'),
 (30, 'ALU3145136216', '3145136216', 'rahmiputri13', 'alumni', 1, 'aktif', 'ya'),
 (31, 'ALU3145136221', '3145136221', '3145136221', 'alumni', 1, 'aktif', 'ya'),
 (32, 'ALU3145136215', '3145136215', '3145136215', 'alumni', 1, 'aktif', 'ya'),
@@ -1443,11 +1544,14 @@ INSERT INTO `user` (`id`, `userID`, `username`, `password`, `role`, `prodiID`, `
 (38, 'ALU3145140599', '3145140599', '3145140599', 'alumni', 1, 'aktif', 'ya'),
 (39, 'ALU3145143620', '3145143620', '3145143620', 'alumni', 1, 'aktif', 'ya'),
 (40, 'ALU3145140595', '3145140595', '3145140595', 'alumni', 1, 'aktif', 'ya'),
-(41, 'ALU3145140596', '3145140596', '3145140596', 'alumni', 1, 'aktif', 'ya'),
+(41, 'ALU3145140596', '3145140596', '3145140596', 'alumni', 1, 'aktif', 'tidak'),
 (42, 'ALU3145141976', '3145141976', '3145141976', 'alumni', 1, 'aktif', 'ya'),
 (43, 'ALU3145141984', '3145141984', '3145141984', 'alumni', 1, 'aktif', 'ya'),
 (44, 'ALU3145143623', '3145143623', '3145143623', 'alumni', 1, 'aktif', 'ya'),
-(45, 'ALU54321', '54321', '123', 'alumni', 1, 'aktif', 'tidak');
+(45, 'ALU54321', '54321', '123', 'alumni', 1, 'aktif', 'tidak'),
+(46, 'DOS0021117501', '0021117501', '882059b313bb6a391157f383ded241de', 'dosen', 1, 'aktif', 'ya'),
+(47, 'DOS15067705', '15067705', '931bc25380def2310edee3f087e3de67', 'dosen', 1, 'aktif', 'ya'),
+(48, 'DOS25097506', '25097506', '60246f8110fcb40e45f4bc9ff9663205', 'dosen', 1, 'aktif', 'ya');
 
 --
 -- Indexes for dumped tables
@@ -1627,7 +1731,7 @@ ALTER TABLE `divisi`
 -- AUTO_INCREMENT for table `dosen`
 --
 ALTER TABLE `dosen`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `fakultas`
@@ -1639,19 +1743,19 @@ ALTER TABLE `fakultas`
 -- AUTO_INCREMENT for table `instansi`
 --
 ALTER TABLE `instansi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `jawaban_alumni`
 --
 ALTER TABLE `jawaban_alumni`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=556;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=638;
 
 --
 -- AUTO_INCREMENT for table `jawaban_pengguna`
 --
 ALTER TABLE `jawaban_pengguna`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- AUTO_INCREMENT for table `koorprodi`
@@ -1669,19 +1773,19 @@ ALTER TABLE `kuesioner`
 -- AUTO_INCREMENT for table `notif_kuesioner`
 --
 ALTER TABLE `notif_kuesioner`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `pekerjaan`
 --
 ALTER TABLE `pekerjaan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `pengguna`
 --
 ALTER TABLE `pengguna`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `pertanyaan`
@@ -1717,7 +1821,7 @@ ALTER TABLE `skala_nilai`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- Constraints for dumped tables
