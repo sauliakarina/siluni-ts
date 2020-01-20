@@ -85,3 +85,49 @@
               </div> <!-- row -->
             </div>
           </section>
+
+           <section class="tables" style="margin-top: -80px">   
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="card">
+                    <form action="<?php echo base_url();?>admin/Alumni/exeEditProfil" method="post"> 
+                    <div class="card-header d-flex align-items-center">
+                      <h3 class="h4">Riwayat Pekerjaan Alumni</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th>No</th>
+                              <th>Instansi</th>
+                              <th>Posisi</th>
+                              <th>Pendapatan</th>
+                              <th>Periode Kerja</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                          <?php 
+                            $no = 1;
+                            foreach($pekerjaan as $r){ 
+                            ?>
+                            <tr>
+                              <th scope="row"><?php echo $no++ ?></th>
+                              <td><?php echo $this->m_master->getInstansiByID($r->id_instansi)->nama_instansi ?></td>
+                              <td><?php echo $r->posisi ?></td>
+                              <td><?php echo number_format($r->gaji,0,",",",");  ?></td>
+                              <td><?php echo $r->periode_kerja ?></td>
+                            </tr>
+                          <?php } ?>
+                          </tbody>
+                        </table>
+                      </div>
+                      </div>
+                    </div>
+                    </form>
+                  </div>
+                </div>
+              </div> <!-- row -->
+            </div>
+          </section>

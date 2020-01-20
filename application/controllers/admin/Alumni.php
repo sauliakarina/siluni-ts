@@ -74,13 +74,14 @@ class Alumni extends CI_Controller {
 			'role' => $this->session->userdata('role'),
 			'userID' => $this->session->userdata('userID'),
 			'prodiID' => $this->session->userdata('prodiID'),
-			'profil' => $this->m_alumni->getAlumniByID($id)
+			'profil' => $this->m_alumni->getAlumniByID($id),
+			'pekerjaan' => $this->m_pengguna->getPekerjaanByAlumniID($id)
 		);
 		$this->load->view('element/head');
 		$this->load->view('element/header');
 		$this->load->view('element/navbar', $data);
 		$this->load->view('admin/v_editProfilAlumni', $data);
-		$this->load->view('element/footer');
+		$this->load->view('element/footerVer2');
 	}
 
 	function exeEditProfil()
