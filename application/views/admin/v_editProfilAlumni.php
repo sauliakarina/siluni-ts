@@ -116,7 +116,9 @@
                               <th scope="row"><?php echo $no++ ?></th>
                               <td><?php echo $this->m_master->getInstansiByID($r->id_instansi)->nama_instansi ?></td>
                               <td><?php echo $r->posisi ?></td>
-                              <td><?php echo number_format($r->gaji,0,",",",");  ?></td>
+                              <td><?php if ($r->gaji != Null) {
+                              echo number_format($r->gaji,0,",",","); 
+                              } ?></td>
                               <td><?php echo $r->periode_kerja ?></td>
                             </tr>
                           <?php } ?>

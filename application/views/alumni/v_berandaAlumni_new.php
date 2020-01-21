@@ -43,7 +43,7 @@
           </section>
          
 <!-- Forms Section-->
-          <section class="forms"> 
+          <section class="forms" style="margin-top: -50px"> 
             <div class="container-fluid">
               <div class="row">
                 <!-- Basic Form-->
@@ -168,7 +168,7 @@
           </div>
 
            <div class="line"></div>
-          <div class="form-group row">
+          <div class="form-group row" style="margin-left: 30px">
               <button type="submit" style="float: right;" class="btn btn-primary">Simpan</button>
           </div>
         </form>
