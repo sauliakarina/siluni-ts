@@ -52,6 +52,10 @@
                               <td></td>
                             </tr>
                             <tr>
+                              <th scope="row">Bulan Lulus</th>
+                              <td><input type="text" name="bulan_lulus"  value="<?php echo $profil->bulan_lulus ?>" class="form-control form-control-sm"></td>
+                            </tr>
+                            <tr>
                               <th scope="row">Tahun Lulus</th>
                               <td><input type="text" name="tahun_lulus"  value="<?php echo $profil->tahun_lulus ?>" class="form-control form-control-sm"></td>
                             </tr>

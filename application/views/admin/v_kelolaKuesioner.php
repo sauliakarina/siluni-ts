@@ -28,9 +28,9 @@
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                           <a class="dropdown-item" href="#" data-toggle="modal" data-target="#isianModal">Isian</a>
-                          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#pilihanModal">Pilihan</a>
-                          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#gandaModal">Ganda</a>
-                          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#skalaModal">Skala</a>
+                          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#pilihanModal">Pilihan Ganda</a>
+                          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#gandaModal">Kotak Centang</a>
+                          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#skalaModal">Kisi Pilihan Ganda/Pertanyaan Interval</a>
                         </div>
                       </div>
                        <div class="form-group ml-auto">
@@ -201,7 +201,7 @@
                         <div role="document" class="modal-dialog modal-dialog-centered">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h4 id="exampleModalLabel" class="modal-title">Buat Pertanyaan Jawaban Pilihan</h4>
+                              <h4 id="exampleModalLabel" class="modal-title">Buat Pertanyaan Pilihan Ganda</h4>
                               <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
                             </div>
                             <div class="modal-body">
@@ -250,7 +250,7 @@
                         <div role="document" class="modal-dialog modal-dialog-centered">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h4 id="exampleModalLabel" class="modal-title">Buat Pertanyaan Jawaban Pilihan Ganda</h4>
+                              <h4 id="exampleModalLabel" class="modal-title">Buat Pertanyaan Kotak Centang</h4>
                               <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
                             </div>
                             <div class="modal-body">
@@ -268,7 +268,7 @@
                                 <table class="table table-condensed">
                                   <tbody id="gandaForm">
                                     <tr>
-                                      <td><input type="text" placeholder="Tuliskan jawaban" class="form-control" name="jawaban[0]"></td>
+                                      <td><input type="text" placeholder="Tuliskan pilihan jawaban" class="form-control" name="jawaban[0]"></td>
                                       <td><button class="btn btn-small btn-info" onclick="gandaForm(); return false"><i class="fas fa-plus-circle"></i></button></td>
                                     </tr>
                                   </tbody>
@@ -321,7 +321,7 @@
                         <div role="document" class="modal-dialog modal-dialog-centered">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h4 id="exampleModalLabel" class="modal-title">Buat Pertanyaan dengan Jawaban Skala</h4>
+                              <h4 id="exampleModalLabel" class="modal-title">Buat Pertanyaan Interval</h4>
                               <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
                             </div>
                             <div class="modal-body">
@@ -329,7 +329,7 @@
                               <form method="post" action="<?php echo base_url();?>admin/Kuesioner/addSkalaAlumni">
                                 <div class="form-group">
                                   <label>Pertanyaan</label>
-                                  <input type="text" placeholder="" class="form-control" name="pertanyaan_skala">
+                                  <input type="text" placeholder="Masukkan Pertanyaan" class="form-control" name="pertanyaan_skala">
                                    <input type="hidden" class="form-control" name="kuesionerID" value="<?php echo $kuesioner->id ?>">
                                 </div>
                                 <div class="form-group">
@@ -339,8 +339,8 @@
                                 <table class="table table-condensed">
                                   <tbody id="skalaNilaiForm">
                                     <tr>
-                                      <label>Skala Penilaian</label>
-                                      <td><input type="text" placeholder="Masukan Skala Penilaian" class="form-control" name="skalaNilai[0]"></td>
+                                      <label>Kolom</label>
+                                      <td><input type="text" placeholder="Masukkan Interval Penilaian" class="form-control" name="skalaNilai[0]"></td>
                                       <td><button class="btn btn-small btn-info" onclick="skalaNilaiForm(); return false"><i class="fas fa-plus-circle"></i></button></td>
                                     </tr>
                                   </tbody>
@@ -348,7 +348,7 @@
                                 <table class="table table-condensed">
                                   <tbody id="skalaPertanyaanForm">
                                     <tr>
-                                      <label>Komponen Pertanyaan</label>
+                                      <label>Baris</label>
                                       <td><input type="text" placeholder="Tuliskan daftar pertanyaan" class="form-control" name="skalaPertanyaan[0]"></td>
                                       <td><button class="btn btn-small btn-info" onclick="skalaPertanyaanForm(); return false"><i class="fas fa-plus-circle"></i></button></td>
                                     </tr>
@@ -467,7 +467,7 @@
         var jawaban = document.createElement('input');
         jawaban.setAttribute('name', 'jawaban[' + j + ']');
         jawaban.setAttribute('class', 'form-control');
-        jawaban.setAttribute('placeholder', 'Tuliskan jawaban');
+        jawaban.setAttribute('placeholder', 'Tuliskan pilihan jawaban');
 
         //input button hapus
         var hapus = document.createElement('span');
@@ -521,7 +521,7 @@
         var jawaban = document.createElement('input');
         jawaban.setAttribute('name', 'skalaNilai[' + k + ']');
         jawaban.setAttribute('class', 'form-control');
-        jawaban.setAttribute('placeholder', 'Tuliskan Skala Penilaian');
+        jawaban.setAttribute('placeholder', 'Masukkan Interval Penilaian');
 
         //input button hapus
         var hapus = document.createElement('span');

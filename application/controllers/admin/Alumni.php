@@ -100,6 +100,7 @@ class Alumni extends CI_Controller {
 			'jenis_kelamin' => $this->input->post('jenis_kelamin'),
 			'tahun_masuk' => $this->input->post('tahun_masuk'),
 			'tahun_lulus' => $this->input->post('tahun_lulus'),
+			'bulan_lulus' => $this->input->post('bulan_lulus'),
 			'ipk' => $this->input->post('ipk'),
 			'toefl' => $this->input->post('toefl'),
 			'alamat' => $this->input->post('alamat'),
