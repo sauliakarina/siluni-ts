@@ -33,7 +33,7 @@
           <ul class="list-unstyled">
             <!-- menu admin -->
             <?php if ($role == 'admin') { ?>
-              <li class="<?php if($this->uri->segment(2)=="Beranda" || $this->uri->segment(3)=="getNewPengguna" && ($this->uri->segment(3)!="kelolaBerandaAlumni" && $this->uri->segment(3)!="kelolaBerandaPengguna")){echo "active";} ?>"><a href="<?php echo site_url('admin/Beranda') ?>"> <i class="icon-home"></i>Beranda </a></li>              
+              <li class="<?php if($this->uri->segment(2)=="Beranda" && ($this->uri->segment(3)!="kelolaBerandaAlumni" && $this->uri->segment(3)!="kelolaBerandaPengguna")){echo "active";} ?>"><a href="<?php echo site_url('admin/Beranda') ?>"> <i class="icon-home"></i>Beranda </a></li>              
               <li class="<?php if($this->uri->segment(2)=="Dosen"){echo "active";} ?>"><a href="#dropdownKelolaData" aria-expanded="false" data-toggle="collapse"><i class="icon-grid"></i>Kelola Data Dosen</a>
               <ul id="dropdownKelolaData" class="collapse list-unstyled ">
                 <!-- <li><a href="<?php //echo site_url('admin/Alumni') ?>">Alumni</a></li> -->
@@ -42,6 +42,7 @@
               </ul>
             </li>
              <li class="<?php if($this->uri->segment(1)=="GantiPassword"){echo "active";} ?>"><a href="<?php echo site_url('GantiPassword') ?>"> <i class="fas fa-unlock-alt"></i>Ganti Password </a></li>
+             <li class="<?php if($this->uri->segment(1)=="UserManual"){echo "active";} ?>"><a href="<?php echo site_url('UserManual') ?>"> <i class="fas fa-book"></i>Manual Book</a></li>
           </ul><span class="heading">Tracer Study</span>
            <ul class="list-unstyled"> 
             <li class="<?php if($this->uri->segment(2)=="Alumni" ){echo "active";} ?>"><a href="<?php echo site_url('admin/Alumni') ?>"><i class="fas fa-user-graduate"></i>Kelola Alumni</a></li>
@@ -135,6 +136,7 @@
               </ul>
             </li>
             <li class="<?php if($this->uri->segment(2)=="GantiPassword"){echo "active";} ?>"><a href="<?php echo site_url('GantiPassword') ?>"> <i class="fas fa-unlock-alt"></i>Ganti Password </a></li>
+            <li class="<?php if($this->uri->segment(1)=="UserManual"){echo "active";} ?>"><a href="<?php echo site_url('UserManual') ?>"> <i class="fas fa-book"></i>Manual Book</a></li>
           </ul>
             <?php } ?>
             <!-- menu dosen -->
