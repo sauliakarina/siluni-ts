@@ -37,15 +37,22 @@
                       <div class="form-group row">
                           <label class="col-sm-3 form-control-label">Pilih Instansi</label>
                           <div class="col-sm-9">
-                            <select name="id_instansi" class="js-example-basic-single dropdown form-control mb-3">
-                              <option value="">Pilih</option>
-                              <option value="Null">Non Instansi</option>
+                            <select name="id_instansi" class="js-example-basic-single dropdown form-control mb-3" required>
+                              <option>Pilih</option>
+                            <?php if ($nama_instansi != "") { ?>
+                              <option value="<?php echo $this->m_master->getInstansiByName($nama_instansi)->id ?>"><?php echo $nama_instansi ?></option>
+                              <?php foreach($instansi as $i){ ?> 
+                                <option value="<?php echo $i->id ?>"><?php echo $i->nama_instansi ?></option>
+                            <?php } //end foreach
+                              } else { ?>
+                                <option></option>
+                                 <option value="Null">Non Instansi</option>
                                 <?php foreach($instansi as $i){ ?>
                                   <option value="<?php echo $i->id ?>"><?php echo $i->nama_instansi ?></option>
-                                <?php } //end foreach  ?>
+                            <?php } //end foreach
+                                 }  ?>
                             </select>
-                            <small class="form-text">Lainnya :</small>
-                            <input type="text" class="form-control" name="instansiBaru">
+                          <small class="form-text">Jika pilihan instansi tidak ada <a href="" data-toggle="modal" data-target="#ModalTambah">klik disini</a></small>
                           </div>
                         </div>
                       <div class="form-group row">

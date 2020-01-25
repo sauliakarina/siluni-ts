@@ -13,6 +13,14 @@
               <h2 class="no-margin-bottom">Data Pengguna Alumni</h2>
             </div>
           </header>
+
+              <!-- Breadcrumb-->
+          <div class="breadcrumb-holder container-fluid">
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item"><a href="<?php echo base_url(); ?>admin/Beranda"> <i class="fas fa-chevron-circle-left"></i> Kembali</a></li>
+            </ul>
+          </div>
+
           <section class="tables">   
             <div class="container-fluid">
               <div class="row">

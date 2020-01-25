@@ -41,7 +41,7 @@ class Dosen extends CI_Controller {
 			$userID = 'DOS'.$this->input->post('nidn');
 			$dataUser = array(
 				'username' => $this->input->post('nidn'),
-				'password' => md5($this->input->post('nidn')),
+				'password' => $this->input->post('nidn'),
 				'prodiID' => $this->session->userdata('prodiID'),
 				'role' => 'dosen',
 				'userID' => $userID

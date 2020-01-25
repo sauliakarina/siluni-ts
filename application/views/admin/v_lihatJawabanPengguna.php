@@ -8,7 +8,7 @@
   <!-- Breadcrumb-->
   <div class="breadcrumb-holder container-fluid">
     <ul class="breadcrumb">
-      <li class="breadcrumb-item"><a href="<?php echo site_url('admin/Kuesioner/jawabanKuesionerPengguna/') ?>">< Kembali</a></li>
+      <li class="breadcrumb-item"><a href="<?php echo site_url('admin/Kuesioner/jawabanKuesionerPengguna/') ?>"><i class="fas fa-chevron-circle-left"></i> Kembali</a></li>
     </ul>
   </div>
 <?php $penggunaID = $this->m_master->getNotifKuesionerByID($notifID)->respondenID;

@@ -189,13 +189,28 @@ class Kuesioner extends CI_Controller {
 	}
 
 public function addJawabanVer2()
-	{
+	{	
 		$prodiID = $this->input->post('prodiID');
+
+		//tabel instansi
+		if ($this->input->post('id_instansi') == "") {
+			$newInstansi = array(
+				'nama_instansi' => $this->input->post('instansiBaru'),
+				'prodiID' => $prodiID,
+			);
+			$this->m_master->inputData($newInstansi,'instansi');
+			$instansiID = $this->m_master->getInstansiByName($this->input->post('instansiBaru'))->id;
+		} elseif ($this->input->post('id_instansi') == "Null") {
+			$instansiID = Null;
+		} else {
+			$instansiID = $this->input->post('id_instansi');
+		}
+
 		//data tabel pengguna
 		//generate penggunaID
-		$id_length = 8;
+		$id_length = 36;
 		$id_found = false;
-		$possible_chars = "23456789BCDFGHJKMNPQRSTVWXYZ"; 
+		$possible_chars = "23456789BCDFGHJKMNPQRSTVWXYZbcdefghijklmnopqrstvwxyz-"; 
 		while (!$id_found) {  
 			$penggunaID = "";  
 			$i = 0;  
@@ -216,7 +231,10 @@ public function addJawabanVer2()
 			'pengguna_telepon' => $this->input->post('pengguna_telepon'),
 			'divisi' => $this->input->post('divisi'),
 			'prodiID' => $this->input->post('prodiID'),
-			'penggunaID' => $penggunaID
+			'penggunaID' => $penggunaID,
+			'id_instansi' => $instansiID,
+			'tandai' => 'checked',
+			'seen' => '1'
 		);
 		$this->m_master->inputData($data,'pengguna');
 		$id_pengguna = $this->m_pengguna->getPenggunaByPenggunaID($penggunaID)->id;
