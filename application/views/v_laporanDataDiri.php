@@ -31,9 +31,9 @@ if ($pertanyaan == 'gaji') {
     }
     foreach ($alumni as $a) {
       $gaji = $a->gaji;
-      if ($gaji >= "1000000" && $gaji <= "5000000") {
+      if ($gaji >= "1000000" && $gaji <= "5999999") {
         $tipe1++;
-      } elseif ($gaji >= "6000000" && $gaji <= "10000000") {
+      } elseif ($gaji >= "6000000" && $gaji <= "10999999") {
         $tipe2++;
       } elseif ($gaji >= "11000000" && $gaji <= "15000000") {
         $tipe3++;

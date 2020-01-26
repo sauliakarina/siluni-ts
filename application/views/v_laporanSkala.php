@@ -21,7 +21,7 @@
                 <div class="col-lg-12">
                   <div class="card">
                     <div class="card-header d-flex align-items-center">
-                      <h3 class="h4">Pertanyaan Jawaban dengan Skala Penilaian</h3>
+                      <h3 class="h4">Pertanyaan Jawaban dengan Interval Penilaian</h3>
                     </div>
                     <div class="card-body">
                       <p></p>
