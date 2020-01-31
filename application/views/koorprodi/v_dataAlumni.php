@@ -23,7 +23,7 @@
                               <th>NIM</th>
                               <th>Angkatan</th>
                               <th>Tahun Lulus</th>
-                              <th>Pekerjaan</th>
+                              <th>Detail</th>
                             </tr>
                           </thead>
                           <tbody>

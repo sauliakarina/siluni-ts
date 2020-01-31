@@ -174,7 +174,23 @@
                         <a style="color: grey" class="nav-link" href="<?php echo base_url('beranda'); ?>"><b>Beranda</b><span class="sr-only">(current)</span></a>
                     </li>
                     <!--Menu Admin-->
-                    
+                    <?php if($status=='admin') {
+                      echo " <li class='nav-item dropdown'>
+                        <a class='nav-link dropdown-toggle dropbtn' href='#' id='navbarDropdownMenuLink' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                        <b>Kelola Data</b>
+                        </a>
+                        <div class=' dropdown-content' >
+                            <a class='dropdown-item' href=".base_url('crud/index').">User</a>
+                              <a class='dropdown-item' href=".base_url('crud_alumni/index')."> Alumni </a>
+                            <a class='dropdown-item' href=".base_url('crud_dosen/index')."> Dosen </a>
+                        </div>
+                    </li>
+                    <li class='nav-item'>
+                        <a style='color: grey' class='nav-link' href=".base_url('crud_berita/index')."><b>Kelola Berita</b></a>
+                    </li>
+                   
+                    ";
+                    } else { ?>
                     <li class='nav-item'>
                         <a style='color: grey' class='nav-link' href="<?php echo base_url('pencarian_alumni') ?>"><b>Pencarian Alumni</b></a>
                     </li>
@@ -186,10 +202,9 @@
                         <b>Pengguna Alumni</b>
                         </a>
                         <div class='dropdown-content' >
-                            <a class='dropdown-item' href="<?php echo base_url('pengguna/Pengguna/daftarPengguna/'.'1') ?>">Ilmu Komputer</a>
-                            <?php //foreach ($prodi as $p ) { ?>
-                            <!-- <a class='dropdown-item' href="<?php echo base_url('pengguna/Pengguna/daftarPengguna/'.$p->id) ?>"><?php echo $p->nama_prodi ?></a> -->
-                            <?php //} ?>
+                            <?php foreach ($prodi as $p ) { ?>
+                            <a class='dropdown-item' href="<?php echo base_url('pengguna/Pengguna/daftarPengguna/'.$p->id) ?>"><?php echo $p->nama_prodi ?></a>
+                            <?php } ?>
                         </div>
                     </li>
                     <li class='nav-item dropdown'>
@@ -197,10 +212,9 @@
                         <b>Statistik Alumni</b>
                         </a>
                         <div class=' dropdown-content' >
-                            <a class='dropdown-item' href="<?php echo base_url('Statistik/alumni/'.'1') ?>">Ilmu Komputer</a>
-                            <?php //foreach ($prodi as $p ) { ?>
-                            <!-- <a class='dropdown-item' href="<?php echo base_url('Statistik/alumni/'.$p->id) ?>"><?php echo $p->nama_prodi ?></a> -->
-                            <?php //} ?>
+                            <?php foreach ($prodi as $p ) { ?>
+                            <a class='dropdown-item' href="<?php echo base_url('Statistik/alumni/'.$p->id) ?>"><?php echo $p->nama_prodi ?></a>
+                            <?php } ?>
                         </div>
                     </li>
                     <li class='nav-item dropdown'>
@@ -223,6 +237,8 @@
                             <a class='dropdown-item' href='http://fmipa.unj.ac.id/mtk/'> Matematika Murni</a>
                         </div>
                     </li>
+                    <?php  
+                } ?>
                      
                 </ul>
                 <ul class="navbar-nav nav-flex-icons">

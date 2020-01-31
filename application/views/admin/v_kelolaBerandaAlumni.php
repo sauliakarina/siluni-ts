@@ -66,6 +66,7 @@
                       <button type="submit" class="btn btn-primary ml-auto btn-sm">Simpan</button>
                     </div>
                     <div class="card-body">
+                       <label class="form-control-label">Kata Pengantar untuk Kuesioner Alumni</label>
                          <!-- <div class="form-group">
                             <center><img width="30%" src="<?php echo base_url();?>/assets/siluni/images/beranda/<?php echo $beranda->foto ?>"></center>
                         </div> -->

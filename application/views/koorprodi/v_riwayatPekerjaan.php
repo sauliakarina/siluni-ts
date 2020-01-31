@@ -13,8 +13,86 @@
               <li class="breadcrumb-item"><a href="<?php echo base_url('koorprodi/Alumni') ?>"><i class="fas fa-chevron-left"></i> Daftar Alumni</a></</li>
             </ul>
           </div>
+
+        <section class="tables">   
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                           <tbody>
+                            <tr>
+                              <th scope="row">Nama</th>
+                              <td><p><?php echo $profil->nama ?></p></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <th scope="row">Jenis Kelamin</th>
+                              <td><p><?php echo $profil->jenis_kelamin ?></p></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <th scope="row">No Mahasiswa</th>
+                              <td><p><?php echo $profil->nim ?></p></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <th scope="row">Tempat Tanggal Lahir</th>
+                              <td><p><?php echo $profil->tempat_lahir ?>, <?php echo $profil->tanggal_lahir ?></p></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <th scope="row">Alamat</th>
+                               <td><p><?php echo $profil->alamat ?></p></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <th scope="row">Tahun Masuk</th>
+                               <td><p><?php echo $profil->tahun_masuk ?></p></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <th scope="row">Bulan Lulus</th>
+                               <td><p><?php echo $profil->bulan_lulus ?></p></td>
+                               <td></td>
+                            </tr>
+                            <tr>
+                              <th scope="row">Tahun Lulus</th>
+                               <td><p><?php echo $profil->tahun_lulus ?></p></td>
+                            </tr>
+                            <tr>
+                              <th scope="row">IPK Kelulusan</th>
+                               <td><p><?php echo $profil->ipk ?></p></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <th scope="row">TOEFL Kelulusan</th>
+                              <td><p><?php echo $profil->toefl ?></p></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <th scope="row">Email</th>
+                               <td><p><?php echo $profil->email ?></p></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <th scope="row">No Telepon/HP</th>
+                               <td><p><?php echo $profil->no_telepon ?></p></td>
+                              <td></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div> <!-- row -->
+            </div>
+          </section>
          
-         <section class="tables">   
+         <section class="tables" style="margin-top: -80px">   
             <div class="container-fluid">
               <div class="row">
                 <div class="col-lg-12">

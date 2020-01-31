@@ -42,7 +42,7 @@ class Pengguna extends CI_Controller {
 		$this->load->view('element/head');
 		$this->load->view('element/header');
 		$this->load->view('element/navbar', $data);
-		$this->load->view('v_dataInstansi', $data);
+		$this->load->view('koorprodi/v_dataInstansi', $data);
 		$this->load->view('element/footer');
 	}
 
@@ -74,7 +74,7 @@ class Pengguna extends CI_Controller {
 		$this->load->view('element/head');
 		$this->load->view('element/header');
 		$this->load->view('element/navbar', $data);
-		$this->load->view('alumni/v_dataAlumniPengguna', $data);
+		$this->load->view('koorprodi/v_dataAlumniPengguna2', $data);
 		$this->load->view('element/footer');
 	}
 

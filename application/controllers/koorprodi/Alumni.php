@@ -37,6 +37,7 @@ class Alumni extends CI_Controller {
 			'role' => $this->session->userdata('role'),
 			'userID' => $this->session->userdata('userID'),
 			'prodiID' => $prodiID,
+			'profil' => $this->m_alumni->getAlumniByID($id_alumni),
 			'pekerjaan' => $this->m_pengguna->getPekerjaanByAlumniID($id_alumni),
 			//'pekerjaan' => $this->m_pengguna->joinPekerjaanByPenggunaID($id_alumni),
 			'id_alumni' => $id_alumni

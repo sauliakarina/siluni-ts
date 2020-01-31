@@ -67,7 +67,7 @@
                     </div>
                     <div class="card-body">
                       <div class="form-group">
-                          <label class="form-control-label">Kata Pengantar untuk Pengguna Alumni</label>
+                          <label class="form-control-label">Kata Pengantar untuk Kuesioner Pengguna Alumni</label>
                            <textarea name="isi" rows="100" style="height: 500px"><?php echo $beranda->isi ?></textarea>
                            <input type="hidden" name="berandaID" value="<?php echo $beranda->id ?>">
                         </div>

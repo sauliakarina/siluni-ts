@@ -77,6 +77,14 @@ input:checked + .slider:before {
               <li class="breadcrumb-item active"><a href="<?php echo site_url('admin/Kuesioner/kuesionerPengguna') ?>">Pengguna</a></li>
             </ul>
           </div>
+
+           <!-- alert box -->
+          <div class="alert alert-warning alert-dismissible" role="alert">
+          <button type="button" onclick="this.parentNode.parentNode.removeChild(this.parentNode);" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+          <p style="font-family: verdana; font-size: 11pt">Kuesioner yang aktif akan ditampilkan pada halaman kuesioner alumni</p>
+        </div>
+
+
           <section class="tables">   
             <div class="container-fluid">
               <div class="row">

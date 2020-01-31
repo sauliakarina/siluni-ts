@@ -26,7 +26,6 @@
                     <div class="card-body">
                       <p></p>
                       <form class="form-horizontal" method="post" action="<?php echo site_url("Laporan/laporanAlumniSkala") ?>">
-                        <div class="line"></div>
                         <div class="form-group row">
                           <label class="col-sm-3 form-control-label">Pertanyaan</label>
                           <div class="col-sm-9">
