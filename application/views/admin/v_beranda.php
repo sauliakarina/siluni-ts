@@ -8,7 +8,12 @@
               <h2 class="no-margin-bottom">Beranda</h2>
             </div>
           </header>
-  <?php echo $this->session->flashdata('edit_pass'); ?>
+  <?php echo $this->session->flashdata('edit_pass'); 
+
+$lulusan2017 = $this->m_hasil->getJumlahLulusanTahun('2017');
+$lulusan2018 = $this->m_hasil->getJumlahLulusanTahun('2018');
+$lulusan2019 = $this->m_hasil->getJumlahLulusanTahun('2019');
+  ?>
           
            <!-- Dashboard Counts Section-->
           <section class="dashboard-counts no-padding-bottom">
@@ -88,6 +93,12 @@
           <!-- Projects Section-->
           <section class="projects no-padding-top">
             <div class="container-fluid">
+              <div class="chart col-lg-12 col-12">
+                  <!-- Bar Chart   -->
+                   <div  class="bar-chart has-shadow bg-white">
+                    <canvas id="chartJumlah"></canvas>
+                  </div>
+                </div>
             </div>
           </section>
           <!-- page footer -->
@@ -109,6 +120,44 @@
           'rgba(55, 181, 94, 1)',
           ],
           borderColor: [
+          'rgba(55, 181, 94, 1)',
+          'rgba(55, 181, 94, 1)',
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero:true
+            }
+          }]
+        }
+      }
+    });
+  </script>
+
+  <script>
+    var ctx = document.getElementById("chartJumlah").getContext('2d');
+    var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ["2017", "2018", "2019"],
+        datasets: [{
+          label: 'Jumlah Lulusan',
+          data: [
+          <?php echo $lulusan2017  ?>,
+          <?php echo $lulusan2018 ?>,
+          <?php echo $lulusan2019 ?>
+          ],
+          backgroundColor: [
+          'rgba(55, 181, 94, 1)',
+          'rgba(55, 181, 94, 1)',
+          'rgba(55, 181, 94, 1)',
+          ],
+          borderColor: [
+          'rgba(55, 181, 94, 1)',
           'rgba(55, 181, 94, 1)',
           'rgba(55, 181, 94, 1)',
           ],

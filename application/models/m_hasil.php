@@ -16,6 +16,14 @@ class M_hasil extends CI_Model{
 
 	}
 
+	function getJumlahLulusanTahun($tahun_lulus) {
+		$this->db->select('*');
+		$this->db->where('tahun_lulus', $tahun_lulus);
+		$query = $this->db->get('alumni');
+		return $query->num_rows();
+
+	}
+
 	
 
 	function getFirstGaji($gaji, $prodiID) {
