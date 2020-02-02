@@ -43,6 +43,22 @@ class M_alumni extends CI_Model{
 	}
 
 
+	function getTahunLulus($prodiID)
+	{
+		$this->db->select('*');
+		$this->db->where('prodiID', $prodiID);
+		$this->db->group_by('tahun_lulus');
+		$query = $this->db->get('alumni');
+		if($query->num_rows()>0)
+		{
+			return $query->result();
+		} else{
+			return $query->result();
+		}
+
+	}
+
+
 	function getAlumniByProdi($prodiID)
 	{
 		$this->db->select('*');

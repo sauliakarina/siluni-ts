@@ -10,10 +10,21 @@
           </header>
   <?php echo $this->session->flashdata('edit_pass'); 
 
-$lulusan2017 = $this->m_hasil->getJumlahLulusanTahun('2017');
-$lulusan2018 = $this->m_hasil->getJumlahLulusanTahun('2018');
-$lulusan2019 = $this->m_hasil->getJumlahLulusanTahun('2019');
-  ?>
+$lulusan2017 = $this->m_hasil->getJumlahLulusanTahun('2017', $prodiID);
+$lulusan2018 = $this->m_hasil->getJumlahLulusanTahun('2018', $prodiID);
+$lulusan2019 = $this->m_hasil->getJumlahLulusanTahun('2019', $prodiID);
+
+//grafik lulusan
+
+//label tahun lulus
+$tahun_lulus = $this->m_alumni->getTahunLulus($prodiID);
+foreach ($tahun_lulus as $k) {
+  $label_tahun[] = $k->tahun_lulus;
+  $jumlahLulusan[]= $this->m_hasil->getJumlahLulusan($k->tahun_lulus);
+}
+
+?>
+
           
            <!-- Dashboard Counts Section-->
           <section class="dashboard-counts no-padding-bottom">
@@ -93,12 +104,10 @@ $lulusan2019 = $this->m_hasil->getJumlahLulusanTahun('2019');
           <!-- Projects Section-->
           <section class="projects no-padding-top">
             <div class="container-fluid">
-              <div class="chart col-lg-12 col-12">
-                  <!-- Bar Chart   -->
-                   <div  class="bar-chart has-shadow bg-white">
-                    <canvas id="chartJumlah"></canvas>
-                  </div>
-                </div>
+              <div class="chart col-lg-12 col-sm-12">
+                        <!-- Bar Chart   -->
+                         <div id="chart"></div>
+                      </div>
             </div>
           </section>
           <!-- page footer -->
@@ -175,5 +184,60 @@ $lulusan2019 = $this->m_hasil->getJumlahLulusanTahun('2019');
       }
     });
   </script>
+
+<script type="text/javascript" src="<?php echo base_url('assets/highcharts/highcharts.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/highcharts/themes/skies.js'); ?>"></script>
+
+<script type="text/javascript">
+  jQuery(function(){
+      new Highcharts.Chart({
+        chart: {
+          renderTo : 'chart',
+          type: 'column',
+          marginTop: 80,
+        },
+        credits: {
+          enabled: false
+         }, 
+         tooltip: {
+          //pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+         },
+         title: {
+          text: 'Jumlah Lulusan per Tahun'
+         },
+         subtitle: {
+          text: ''
+         },
+         xAxis: {
+          categories: <?php echo json_encode($label_tahun);?>,
+          labels: {
+          }
+         },
+         yAxis: {
+          title: {
+            text: 'Jumlah'
+          },
+        },
+        legend: {
+          enabled: true
+         },
+         plotOptions: {
+           pie: {
+             allowPointSelect: true,
+             cursor: 'pointer',
+             dataLabels: {
+               enabled: false
+             },
+             showInLegend: true
+           }
+         },
+         series: [{
+           'name':'Hasil',
+           'data': <?php echo json_encode($jumlahLulusan);?>
+         }]
+       });
+      });
+</script>
+
   </body>
 </html>

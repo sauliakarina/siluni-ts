@@ -15,6 +15,7 @@
             </div>
           </header>
 
+
           <?php if($pertanyaan->jenis == 'pilihan' || $pertanyaan->jenis == 'ganda'){ ?>
                     <?php 
                     if(count($grafik)>0){
