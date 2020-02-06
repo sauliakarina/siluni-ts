@@ -87,12 +87,6 @@ class Alumni extends CI_Controller {
 	function exeEditProfil()
 	{
 
-		$data_user = array(
-			'username' => $this->input->post('nim')
-		);
-		$id = $this->input->post('id');
-		$where = array('id' => $this->input->post('userID'));
-		$this->m_master->updateData($where,$data_user,'user');
 
 		$data_alumni = array(
 			'nama' => $this->input->post('nama'),
@@ -114,7 +108,22 @@ class Alumni extends CI_Controller {
 		$this->m_master->updateData($where,$data_alumni,'alumni');
 
 		$this->session->set_flashdata("pesan", '<div><div class="alert alert-success" id="alert" align="center">Edit data alumni sukses!</div></div>');
-		redirect('admin/Alumni/editProfil/'.$id);
+		redirect('admin/Alumni/editProfil/'.$this->input->post('id'));
+	}
+
+	function exeEditAkun()
+	{
+
+		$data_user = array(
+			'username' => $this->input->post('username'),
+			'password' => $this->input->post('password')
+		);
+		$id = $this->input->post('id_user');
+		$where = array('id' => $id);
+		$this->m_master->updateData($where,$data_user,'user');
+
+		$this->session->set_flashdata("sukses_akun", '<div><div class="alert alert-success" id="alert" align="center">Edit akun alumni sukses!</div></div>');
+		redirect('admin/Alumni/editProfil/'.$this->input->post('id_alumni'));
 	}
 
 	function exeImport()

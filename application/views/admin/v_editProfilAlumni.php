@@ -6,8 +6,48 @@
             </div>
           </header>
           
-            <?php echo $this->session->flashdata('pesan'); ?>
-          <section class="tables">   
+        <?php echo $this->session->flashdata('pesan'); ?>
+        <?php echo $this->session->flashdata('sukses_akun'); ?>
+
+
+  <section class="tables">   
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="card">
+                    <form action="<?php echo base_url();?>admin/Alumni/exeEditAkun" method="post"> 
+                    <div class="card-header d-flex align-items-center">
+                      <h3 class="h4">Akun Alumni</h3>
+                      <button type="submit" class="btn btn-primary ml-auto btn-sm">Simpan</button>
+                    </div>
+                    <div class="card-body">
+                      <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                           <tbody>
+                            <tr>
+                              <th scope="row">NIM/Username</th>
+                              <td><input type="text" name="username"  value="<?php echo $this->m_master->getUserByUserID($profil->userID)->username ?>" class="form-control form-control-sm"></td>
+                              <td><input type="hidden" name="id_alumni"  value="<?php echo $profil->id ?>" class="form-control form-control-sm"></td>
+                            </tr>
+                            <tr>
+                              <th scope="row">Password</th>
+                              <td><input type="text" name="password"  value="<?php echo $this->m_master->getUserByUserID($profil->userID)->password ?>" class="form-control form-control-sm"></td>
+                              <td><input type="hidden" name="id_user"  value="<?php echo $this->m_master->getUserByUserID($profil->userID)->id ?>" class="form-control form-control-sm"></td>
+                            </tr>
+                            <tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    </form>
+                  </div>
+                </div>
+              </div> <!-- row -->
+            </div>
+</section>
+
+
+          <section class="tables" style="margin-top: -80px">   
             <div class="container-fluid">
               <div class="row">
                 <div class="col-lg-12">
@@ -24,16 +64,11 @@
                             <tr>
                               <th scope="row">Nama</th>
                               <td><input type="text" name="nama"  value="<?php echo $profil->nama ?>" class="form-control form-control-sm"></td>
-                              <td><input type="hidden" name="userID"  value="<?php echo $profil->userID ?>" class="form-control form-control-sm"></td>
+                              <td></td>
                             </tr>
                             <tr>
                               <th scope="row">Jenis Kelamin</th>
                               <td><input type="text" name="jenis_kelamin"  value="<?php echo $profil->jenis_kelamin ?>" class="form-control form-control-sm"></td>
-                              <td></td>
-                            </tr>
-                            <tr>
-                              <th scope="row">No Mahasiswa</th>
-                              <td><input type="text" name="nim"  value="<?php echo $profil->nim ?>" class="form-control form-control-sm"></td>
                               <td><input type="hidden" name="id"  value="<?php echo $profil->id ?>" class="form-control form-control-sm"></td>
                             </tr>
                             <tr>
