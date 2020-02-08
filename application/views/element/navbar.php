@@ -152,8 +152,7 @@
               <li class="<?php if($this->uri->segment(2)=="Master" && $this->uri->segment(3)=="kelolaFakultas"){echo "active";} ?>"><a href="<?php echo site_url('superadmin/Master/kelolaFakultas') ?>"> <i class="fas fa-university"></i>Fakultas</a></li> 
               <li class="<?php if($this->uri->segment(2)=="Master" && $this->uri->segment(3)=="kelolaProdi"){echo "active";} ?>"><a href="<?php echo site_url('superadmin/Master/kelolaProdi') ?>"> <i class="icon-grid"></i>Program Studi</a></li> 
              <li class="<?php if($this->uri->segment(2)=="Master" && $this->uri->segment(3)=="kelolaAkunProdi" ){echo "active";} ?>"><a href="<?php echo site_url('superadmin/Master/kelolaAkunProdi') ?>"><i class="fas fa-user-alt"></i>Akun Prodi</a></li>
-             <li class="<?php if($this->uri->segment(2)=="Berita" ){echo "active";} ?>"><a href="<?php echo site_url('admin/Berita') ?>"><i class="fa fa-tasks"></i>Kelola Berita</a></li>
-             <li class="<?php if($this->uri->segment(2)=="Profil" && $this->uri->segment(3)=="gantiPassword"){echo "active";} ?>"><a href="<?php echo site_url('dosen/Profil/gantiPassword') ?>"> <i class="fas fa-unlock-alt"></i>Ganti Password </a></li>
+             <li class="<?php if($this->uri->segment(2)=="Master" && $this->uri->segment(3)=="gantiPassword"){echo "active";} ?>"><a href="<?php echo site_url('superadmin/Master/gantiPassword') ?>"> <i class="fas fa-unlock-alt"></i>Ganti Password </a></li>
           </ul>
             <?php } ?>
 

@@ -44,7 +44,7 @@
                 <th>NIM</th>
                 <th>Nama</th>
                 <th>Tahun Masuk</th>
-                <th>Tahun Lulus</th>
+                <th>Bulan & Tahun Lulus</th>
                 <th>Prodi</th>
                 <th>Aksi</th>
               </tr>
@@ -56,7 +56,7 @@
                 <td><?php echo $u->nim ?></td>
                 <td><?php echo $u->nama; ?></td>
                 <td><?php echo $u->tahun_masuk; ?></td>
-                <td><?php echo $u->tahun_lulus; ?></td>
+                <td><?php echo $u->bulan_lulus; ?> <?php echo $u->tahun_lulus; ?></td>
                 <td><?php echo $this->m_master->getProdiByID($this->m_master->getUserByuserID($u->userID)->prodiID)->nama_prodi;
                   ?></td>
                 <td><?php echo anchor('pencarian_alumni/tampil/'.$u->id,'Lihat Profil'); ?> </td>

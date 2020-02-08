@@ -90,7 +90,6 @@ class Alumni extends CI_Controller {
 
 		$data_alumni = array(
 			'nama' => $this->input->post('nama'),
-			'nim' => $this->input->post('nim'),
 			'jenis_kelamin' => $this->input->post('jenis_kelamin'),
 			'tahun_masuk' => $this->input->post('tahun_masuk'),
 			'tahun_lulus' => $this->input->post('tahun_lulus'),
@@ -113,6 +112,13 @@ class Alumni extends CI_Controller {
 
 	function exeEditAkun()
 	{
+
+		$data_alumni = array(
+			'nim' => $this->input->post('username')
+		);
+		$id = $this->input->post('id_alumni');
+		$where = array('id' => $id);
+		$this->m_master->updateData($where,$data_alumni,'alumni');
 
 		$data_user = array(
 			'username' => $this->input->post('username'),

@@ -72,6 +72,20 @@ class Master extends CI_Controller {
 			redirect('superadmin/Master/kelolaProdi');
 	}
 
+	public function gantiPassword()
+	{
+		$data = array(
+			'role' => $this->session->userdata('role'),
+			'userID' => $this->session->userdata('userID'),
+			'prodiID' => $this->session->userdata('prodiID')
+		);
+		$this->load->view('element/head');
+		$this->load->view('element/header');
+		$this->load->view('element/navbar', $data);
+		$this->load->view('superadmin/v_gantiPassword', $data);
+		$this->load->view('element/footer');
+	}
+
 	function exeAddFakultas()
 	{
 		$data = array(
@@ -101,13 +115,14 @@ class Master extends CI_Controller {
 		$data = array(
 			'username' => $this->input->post('username'),
 			'prodiID' => $this->input->post('prodiID'),
+			'noAdmin' => $this->input->post('noAdmin'),
 		);
 
 		$where = array('id' => $this->input->post('id'));
 		$this->m_master->updateData($where,$data,'user');
 
 		if ($this->input->post('password') != "") {
-			$data = array('password' => md5($this->input->post('password')));
+			$data = array('password' => $this->input->post('password'));
 			$where = array('id' => $this->input->post('id'));
 			$this->m_master->updateData($where,$data,'user');
 		}
@@ -123,6 +138,7 @@ class Master extends CI_Controller {
 			'password' => md5($this->input->post('password')),
 			'prodiID' => $prodiID,
 			'role' => 'admin',
+			'noAdmin' => $this->input->post('noAdmin'),
 			);
 			$this->m_master->inputData($data,'user');
 
@@ -343,6 +359,60 @@ class Master extends CI_Controller {
 	{
 		$data = $this->m_master->getFakultasByID($id);
 		echo json_encode($data);
+	}
+
+	public function exeEditPass(){
+		//set form validation
+		$this->form_validation->set_rules('oldpass','Password Lama','callback_passwordCheck');
+		$this->form_validation->set_rules('newpass','Password Baru', 'required');
+		$this->form_validation->set_rules('confirm','Konfirmasi Password','required|matches[newpass]');
+
+		$this->form_validation->set_error_delimiters('<div class="error" style="color: red">', '</div>');
+		if ($this->form_validation->run() == false) {
+			$data = array(
+			'role' => $this->session->userdata('role'),
+			'userID' => $this->session->userdata('userID'),
+			'prodiID' => $this->session->userdata('prodiID'),
+		);
+			$this->load->view('element/head');
+			$this->load->view('element/header');
+			$this->load->view('element/navbar', $data);
+			$this->load->view('v_gantiPassword', $data);
+			$this->load->view('element/footer');
+		} else {
+			$id = $this->session->userdata('id');
+			$newpass = $this->input->post('newpass');
+			$where = array(
+				'id' => $id
+			);
+			$data = array(
+				'password' => $newpass,
+				'firstLogin' => 'tidak'
+			);
+			$this->m_master->updateData($where, $data, 'user');
+
+			/*echo " <script>
+                     alert('Ganti password sukses!');
+                     history.go(-1);
+                    </script>";*/
+            $this->session->set_flashdata("edit_pass", '<div><div class="alert alert-success" id="alert" align="center">Password Anda berhasil disunting</div></div>');
+
+            redirect('gantiPassword');
+           
+		}
+	}
+
+	public function passwordCheck($oldpass){
+		$id = $this->session->userdata('id');
+		$userpass = $this->m_master->getUserByID($id)->password;
+
+		if ($userpass !== $oldpass) {
+			$this->form_validation->set_message('passwordCheck', 'Password yang anda masukan salah.');
+			return false;
+		}
+
+		return true;
+
 	}
 
 }

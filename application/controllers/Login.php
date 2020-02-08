@@ -6,13 +6,17 @@ class Login extends CI_Controller {
 	function __construct(){
 		parent::__construct();		
 		$this->load->model('m_user');
+		$this->load->model('m_master');
  
 	}
 
 	public function index()
 	{
 		$this->load->view('element/head');
-		$this->load->view('v_login');
+		$data = array(
+			'admin' => $this->m_master->getAdminFromUser()
+		);
+		$this->load->view('v_login', $data);
 	}
 
 	public function exeLogin()

@@ -32,6 +32,15 @@
                     <button id="login" class="btn btn-primary">Masuk</button>
                     <!-- This should be submit button but I replaced it with <a> for demo purposes-->
                     </form>
+
+                    <div class="col-lg-12">                           
+                      <div class="card">
+                        <div class="card-body" style="font-size: 15px">
+                          Apabila anda mengalami kesulitan dalam login, silahkan hubungi Administrator Tracer Study <a href="#" data-toggle="modal" data-target="#myModal">klik disini</a>
+                        </div>
+                      </div>
+                    </div>
+
                 </div>
               </div>
             </div>
@@ -54,4 +63,60 @@
     <!-- Main File-->
     <script src="<?php echo base_url(); ?>assets/template/js/front.js"></script>
   </body>
+
+  <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+    <div role="document" class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 id="exampleModalLabel" class="modal-title">Kontak Admin Tracer Study</h5>
+          <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+        </div>
+        <div class="modal-body">
+          <p></p>
+            <div class="table-responsive">                       
+            <table id="myTable" class="table table-striped table-hover">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Admin Program Studi</th>
+                  <th>No Telepon</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php 
+                  $no = 1;
+                  foreach($admin as $d){ 
+                  ?>
+                <tr>
+                  <th scope="row"><?php echo $no++; ?></th>
+                  <td><?php echo $this->m_master->getProdiByID($d->prodiID)->nama_prodi ?></td>
+                  <td><?php echo $d->noAdmin ?></td>
+                </tr>
+              <?php } ?>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" data-dismiss="modal" class="btn btn-secondary">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </html>
+
+ <!-- DataTables -->
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/DataTables/datatables.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/DataTables/datatables.min.css">
+<script type="text/javascript" charset="utf8" src="<?php echo base_url(); ?>assets/DataTables/datatables.js"></script>
+    
+<script type="text/javascript">
+   $(document).ready( function () {
+    $('#myTable').DataTable(
+        {
+        "ordering": false,
+    }
+      );
+  } );
+</script>

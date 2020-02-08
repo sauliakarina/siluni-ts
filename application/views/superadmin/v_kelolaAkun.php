@@ -33,6 +33,7 @@
                               <th>Nama</th>
                               <th>Kode Prodi</th>
                               <th>Username</th>
+                              <th>No Telepon</th>
                               <th></th>
                             </tr>
                           </thead>
@@ -46,6 +47,7 @@
                               <td>Admin <?php echo $this->m_master->getProdiByID($d->prodiID)->nama_prodi ?></td>
                               <td><?php echo $this->m_master->getProdiByID($d->prodiID)->kode_prodi ?></td>
                               <td><?php echo $d->username ?></td>
+                              <td><?php echo $d->noAdmin ?></td>
                               <td>
                                 <div class="btn-group btn-group-toggle">
                                  <button onclick='editAkunProdi(<?php echo $d->id ?>)' id="btn-edit" class="btn-warning btn-sm" data-toggle="modal" data-target="#ModalEdit"><i class="fas fa-user-edit"></i></button>
@@ -84,6 +86,10 @@
                                 <div class="form-group">       
                                   <label>Password</label>
                                   <input type="text" placeholder="" class="form-control" name="password">
+                                </div>
+                                <div class="form-group">       
+                                  <label>No Telepon</label>
+                                  <input type="text" placeholder="" class="form-control" name="noAdmin">
                                 </div>
                                 <div class="form-group">
                                   <label>Prodi</label>
@@ -124,6 +130,10 @@
                                 <div class="form-group">
                                   <label>Password</label>
                                   <input type="text" placeholder="masukkan password jika lupa password" class="form-control" name="password">
+                                </div>
+                                <div class="form-group">
+                                  <label>No Telepon</label>
+                                  <input type="text" placeholder="" class="form-control" name="noAdmin" value="<?php echo $d->noAdmin ?>">
                                 </div>
                                 <div class="form-group">
                                   <label>Prodi</label>

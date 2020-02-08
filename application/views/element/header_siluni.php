@@ -186,10 +186,10 @@
                         <b>Pengguna Alumni</b>
                         </a>
                         <div class='dropdown-content' >
-                            <a class='dropdown-item' href="<?php echo base_url('pengguna/Pengguna/daftarPengguna/'.'1') ?>">Ilmu Komputer</a>
-                            <?php //foreach ($prodi as $p ) { ?>
-                            <!-- <a class='dropdown-item' href="<?php echo base_url('pengguna/Pengguna/daftarPengguna/'.$p->id) ?>"><?php echo $p->nama_prodi ?></a> -->
-                            <?php //} ?>
+                            <!-- <a class='dropdown-item' href="<?php echo base_url('pengguna/Pengguna/daftarPengguna/'.'1') ?>">Ilmu Komputer</a> -->
+                            <?php foreach ($prodi as $p ) { ?>
+                            <a class='dropdown-item' href="<?php echo base_url('pengguna/Pengguna/daftarPengguna/'.$p->id) ?>"><?php echo $p->nama_prodi ?></a>
+                            <?php } ?>
                         </div>
                     </li>
                     <li class='nav-item dropdown'>
@@ -197,10 +197,10 @@
                         <b>Statistik Alumni</b>
                         </a>
                         <div class=' dropdown-content' >
-                            <a class='dropdown-item' href="<?php echo base_url('Statistik/alumni/'.'1') ?>">Ilmu Komputer</a>
-                            <?php //foreach ($prodi as $p ) { ?>
-                            <!-- <a class='dropdown-item' href="<?php echo base_url('Statistik/alumni/'.$p->id) ?>"><?php echo $p->nama_prodi ?></a> -->
-                            <?php //} ?>
+                            <!-- <a class='dropdown-item' href="<?php //echo base_url('Statistik/alumni/'.'1') ?>">Ilmu Komputer</a> -->
+                            <?php foreach ($prodi as $p ) { ?>
+                            <a class='dropdown-item' href="<?php echo base_url('Statistik/alumni/'.$p->id) ?>"><?php echo $p->nama_prodi ?></a> 
+                            <?php } ?>
                         </div>
                     </li>
                     <li class='nav-item dropdown'>

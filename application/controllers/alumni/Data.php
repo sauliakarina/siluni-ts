@@ -48,10 +48,16 @@ class Data extends CI_Controller {
 			$waktu_lulus = $this->input->post('waktu_lulus');
 			$explode = explode(" ", $waktu_lulus);
 
+			/*$tanggal_lulus = date_create($this->input->post('tanggal_lulus'));
+			$bulan_lulus = date_format($tanggal_lulus,"F");
+			$tahun_lulus = date_format($tanggal_lulus,"Y");*/
+
 			$data_alumni = array(
 				'nama' => $this->input->post('nama'),
 				'jenis_kelamin' => $this->input->post('jenis_kelamin'),
 				'tahun_masuk' => $this->input->post('tahun_masuk'),
+				/*'bulan_lulus' => $bulan_lulus,
+				'tahun_lulus' => $tahun_lulus,*/
 				'tahun_lulus' => $explode[1],
 				'bulan_lulus' => $explode[0],
 				'ipk' => $this->input->post('ipk'),

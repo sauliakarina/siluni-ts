@@ -140,10 +140,16 @@
           <div class="form-group row row">
             <label class="col-sm-3 form-control-label">Bulan dan Tahun Lulus</label>
             <div class="col-sm-3">
-              <input type="text" name="waktu_lulus" class="form-control" <?php if ($profil->bulan_lulus != Null) {?> value="<?php echo $profil->bulan_lulus ?> <?php echo $profil->tahun_lulus ?>" <?php } ?>>
-               <small class="form-text">contoh : Agustus 2017</small>
+              <input type="date" name="tanggal_lulus" value="<?php echo $profil->tanggal_lulus ?>" class="form-control">
             </div>
           </div>
+          <!-- <div class="form-group row row">
+            <label class="col-sm-3 form-control-label">Bulan dan Tahun Lulus</label>
+            <div class="col-sm-3">
+              <input type="text" name="waktu_lulus" class="form-control" <?php if ($profil->bulan_lulus != Null) {?> value="<?php echo $profil->bulan_lulus ?> <?php echo $profil->tahun_lulus ?>" <?php } ?> >
+               <small class="form-text">contoh : Agustus 2017</small>
+            </div>
+          </div> -->
           <div class="line"></div>
           <div class="form-group row row">
             <label class="col-sm-3 form-control-label">IPK Kelulusan</label>
