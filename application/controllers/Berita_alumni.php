@@ -49,7 +49,7 @@ class Berita_alumni extends CI_Controller {
           'prodi' => $this->m_master->getProdi()
           );
 
-        $this->load->view('element/header_siluni',$data);
+        $this->load->view('element/header_guest',$data);
         $this->load->view('guest/v_berita_info',$data);
         $this->load->view('element/footer_siluni');
 
@@ -94,7 +94,7 @@ class Berita_alumni extends CI_Controller {
           'prodi' => $this->m_master->getProdi()
           );
 
-        $this->load->view('element/header_siluni',$data);
+        $this->load->view('element/header_guest',$data);
         $this->load->view('guest/v_berita_lowongan',$data);
         $this->load->view('element/footer_siluni');
 
@@ -138,7 +138,7 @@ class Berita_alumni extends CI_Controller {
           'prodi' => $this->m_master->getProdi()
           );
 
-        $this->load->view('element/header_siluni',$data);
+        $this->load->view('element/header_guest',$data);
         $this->load->view('guest/v_berita_karir',$data);
         $this->load->view('element/footer_siluni');
 
@@ -189,7 +189,7 @@ class Berita_alumni extends CI_Controller {
           'prodi' => $this->m_master->getProdi()
           );
 
-        $this->load->view('element/header_siluni',$data);
+        $this->load->view('element/header_guest',$data);
         $this->load->view('berita/v_berita_saya',$data);
         $this->load->view('element/footer_siluni');
 
@@ -207,7 +207,7 @@ class Berita_alumni extends CI_Controller {
           'title'=>'Berita Saya  - SiLuni',
             'active_beranda'=>'active'
           );
-  $this->load->view('element/header_siluni',$data);
+  $this->load->view('element/header_guest',$data);
   $this->load->view('berita/v_edit_berita',$data);
   $this->load->view('element/footer_siluni');
   }
@@ -249,7 +249,7 @@ class Berita_alumni extends CI_Controller {
         'berita' => $this->m_berita->tampil_berita($where,'berita_alumni')->result(),
         'prodi' => $this->m_master->getProdi()
     );
-        $this->load->view('element/header_siluni',$data);
+        $this->load->view('element/header_guest',$data);
         $this->load->view('guest/v_tampil_berita',$data);
         $this->load->view('element/footer_siluni');
   }
@@ -266,7 +266,7 @@ class Berita_alumni extends CI_Controller {
             'warning' => '',
             'prodi' => $this->m_master->getProdi()
         );
-      $this->load->view('element/header_siluni',$data);
+      $this->load->view('element/header_guest',$data);
       $this->load->view('berita/v_tambah_berita',$data);
       $this->load->view('element/footer_siluni');
 
@@ -329,7 +329,7 @@ class Berita_alumni extends CI_Controller {
             'error' => '',
             'warning'=>''
           );
-          $this->load->view('element/header_siluni',$data);
+          $this->load->view('element/header_guest',$data);
           $this->load->view('berita/v_tambah_berita',$data);
           $this->load->view('element/footer_siluni');
 
@@ -351,7 +351,7 @@ class Berita_alumni extends CI_Controller {
                           </div>',
             'error_validation' => validation_errors()
         );
-    $this->load->view('element/header_siluni',$data);
+    $this->load->view('element/header_guest',$data);
     $this->load->view('berita/v_tambah_berita',$data);
     $this->load->view('element/footer_siluni');
         } else {
@@ -427,7 +427,7 @@ function tambah_aksi(){
             'warning'=>'',
             'prodi' => $this->m_master->getProdi()
           );
-          $this->load->view('element/header_siluni',$data);
+          $this->load->view('element/header_guest',$data);
           $this->load->view('berita/v_tambah_berita',$data);
           $this->load->view('element/footer_siluni');
 
@@ -450,7 +450,7 @@ function tambah_aksi(){
             'error_validation' => validation_errors(),
             'prodi' => $this->m_master->getProdi()
         );
-    $this->load->view('element/header_siluni',$data);
+    $this->load->view('element/header_guest',$data);
     $this->load->view('berita/v_tambah_berita',$data);
     $this->load->view('element/footer_siluni');
         } else {
@@ -471,7 +471,7 @@ function tambah_aksi(){
             'warning' => '',
             'prodi' => $this->m_master->getProdi()
         );
-    $this->load->view('element/header_siluni',$data);
+    $this->load->view('element/header_guest',$data);
     $this->load->view('berita/v_tambah_berita_admin',$data);
     $this->load->view('element/footer_siluni');
   }
@@ -555,7 +555,7 @@ public function do_upload(){
           'prodi' => $this->m_master->getProdi()
           );
 
-        $this->load->view('element/header_siluni',$data);
+        $this->load->view('element/header_guest',$data);
         $this->load->view('berita/v_berita_saya',$data);
         $this->load->view('element/footer_siluni');
 

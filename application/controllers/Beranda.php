@@ -16,7 +16,7 @@ class Beranda extends CI_Controller {
             'nama' => $this->session->userdata('nama'),
             'prodi' => $this->m_master->getProdi()
         );
-        $this->load->view('element/header_siluni',$data);
+        $this->load->view('element/header_guest',$data);
 		$this->load->view('guest/v_beranda', $data);
 		$this->load->view('element/footer_siluni');
 

@@ -4,7 +4,7 @@
           <!-- Page Header-->
            <header class="page-header" style="background-color: #EFE037">
             <div class="container-fluid">
-              <h2 class="no-margin-bottom">Riwayat Pekerjaan</h2>
+              <h2 class="no-margin-bottom">Detail Alumni</h2>
             </div>
           </header>
            <!-- Breadcrumb-->

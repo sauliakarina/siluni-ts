@@ -19,7 +19,7 @@ public function index()
         	'dosen' => $this->m_data->tampil_data_dosen(),
         	'prodi' => $this->m_master->getProdi()
         );
-        $this->load->view('element/header_siluni',$data);
+        $this->load->view('element/header_guest',$data);
 		$this->load->view('guest/v_pencarian_dosen',$data);
 		 $this->load->view('element/footer_siluni');
 	}
@@ -47,7 +47,7 @@ public function index()
         	'prodi' => $this->m_master->getProdi(),
         	'user_dosen' => $user_dosen
         	);
-        	$this->load->view('element/header_siluni', $data);
+        	$this->load->view('element/header_guest', $data);
 			$this->load->view('guest/v_hasil_pencarian_dosen', $data);
 			$this->load->view('element/footer_siluni');
 		} 	else {

@@ -22,7 +22,7 @@ public function index()
         	'alumni' => $this->m_alumni->fetch_alumni(),
         	'prodi' => $this->m_master->getProdi()
         );
-        $this->load->view('element/header_siluni',$data);
+        $this->load->view('element/header_guest',$data);
 		$this->load->view('guest/v_pencarian_alumni',$data);
 		 $this->load->view('element/footer_siluni');
 	}
@@ -50,7 +50,7 @@ public function index()
         	'prodi' => $this->m_master->getProdi(),
         	'user_alumni' => $user_alumni
         	);
-        	$this->load->view('element/header_siluni', $data);
+        	$this->load->view('element/header_guest', $data);
 			$this->load->view('guest/v_hasil_pencarian', $data);
 			$this->load->view('element/footer_siluni');
 		} 	else {
@@ -71,7 +71,7 @@ public function index()
 		         'prodi' => $this->m_master->getProdi(),
 		         'pekerjaan' => $this->m_pengguna->getPekerjaanByAlumniID($nrm),
 		        );
-		        $this->load->view('element/header_siluni',$data);
+		        $this->load->view('element/header_guest',$data);
 		        $this->load->view('guest/v_profil_user',$data);
 		        $this->load->view('element/footer_siluni');
 			}
