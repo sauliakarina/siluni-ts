@@ -8,10 +8,15 @@
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/template/vendor/bootstrap/css/bootstrap.min.css">
   <script src="<?php echo base_url('assets/template/vendor') ?>/jquery/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="<?php echo base_url(); ?>assets/template/vendor/bootstrap/js/bootstrap.min.js"></script>
 
  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/template/vendor/font-awesome/css/font-awesome.min.css">
  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/template/vendor/fontawesome-free-5.9.0-web/css/all.css">
+ <!-- datatable -->
+ <link rel="stylesheet" href="<?php echo base_url();?>assets/siluni//datatables/jquery.dataTables.min.css" type="text/css" >
+ <script src="<?php echo base_url();?>/assets/siluni//datatables/jquery.dataTables.min.js" type="text/javascript"></script>
+
+ 
 
   <style>
   .fakeimg {

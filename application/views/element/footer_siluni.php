@@ -1,17 +1,8 @@
  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <!-- <title><?php //echo $title ;?></title> -->
-    <title>Siluni</title>
-    <link rel="icon" href="<?php echo base_url('assets/siluni//images/unj.png')?>" type="image/x-icon">
+   
    <!--  <link rel="stylesheet" type="text/css" href="https://fonts.googlelapis.com/icons?family=Material+Icons"> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">  --> 
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/siluni//datatables/jquery.dataTables.min.css" type="text/css" > <!-- datatables -->
+    <!-- <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">  -->  <!-- datatables -->
     <!-- Bootstrap core CSS -->
     <link href="<?php echo base_url();?>assets/siluni//mdb/css/bootstrap.css" rel="stylesheet">
     <link href="<?php echo base_url();?>assets/siluni//mdb/css/mdb.css" rel="stylesheet">
@@ -26,7 +17,6 @@
     
     <!-- datatables -->
    <!--  <script type="text/javascript" src="https://ajax.googlelapis.com/ajax/libs.jquery/2.2.2/jquery.min.js"></script> -->
-    <script src="<?php echo base_url();?>/assets/siluni//datatables/jquery.dataTables.min.js" type="text/javascript"></script>
     <!-- <script type="text/javascript" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script> -->
 
 

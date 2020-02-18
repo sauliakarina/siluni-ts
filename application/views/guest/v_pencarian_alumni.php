@@ -38,7 +38,7 @@
     </div> <!-- row -->
       <div class="row" style="margin-top: 40px">
         <div class="col-md-12">
-          <table id="example" class="table table-hover table-responsive">
+          <table id="example" class="table table-hover">
             <thead class="white-text" style="background-color:#006F45 ">
               <tr>
                 <th>NIM</th>
